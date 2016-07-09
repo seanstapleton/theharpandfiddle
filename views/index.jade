@@ -1,0 +1,53 @@
+extends layout
+
+block content
+
+  div.primary-content
+    div.row
+        div.col-md-8.mainslidercol
+            div.carousel.slide.mainslider(id='homepage-carousel' data-wrap='true')
+                //Indicators
+                ol.carousel-indicators
+                    li(data-target='#homepage-carousel' data-slide-to='0')
+                    li(data-target='#homepage-carousel' data-slide-to='1')
+                    li(data-target='#homepage-carousel' data-slide-to='2')
+
+                //Wrapper for slides
+                div.carousel-inner
+                    div.item.active
+                        img(src='http://www.theharpandfiddle.com/photo-albums/The%20Score/score-handsup.jpg')
+                        div.carousel-caption
+                            h1 Slide 1
+                    div.item
+                        img(src='http://placehold.it/1200x750')
+                        div.carousel-caption
+                            h1 Slide 2
+                    div.item
+                        img(src='http://placehold.it/1200x750')
+                        div.carousel-caption
+                            h1 Slide 3
+
+                //Controls
+                a.carousel-control.left(href='#homepage-carousel' role='button' data-slide='prev')
+                    span.glyphicon.glyphicon-chevron-left
+                a.carousel-control.right(href='#homepage-carousel' role='button' data-slide='next')
+                    span.glyphicon.glyphicon-chevron-right
+        div.col-md-4
+            div.panel.panel-default.specials
+                div.panel-heading Today's Specials
+                
+                ul.list-group
+                    li.list-group-item Fish n' Chips Friday!
+    div.row.home-routers
+        div.col-md-4
+            div.home-router
+                img(src='http://placehold.it/400x300')
+        div.col-md-4
+            div.home-router
+                img(src='/img/drinks.jpeg')
+                h1 drinks
+        div.col-md-4
+            div.home-router
+                img(src='http://placehold.it/400x300')
+                
+        

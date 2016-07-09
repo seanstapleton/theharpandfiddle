@@ -1,0 +1,212 @@
+body {
+    background:  url('/img/grain-wood.jpg');
+    background-size: 100%;
+}
+.container-fluid {
+    padding: 0;
+}
+.navbar-header, .navbar-collapse {
+    margin-right: 0 !important;
+}
+a {
+  color: #00B7FF;
+}
+.navbar {
+    background: #0d0d0d;
+}
+.navbar a {
+    color: #7A6247;
+}
+ul.nav {
+    font-size: 1.5em;
+    padding: 1em;
+    float: left;
+}
+@media (min-width: 1095px) {
+    ul.nav {
+        font-size: 2em;
+    }
+}
+.navbar, .navbar-default, .navbar-header, .row, .nav {
+    border: none;
+    margin: 0;
+}
+.item img {
+    width: 100%;
+}
+/*
+.col-md-4, .col-md-8 {
+    margin: 0;
+    padding: 0;
+}
+*/
+.specials {
+    width: 100%;
+    height: 285px;
+    display: none;
+}
+.row {
+    margin: 0;
+}
+.mainslidercol {
+    padding: 0;
+}
+.home-router {
+    position: relative;
+}
+.home-router h1 {
+    position: absolute;
+    top: 60px;
+    left: 100px;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+}
+.home-router img {
+    width: 100%;
+}
+.home-routers {
+    display: none;
+}
+footer {
+    background: #212121;
+}
+.primary-content {
+    width: 100%;
+}
+.info-section button {
+    margin-top: 20px;
+}
+h1.hours {
+    margin-left: 40px;
+    margin-top: 20px;
+}
+/*
+.col-md-3 {
+    background: red;
+}
+*/
+.social-thumbnails {
+    width: 70%;
+    margin: 0 5%;
+    padding: 0;
+}
+.social-thumbnails li {
+    display: inline;
+    margin: 0;
+}
+.social-thumbnails img {
+    width: 33%;
+    border-radius: 50%;
+}
+div.container-fluid {
+    padding: 0;
+}
+.info-section li {
+    list-style-type: none;
+    font-size: 1.5em;
+}
+
+@media (max-width: 992px) {
+    .info-section h1 {
+        position: relative;
+        font-size: 5em;
+        z-index: 1;
+        overflow: hidden;
+        text-align: center;
+        margin: 40px 0;
+    }
+    .info-section h1:before {
+        position: absolute;
+        top: 51%;
+        overflow: hidden;
+        width: 100%;
+        height: 3px;
+        content: '\a0';
+        background-color: #777;
+    }
+    .info-section h1:before {
+        margin-left: -40%;
+        text-align: center;
+    }
+    .info-section span {
+        padding: 20px;
+        background: #777;
+        position: relative;
+        z-index: 9999;
+    }
+    .info-section {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .hours {
+        background-color: darkgrey;
+        padding: 10px 0;
+        padding: 10px 0;
+    }
+    .hours .row {
+        padding: 5px;
+        text-align: center;
+        font-size: 4em;
+    }
+    .hours .col-xs-4 {
+        text-align: left;
+    }
+    .hours .col-xs-4 p {
+        margin-left: 10%;
+    }
+    .hours .col-xs-8 {
+        text-align: right;
+    }
+    .hours .col-xs-8 p{
+        margin-right: 5%;
+    }
+    .hours hr {
+        width: 90%;
+        margin: 0 auto;
+        border-top: 1px dashed;
+        border-top-width: 2px;
+    }
+    ul.nav li {
+        text-align: center;
+        font-size: 3em;
+        line-height: 3em;
+        padding: 0.5em 0;
+    }
+    .info-body{
+        background-color: darkgrey;
+        padding: 10%;
+    }
+    .info-body p {
+        font-size: 3.5em;
+    }
+    #joinbtn {
+        display: none;
+    }
+}
+
+#directions {
+    display: none;
+}
+#social-media {
+    display: none;
+}
+#contact-dirs {
+    width: 100%;
+    height: 700px;
+    margin-top: 40px;
+}
+.social-thumbnails {
+    display: none;
+}
+.col-md-6 {
+    background: blue;
+}
+.credit {
+    font-size: 1.5em;
+    text-align: center;
+    padding: 5px 0;
+}
+.logo-flap, .flap-spacer {
+    display: none;
+}
