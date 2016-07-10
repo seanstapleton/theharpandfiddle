@@ -1,0 +1,14 @@
+extends layout
+
+block stylesheets
+    link(rel='stylesheet', href='/lib/fullcalendar/jquery-ui.min.css')
+    link(rel='stylesheet', href='/lib/fullcalendar/fullcalendar.min.css')
+    link(rel='stylesheet', href='/lib/fullcalendar/fullcalendar.print.css' media='print')
+block scripts
+    script(src='/lib/fullcalendar/moment.min.js')
+    script(src='/lib/fullcalendar/fullcalendar.min.js')
+
+block content
+    div.primary-content
+        div(id='calendar')
+        

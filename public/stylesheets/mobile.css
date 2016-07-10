@@ -5,6 +5,14 @@ body {
 .container-fluid {
     padding: 0;
 }
+.white {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+}
+.home {
+    width: 60%;
+    float: left;
+}
 .navbar-header, .navbar-collapse {
     margin-right: 0 !important;
 }
@@ -14,13 +22,13 @@ a {
 .navbar {
     background: #0d0d0d;
 }
-.navbar a {
-    color: #7A6247;
-}
 ul.nav {
     font-size: 1.5em;
     padding: 1em;
     float: left;
+}
+ul.nav a:first-letter {
+    text-transform: uppercase;
 }
 @media (min-width: 1095px) {
     ul.nav {
@@ -53,14 +61,20 @@ ul.nav {
 }
 .home-router {
     position: relative;
+    box-shadow: 0px 1px 10px #000;
 }
 .home-router h1 {
     position: absolute;
-    top: 60px;
-    left: 100px;
+    top: 90px;
+    left: 0;
+    width: 100%;
     color: #fff;
     text-align: center;
     text-transform: uppercase;
+    font-family: Montserrat;
+}
+.home-router h1:hover {
+    color: #396533;
 }
 .home-router img {
     width: 100%;
@@ -71,8 +85,12 @@ ul.nav {
 footer {
     background: #212121;
 }
+.fc-center h2{
+    color: #fff;
+}
 .primary-content {
     width: 100%;
+    overflow: auto;
 }
 .info-section button {
     margin-top: 20px;
@@ -171,7 +189,7 @@ div.container-fluid {
         text-align: center;
         font-size: 3em;
         line-height: 3em;
-        padding: 0.5em 0;
+        padding: 15px !important;
     }
     .info-body{
         background-color: darkgrey;

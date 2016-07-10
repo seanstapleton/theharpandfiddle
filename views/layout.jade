@@ -4,18 +4,21 @@ html
     title= title
     link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/fonts.css')
-    link(href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet')
+    link(href="https://fonts.googleapis.com/css?family=Montserrat|Secular+One|Suez+One" rel="stylesheet")
     link(rel='stylesheet', href='/stylesheets/mobile.css')
     link(rel='stylesheet', href='/stylesheets/header.css')
+    block stylesheets
     script(src='/lib/jquery/jquery.min.js')
     script(src='/lib/bootstrap/js/bootstrap.min.js')
+    block scripts
     script(src='/js/header.js')
   body
     nav.navbar.navbar-default(role='navigation')
         div.container-fluid
             div.flap-spacer
             div.logo-flap
-                img(src='/img/navLogo.png')
+                a(href='/')
+                    img(src='/img/navLogo.png')
             div.navbar-header
                     div(id='nav-hmenu' data-toggle='collapse' data-target=".navbar-collapse").pull-right.hmenu
                         span
@@ -27,7 +30,7 @@ html
                 ul.nav.navbar-nav
                     each link in links
                         li
-                            a(href='#')=link
+                            a(href=link)=link
         
   block content
   
@@ -38,45 +41,45 @@ html
                 span Hours
             div.hours 
                 div.row
-                    div.col-xs-4
+                    div.col-xs-5
                         p Monday
-                    div.col-xs-8
+                    div.col-xs-7
                         p 11am - 1am
                     hr
                 div.row
-                    div.col-xs-4
+                    div.col-xs-5
                         p Tuesday
-                    div.col-xs-8
+                    div.col-xs-7
                         p 11am - 1am
                     hr
                 div.row
-                    div.col-xs-4
+                    div.col-xs-5
                         p Wednesday
-                    div.col-xs-8
+                    div.col-xs-7
                         p 11am - 1am
                     hr
                 div.row
-                    div.col-xs-4
+                    div.col-xs-5
                         p Thursday
-                    div.col-xs-8
+                    div.col-xs-7
                         p 11am - 1am
                     hr
                 div.row
-                    div.col-xs-4
+                    div.col-xs-5
                         p Friday
-                    div.col-xs-8
+                    div.col-xs-7
                         p 11am - 2am
                     hr
                 div.row
-                    div.col-xs-4
+                    div.col-xs-5
                         p Saturday
-                    div.col-xs-8
+                    div.col-xs-7
                         p 11am - 2am
                     hr
                 div.row
-                    div.col-xs-4
+                    div.col-xs-5
                         p Sunday
-                    div.col-xs-8
+                    div.col-xs-7
                         p 11am - 2am
                     
         div.col-md-3.info-section

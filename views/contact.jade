@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    div.primary-content
+        h1 Questions? Comments? Concerns?
+        form
+            div.form-group
+            label(for='name') Name
+            input.form-control(type='text' id='name' placeholder='Name')
+            
+            div.form-group
+            label(for='email') Email Address
+            input.form-control(type='email' id='email' placeholder='Email')
+            
+            div.form-group
+            label(for='phnum') Phone Number
+            input.form-control(type='tel' id='phnum' placeholder='Ex: (847) 720-4466')
+            
+            div.form-group
+            label(for='subj') Subject
+            input.form-control(type='text' id='subj' placeholder='Subject')
+            
+            div.form-group
+            label(for='msg') Message
+            textarea.form-control(id='msg' placeholder='Message')
+            
+            button(type='submit' class='btn btn-default') Submit
+            
+        
