@@ -88,7 +88,7 @@ h1, h2, h3, h4, h5, h6, p, a, li {
     .hmenu {
         display: none;
     }
-    .primary-content {
+    .primary-content, .launch-content{
         width: 70%;
         margin: 2.5% auto;
     }
@@ -142,7 +142,7 @@ h1, h2, h3, h4, h5, h6, p, a, li {
         top: 0;
         left: 15%;
         background-color: antiquewhite;
-        z-index: 9999999999;
+        z-index: 99999;
         box-shadow: 0px 1px 10px #000;
     }
     .flap-spacer {
@@ -162,8 +162,30 @@ h1, h2, h3, h4, h5, h6, p, a, li {
     hr {
         display: none;
     }
+    .primary-content {
+        background-color: rgba(26, 26, 26, 0.8);
+        padding: 20px;
+        border-radius: 15px;
+    }
     
     
+}
+
+.phalb a:not(:first-child) {
+    display: none;
+}
+.phalb {
+    width: 30%;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
+}
+.phalb img {
+    width: 100%;
+    border-radius: 10px;
+}
+.phalb h1 {
+    text-align: center;
+    color: #646464;
 }
 
 

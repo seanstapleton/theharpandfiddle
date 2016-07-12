@@ -228,3 +228,18 @@ div.container-fluid {
 .logo-flap, .flap-spacer {
     display: none;
 }
+form h1, form label {
+    color: #fff;
+}
+form button {
+    margin-top: 10px;
+    width: 90%;
+    display: block;
+    margin-left: 5%;
+}
+form button:hover {
+    background: #396533;
+}
+footer {
+    color: #646464;
+}

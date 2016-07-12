@@ -2,15 +2,15 @@ extends layout
 
 block content
     div.primary-content
-        h1 Questions? Comments? Concerns?
         form
+            h1 Questions? Comments? Concerns?
             div.form-group
             label(for='name') Name
-            input.form-control(type='text' id='name' placeholder='Name')
+            input.form-control(type='text' id='name')
             
             div.form-group
             label(for='email') Email Address
-            input.form-control(type='email' id='email' placeholder='Email')
+            input.form-control(type='email' id='email')
             
             div.form-group
             label(for='phnum') Phone Number
@@ -18,11 +18,11 @@ block content
             
             div.form-group
             label(for='subj') Subject
-            input.form-control(type='text' id='subj' placeholder='Subject')
+            input.form-control(type='text' id='subj')
             
             div.form-group
             label(for='msg') Message
-            textarea.form-control(id='msg' placeholder='Message')
+            textarea.form-control(id='msg')
             
             button(type='submit' class='btn btn-default') Submit
             
