@@ -4,13 +4,8 @@ module.exports = function(db) {
     var db = require('../db');
     var hoursSchema = require('../models/hours.js');
     var menuSchema = require('../models/menu.js');
-
-    var layoutData = { 
-      title: 'The Harp and Fiddle',
-      links: ["menu", "events", "contact", "gallery"],
-      homepageslides: ["/images/wooden.jpg","",""],
-    }
-    
+    var eventsSchema = require('../models/events.js');
+    var specialsSchema = require('../models/specials.js');
     var hours;
     
     hoursSchema.find({}, {'_id': false, 'order': false}, function(err, returnHours) {
@@ -19,10 +14,15 @@ module.exports = function(db) {
 
     /* GET home page. */
     router.get('/', function(req, res, next) {
-        res.render('index', {
-            title: 'The Harp and Fiddle',
-            homepageslides: ["/images/wooden.jpg","",""],
-            hours: hours
+        var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+        var d = new Date();
+        specialsSchema.find({dotw: days[d.getDay()]}, {'_id': false}, function(err, specials) {
+            res.render('index', {
+                title: 'The Harp and Fiddle',
+                homepageslides: ["/images/wooden.jpg","",""],
+                hours: hours,
+                specials: specials
+            });
         });
     });
     
@@ -32,26 +32,35 @@ module.exports = function(db) {
             res.render('menu', {
                 title: 'The Harp and Fiddle - Dinner Menu',
                 hours: hours,
-                menu: menu
+                menu: JSON.stringify(menu)
             });
         });
     });
 
     /* GET events page. */
     router.get('/events', function(req, res, next) {
-      res.render('events', layoutData);
+        eventsSchema.find({}, {_id: false, description: false, url: false}, function(err, events) {
+            res.render('events', {
+              title: 'The Harp and Fiddle - Events',
+              hours: hours,
+              events: events
+          }); 
+        });
     });
 
     /* GET contact page. */
     router.get('/contact', function(req, res, next) {
-      res.render('contact', layoutData);
+      res.render('contact', {
+          title: 'The Harp and Fiddle - Events',
+          hours: hours
+      });
     });
 
     /* GET about page. */
     router.get('/gallery', function(req, res, next) {
       res.render('gallery', { 
-          title: 'The Harp and Fiddle',
-          links: ["menu", "events", "contact", "gallery"],
+          title: 'The Harp and Fiddle - Gallery',
+          hours: hours,
           albums: [
               {
                   title: "Food & Drink",

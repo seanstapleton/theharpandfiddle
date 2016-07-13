@@ -3,16 +3,31 @@ extends layout
 block scripts
     script.
         $(document).ready(function() {
-            var menu = #{menu};
+            var menu = !{menu};
+            var sections = menu.sections;
             
-            for (var section in menu.sections) {
-                var title = $("<h1></h1>").text(section);
-                $(".primary-content").append(title);
+            console.log(sections);
+            
+            for (var i = 0; i < sections.length; i++) {
+                var title = $("<h1></h1>").text(sections[i].title);
+                $(".menu").append(title);
+                
+                var items = sections[i].items;
+                
+                for (var q = 0; q < items.length; q++) {
+                    var miTitle = (items[q].price > -1) ? items[q].title + " $" + items[q].price : items[q].title;
+                    var menuItem = $("<h2></h2>").text(miTitle);
+                    menuItem.css("margin-left", "5%");
+                    var desc = $('<p></p>').text(items[q].description);
+                    desc.css("margin-left", "10%");
+                    $('.menu').append(menuItem, desc);
+                }
             }
         });
 
 block content
-    div.primary-content
+    div.primary-content.menu
+        h1(style='font-size: 2em; text-align: center') Dinner Menu
                     
             
             

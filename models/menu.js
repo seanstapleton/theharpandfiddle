@@ -10,44 +10,15 @@ var itemSchema = new Schema({
 
 var menuSchema = new Schema({
     type: String,
-    sections: {
-        appetizers: {
-            available: Boolean,
-            title: String,
-            order: Number,
-            items: [itemSchema]
-        },
-        salads: {
-            available: Boolean,
-            title: String,
-            order: Number,
-            items: [itemSchema]
-        },
-        sandwiches: {
-            available: Boolean,
-            title: String,
-            order: Number,
-            items: [itemSchema]
-        },
-        entrees: {
-            available: Boolean,
-            title: String,
-            order: Number,
-            items: [itemSchema]
-        },
-        specialties: {
-            available: Boolean,
-            title: String,
-            order: Number,
-            items: [itemSchema]
-        },
-        desserts: {
+    sections: [
+        {
+            section: String,
             available: Boolean,
             title: String,
             order: Number,
             items: [itemSchema]
         }
-    }
+    ]
 })
 
 module.exports = mongoose.model('Menu', menuSchema);

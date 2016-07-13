@@ -246,3 +246,6 @@ footer {
 .hours p:first-letter {
     text-transform: uppercase;
 }
+.menu h1, h2, p {
+    color: #646464;
+}

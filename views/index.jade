@@ -37,7 +37,8 @@ block content
                 div.panel-heading Today's Specials
                 
                 ul.list-group
-                    li.list-group-item Fish n' Chips Friday!
+                    each special in specials
+                        li.list-group-item=special.title
     div.row.home-routers
         div.col-md-4
             a(href='')
