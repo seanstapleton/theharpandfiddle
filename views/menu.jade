@@ -1,0 +1,18 @@
+extends layout
+
+block scripts
+    script.
+        $(document).ready(function() {
+            var menu = #{menu};
+            
+            for (var section in menu.sections) {
+                var title = $("<h1></h1>").text(section);
+                $(".primary-content").append(title);
+            }
+        });
+
+block content
+    div.primary-content
+                    
+            
+            

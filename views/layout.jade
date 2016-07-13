@@ -28,7 +28,7 @@ html
             
             div.navbar-collapse.collapse
                 ul.nav.navbar-nav
-                    each link in links
+                    each link in ["menu", "events", "contact", "gallery"]
                         li
                             a(href=link)=link
         
@@ -40,47 +40,13 @@ html
             h1
                 span Hours
             div.hours 
-                div.row
-                    div.col-xs-5
-                        p Monday
-                    div.col-xs-7
-                        p 11am - 1am
-                    hr
-                div.row
-                    div.col-xs-5
-                        p Tuesday
-                    div.col-xs-7
-                        p 11am - 1am
-                    hr
-                div.row
-                    div.col-xs-5
-                        p Wednesday
-                    div.col-xs-7
-                        p 11am - 1am
-                    hr
-                div.row
-                    div.col-xs-5
-                        p Thursday
-                    div.col-xs-7
-                        p 11am - 1am
-                    hr
-                div.row
-                    div.col-xs-5
-                        p Friday
-                    div.col-xs-7
-                        p 11am - 2am
-                    hr
-                div.row
-                    div.col-xs-5
-                        p Saturday
-                    div.col-xs-7
-                        p 11am - 2am
-                    hr
-                div.row
-                    div.col-xs-5
-                        p Sunday
-                    div.col-xs-7
-                        p 11am - 2am
+                each hour in hours
+                    div.row
+                        div.col-xs-5
+                            p=hour.day
+                        div.col-xs-7
+                            p=hour.timeframe
+                        hr
                     
         div.col-md-3.info-section
             h1

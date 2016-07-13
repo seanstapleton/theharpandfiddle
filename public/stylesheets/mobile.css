@@ -243,3 +243,6 @@ form button:hover {
 footer {
     color: #646464;
 }
+.hours p:first-letter {
+    text-transform: uppercase;
+}
