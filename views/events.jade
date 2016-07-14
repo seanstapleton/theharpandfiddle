@@ -13,6 +13,7 @@ block scripts
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
+            var events = !{events};
 
             $('#calendar').fullCalendar({
                 theme: true,
@@ -21,10 +22,16 @@ block scripts
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                editable: true,
+                editable: false,
                 weekMode: 'liquid',
                 url: '#',
-                events: [!{events}]
+                events: [events],
+                eventMouseover: function(event, jsEvent, view) {
+                    $(this).tooltip({title: event.description});
+                },
+                eventClick: function(event, jsEvent, view) {
+                    window.location.href=event.url;
+                }
             });
         });
 

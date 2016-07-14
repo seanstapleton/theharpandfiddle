@@ -1,7 +1,7 @@
 {
     "type": "Dinner Menu",
-    "sections": {
-        "appetizers": {
+    "sections": [
+        {
             "available": true,
             "title": "Appetizers",
             "items": [
@@ -54,8 +54,7 @@
                     "alc": -1
                 }
                    ]
-        },
-        "salads": {
+        }, {
             "available": true,
             "title": "Salads",
             "items": [
@@ -96,8 +95,7 @@
                     "alc": -1
                 }
             ]
-        },
-        "sandwiches": {
+        }, {
             "available": true,
             "title": "Burgers & Sandwiches",
             "items": [
@@ -132,8 +130,7 @@
                     "alc": -1
                 }
             ]
-        },
-        "entrees": {
+        }, {
             "available": true,
             "title": "Entrees",
             "items": [
@@ -186,8 +183,7 @@
                     "alc": -1
                 }
             ]
-        },
-        "specialties": {
+        }, {
             "available": true,
             "title": "Irish Specialties",
             "items": [
@@ -222,8 +218,7 @@
                     "alc": -1
                 }
             ]
-        },
-        "desserts": {
+        }, {
             "available": true,
             "title": "Desserts",
             "items": [
@@ -247,5 +242,5 @@
                 }
             ]
         }
-    }
+    ]
 }

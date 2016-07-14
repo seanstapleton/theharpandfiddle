@@ -5,8 +5,10 @@ html
     link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/fonts.css')
     link(href="https://fonts.googleapis.com/css?family=Montserrat|Secular+One|Suez+One" rel="stylesheet")
+    link(rel='stylesheet', href='/stylesheets/layout.css')
     link(rel='stylesheet', href='/stylesheets/mobile.css')
-    link(rel='stylesheet', href='/stylesheets/header.css')
+    link(rel='stylesheet', href='/stylesheets/routes.css')
+    link(rel='stylesheet', href='/stylesheets/desktop.css')
     block stylesheets
     script(src='/lib/jquery/jquery.min.js')
     script(src='/lib/bootstrap/js/bootstrap.min.js')
@@ -28,75 +30,93 @@ html
             
             div.navbar-collapse.collapse
                 ul.nav.navbar-nav
-                    each link in ["menu", "events", "contact", "gallery"]
+                    li.dropdown
+                        a(href='#' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false').dropdown-toggle Menu
+                        ul.dropdown-menu
+                            li
+                                a(href='lunch') Lunch Menu
+                            li
+                                a(href='menu') Dinner Menu
+                            li
+                                a(href='beer') Beer Menu
+                            li
+                                a(href='wine') Wine Menu
+                            li
+                                a(href='specialties') Specialty Drinks
+                                   
+                    each link in ["events", "contact", "gallery"]
                         li
                             a(href=link)=link
         
   block content
   
-  footer
-    div.row
-        div.col-md-3.info-section
-            h1
-                span Hours
-            div.hours 
-                each hour in hours
-                    div.row
-                        div.col-xs-5
-                            p=hour.day
-                        div.col-xs-7
-                            p=hour.timeframe
-                        hr
-                    
-        div.col-md-3.info-section
-            h1
-                span Contact
-                
-            div.info-body
-                p 110 Main Street <br/> Park Ridge, IL 60068
-                p P: 
-                    a(href='tel:8477204466') (847) 720-4466
-                p declan@theharpandfiddle.com
-                
-                button(type='button' data-toggle='modal' data-target='#mailing-list' id='joinbtn').btn.btn-default.btn-lg.btn-block Join our Mailing List!
+  block footer
+      footer
+        div.row
+            div.col-md-3.info-section
+                h1
+                    span Hours
+                div.hours 
+                    each hour in hours
+                        div.row
+                            div.col-xs-5
+                                p=hour.day
+                            div.col-xs-7
+                                p=hour.timeframe
+                            hr
 
-                //Mailing List Modal
-                div.modal.fade(id='mailing-list' tabindex='-1' role='dialog' aria-labelledby='ml-label')
-                    div.modal-dialog(role='document')
-                        div.modal-content
-                            div.modal-header
-                                button(type='button' data-dismiss='modal' aria-label='Close').close
-                                    span(sria-hidden='true') &times;
-                                h4.modal-title(id='ml-label') Subscribe to our Mailing List!
-                            div.modal-body
-                                include mailchimp-signup-form.html
-             iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2964.563677004332!2d-87.83397288517205!3d42.00963876515232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fc9b7151ccd95%3A0xf4d931d39d0b7486!2sThe+Harp+And+Fiddle!5e0!3m2!1sen!2sus!4v1467863161355' frameborder='0' style='border:0' allowfullscreen id='contact-dirs')
-            
-        div.col-md-3.info-section(id='directions')
-            h1
-                span Directions
-            iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2964.563677004332!2d-87.83397288517205!3d42.00963876515232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fc9b7151ccd95%3A0xf4d931d39d0b7486!2sThe+Harp+And+Fiddle!5e0!3m2!1sen!2sus!4v1467863161355' frameborder='0' style='border:0' allowfullscreen)
-            
-        div.col-md-3.info-section(id='social-media')
-            h1
-                span Social Media
-            
-            div.info-body
-                p Facebook: 
-                    a theharpandfiddle
-                p Twitter: 
-                    a theharpandfiddle
-                p Instagram: 
-                    a theharpandfiddle
-                ul.social-thumbnails
-                    li
-                        img(src='/img/social-media/fb-thumbnail.png' alt='fb-social')
-                    li
-                        img(src='/img/social-media/tw-thumbnail.png' alt='tw-social')
-                    li
-                        img(src='/img/social-media/inst-thumbnail.png' alt='inst-social')
-    div.credit
-        p &copy 2016 Sean Stapleton
+            div.col-md-3.info-section
+                h1
+                    span Contact
+
+                div.info-body
+                    p 110 Main Street <br/> Park Ridge, IL 60068
+                    p P: 
+                        a(href='tel:8477204466') (847) 720-4466
+                    p declan@theharpandfiddle.com
+
+                    button(type='button' data-toggle='modal' data-target='#mailing-list' id='joinbtn').btn.btn-default.btn-lg.btn-block Join our Mailing List!
+
+                    //Mailing List Modal
+                    div.modal.fade(id='mailing-list' tabindex='-1' role='dialog' aria-labelledby='ml-label')
+                        div.modal-dialog(role='document')
+                            div.modal-content
+                                div.modal-header
+                                    button(type='button' data-dismiss='modal' aria-label='Close').close
+                                        span(sria-hidden='true') &times;
+                                    h4.modal-title(id='ml-label') Subscribe to our Mailing List!
+                                div.modal-body
+                                    include mailchimp-signup-form.html
+                 iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2964.563677004332!2d-87.83397288517205!3d42.00963876515232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fc9b7151ccd95%3A0xf4d931d39d0b7486!2sThe+Harp+And+Fiddle!5e0!3m2!1sen!2sus!4v1467863161355' frameborder='0' style='border:0' allowfullscreen id='contact-dirs')
+
+            div.col-md-3.info-section(id='directions')
+                h1
+                    span Directions
+                iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2964.563677004332!2d-87.83397288517205!3d42.00963876515232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fc9b7151ccd95%3A0xf4d931d39d0b7486!2sThe+Harp+And+Fiddle!5e0!3m2!1sen!2sus!4v1467863161355' frameborder='0' style='border:0' allowfullscreen)
+
+            div.col-md-3.info-section(id='social-media')
+                h1
+                    span Social Media
+
+                div.info-body
+                    p Facebook: 
+                        a(href='http://www.facebook.com/parkridgebar') Harp &amp Fiddle
+                    p Twitter: 
+                        a(href='http://www.twitter.com/harpandfiddlepr') harpandfiddlepr
+                    p Instagram: 
+                        a(href='http://www.instagram.com/theharpandfiddle') theharpandfiddle
+                    ul.social-thumbnails
+                        li
+                            a(href='http://www.facebook.com/parkridgebar')
+                                img(src='/img/social-media/fb-thumbnail.png' alt='fb-social')
+                        li
+                            a(href='http://www.twitter.com/harpandfiddlepr')
+                                img(src='/img/social-media/tw-thumbnail.png' alt='tw-social')
+                        li
+                            a(href='http://www.instagram.com/theharpandfiddle')
+                            img(src='/img/social-media/inst-thumbnail.png' alt='inst-social')
+        div.credit
+            p
           
     
     

@@ -13,6 +13,7 @@ var menuSchema = new Schema({
     sections: [
         {
             section: String,
+            col: Number,
             available: Boolean,
             title: String,
             order: Number,

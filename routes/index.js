@@ -39,7 +39,7 @@ module.exports = function(db) {
 
     /* GET events page. */
     router.get('/events', function(req, res, next) {
-        eventsSchema.find({}, {_id: false, description: false, url: false}, function(err, events) {
+        eventsSchema.find({}, {_id: false}, function(err, events) {
             res.render('events', {
               title: 'The Harp and Fiddle - Events',
               hours: hours,

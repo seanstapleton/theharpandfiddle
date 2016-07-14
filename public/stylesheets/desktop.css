@@ -1,0 +1,68 @@
+/* -------------------------------------------------
+------------------ media queries -------------------
+--------------------------------------------------*/
+
+@media (min-width: 992px) {
+    
+    /* ----------------------------------------
+    ------------- Show Displays ---------------
+    ---------------------------------------- */
+    
+    .specials, .home-routers, .info-section h1, #directions, #contact-dirs, .social-thumbnails, #social-media {
+        display: block;
+    }
+    
+    /* ----------------------------------------
+    ------------- Hide Displays ---------------
+    ---------------------------------------- */
+    
+    .hmenu, hr, #contact-dirs {
+        display: none;
+    }
+    
+    
+    .logo-flap {
+        width: 300px;
+        left: 15%;
+        z-index: 99999;
+        box-shadow: 0px 1px 10px #000;
+    }
+    .flap-spacer {
+        width: 300px;
+        height
+        100%;
+        margin-left: 15%;
+    }
+    .logo-flap img {
+        margin-top: 50px;
+    }
+    .primary-content, .launch-content{
+        width: 70%;
+        margin: 2.5% auto;
+    }
+    .row {
+        margin-top: 5%;
+    }
+    .mainslidercol {
+        padding: 0;
+    }
+    .info-section {
+        padding-left: 10px;
+    }
+    .info-section p {
+        text-align: left;
+        font-size: 1.5em;
+    }
+    .info-section iframe {
+        height: 200px;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .mainslider .carousel-inner {
+        height: 400px;
+    }
+    .primary-content {
+        margin-top: 60px;
+        border-radius: 15px;
+    }
+}

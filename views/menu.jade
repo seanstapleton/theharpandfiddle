@@ -8,26 +8,43 @@ block scripts
             
             console.log(sections);
             
+            var count = 0;
+            
             for (var i = 0; i < sections.length; i++) {
-                var title = $("<h1></h1>").text(sections[i].title);
-                $(".menu").append(title);
+                if (count >= 12) {
+                    var row = $('<div></div>');
+                    row.addClass("row");
+                    $('.menu').append(row);
+                    count -= 12;
+                }
+                var title = $("<h2></h2>").text(sections[i].title);
+                var container = $('<div></div>');
+                title.css("text-align", "center");
+                container.append(title);
+                container.addClass("col-md-" + sections[i].col);
+                $(".menu div.row:last-child").append(container);
                 
                 var items = sections[i].items;
                 
                 for (var q = 0; q < items.length; q++) {
                     var miTitle = (items[q].price > -1) ? items[q].title + " $" + items[q].price : items[q].title;
-                    var menuItem = $("<h2></h2>").text(miTitle);
+                    var menuItem = $("<h3></h3>").text(miTitle);
                     menuItem.css("margin-left", "5%");
                     var desc = $('<p></p>').text(items[q].description);
                     desc.css("margin-left", "10%");
-                    $('.menu').append(menuItem, desc);
+                    container.append(menuItem, desc);
                 }
+                
+                count += sections[i].col;
+                console.log(count);
             }
         });
 
 block content
     div.primary-content.menu
-        h1(style='font-size: 2em; text-align: center') Dinner Menu
+        h1(style='text-align: center') Dinner Menu
+        div.row(style='margin: 0')
+        
                     
             
             
