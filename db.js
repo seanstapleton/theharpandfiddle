@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
+var config = require('./config.example');
 
-var url = 'mongodb://owner:root@ds021994.mlab.com:21994/theharpandfiddle';
+var url = 'mongodb://'+config.db.user+':'+config.db.pass+'@ds021994.mlab.com:21994/theharpandfiddle';
 mongoose.connect(url);
 
 module.exports = mongoose.connection;

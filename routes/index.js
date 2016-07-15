@@ -2,6 +2,9 @@ module.exports = function(db) {
     var express = require('express');
     var router = express.Router();
     var db = require('../db');
+    var bodyParser = require('body-parser');
+    var nodemailer = require("nodemailer");
+    var config = require('../config.example');
     var hoursSchema = require('../models/hours.js');
     var menuSchema = require('../models/menu.js');
     var eventsSchema = require('../models/events.js');
@@ -106,10 +109,40 @@ module.exports = function(db) {
 
     /* GET contact page. */
     router.get('/contact', function(req, res, next) {
-      res.render('contact', {
-          title: 'The Harp and Fiddle - Events',
+        res.render('contact', {
+          title: 'The Harp and Fiddle - Contact',
           hours: hours
-      });
+        });
+    });
+    
+    /* POST contact page. */
+    router.post('/contact', function(req, res) {
+        
+        var smtpTrans = nodemailer.createTransport('smtps://'+config.gmail.user+'%40gmail.com:'+config.gmail.pass+'@smtp.gmail.com');
+         
+        //Mail Options
+        var mailOptions = {
+            from: req.body.name + '&lt;' + req.body.email + '&gt;',
+            to: 'fiddlersonmain@gmail.com',
+            subject: 'Contact Form Submission: ' + req.body.subject,
+            text: "Name: " + req.body.name + "\n" + "Phone Number: " + req.body.phnum + "\n" + "Email: " + req.body.email + "\nMessage: " + req.body.message
+        }
+        
+        smtpTrans.sendMail(mailOptions, function(err, info) {
+           if (err) {
+               console.log(err);
+               res.render('contact', {
+                  title: 'The Harp and Fiddle - error',
+                  hours: hours
+                });
+           } else {
+                console.log(req.body);
+                res.render('contact', {
+                  title: 'The Harp and Fiddle - Thank you',
+                  hours: hours
+                });
+           }
+        });
     });
 
     /* GET about page. */

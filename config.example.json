@@ -1,0 +1,10 @@
+{
+    "db": {
+        "user": "owner",
+        "pass": "root"
+    },
+    "gmail": {
+        "user": "owner",
+        "pass": "root"
+    }
+}
