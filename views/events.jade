@@ -4,16 +4,59 @@ block stylesheets
     link(rel='stylesheet', href='/lib/fullcalendar/jquery-ui.min.css')
     link(rel='stylesheet', href='/lib/fullcalendar/fullcalendar.min.css')
     link(rel='stylesheet', href='/lib/fullcalendar/fullcalendar.print.css' media='print')
+    style.
+        @media(max-width: 992px) {
+            footer {
+                display: none;
+            }
+        }
 block scripts
     script(src='/lib/fullcalendar/moment.min.js')
     script(src='/lib/fullcalendar/fullcalendar.min.js')
     script.
+        
         $(document).ready( function() {
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
-            var events = !{events};
+            
+            var events = [!{events}];
+            
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            for (var i = 0; i < events.length; i++) {
+                var eventDate = events[i].start.split("-");
+                events[i].date = new Date(eventDate[0], parseInt(eventDate[1]) - 1, eventDate[2]);
+                events[i].dateString = months[events[i].date.getMonth()] + " " + events[i].date.getDate();
+            }
+
+            events.sort(function(a, b) {
+                return new Date(a.date) - new Date(b.date);
+            });
+            
+            for (var i = 0; i < events.length; i++) {
+                var tr = $('<tr></tr>');
+                var title = $('<td></td>');
+                var link = $('<a></a>').text(events[i].title);
+                link.attr("href", events[i].url);
+                title.append(link);
+                var date = $('<td></td>').text(events[i].dateString);
+                var description = $('<td></td>').text(events[i].description);
+                
+                var eventDate = events[i].start.split("-");
+                var moment1 = moment([eventDate[0], parseInt(eventDate[1]) - 1, eventDate[2]]);
+                var today = moment();
+                var cd = $('<td></td>').text(today.to(moment1));
+                
+                tr.append(title, date, description, cd);
+                tr.addClass("active");
+                $('#eventList').append(tr);
+                
+            }
+            
+            
+            console.log(events);
 
             $('#calendar').fullCalendar({
                 theme: true,
@@ -25,7 +68,7 @@ block scripts
                 editable: false,
                 weekMode: 'liquid',
                 url: '#',
-                events: [events],
+                events: events,
                 eventMouseover: function(event, jsEvent, view) {
                     $(this).tooltip({title: event.description});
                 },
@@ -38,4 +81,14 @@ block scripts
 block content
     div.primary-content
         div(id='calendar')
-        
+        div(id='listcal')
+            table.table
+                thead
+                    tr
+                        td Event
+                        td Date
+                        td Description
+                        td When
+                tbody(id='eventList')
+                    
+                

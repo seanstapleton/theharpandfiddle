@@ -8,7 +8,7 @@
     ------------- Show Displays ---------------
     ---------------------------------------- */
     
-    .specials, .home-routers, .info-section h1, #directions, #contact-dirs, .social-thumbnails, #social-media {
+    .specials, .home-routers, .info-section h1, #directions, #contact-dirs, .social-thumbnails, #social-media, footer p.phnum, #calendar {
         display: block;
     }
     
@@ -16,7 +16,7 @@
     ------------- Hide Displays ---------------
     ---------------------------------------- */
     
-    .hmenu, hr, #contact-dirs {
+    .hmenu, hr, #contact-dirs, .call, .gallery-header, #listcal {
         display: none;
     }
     
@@ -41,7 +41,7 @@
         margin: 2.5% auto;
     }
     .row {
-        margin-top: 5%;
+        margin-top: 5% !important;
     }
     .mainslidercol {
         padding: 0;
@@ -64,5 +64,8 @@
     .primary-content {
         margin-top: 60px;
         border-radius: 15px;
+    }
+    form button {
+        font-size: 1em !important;
     }
 }

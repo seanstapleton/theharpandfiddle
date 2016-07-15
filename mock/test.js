@@ -1,243 +1,337 @@
 {
-    "type": "Dinner Menu",
+    "type": "Bottles and Cans",
+    "sub": "(Selections may change as we try out new beers)",
     "sections": [
         {
             "available": true,
-            "title": "Appetizers",
+            "title": "Domestic",
+            "col": 6,
             "items": [
                 {
-                    "title": "Trinity of Dipping Sauces",
-                    "description": "Roasted red pepper, jalapeño cilantro, and garlic hummus dips served with pita chips and veggies",
-                    "price": 8.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Harp Steamed Mussels",
-                    "description": "PEI mussels cooked in harp beer, garlic, chilies, and fresh herbs, served with grilled bread",
-                    "price": 10.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Flat Bread - Buffalo Chicken or Caprese",
-                    "description": "Buffalo – Maytag bleu cheese, Frank’s Red Hot sauce, and chives. Caprese – heirloom tomatoes, buffalo mozzarella, fresh basil, and pesto.",
-                    "price": 8.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Charcuterie Board O'Plenty",
-                    "description": "Assortment of cured meats, artisanal cheeses, marinated olives and fruits",
-                    "price": 13.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Chicken Wings",
-                    "description": "Buttermilk-marinated, with choice of Chili Mango, BBQ or Buffalo sauce",
-                    "price": 9.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Kinsale Quesadillas",
-                    "description": "Flour tortilla filled with corned beef, sauerkraut, Dubliner cheese, special sauce",
-                    "price": 9.95,
-                    "alc": -1
-                },
-                {
-                    "title": "American Quesadillas",
-                    "description": "Flour tortilla filled with steak, cheese and onions",
-                    "price": 12.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Murph's Steak Tacos",
-                    "description": "Marinated beef tenderloin, charred onions, jalapeños, fresh guacamole and salsa",
-                    "price": 9.95,
-                    "alc": -1
-                }
-                   ]
-        }, {
-            "available": true,
-            "title": "Salads",
-            "items": [
-                {
-                    "title": "The Fiddler",
-                    "description": "Mixed greens, candied pecans, sliced apples, tomatoes, grapes, shaved red onion, bleu cheese, sunflower seeds with house vinaigrette",
-                    "price": 9.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Spinach & Strawberry Fields",
-                    "description": "Baby spinach, sliced strawberries, and toasted almonds with poppy seed dressing",
-                    "price": 9.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Grilled Irish Caesar",
-                    "description": "Grilled romaine, confit tomatoes, shaved Grana Padano with Caesar dressing",
-                    "price": 9.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Mary Mary Quite Contrary",
-                    "description": "Grilled shrimp, kale, mixed greens, shaved celery, candied bacon, pickled red onion, egg, smoked tomato vinaigrette, croutons",
-                    "price": 12.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Beet the Drum",
-                    "description": "Red and golden beets, arugula, candied walnuts, chevre, house vinaigrette",
-                    "price": 10.95,
-                    "alc": -1
-                },
-                {
-                    "title": "House Salad",
-                    "description": "Mixed greens, tomatoes, red onion, cucumber, and carrots with a choice of ranch, blue cheese, or house vinaigrette ",
-                    "price": 6.95,
-                    "alc": -1
-                }
-            ]
-        }, {
-            "available": true,
-            "title": "Burgers & Sandwiches",
-            "items": [
-                {
-                    "title": "The Classic Burger",
-                    "description": "Served with lettuce, tomato, onion, and pickle. Add American, Cheddar, Swiss, bacon, egg, grilled onions, or avocado +$1.00 each ",
-                    "price": 8.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Shroomed",
-                    "description": "Roasted wild mushrooms, whipped brie, and arugula ",
-                    "price": 10.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Dubliner",
-                    "description": "Guinness glazed onions, Irish bacon, and Irish aged cheddar cheese on a pretzel bun",
-                    "price": 10.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Chicken Caprese",
-                    "description": "Grilled chicken breast, plum tomatoes, fresh mozzarella cheese, and pesto aioli on ciabatta ",
-                    "price": 9.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Grilled Portobello",
-                    "description": "Marinated grilled Portobello mushroom, mixed greens, and heirloom tomatoes with house vinaigrette",
-                    "price": 10.95,
-                    "alc": -1
-                }
-            ]
-        }, {
-            "available": true,
-            "title": "Entrees",
-            "items": [
-                {
-                    "title": "Balsamic Glazed Salmon",
-                    "description": "Wild caught, broiled with balsamic glaze, served on a bed of mashed potatoes, with house vegetables",
-                    "price": 16.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Catch of the Day (Market Price)",
-                    "description": "Ask your server",
-                    "price": -1,
-                    "alc": -1
-                },
-                {
-                    "title": "Chicken Curry",
-                    "description": "Succulent chunks of chicken on a bed of basmati rice with traditional McDonnell’s Irish curry sauce",
-                    "price": 13.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Filet Portobello",
-                    "description": "Filet of beef medallions in a Marsala wine sauce, Portobello mushroom, mashed potatoes and house vegetables",
-                    "price": 22.95,
-                    "alc": -1
-                },
-                {
-                    "title": "BBQ Ribs $19.95(Full) $13.95(Half)",
-                    "description": "Baby back ribs, house BBQ sauce, fries and coleslaw ",
-                    "price": -1,
-                    "alc": -1
-                },
-                {
-                    "title": "Artichoke Chicken",
-                    "description": "Boneless chicken breast, artichoke hearts, capers, oregano, lemon, and white wine sauce served with roasted potatoes and house vegetables",
-                    "price": 16.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Orecchiette Pasta",
-                    "description": "Italian sausage, spinach, wild mushrooms, white wine sauce, Grana Padano cheese",
-                    "price": 13.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Rigatoni Alla Vodka",
-                    "description": "Creamy tomato vodka sauce. Add chicken ($3), shrimp ($5) or salmon ($6)",
-                    "price": 10.95,
-                    "alc": -1
-                }
-            ]
-        }, {
-            "available": true,
-            "title": "Irish Specialties",
-            "items": [
-                {
-                    "title": "Shepard's Pie",
-                    "description": "Ground beef, brown gravy, carrots, celery, peas, tomatoes, fresh thyme, topped with mashed potatoes",
-                    "price": 12.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Bangers and Mash",
-                    "description": "Irish sausage and mashed potatoes with onion gravy",
-                    "price": 12.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Paddy Melt",
-                    "description": "Grilled onions, Merkts sharp cheddar cheese on Texas toast, served with fries",
-                    "price": 10.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Corned Beef Sandwich",
-                    "description": "Classic slow-cooked corned beef with Kerry Gold swiss cheese, Molly Malone sauce, and fries",
-                    "price": 11.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Friday Fish & Chips (Served on Fridays)",
-                    "description": "Generous portion of Atlantic Cod in our own Guinness batter, with fries, tartare sauce and lemon wedge",
-                    "price": 14.95,
-                    "alc": -1
-                }
-            ]
-        }, {
-            "available": true,
-            "title": "Desserts",
-            "items": [
-                {
-                    "title": "Wild Rover Bourbon Brownie",
-                    "description": "Rich chocolate brownie layered with hot fudge, vanilla ice cream, and whipped cream. Without bourbon $5.95",
-                    "price": 6.95,
-                    "alc": -1
-                },
-                {
-                    "title": "Rasberry Crème Brulee",
+                    "title": "Miller Lite",
                     "description": "",
-                    "price": 6.95,
+                    "price": 4,
+                    "alc": 4.17
+                },
+                {
+                    "title": "Coors",
+                    "description": "",
+                    "price": 4,
+                    "alc": 5
+                },
+                {
+                    "title": "Budweiser",
+                    "description": "",
+                    "price": 4,
+                    "alc": 5
+                },
+                {
+                    "title": "MGD",
+                    "description": "",
+                    "price": 4,
+                    "alc": 4.6
+                },
+                {
+                    "title": "MGD 64",
+                    "description": "",
+                    "price": 4,
+                    "alc": 2.8
+                },
+                {
+                    "title": "PBR",
+                    "description": "",
+                    "price": 4,
+                    "alc": 4.74
+                },
+                {
+                    "title": "Old Style",
+                    "description": "",
+                    "price": 4,
+                    "alc": 4.72
+                }
+            ]
+        },
+        {
+            "available": true,
+            "title": "Pale Ale",
+            "col": 6,
+            "items": [
+                {
+                    "title": "Lagunitas Little Sumpin Sumpin",
+                    "description": "",
+                    "price": 7,
+                    "alc": 7.5
+                },
+                {
+                    "title": "Temperance Restless Years",
+                    "description": "",
+                    "price": 6,
+                    "alc": 5.8
+                },
+                {
+                    "title": "Glutenberg*",
+                    "description": "",
+                    "price": 7,
+                    "alc": 6
+                },
+                {
+                    "title": "Fascist Pig",
+                    "description": "",
+                    "price": 6,
+                    "alc": 8
+                },
+                {
+                    "title": "Half Acre Vallejo",
+                    "description": "",
+                    "price": 6,
+                    "alc": 6.7
+                },
+                {
+                    "title": "Brickstone APA",
+                    "description": "",
+                    "price": 6,
+                    "alc": 6.25
+                },
+                {
+                    "title": "Goose Island Sofie",
+                    "description": "",
+                    "price": 6,
+                    "alc": 6.5
+                },
+                {
+                    "title": "Goose Island Illinois",
+                    "description": "",
+                    "price": 7,
+                    "alc": 8.4
+                },
+                {
+                    "title": "Goose IPA",
+                    "description": "",
+                    "price": 6,
+                    "alc": 5.9
+                },
+                {
+                    "title": "Affligem (Belgium)",
+                    "description": "",
+                    "price": 6,
+                    "alc": 6.8
+                }
+            ]
+        },
+        {
+            "available": true,
+            "title": "Import",
+            "col": 6,
+            "items": [
+                {
+                    "title": "Amstel Light",
+                    "description": "",
+                    "price": 5,
+                    "alc": 5
+                },
+                {
+                    "title": "Heineken",
+                    "description": "",
+                    "price": 5,
+                    "alc": 5
+                },
+                {
+                    "title": "Corona",
+                    "description": "",
+                    "price": 5,
+                    "alc": 4.6
+                },
+                {
+                    "title": "Corona Light",
+                    "description": "",
+                    "price": 5,
+                    "alc": 4.6
+                },
+                {
+                    "title": "Modelo",
+                    "description": "",
+                    "price": 5,
+                    "alc": 4.4
+                }
+            ]
+        },
+        {
+            "available": true,
+            "title": "Amber",
+            "col": 12,
+            "items": [
+                {
+                    "title": "Fat Tire",
+                    "description": "",
+                    "price": 5,
+                    "alc": 5.2
+                }
+            ]
+        },
+        {
+            "available": true,
+            "title": "Wheat",
+            "col": 6,
+            "items": [
+                {
+                    "title": "Goose Island 312",
+                    "description": "",
+                    "price": 7,
+                    "alc": 4.2
+                },
+                {
+                    "title": "Ommegang White",
+                    "description": "",
+                    "price": 6,
+                    "alc": 5.2
+                }
+            ]
+        },
+        {
+            "available": true,
+            "title": "Fruit, Ciders, and Specialties",
+            "col": 6,
+            "items": [
+                {
+                    "title": "Not Your Father’s Root Beer",
+                    "description": "",
+                    "price": 6,
+                    "alc": 5.9
+                },
+                {
+                    "title": "Steigl Radler",
+                    "description": "",
+                    "price": 6,
+                    "alc": 2.5
+                },
+                {
+                    "title": "Vandermill Totally Roasted*",
+                    "description": "",
+                    "price": 7,
+                    "alc": 6.9
+                },
+                {
+                    "title": "Crispin Blackberry Pear*",
+                    "description": "",
+                    "price": 6,
+                    "alc": 5
+                },
+                {
+                    "title": "Crispin Pear*",
+                    "description": "",
+                    "price": 6,
+                    "alc": 4.5
+                }
+            ]
+        },
+        {
+            "available": true,
+            "title": "Lagers, Pilsners",
+            "col": 6,
+            "items": [
+                {
+                    "title": "Trumer",
+                    "description": "",
+                    "price": 6,
+                    "alc": 4.8
+                },
+                {
+                    "title": "Oscar Blues Mamas Little Yellow Pils",
+                    "description": "",
+                    "price": 6,
+                    "alc": 5.3
+                },
+                {
+                    "title": "Goose Island 4 Star Pils",
+                    "description": "",
+                    "price": 6,
+                    "alc": 5.1
+                },
+                {
+                    "title": "Stella Artois",
+                    "description": "",
+                    "price": 5,
+                    "alc": 5.2
+                }
+            ]
+        },
+        {
+            "available": true,
+            "title": "Irish, Porters, and Stouts",
+            "col": 6,
+            "items": [
+                {
+                    "title": "Guinness",
+                    "description": "",
+                    "price": 7,
+                    "alc": 4.2
+                },
+                {
+                    "title": "Killian’s Red",
+                    "description": "",
+                    "price": 5,
+                    "alc": 4.9
+                },
+                {
+                    "title": "Smithwick’s",
+                    "description": "",
+                    "price": 6,
+                    "alc": 4.5
+                },
+                {
+                    "title": "Deschutes Black Butte",
+                    "description": "",
+                    "price": 6,
+                    "alc": 5.2
+                },
+                {
+                    "title": "Two Brothers Prairie Path*",
+                    "description": "",
+                    "price": 6,
+                    "alc": 5.1
+                },
+                {
+                    "title": "Left Hand Nitro Milk Stout",
+                    "description": "",
+                    "price": 6,
+                    "alc": 6.0
+                }
+            ]
+        },
+        {
+            "available": true,
+            "title": "Weiss",
+            "col": 6,
+            "items": [
+                {
+                    "title": "Hacker Pschorr",
+                    "description": "",
+                    "price": 7,
+                    "alc": 5.5
+                },
+                {
+                    "title": "Two Brothers Ebel's Weiss",
+                    "description": "",
+                    "price": 6,
+                    "alc": 4.9
+                }
+            ]
+        },
+        {
+            "available": true,
+            "title": "Non-Alcoholic",
+            "col": 6,
+            "items": [
+                {
+                    "title": "Kaliber (<0.5%)",
+                    "description": "",
+                    "price": 5,
                     "alc": -1
                 },
                 {
-                    "title": "Ask your server about additional desserts",
+                    "title": "Buckler (<0.5%)",
                     "description": "",
-                    "price": -1,
+                    "price": 5,
                     "alc": -1
                 }
             ]

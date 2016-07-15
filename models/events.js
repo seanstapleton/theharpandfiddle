@@ -5,6 +5,7 @@ var eventsSchema = new Schema({
     title: String,
     start: String,
     description: String,
+    date: String,
     url: String
 });
 

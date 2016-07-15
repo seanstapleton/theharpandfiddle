@@ -10,6 +10,7 @@ var itemSchema = new Schema({
 
 var menuSchema = new Schema({
     type: String,
+    sub: String,
     sections: [
         {
             section: String,

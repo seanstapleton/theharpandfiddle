@@ -21,18 +21,25 @@ a {
   color: #00B7FF;
 }
 .row {
-    margin: 0;
+    margin: 0 !important;
 }
 div.container-fluid {
     padding: 0;
+    margin: 0;
+}
+div.container-fluid.navbar-header {
+    margin: 0 !important;
 }
 h1, h2, h3, h4, h5, h6, p, a, li {
     font-family: Sansation Light;
 }
 .primary-content {
     background-color: rgba(26, 26, 26, 0.8);
-    padding: 20px;
+    padding: 80px 20px;
+    width: 100%;
+    overflow: auto;
 }
+
     /* ----------------------------------------
     ----------- Hide Displays -----------------
     ---------------------------------------- */
@@ -125,6 +132,7 @@ h1, h2, h3, h4, h5, h6, p, a, li {
 
 .navbar-header, .navbar-collapse {
     margin-right: 0 !important;
+    margin-left: 0 !important;
 }
 .navbar {
     background: #0d0d0d;
@@ -179,10 +187,6 @@ footer {
 .fc-center h2{
     color: #fff;
 }
-.primary-content {
-    width: 100%;
-    overflow: auto;
-}
 .info-section button {
     margin-top: 20px;
 }
@@ -219,6 +223,12 @@ h1.hours {
 }
 .hours p:first-letter {
     text-transform: uppercase;
+}
+.call div {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    font-size: 4em;
 }
 
 

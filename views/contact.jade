@@ -1,5 +1,13 @@
 extends layout
 
+block stylesheets
+    style.
+        @media(max-width: 992px) {
+            .hours-section {
+                display: none;
+            }
+        }
+
 block content
     div.primary-content
         form

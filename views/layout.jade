@@ -38,7 +38,9 @@ html
                             li
                                 a(href='menu') Dinner Menu
                             li
-                                a(href='beer') Beer Menu
+                                a(href='draft') Draft Beer
+                            li
+                                a(href='bottles') Bottles and Cans (Beer)
                             li
                                 a(href='wine') Wine Menu
                             li
@@ -53,7 +55,7 @@ html
   block footer
       footer
         div.row
-            div.col-md-3.info-section
+            div.col-md-3.info-section.hours-section
                 h1
                     span Hours
                 div.hours 
@@ -64,16 +66,24 @@ html
                             div.col-xs-7
                                 p=hour.timeframe
                             hr
+                            
+            div.col-md-3.info-section.call
+                h1
+                    span Call Us
+                div.info-body
+                    a(href='tel: 8477204466') (847) 720-4466
+                
 
             div.col-md-3.info-section
                 h1
-                    span Contact
+                    span Contact Us
 
                 div.info-body
                     p 110 Main Street <br/> Park Ridge, IL 60068
-                    p P: 
+                    p.phnum P: 
                         a(href='tel:8477204466') (847) 720-4466
-                    p declan@theharpandfiddle.com
+                    p 
+                        a(href='contact') declan@theharpandfiddle.com
 
                     button(type='button' data-toggle='modal' data-target='#mailing-list' id='joinbtn').btn.btn-default.btn-lg.btn-block Join our Mailing List!
 

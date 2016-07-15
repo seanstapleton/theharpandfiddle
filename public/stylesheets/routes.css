@@ -48,11 +48,16 @@
 .menu h1 {
     font-size: 3em;
 }
+.menu h2 {
+    font-size: 2.5;
+}
 .menu h3 {
     font-family: Classic Roman;
+    font-size: 2em;
 }
 .menu p {
     color: #646464;
+    font-size: 1.5em;
 }
 
 /* ----------------------------------------
@@ -63,10 +68,12 @@ form h1, form label {
     color: #fff;
 }
 form button {
-    margin-top: 10px;
+    margin-top: 50px;
     width: 90%;
     display: block;
     margin-left: 5%;
+    font-size: 4em !important;
+    padding: 0.5em !important;
 }
 form button:hover {
     background: #396533;
@@ -92,3 +99,8 @@ form button:hover {
     text-align: center;
     color: #646464;
 }
+
+/* ----------------------------------------
+--------------- Events --------------------
+---------------------------------------- */
+

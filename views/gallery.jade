@@ -2,15 +2,23 @@ extends layout
 
 block stylesheets
     link(rel='stylesheet' href='/lib/swipebox/css/swipebox.min.css')
+    style.
+        @media(max-width: 992px) {
+            footer {
+                display: none;
+            }
+        }
 block scripts
     script(src='/lib/swipebox/js/jquery.swipebox.min.js')
     script(src='/js/gallery.js')
 
 block content
     div.primary-content
+        h1(style='text-align: center; font-size: 5em; color: #888; margin-bottom: 50px;').gallery-header Photo Gallery
         each album in albums
             div.phalb
                 each photo in album.contents
                     a.swipebox(rel=album.path href='/img/photo-albums/' + album.path + '/' + photo.src)
                         img(rel=album.path src='/img/photo-albums/' + album.path + '/' + photo.src)
                 h1=album.title
+    div.fade
