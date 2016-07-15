@@ -5,7 +5,9 @@ var itemSchema = new Schema({
     title: String,
     description: String,
     price: Number,
-    alc: Number
+    alc: Number,
+    glass: Number,
+    bottle: Number
 });
 
 var menuSchema = new Schema({

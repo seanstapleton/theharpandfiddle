@@ -52,18 +52,40 @@ module.exports = function(db) {
     router.get('/draft', function(req, res, next) {
         menuSchema.findOne({"type": "Draft Beer"}, {'_id': false}, {sort: {"start": -1}}, function(err, menu) {
             res.render('draft', {
-                title: 'The Harp and Fiddle - Lunch Menu',
+                title: 'The Harp and Fiddle - Draft Beer',
                 hours: hours,
                 menu: JSON.stringify(menu)
             });
         });
     });
     
-    /* GET draft beer page. */
+    /* GET Beer Bottles and Cans page. */
     router.get('/bottles', function(req, res, next) {
         menuSchema.findOne({"type": "Bottles and Cans"}, {'_id': false}, {sort: {"start": -1}}, function(err, menu) {
             res.render('bottles', {
-                title: 'The Harp and Fiddle - Lunch Menu',
+                title: 'The Harp and Fiddle - Beer',
+                hours: hours,
+                menu: JSON.stringify(menu)
+            });
+        });
+    });
+    
+    /* GET wine menu page. */
+    router.get('/wine', function(req, res, next) {
+        menuSchema.findOne({"type": "Wine Menu"}, {'_id': false}, {sort: {"start": -1}}, function(err, menu) {
+            res.render('wine', {
+                title: 'The Harp and Fiddle - Wine List',
+                hours: hours,
+                menu: JSON.stringify(menu)
+            });
+        });
+    });
+    
+    /* GET signature cocktails page. */
+    router.get('/signature', function(req, res, next) {
+        menuSchema.findOne({"type": "Signature Cocktails"}, {'_id': false}, {sort: {"start": -1}}, function(err, menu) {
+            res.render('signature', {
+                title: 'The Harp and Fiddle - Signature Cocktails',
                 hours: hours,
                 menu: JSON.stringify(menu)
             });

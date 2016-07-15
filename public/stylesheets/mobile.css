@@ -1,4 +1,16 @@
 @media (max-width: 992px) {
+    .wine-header .col-xs-1 {
+        display: none;
+    }
+    .glass:after {
+        content: ' (glass)';
+    }
+    .bottle:after {
+        content: ' (bottle)';
+    }
+    .glass:before, .bottle:before {
+        content: '$';
+    }
     thead {
         color: #bbb;
         font-family: Sansation Light;

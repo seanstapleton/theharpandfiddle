@@ -1,5 +1,13 @@
 extends layout
 
+block stylesheets
+    style.
+        @media(max-width: 992px) {
+            footer {
+                display: none;
+            }
+        }
+
 block scripts
     script.
         $(document).ready(function() {
@@ -19,7 +27,7 @@ block scripts
                     $('.menu').append(row);
                     count -= 12;
                 }
-                var title = $("<h2></h2>").text(sections[i].title);
+                var title = $("<h3></h3>").text(sections[i].title);
                 var container = $('<div></div>');
                 title.css("text-align", "left");
                 container.append(title);
@@ -33,7 +41,7 @@ block scripts
                 
                 for (var q = 0; q < items.length; q++) {
                     var miTitle = (items[q].price > -1) ? (items[q].alc > -1) ? items[q].title + " (" + items[q].alc + "%) - $" + items[q].price : items[q].title + " $" + items[q].price : items[q].title;
-                    var menuItem = $("<h3></h3>").text(miTitle);
+                    var menuItem = $("<p><p>").text(miTitle);
                     menuItem.css("margin-left", "5%");
                     var desc = $('<p></p>').text(items[q].description);
                     desc.css("margin-left", "10%");
