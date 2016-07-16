@@ -152,8 +152,8 @@ module.exports = function(db) {
           hours: hours,
           albums: [
               {
-                  title: "Food & Drink",
-                  path: 'FoodDrink',
+                  title: "Construction",
+                  path: 'Construction',
                   contents: [{
                       src: 'drinks.jpg',
                       caption: 'A nice cold Guiness served up at our bar!'

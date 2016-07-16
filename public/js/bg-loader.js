@@ -6,5 +6,5 @@ $(document).ready( function() {
 	  $(document.body).css("background", $str);
         $(document.body).css("background-size", "100%");
 	});
-	$downloadingImage.attr("src", "/img/grain-wood.jpg");
+	$downloadingImage.attr("src", "/img/grain-wood-med-res.jpg");
 });

@@ -15,9 +15,4 @@ block scripts
 block content
     div.primary-content
         h1(style='text-align: center; font-size: 5em; color: #888; margin-bottom: 50px;').gallery-header Photo Gallery
-        each album in albums
-            div.phalb
-                each photo in album.contents
-                    a.swipebox(rel=album.path href='/img/photo-albums/' + album.path + '/' + photo.src)
-                        img(rel=album.path src='/img/photo-albums/' + album.path + '/' + photo.src)
-                h1=album.title
+        h2(style='text-align: center') The future home of some awesome events!
