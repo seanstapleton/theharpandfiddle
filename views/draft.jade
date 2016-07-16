@@ -21,12 +21,6 @@ block scripts
             $('#sub').append(menu.sub);
             
             for (var i = 0; i < sections.length; i++) {
-                if (count >= 12) {
-                    var row = $('<div></div>');
-                    row.addClass("row");
-                    $('.menu').append(row);
-                    count -= 12;
-                }
                 var title = $("<h3></h3>").text(sections[i].title);
                 var container = $('<div></div>');
                 title.css("text-align", "left");
@@ -41,15 +35,12 @@ block scripts
                 
                 for (var q = 0; q < items.length; q++) {
                     var miTitle = (items[q].price > -1) ? (items[q].alc > -1) ? items[q].title + " (" + items[q].alc + "%) - $" + items[q].price : items[q].title + " $" + items[q].price : items[q].title;
-                    var menuItem = $("<p><p>").text(miTitle);
+                    var menuItem = $("<p></p>").text(miTitle);
                     menuItem.css("margin-left", "5%");
                     var desc = $('<p></p>').text(items[q].description);
                     desc.css("margin-left", "10%");
                     container.append(menuItem, desc);
                 }
-                
-                count += sections[i].col;
-                console.log(count);
             }
         });
 

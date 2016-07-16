@@ -8,8 +8,8 @@
     ------------- Show Displays ---------------
     ---------------------------------------- */
     
-    .specials, .home-routers, .info-section h1, #directions, #contact-dirs, .social-thumbnails, #social-media, footer p.phnum, #calendar {
-        display: block;
+    .specials, .events, .home-routers, .info-section h1, #directions, #contact-dirs, .social-thumbnails, #social-media, footer p.phnum, #calendar {
+        display: block !important;
     }
     
     /* ----------------------------------------

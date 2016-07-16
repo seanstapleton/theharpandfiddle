@@ -20,11 +20,14 @@ module.exports = function(db) {
         var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
         var d = new Date();
         specialsSchema.find({dotw: days[d.getDay()]}, {'_id': false}, function(err, specials) {
-            res.render('index', {
-                title: 'The Harp and Fiddle',
-                homepageslides: ["/images/wooden.jpg","",""],
-                hours: hours,
-                specials: specials
+            eventsSchema.find({start: "" + d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2)}, {'_id': false}, function(err, events) {
+                res.render('index', {
+                    title: 'The Harp and Fiddle',
+                    homepageslides: ["/images/wooden.jpg","",""],
+                    hours: hours,
+                    specials: specials,
+                    events: JSON.stringify(events)
+                });
             });
         });
     });

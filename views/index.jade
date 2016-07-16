@@ -11,6 +11,12 @@ block scripts
         ga('send', 'pageview');
     script.
         $(document).ready(function() {
+            var events = !{events};
+            
+            for (var i = 0; i < events.length; i++) {
+                $('.events').append($('<li></li>').addClass("list-group-item").text(events[i].title));
+            }
+        
             var $highResImg = $("<img>");
             $highResImg.load(function(){
               $("#bar-draft").attr("src", $(this).attr("src"));
@@ -73,6 +79,10 @@ block content
                 ul.list-group
                     each special in specials
                         li.list-group-item=special.title
+            div.panel.panel-default.events
+                div.panel-heading Today's Events
+                
+                ul.list-group
     div.row.home-routers
         div.col-md-4
             a(href='menu')
