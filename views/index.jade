@@ -11,11 +11,21 @@ block scripts
         ga('send', 'pageview');
     script.
         $(document).ready(function() {
-            var $downloadingImage = $("<img>");
-            $downloadingImage.load(function(){
+            var $highResImg = $("<img>");
+            $highResImg.load(function(){
               $("#bar-draft").attr("src", $(this).attr("src"));
+              
+              var $evenHigherResImg = $('<img>');
+              $evenHigherResImg.load(function() {
+                $("#bar-draft").attr("src", $(this).attr("src"));
+              });
+              $evenHigherResImg.attr("src", "/img/homepage-slides/bar-draft-high-res.JPG");
+              
+              
             });
-            $downloadingImage.attr("src", "/img/homepage-slides/bar-draft.JPG");
+            $highResImg.attr("src", "/img/homepage-slides/bar-draft.JPG");
+            
+            
         });
 
 block content

@@ -1,4 +1,7 @@
 @media (max-width: 992px) {
+    #listcal td {
+        font-size: 2em;
+    }
     .wine-header .col-xs-1 {
         display: none;
     }
