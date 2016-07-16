@@ -9,6 +9,14 @@ block scripts
 
         ga('create', 'UA-63292401-1', 'auto');
         ga('send', 'pageview');
+    script.
+        $(document).ready(function() {
+            var $downloadingImage = $("<img>");
+            $downloadingImage.load(function(){
+              $("#bar-draft").attr("src", $(this).attr("src"));
+            });
+            $downloadingImage.attr("src", "/img/homepage-slides/bar-draft.JPG");
+        });
 
 block content
 
@@ -25,7 +33,7 @@ block content
                 //Wrapper for slides
                 div.carousel-inner
                     div.item.active
-                        img(src='/img/homepage-slides/bar-draft.JPG')
+                        img(src='/img/homepage-slides/bar-draft-low-res.JPG' id="bar-draft")
                         div.carousel-caption
                     div.item
                         img(src='/img/homepage-slides/guinnessgate.JPG')
