@@ -27,7 +27,7 @@ block scripts
             
             for (var i = 0; i < events.length; i++) {
                 var eventDate = events[i].start.split("-");
-                events[i].date = new Date(eventDate[0], parseInt(eventDate[1]) - 1, eventDate[2]);
+                events[i].date = new Date(eventDate[0], parseInt(eventDate[1]) - 1, eventDate[2].split(" ")[0], eventDate[2].split(" ")[1].split(":")[0], eventDate[2].split(" ")[1].split(":")[1]);
                 events[i].dateString = months[events[i].date.getMonth()] + " " + events[i].date.getDate();
             }
 
@@ -36,23 +36,26 @@ block scripts
             });
             
             for (var i = 0; i < events.length; i++) {
-                var tr = $('<tr></tr>');
-                var title = $('<td></td>');
-                var link = $('<a></a>').text(events[i].title);
-                link.attr("href", events[i].url);
-                title.append(link);
-                var date = $('<td></td>').text(events[i].dateString);
-                var description = $('<td></td>').text(events[i].description);
-                
-                var eventDate = events[i].start.split("-");
-                var moment1 = moment([eventDate[0], parseInt(eventDate[1]) - 1, eventDate[2]]);
-                var today = moment();
-                var cd = $('<td></td>').text(today.to(moment1));
-                
-                tr.append(title, date, description, cd);
-                tr.addClass("active");
-                $('#eventList').append(tr);
-                
+                console.log(events[i].date);
+                if (events[i].date.getTime() >= date.getTime()) {
+                    var tr = $('<tr></tr>');
+                    var title = $('<td></td>');
+                    var link = $('<a></a>').text(events[i].title);
+                    link.attr("href", events[i].url);
+                    title.append(link);
+                    var date = $('<td></td>').text(events[i].dateString);
+                    var description = $('<td></td>').text(events[i].description);
+
+                    var eventDate = events[i].start.split("-");
+                    var moment1 = moment([eventDate[0], parseInt(eventDate[1]) - 1, eventDate[2]]).utcOffset(-360);
+                    var today = moment().utcOffset(-360);
+                    //var cd = $('<td></td>').text(today.to(moment1));
+                    var cd = $('<td></td>').text("7:30pm"); 
+
+                    tr.append(title, date, description, cd);
+                    tr.addClass("active");
+                    $('#eventList').append(tr);
+                }
             }
 
             $('#calendar').fullCalendar({
