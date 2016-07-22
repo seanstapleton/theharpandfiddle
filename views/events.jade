@@ -35,9 +35,16 @@ block scripts
                 return new Date(a.date) - new Date(b.date);
             });
             
+            var formatDate = function(d) {
+                var h = d.getHours();
+                var m = ("0" + d.getMinutes()).slice(-2);
+                var t = h > 12 ? (h - 12) + ":" + m + "pm" : h + ":" + m + "am";
+                return t;
+            }
+            
             for (var i = 0; i < events.length; i++) {
-                console.log(events[i].date);
-                if (events[i].date.getTime() >= date.getTime()) {
+                var now = new Date();
+                if (events[i].date.getTime() >= now.getTime()) {
                     var tr = $('<tr></tr>');
                     var title = $('<td></td>');
                     var link = $('<a></a>').text(events[i].title);
@@ -50,7 +57,7 @@ block scripts
                     var moment1 = moment([eventDate[0], parseInt(eventDate[1]) - 1, eventDate[2]]).utcOffset(-360);
                     var today = moment().utcOffset(-360);
                     //var cd = $('<td></td>').text(today.to(moment1));
-                    var cd = $('<td></td>').text("7:30pm"); 
+                    var cd = $('<td></td>').text(formatDate(events[i].date)); 
 
                     tr.append(title, date, description, cd);
                     tr.addClass("active");
