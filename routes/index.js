@@ -25,7 +25,7 @@ module.exports = function(db) {
                     title: 'The Harp and Fiddle',
                     homepageslides: ["/images/wooden.jpg","",""],
                     hours: hours,
-                    specials: specials,
+                    specials: JSON.stringify(specials),
                     events: JSON.stringify(events)
                 });
             });

@@ -9,10 +9,6 @@ $(document).ready(function() {
     
     $('.flap-spacer').css("height", $('nav.navbar').height()); 
     
-    if ($('.specials ul li').length < 1) {
-        $('.specials ul').append($('<li></li>').text("No specials today").addClass("list-group-item"));
-    }
-    
     $(window).resize(function() {
         if ($('div.navbar-collapse').hasClass("in")) {
             $('.flap-spacer').css("height", $('nav.navbar').height() - $('div.in').height()); 

@@ -149,6 +149,9 @@ ul.nav a:first-letter {
     ul.nav {
         font-size: 2em;
     }
+    .launch-content {
+        margin: 5% auto;
+    }
 }
 .navbar, .navbar-default, .navbar-header, .row, .nav {
     border: none;
