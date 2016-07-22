@@ -1,0 +1,105 @@
+/* ----------------------------------------
+------------- Index ------------------
+---------------------------------------- */
+
+.item img {
+    width: 100%;
+}
+.specials, .events {
+    width: 100%;
+    display: none;
+    border-radius: 0;
+}
+.mainslidercol {
+    padding: 0;
+}
+.home-router {
+    position: relative;
+    box-shadow: 0px 1px 10px #000;
+}
+.home-router h1 {
+    position: absolute;
+    top: calc(50% - 1em);
+    left: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Montserrat;
+}
+.home-router h1:hover {
+    color: #396533;
+}
+.home-router img {
+    width: 100%;
+}
+.home-routers {
+    display: none;
+}
+
+/* ---------------------------------------
+---------------- Menu --------------------
+---------------------------------------- */
+
+.menu h1, h2, h3, p {
+    color: #9b9b9b;
+}
+.menu h1 {
+    font-size: 3em;
+}
+.menu h2 {
+    font-size: 2.5;
+}
+.menu h3 {
+    font-family: Classic Roman;
+    font-size: 2em;
+}
+.menu p {
+    color: #646464;
+    font-size: 1.5em;
+}
+
+/* ----------------------------------------
+--------------- Contact -------------------
+---------------------------------------- */
+
+form h1, form label {
+    color: #fff;
+}
+form button {
+    margin-top: 50px;
+    width: 90%;
+    display: block;
+    margin-left: 5%;
+    font-size: 4em !important;
+    padding: 0.5em !important;
+}
+form button:hover {
+    background: #396533;
+}
+
+/* ----------------------------------------
+--------------- Gallery -------------------
+---------------------------------------- */
+
+.phalb a:not(:first-child) {
+    display: none;
+}
+.phalb {
+    width: 30%;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
+}
+.phalb img {
+    width: 100%;
+    border-radius: 10px;
+}
+.phalb h1 {
+    text-align: center;
+    color: #646464;
+}
+
+/* ----------------------------------------
+--------------- Events --------------------
+---------------------------------------- */
+

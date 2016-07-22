@@ -17,6 +17,28 @@ block scripts
                 $('.events').append($('<li></li>').addClass("list-group-item").text(events[i].title));
             }
             
+            if ($('.events ul li').length < 1) {
+                $('.events ul').append($('<li></li>').text("No events today").addClass("list-group-item"));
+            }
+            
+            var homepageSlides = ["guinnessgate-min.jpg", "home-angled-min.jpg", "guinness-pour-min.jpg", "wine-min.jpg", "drinks-min.jpg"];
+            
+            var loadImg = function(src) {
+                var div = $('<div></div>').addClass("item");
+
+                var $img = $("<img>");
+                $img.load(function(){
+                  div.append($img);
+                  $('.carousel-inner').append(div);
+                });
+                $img.attr("src", "/img/homepage-slides/" + src);
+            }
+            
+            for (var i = 0; i < homepageSlides.length; i++) {
+            
+                loadImg(homepageSlides[i]);
+                
+            }
             
         });
 
@@ -36,21 +58,6 @@ block content
                 div.carousel-inner
                     div.item.active
                         img(src='/img/homepage-slides/bar-draft-min.JPG' id="bar-draft")
-                        div.carousel-caption
-                    div.item
-                        img(src='/img/homepage-slides/guinnessgate-min.jpg')
-                        div.carousel-caption
-                    div.item
-                        img(src='/img/homepage-slides/home-angled-min.jpg')
-                        div.carousel-caption
-                    div.item
-                        img(src='/img/homepage-slides/guinness-pour-min.jpg')
-                        div.carousel-caption
-                    div.item
-                        img(src='/img/homepage-slides/drinks-min.jpg')
-                        div.carousel-caption
-                    div.item
-                        img(src='/img/homepage-slides/wine-min.jpg')
                         div.carousel-caption
 
                 //Controls
