@@ -40,7 +40,7 @@ block scripts
                 var items = sections[i].items;
                 
                 for (var q = 0; q < items.length; q++) {
-                    var miTitle = (items[q].price > -1) ? (items[q].alc > -1) ? items[q].title + " (" + items[q].alc + "%) - $" + items[q].price : items[q].title + " $" + items[q].price : items[q].title;
+                    var miTitle = (items[q].alc > -1) ? items[q].title + " (" + items[q].alc + "%)": items[q].title;
                     var menuItem = $("<p></p>").text(miTitle);
                     menuItem.css("margin-left", "5%");
                     var desc = $('<p></p>').text(items[q].description);
