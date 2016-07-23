@@ -21,6 +21,7 @@ module.exports = function(db) {
         var d = new Date();
         specialsSchema.find({dotw: days[d.getDay()]}, {'_id': false}, function(err, specials) {
             eventsSchema.find({start: "" + d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2)}, {'_id': false}, function(err, events) {
+                console.log(events);
                 res.render('index', {
                     title: 'The Harp and Fiddle',
                     homepageslides: ["/images/wooden.jpg","",""],

@@ -11,7 +11,7 @@ block scripts
         ga('send', 'pageview');
     script.
         $(document).ready(function() {
-            var events = !{events};
+            var events = [{title: "Kane County Cougars Bag Tournament (7pm)"},{title: "Brendan Forrest Guitar Duo (10pm)"}];
             var specials = !{specials};
             
             for (var i = 0; i < specials.length; i++) {
@@ -28,11 +28,6 @@ block scripts
                 if (i < events.length - 1) {
                    $('.events-section .hours').append($('<hr>')); 
                 }
-            }
-            
-            if ($('.events ul li').length < 1) {
-                $('.events ul').append($('<li></li>').text("No events today").addClass("list-group-item"));
-                $('.events-section .hours').append($('<div></div>').addClass("row").append($('<p></p>').text("No events today")));
             }
             
             var homepageSlides = ["/img/homepage-slides/guinnessgate-min.jpg", "/img/homepage-slides/home-angled-min.jpg", "/img/homepage-slides/guinness-pour-min.jpg", "/img/homepage-slides/wine-min.jpg", "/img/homepage-slides/drinks-min.jpg"];
