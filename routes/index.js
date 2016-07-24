@@ -137,8 +137,7 @@ module.exports = function(db) {
                res.render('contact', {
                   title: 'The Harp and Fiddle - error',
                   message: {
-                    email: 'smtps://'+process.env.gmail_user+'%40gmail.com:'+process.env.gmail_pass+'@smtp.gmail.com',
-                    error: err
+                    error: "Error: message did not send. Please try emailing declan@theharpandfiddle.com!"
                   },
                   hours: hours
                 });
