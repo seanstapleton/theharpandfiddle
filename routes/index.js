@@ -136,7 +136,10 @@ module.exports = function(db) {
                console.log(err);
                res.render('contact', {
                   title: 'The Harp and Fiddle - error',
-                  message: err,
+                  message: {
+                    email: 'smtps://'+process.env.gmail_user+'%40gmail.com:'+process.env.gmail_pass+'@smtp.gmail.com',
+                    error: err
+                  },
                   hours: hours
                 });
            } else {

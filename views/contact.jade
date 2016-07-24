@@ -11,7 +11,8 @@ block stylesheets
 block content
     div.primary-content(style="padding: 40px 20px")
       if message
-        h1=message
+        h1=message.email
+        h2=message.error
       form(action='/contact' method='post' enctype='application/x-www-form-urlencoded')
           h1(style="text-align: center") Questions? Comments? Concerns?
           div.form-group
