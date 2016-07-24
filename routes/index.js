@@ -4,7 +4,6 @@ module.exports = function(db) {
     var db = require('../db');
     var bodyParser = require('body-parser');
     var nodemailer = require("nodemailer");
-    var config = require('../config.example');
     var hoursSchema = require('../models/hours.js');
     var menuSchema = require('../models/menu.js');
     var eventsSchema = require('../models/events.js');
@@ -25,7 +24,6 @@ module.exports = function(db) {
                 console.log(events);
                 res.render('index', {
                     title: 'The Harp and Fiddle',
-                    homepageslides: ["/images/wooden.jpg","",""],
                     hours: hours,
                     specials: JSON.stringify(specials),
                     events: JSON.stringify(events)
@@ -122,8 +120,8 @@ module.exports = function(db) {
 
     /* POST contact page. */
     router.post('/contact', function(req, res) {
-
-        var smtpTrans = nodemailer.createTransport('smtps://'+config.gmail.user+'%40gmail.com:'+config.gmail.pass+'@smtp.gmail.com');
+      console.log('smtps://'+process.env.gmail_user+'%40gmail.com:'+process.env.gmail_pass+'@smtp.gmail.com');
+        var smtpTrans = nodemailer.createTransport('smtps://'+process.env.gmail_user+'%40gmail.com:'+process.env.gmail_pass+'@smtp.gmail.com');
 
         //Mail Options
         var mailOptions = {

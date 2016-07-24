@@ -9,7 +9,29 @@ block stylesheets
         }
 
 block content
-    div.primary-content
-        h1(style='color: #bbb') Please email us at declan@theharpandfiddle.com
+    div.primary-content(style="padding: 40px 20px")
+      form(action='/contact' method='post' enctype='application/x-www-form-urlencoded')
+          h1(style="text-align: center") Questions? Comments? Concerns?
+          div.form-group
+          label(for='name') Name
+          input.form-control(name='name' value='' type='text' id='name')
+          
+          div.form-group
+          label(for='email') Email Address
+          input.form-control(name='email' type='email' id='email')
+          
+          div.form-group
+          label(for='phnum') Phone Number
+          input.form-control(name='phnum' type='tel' id='phnum' placeholder='Ex: (847) 720-4466')
+          
+          div.form-group
+          label(for='subj') Subject
+          input.form-control(name='subject' type='text' id='subj')
+          
+          div.form-group
+          label(for='message') Message
+          textarea.form-control(name='message' id='message')
+          
+          button(name='submit' type='submit' class='btn btn-default') Submit
             
         
