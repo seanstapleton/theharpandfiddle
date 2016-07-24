@@ -136,7 +136,7 @@ module.exports = function(db) {
                console.log(err);
                res.render('contact', {
                   title: 'The Harp and Fiddle - error',
-                  hours: hours
+                  hours: err
                 });
            } else {
                 console.log(req.body);
