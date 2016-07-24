@@ -10,7 +10,7 @@ module.exports = function(db) {
     var eventsSchema = require('../models/events.js');
     var specialsSchema = require('../models/specials.js');
     var hours;
-    
+
     hoursSchema.find({}, {'_id': false, 'order': false}, function(err, returnHours) {
         hours = returnHours;
     });
@@ -19,8 +19,9 @@ module.exports = function(db) {
     router.get('/', function(req, res, next) {
         var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
         var d = new Date();
+        var str = d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2);
         specialsSchema.find({dotw: days[d.getDay()]}, {'_id': false}, function(err, specials) {
-            eventsSchema.find({start: "" + d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2)}, {'_id': false}, function(err, events) {
+            eventsSchema.find({start: new RegExp('^' + str)}, {'_id': false}, function(err, events) {
                 console.log(events);
                 res.render('index', {
                     title: 'The Harp and Fiddle',
@@ -32,7 +33,7 @@ module.exports = function(db) {
             });
         });
     });
-    
+
     /* GET dinner menu page. */
     router.get('/menu', function(req, res, next) {
         menuSchema.findOne({"type": "Dinner Menu"}, {'_id': false}, {sort: {"start": -1}}, function(err, menu) {
@@ -43,7 +44,7 @@ module.exports = function(db) {
             });
         });
     });
-    
+
     /* GET lunch menu page. */
     router.get('/lunch', function(req, res, next) {
         menuSchema.findOne({"type": "Lunch Menu"}, {'_id': false}, {sort: {"start": -1}}, function(err, menu) {
@@ -54,7 +55,7 @@ module.exports = function(db) {
             });
         });
     });
-    
+
     /* GET draft beer page. */
     router.get('/draft', function(req, res, next) {
         menuSchema.findOne({"type": "Draft Beer"}, {'_id': false}, {sort: {"start": -1}}, function(err, menu) {
@@ -65,7 +66,7 @@ module.exports = function(db) {
             });
         });
     });
-    
+
     /* GET Beer Bottles and Cans page. */
     router.get('/bottles', function(req, res, next) {
         menuSchema.findOne({"type": "Bottles and Cans"}, {'_id': false}, {sort: {"start": -1}}, function(err, menu) {
@@ -76,7 +77,7 @@ module.exports = function(db) {
             });
         });
     });
-    
+
     /* GET wine menu page. */
     router.get('/wine', function(req, res, next) {
         menuSchema.findOne({"type": "Wine Menu"}, {'_id': false}, {sort: {"start": -1}}, function(err, menu) {
@@ -87,7 +88,7 @@ module.exports = function(db) {
             });
         });
     });
-    
+
     /* GET signature cocktails page. */
     router.get('/signature', function(req, res, next) {
         menuSchema.findOne({"type": "Signature Cocktails"}, {'_id': false}, {sort: {"start": -1}}, function(err, menu) {
@@ -107,7 +108,7 @@ module.exports = function(db) {
               title: 'The Harp and Fiddle - Events',
               hours: hours,
               events: events
-          }); 
+          });
         });
     });
 
@@ -118,12 +119,12 @@ module.exports = function(db) {
           hours: hours
         });
     });
-    
+
     /* POST contact page. */
     router.post('/contact', function(req, res) {
-        
+
         var smtpTrans = nodemailer.createTransport('smtps://'+config.gmail.user+'%40gmail.com:'+config.gmail.pass+'@smtp.gmail.com');
-         
+
         //Mail Options
         var mailOptions = {
             from: req.body.name + '&lt;' + req.body.email + '&gt;',
@@ -131,7 +132,7 @@ module.exports = function(db) {
             subject: 'Contact Form Submission: ' + req.body.subject,
             text: "Name: " + req.body.name + "\n" + "Phone Number: " + req.body.phnum + "\n" + "Email: " + req.body.email + "\nMessage: " + req.body.message
         }
-        
+
         smtpTrans.sendMail(mailOptions, function(err, info) {
            if (err) {
                console.log(err);
@@ -151,7 +152,7 @@ module.exports = function(db) {
 
     /* GET about page. */
     router.get('/gallery', function(req, res, next) {
-      res.render('gallery', { 
+      res.render('gallery', {
           title: 'The Harp and Fiddle - Gallery',
           hours: hours,
           albums: [

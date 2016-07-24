@@ -11,27 +11,31 @@ block scripts
         ga('send', 'pageview');
     script.
         $(document).ready(function() {
-            var events = [{title: "Kane County Cougars Bag Tournament (7pm)"},{title: "Brendan Forrest Guitar Duo (10pm)"}];
+            var events = !{events};
             var specials = !{specials};
-            
+
             for (var i = 0; i < specials.length; i++) {
                 $('.specials').append($('<li></li>').addClass("list-group-item").text(specials[i].title));
                 $('.specials-section .hours').append($('<div></div>').addClass("row").append($('<p></p>').text(specials[i].title)));
                 if (i < specials.length - 1) {
-                   $('.specials-section .hours').append($('<hr>')); 
+                   $('.specials-section .hours').append($('<hr>'));
                 }
             }
-            
+
             for (var i = 0; i < events.length; i++) {
                 $('.events').append($('<li></li>').addClass("list-group-item").text(events[i].title));
                 $('.events-section .hours').append($('<div></div>').addClass("row").append($('<p></p>').text(events[i].title)));
                 if (i < events.length - 1) {
-                   $('.events-section .hours').append($('<hr>')); 
+                   $('.events-section .hours').append($('<hr>'));
                 }
             }
             
+            if ($('.events ul li').length < 1) {
+              $('.events ul').append($('<li></li').addClass("list-group-item").text("Come enjoy the atmosphere!"));
+            }
+
             var homepageSlides = ["/img/homepage-slides/guinnessgate-min.jpg", "/img/homepage-slides/home-angled-min.jpg", "/img/homepage-slides/guinness-pour-min.jpg", "/img/homepage-slides/wine-min.jpg", "/img/homepage-slides/drinks-min.jpg"];
-            
+
             var loadImg = function(src, selector) {
                 var div = $('<div></div>').addClass("item");
 
@@ -42,13 +46,13 @@ block scripts
                 });
                 $img.attr("src", src);
             }
-            
+
             for (var i = 0; i < homepageSlides.length; i++) {
-            
+
                 loadImg(homepageSlides[i], '.carousel-inner');
-                
+
             }
-            
+
             var events = [
             {
                 title: "food",
@@ -66,7 +70,7 @@ block scripts
                 src: "/img/events.jpg"
             }
             ];
-            
+
             var loadEvent = function(title, href, src) {
                 var col = $('<div></div>').addClass("col-md-4");
                 var link = $('<a></a>').attr("href", href);
@@ -83,21 +87,21 @@ block scripts
                   $('.hr-wrap').append(col);
                 });
             }
-            
+
             $('.hr-wrap').css("display", "none");
-            
+
             for (var i = 0; i < events.length; i++) {
                 loadEvent(events[i].title, events[i].href, events[i].src);
             }
-            
-            
+
+
             $('.hr-wrap').css("display", "block");
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
         });
 
 block content
@@ -127,11 +131,11 @@ block content
             div.panel.panel-default.specials
                 div.panel-heading Today's Specials
                 ul.list-group
-                    
+
             div.panel.panel-default.events
                 div.panel-heading Today's Events
                 ul.list-group
-                
+
     div.row.home-routers
         div.hr-wrap
 
@@ -142,17 +146,17 @@ block footer
                 h1
                     span Specials
                 div.hours
-                    
-                
+
+
             div.col-md-3.info-section.events-section
                 h1
                     span Events
                 div.hours
-                            
+
             div.col-md-3.info-section.hours-section
                 h1
                     span Hours
-                div.hours 
+                div.hours
                     each hour in hours
                         div.row
                             div.col-xs-5
@@ -160,13 +164,13 @@ block footer
                             div.col-xs-7
                                 p=hour.timeframe
                             hr
-                            
+
             div.col-md-3.info-section.call
                 h1
                     span Call Us
                 div.info-body
                     a(href='tel: 8477204466') (847) 720-4466
-                
+
 
             div.col-md-3.info-section
                 h1
@@ -174,9 +178,9 @@ block footer
 
                 div.info-body
                     p 110 Main Street <br/> Park Ridge, IL 60068
-                    p.phnum P: 
+                    p.phnum P:
                         a(href='tel:8477204466') (847) 720-4466
-                    p 
+                    p
                         a(href='contact') declan@theharpandfiddle.com
 
                     button(type='button' data-toggle='modal' data-target='#mailing-list' id='joinbtn').btn.btn-default.btn-lg.btn-block Join our Mailing List!
@@ -203,11 +207,11 @@ block footer
                     span Social Media
 
                 div.info-body
-                    p Facebook: 
+                    p Facebook:
                         a(href='http://www.facebook.com/parkridgebar') Harp &amp Fiddle
-                    p Twitter: 
+                    p Twitter:
                         a(href='http://www.twitter.com/harpandfiddlepr') harpandfiddlepr
-                    p Instagram: 
+                    p Instagram:
                         a(href='http://www.instagram.com/theharpandfiddle') theharpandfiddle
                     ul.social-thumbnails
                         li
@@ -221,5 +225,3 @@ block footer
                                 img(src='/img/social-media/inst-thumbnail-min.png' alt='inst-social')
         div.credit
             p
-                    
-                    
