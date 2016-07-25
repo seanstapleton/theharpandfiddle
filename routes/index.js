@@ -136,15 +136,14 @@ module.exports = function(db) {
                console.log(err);
                res.render('contact', {
                   title: 'The Harp and Fiddle - error',
-                  message: {
-                    error: "Error: message did not send. Please try emailing declan@theharpandfiddle.com!"
-                  },
+                  message: "Error: message did not send. Please try emailing declan@theharpandfiddle.com!",
                   hours: hours
                 });
            } else {
                 console.log(req.body);
                 res.render('contact', {
                   title: 'The Harp and Fiddle - Thank you',
+                  message: "Success! Your message was sent!",
                   hours: hours
                 });
            }
