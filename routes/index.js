@@ -1,13 +1,13 @@
 module.exports = function(db) {
-    var express = require('express');
-    var router = express.Router();
-    var db = require('../db');
-    var bodyParser = require('body-parser');
-    var nodemailer = require("nodemailer");
-    var hoursSchema = require('../models/hours.js');
-    var menuSchema = require('../models/menu.js');
-    var eventsSchema = require('../models/events.js');
-    var specialsSchema = require('../models/specials.js');
+    var express         = require('express');
+    var router          = express.Router();
+    var db              = require('../db');
+    var bodyParser      = require('body-parser');
+    var nodemailer      = require("nodemailer");
+    var hoursSchema     = require('../models/hours.js');
+    var menuSchema      = require('../models/menu.js');
+    var eventsSchema    = require('../models/events.js');
+    var specialsSchema  = require('../models/specials.js');
     var hours;
 
     hoursSchema.find({}, {'_id': false, 'order': false}, function(err, returnHours) {
@@ -120,18 +120,21 @@ module.exports = function(db) {
 
     /* POST contact page. */
     router.post('/contact', function(req, res) {
-      console.log('smtps://'+process.env.gmail_user+'%40gmail.com:'+process.env.gmail_pass+'@smtp.gmail.com');
-        var smtpTrans = nodemailer.createTransport('smtps://'+process.env.gmail_user+'%40gmail.com:'+process.env.gmail_pass+'@smtp.gmail.com');
+        var smtpTransporter = nodemailer.createTransport({
+          service: 'Mailgun',
+          auth: {
+            user: 'postmaster@sandbox8942345cff734588a349b18a65da4253.mailgun.org',
+            pass: 'e8ce8cf8eb9112b55cfd3f6bd09a8882'
+          }
+        });
+        var message = {
+          from: 'theharpandfiddle.com',
+          to: 'fiddlersonmain@gmail.com',
+          subject: 'Contact Form Submission: ' + req.body.subject,
+          text: "Name: " + req.body.name + "\n" + "Phone Number: " + req.body.phnum + "\n" + "Email: " + req.body.email + "\nMessage: " + req.body.message
+        };
 
-        //Mail Options
-        var mailOptions = {
-            from: req.body.name + '&lt;' + req.body.email + '&gt;',
-            to: 'fiddlersonmain@gmail.com',
-            subject: 'Contact Form Submission: ' + req.body.subject,
-            text: "Name: " + req.body.name + "\n" + "Phone Number: " + req.body.phnum + "\n" + "Email: " + req.body.email + "\nMessage: " + req.body.message
-        }
-
-        smtpTrans.sendMail(mailOptions, function(err, info) {
+        smtpTransporter.sendMail(message, function(err, info) {
            if (err) {
                console.log(err);
                res.render('contact', {
