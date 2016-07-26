@@ -205,10 +205,12 @@ module.exports = function(db, passport) {
 
     /* GET edit content page */
     router.get('/edit_content', function(req, res, next) {
-      if (isLoggedIn){
+      if (req.isAuthenticated()) {
         res.render('edit_content', {
           hours: hours
         });
+      } else {
+        res.redirect('/');
       }
     });
 
@@ -217,11 +219,6 @@ module.exports = function(db, passport) {
       req.logout();
       res.redirect('/');
     });
-
-    var isLoggedIn = function(req, res, next) {
-      if (req.isAuthenticated()) return next();
-      else res.redirect('/');
-    }
 
     return router;
 }
