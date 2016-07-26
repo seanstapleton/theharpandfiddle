@@ -5,8 +5,8 @@
  */
 
 var debug = require('debug')('theharpandfiddleMEAN:server');
-var http = require('http');
-var db = require('../db')
+var http  = require('http');
+var db    = require('../db')
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -14,8 +14,6 @@ db.once('open', function() {
 });
 
 var app = require('../app')(db);
-
-
 
 /**
  * Get port from environment and store in Express.

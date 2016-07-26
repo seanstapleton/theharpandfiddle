@@ -1,4 +1,4 @@
-module.exports = function(db) {
+module.exports = function(db, passport) {
     var express         = require('express');
     var router          = express.Router();
     var db              = require('../db');
@@ -8,6 +8,7 @@ module.exports = function(db) {
     var menuSchema      = require('../models/menu.js');
     var eventsSchema    = require('../models/events.js');
     var specialsSchema  = require('../models/specials.js');
+    var flash           = require('connect-flash');
     var hours;
 
     hoursSchema.find({}, {'_id': false, 'order': false}, function(err, returnHours) {
@@ -173,6 +174,54 @@ module.exports = function(db) {
           ]
       });
     });
+
+    /* GET login page */
+    router.get('/login', function(req, res, next) {
+      res.render('login', {
+        message: req.flash('loginMessage')
+      });
+    });
+
+    /* GET sign up page */
+    router.get('/signup', function(req, res, next) {
+      res.render('signup', {
+        message: req.flash('error')
+      });
+    });
+
+    /* POST sign up page */
+    router.post('/signup', passport.authenticate('signup', {
+      successRedirect: '/edit_content',
+      failureRedirect: '/signup',
+      failureFlash: true
+    }));
+
+    /* POST log in page */
+    router.post('/login', passport.authenticate('login', {
+      successRedirect: '/edit_content',
+      failureRedirect: '/login',
+      failureFlash: true
+    }));
+
+    /* GET edit content page */
+    router.get('/edit_content', function(req, res, next) {
+      if (isLoggedIn){
+        res.render('edit_content', {
+          hours: hours
+        });
+      }
+    });
+
+    /* GET logout page */
+    router.get('/logout', function(req, res, next) {
+      req.logout();
+      res.redirect('/');
+    });
+
+    var isLoggedIn = function(req, res, next) {
+      if (req.isAuthenticated()) return next();
+      else res.redirect('/');
+    }
 
     return router;
 }
