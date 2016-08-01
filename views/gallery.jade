@@ -2,6 +2,7 @@ extends layout
 
 block stylesheets
     link(rel='stylesheet' href='/lib/swipebox/css/swipebox.min.css')
+    link(rel='stylesheet' href='/stylesheets/gallery.css')
     style.
         @media(max-width: 992px) {
             footer {
@@ -15,4 +16,10 @@ block scripts
 block content
     div.primary-content
         h1(style='text-align: center; font-size: 5em; color: #888; margin-bottom: 50px;').gallery-header Photo Gallery
-        h2(style='text-align: center') The future home of some awesome events!
+        if entries
+          each entry in entries
+            div.photo-overlay(style="background-image: url("+entry+")")
+              a.swipebox(rel="bar" href=entry)
+                img(rel="bar" src=entry)
+        else 
+          h2(style='text-align: center') The future home of some awesome events!

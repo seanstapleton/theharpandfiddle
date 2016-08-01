@@ -9,6 +9,8 @@ module.exports = function(db, passport) {
     var eventsSchema    = require('../models/events.js');
     var specialsSchema  = require('../models/specials.js');
     var flash           = require('connect-flash');
+    var http            = require('http');
+    var Dropbox         = require('dropbox');
     var hours;
 
     hoursSchema.find({}, {'_id': false, 'order': false}, function(err, returnHours) {
@@ -154,27 +156,6 @@ module.exports = function(db, passport) {
         });
     });
 
-    /* GET about page. */
-    router.get('/gallery', function(req, res, next) {
-      res.render('gallery', {
-          title: 'The Harp and Fiddle - Gallery',
-          hours: hours,
-          albums: [
-              {
-                  title: "Construction",
-                  path: 'Construction',
-                  contents: [{
-                      src: 'drinks.jpg',
-                      caption: 'A nice cold Guiness served up at our bar!'
-                  },{
-                      src: 'shepardspie.jpg',
-                      caption: "A steaming shepard's pie right out of the kitchen!"
-                  }]
-              }
-          ]
-      });
-    });
-
     /* GET login page */
     router.get('/login', function(req, res, next) {
       res.render('login', {
@@ -212,6 +193,43 @@ module.exports = function(db, passport) {
       } else {
         res.redirect('/');
       }
+    });
+
+    /* GET gallery page. */
+    router.get('/gallery', function(req, res, next) {
+
+      var dbx = new Dropbox({ accessToken: 'ICSw9A7Vq4UAAAAAAAAJsMghP3GCSWRtV0NyyvHJVk0Mu0Wb2sdJBsN45BtKMdMJ' });
+
+      var promises = [];
+      var entries = [];
+
+      var push = function(path) {
+        return new Promise((resolve, reject) => {
+          dbx.sharingCreateSharedLink({path: path})
+            .then(function(response) {
+              resolve(response.url.slice(0,-4) + "raw=1");
+            })
+        });
+      }
+
+      dbx.filesListFolder({path: '/HF Photo Stream'})
+        .then(function(response) {
+          for (var i = 0; i < response.entries.length; i++) {
+            promises.push(push(response.entries[i].path_display));
+          }
+          Promise.all(promises).then(values => {
+            console.log("Values: ", values);
+            res.render('gallery', {
+                title: 'The Harp and Fiddle - Gallery',
+                hours: hours,
+                entries: values
+            });
+          });
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+
     });
 
     /* GET logout page */
