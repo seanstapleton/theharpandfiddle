@@ -19,7 +19,7 @@ block content
         if entries
           each entry in entries
             div.photo-overlay(style="background-image: url("+entry+")")
-              a.swipebox(rel="bar" href=entry)
+              a.swipebox(rel="bar" href=entry style="display: block; height: 100%")
                 img(rel="bar" src=entry)
         else 
           h2(style='text-align: center') The future home of some awesome events!

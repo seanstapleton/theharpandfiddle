@@ -50,6 +50,8 @@ block scripts
                     var title = $('<td></td>');
                     var link = $('<a></a>').text(events[i].title);
                     link.attr("href", events[i].url);
+                    //#16264C
+                    link.css("color", "#000");
                     title.append(link);
                     var date = $('<td></td>').text(events[i].dateString);
                     var description = $('<td></td>').text(events[i].description);

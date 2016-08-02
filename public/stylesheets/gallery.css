@@ -14,3 +14,6 @@
   height: 100%;
   visibility: hidden;
 }
+.photo-overlay a {
+  width: 100%;
+}

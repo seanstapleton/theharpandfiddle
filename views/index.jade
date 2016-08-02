@@ -32,6 +32,7 @@ block scripts
             
             if ($('.events ul li').length < 1) {
               $('.events ul').append($('<li></li').addClass("list-group-item").text("Come enjoy the atmosphere!"));
+              $('.events-section .hours').append($('<div></div>').addClass("row").append($('<p></p>').text("Come enjoy the atmosphere!")));
             }
 
             var homepageSlides = ["/img/homepage-slides/guinnessgate-min.jpg", "/img/homepage-slides/home-angled-min.jpg", "/img/homepage-slides/guinness-pour-min.jpg", "/img/homepage-slides/wine-min.jpg", "/img/homepage-slides/drinks-min.jpg"];
@@ -181,7 +182,7 @@ block footer
                     p.phnum P:
                         a(href='tel:8477204466') (847) 720-4466
                     p
-                        a(href='contact') declan@theharpandfiddle.com
+                        a(href='contact' style='font-size: 0.5em') declan@theharpandfiddle.com
 
                     button(type='button' data-toggle='modal' data-target='#mailing-list' id='joinbtn').btn.btn-default.btn-lg.btn-block Join our Mailing List!
 
