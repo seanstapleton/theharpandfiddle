@@ -12,14 +12,31 @@ block stylesheets
 block scripts
     script(src='/lib/swipebox/js/jquery.swipebox.min.js')
     script(src='/js/gallery.js')
+    script.
+      $(document).ready(function() {
+        var entries = !{entries};
+        
+        var load = function(src) {
+          var img = $('<img>');
+          img.load(function() {
+            var div = $('<div></div>').addClass("photo-overlay");
+            div.css("background-image", "url(" + src + ")");
+            var anchor = $('<a></a>').addClass("swipebox").attr("rel", "bar").attr("href", src).attr("style", "display: block; height: 100%")
+            img.attr("rel", "bar")
+            anchor.append(img);
+            div.append(anchor);
+            $('.primary-content').append(div);
+          });
+          img.attr("src", src);
+        }
+        
+        for (var i = 0; i < entries.length; i++) {
+          load(entries[i]);
+        }
+        
+      });
 
 block content
     div.primary-content
         h1(style='text-align: center; font-size: 5em; color: #888; margin-bottom: 50px;').gallery-header Photo Gallery
-        if entries
-          each entry in entries
-            div.photo-overlay(style="background-image: url("+entry+")")
-              a.swipebox(rel="bar" href=entry style="display: block; height: 100%")
-                img(rel="bar" src=entry)
-        else 
-          h2(style='text-align: center') The future home of some awesome events!
+        

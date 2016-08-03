@@ -222,7 +222,7 @@ module.exports = function(db, passport) {
             res.render('gallery', {
                 title: 'The Harp and Fiddle - Gallery',
                 hours: hours,
-                entries: values
+                entries: JSON.stringify(values)
             });
           });
         })
