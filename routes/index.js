@@ -3,7 +3,7 @@ module.exports = function(db, passport) {
     var router          = express.Router();
     var db              = require('../db');
     var bodyParser      = require('body-parser');
-    var nodemailer      = require("nodemailer");
+    var nodemailer      = require('nodemailer');
     var hoursSchema     = require('../models/hours.js');
     var menuSchema      = require('../models/menu.js');
     var eventsSchema    = require('../models/events.js');
@@ -11,6 +11,7 @@ module.exports = function(db, passport) {
     var flash           = require('connect-flash');
     var http            = require('http');
     var Dropbox         = require('dropbox');
+    var validator       = require('validator');
     var hours;
 
     hoursSchema.find({}, {'_id': false, 'order': false}, function(err, returnHours) {
@@ -156,44 +157,44 @@ module.exports = function(db, passport) {
         });
     });
 
-    /* GET login page */
-    router.get('/login', function(req, res, next) {
-      res.render('login', {
-        message: req.flash('loginMessage')
-      });
-    });
-
-    /* GET sign up page */
-    router.get('/signup', function(req, res, next) {
-      res.render('signup', {
-        message: req.flash('error')
-      });
-    });
-
-    /* POST sign up page */
-    router.post('/signup', passport.authenticate('signup', {
-      successRedirect: '/edit_content',
-      failureRedirect: '/signup',
-      failureFlash: true
-    }));
-
-    /* POST log in page */
-    router.post('/login', passport.authenticate('login', {
-      successRedirect: '/edit_content',
-      failureRedirect: '/login',
-      failureFlash: true
-    }));
-
-    /* GET edit content page */
-    router.get('/edit_content', function(req, res, next) {
-      if (req.isAuthenticated()) {
-        res.render('edit_content', {
-          hours: hours
-        });
-      } else {
-        res.redirect('/');
-      }
-    });
+    // /* GET login page */
+    // router.get('/login', function(req, res, next) {
+    //   res.render('login', {
+    //     message: req.flash('loginMessage')
+    //   });
+    // });
+    //
+    // /* GET sign up page */
+    // router.get('/signup', function(req, res, next) {
+    //   res.render('signup', {
+    //     message: req.flash('error')
+    //   });
+    // });
+    //
+    // /* POST sign up page */
+    // router.post('/signup', passport.authenticate('signup', {
+    //   successRedirect: '/edit_content',
+    //   failureRedirect: '/signup',
+    //   failureFlash: true
+    // }));
+    //
+    // /* POST log in page */
+    // router.post('/login', passport.authenticate('login', {
+    //   successRedirect: '/edit_content',
+    //   failureRedirect: '/login',
+    //   failureFlash: true
+    // }));
+    //
+    // /* GET edit content page */
+    // router.get('/edit_content', function(req, res, next) {
+    //   if (req.isAuthenticated()) {
+    //     res.render('edit_content', {
+    //       hours: hours
+    //     });
+    //   } else {
+    //     res.redirect('/');
+    //   }
+    // });
 
     /* GET gallery page. */
     router.get('/gallery', function(req, res, next) {
@@ -232,11 +233,11 @@ module.exports = function(db, passport) {
 
     });
 
-    /* GET logout page */
-    router.get('/logout', function(req, res, next) {
-      req.logout();
-      res.redirect('/');
-    });
+    // /* GET logout page */
+    // router.get('/logout', function(req, res, next) {
+    //   req.logout();
+    //   res.redirect('/');
+    // });
 
     return router;
 }
