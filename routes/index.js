@@ -25,12 +25,39 @@ module.exports = function(db, passport) {
         var str = d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2);
         specialsSchema.find({dotw: days[d.getDay()]}, {'_id': false}, function(err, specials) {
             eventsSchema.find({start: new RegExp('^' + str)}, {'_id': false}, function(err, events) {
-                console.log(events);
-                res.render('index', {
-                    title: 'The Harp and Fiddle',
-                    hours: hours,
-                    specials: JSON.stringify(specials),
-                    events: JSON.stringify(events)
+
+              var dbx = new Dropbox({ accessToken: process.env.dropbox_token });
+
+              var promises = [];
+              var entries = [];
+
+              var push = function(path) {
+                return new Promise((resolve, reject) => {
+                  dbx.sharingCreateSharedLink({path: path})
+                    .then(function(response) {
+                      resolve(response.url.slice(0,-4) + "raw=1");
+                    })
+                });
+              }
+
+              dbx.filesListFolder({path: '/HF Photo Stream'})
+                .then(function(response) {
+                  for (var i = 0; i < response.entries.length; i++) {
+                    promises.push(push(response.entries[i].path_display));
+                  }
+                  Promise.all(promises).then(values => {
+                    console.log("Values: ", values);
+                    res.render('index', {
+                        title: 'The Harp and Fiddle',
+                        hours: hours,
+                        entries: JSON.stringify(values),
+                        specials: JSON.stringify(specials),
+                        events: JSON.stringify(events)
+                    });
+                  });
+                })
+                .catch(function(error) {
+                  console.log(error);
                 });
             });
         });

@@ -35,8 +35,6 @@ block scripts
               $('.events-section .hours').append($('<div></div>').addClass("row").append($('<p></p>').text("Come enjoy the atmosphere!")));
             }
 
-            var homepageSlides = ["/img/homepage-slides/guinnessgate-min.jpg", "/img/homepage-slides/home-angled-min.jpg", "/img/homepage-slides/guinness-pour-min.jpg", "/img/homepage-slides/wine-min.jpg", "/img/homepage-slides/drinks-min.jpg"];
-
             var loadImg = function(src, selector) {
                 var div = $('<div></div>').addClass("item");
 
@@ -48,9 +46,11 @@ block scripts
                 $img.attr("src", src);
             }
 
-            for (var i = 0; i < homepageSlides.length; i++) {
+            var entries = !{entries};
+            
+            for (var i = 0; i < entries.length; i++) {
 
-                loadImg(homepageSlides[i], '.carousel-inner');
+                loadImg(entries[i], '.carousel-inner');
 
             }
 
