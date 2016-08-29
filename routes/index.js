@@ -199,7 +199,7 @@ module.exports = function(db, passport) {
     /* GET gallery page. */
     router.get('/gallery', function(req, res, next) {
 
-      var dbx = new Dropbox({ accessToken: 'ICSw9A7Vq4UAAAAAAAAJsMghP3GCSWRtV0NyyvHJVk0Mu0Wb2sdJBsN45BtKMdMJ' });
+      var dbx = new Dropbox({ accessToken: 'ICSw9A7Vq4UAAAAAAAAJ0s96q4fGsuFcwIoKIEvtCordgHLPuqLG9pASyArIi6-2' });
 
       var promises = [];
       var entries = [];
