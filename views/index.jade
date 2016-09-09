@@ -1,5 +1,9 @@
 extends layout
 
+block stylesheets
+  link(rel='stylesheet', href='/lib/lightbox/css/lightbox.min.css')
+
+
 block scripts
     script.
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -106,40 +110,49 @@ block scripts
         });
 
 block content
+  div.row.start
+    div.postcards.col-md-2.col-md-offset-1
+      a(href='/img/postcards/postcard1.jpg' data-lightbox='postcards')
+        img(src='/img/postcards/postcard1.jpg')
+      a(href='/img/postcards/postcard3.jpg' data-lightbox='postcards')
+        img(src='/img/postcards/postcard3.jpg')
+      a(href='/img/postcards/postcard4.jpg' data-lightbox='postcards')
+        img(src='/img/postcards/postcard4.jpg')
+      a(href='/img/logos/NDCC.jpg' data-lightbox='postcards')
+        img(src='/img/logos/NDCC.jpg')
+    div.launch-content.col-md-8
+      div.row.nmt
+          div.col-md-8.mainslidercol
+              div.carousel.slide.mainslider(id='homepage-carousel' data-wrap='true')
+                  //Indicators
+                  ol.carousel-indicators
+                      li(data-target='#homepage-carousel' data-slide-to='0')
+                      li(data-target='#homepage-carousel' data-slide-to='1')
+                      li(data-target='#homepage-carousel' data-slide-to='2')
 
-  div.launch-content
-    div.row
-        div.col-md-8.mainslidercol
-            div.carousel.slide.mainslider(id='homepage-carousel' data-wrap='true')
-                //Indicators
-                ol.carousel-indicators
-                    li(data-target='#homepage-carousel' data-slide-to='0')
-                    li(data-target='#homepage-carousel' data-slide-to='1')
-                    li(data-target='#homepage-carousel' data-slide-to='2')
+                  //Wrapper for slides
+                  div.carousel-inner
+                      div.item.active
+                          img(src='/img/homepage-slides/bar-draft-min.JPG' id="bar-draft")
+                          div.carousel-caption
 
-                //Wrapper for slides
-                div.carousel-inner
-                    div.item.active
-                        img(src='/img/homepage-slides/bar-draft-min.JPG' id="bar-draft")
-                        div.carousel-caption
+                  //Controls
+                  a.carousel-control.left(href='#homepage-carousel' role='button' data-slide='prev')
+                      span.glyphicon.glyphicon-chevron-left
+                  a.carousel-control.right(href='#homepage-carousel' role='button' data-slide='next')
+                      span.glyphicon.glyphicon-chevron-right
+          div.col-md-4
+              div.panel.panel-default.specials
+                  div.panel-heading Today's Specials
+                  ul.list-group
 
-                //Controls
-                a.carousel-control.left(href='#homepage-carousel' role='button' data-slide='prev')
-                    span.glyphicon.glyphicon-chevron-left
-                a.carousel-control.right(href='#homepage-carousel' role='button' data-slide='next')
-                    span.glyphicon.glyphicon-chevron-right
-        div.col-md-4
-            div.panel.panel-default.specials
-                div.panel-heading Today's Specials
-                ul.list-group
+              div.panel.panel-default.events
+                  div.panel-heading Today's Events
+                  ul.list-group
 
-            div.panel.panel-default.events
-                div.panel-heading Today's Events
-                ul.list-group
-
-    div.row.home-routers
-        div.hr-wrap
-
+      div.row.home-routers
+          div.hr-wrap
+    
 block footer
     footer
         div.row
@@ -151,6 +164,7 @@ block footer
 
             div.col-md-3.info-section.events-section
                 h1
+                  a(href='events' style='color: #333')
                     span Events
                 div.hours
 
@@ -175,6 +189,7 @@ block footer
 
             div.col-md-3.info-section
                 h1
+                  a(href='contact' style='color: #333')
                     span Contact Us
 
                 div.info-body
@@ -226,3 +241,5 @@ block footer
                                 img(src='/img/social-media/inst-thumbnail-min.png' alt='inst-social')
         div.credit
             p
+block closing-scripts
+  script(src='lib/lightbox/js/lightbox.min.js')

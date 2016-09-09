@@ -28,6 +28,7 @@ block scripts
             
             for (var i = 0; i < events.length; i++) {
                 var eventDate = events[i].start.split("-");
+                console.log(eventDate);
                 events[i].date = new Date(eventDate[0], parseInt(eventDate[1]) - 1, eventDate[2].split(" ")[0], eventDate[2].split(" ")[1].split(":")[0], eventDate[2].split(" ")[1].split(":")[1]);
                 events[i].dateString = months[events[i].date.getMonth()] + " " + events[i].date.getDate();
             }
