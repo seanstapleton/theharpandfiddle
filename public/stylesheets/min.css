@@ -14,6 +14,10 @@ ul.nav a:first-letter {
     text-align: center
 }
 
+.tooltip {
+  position: fixed;
+}
+
 @font-face {
     font-family: 'Sansation Light';
     src: url(/fonts/Sansation_Light.ttf)

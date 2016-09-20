@@ -80,8 +80,15 @@ block scripts
                 weekMode: 'liquid',
                 url: '#',
                 events: events,
-                eventMouseover: function(event, jsEvent, view) {
-                    $(this).tooltip({title: event.description});
+                eventRender: function(event, element) {
+                  if (event.title.toLowerCase().indexOf("notre dame") >= 0) {
+                    element.css("background", "#3EA632");
+                  }
+                  if (event.background) {
+                    element.css("background", event.background);
+                  }
+                  element.text(event.title);
+                  element.tooltip({title: event.description});
                 },
                 eventClick: function(event, jsEvent, view) {
                     window.location.href=event.url;
