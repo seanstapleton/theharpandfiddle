@@ -21,7 +21,8 @@ module.exports = function(db, passport) {
     /* GET home page. */
     router.get('/', function(req, res, next) {
         var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-        var d = new Date();
+        var d1 = new Date();
+        var d = new Date(d1.getTime() - 18000000);
         var str = d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2);
         specialsSchema.find({dotw: days[d.getDay()]}, {'_id': false}, function(err, specials) {
             eventsSchema.find({start: new RegExp('^' + str)}, {'_id': false}, function(err, events) {
