@@ -261,6 +261,49 @@ module.exports = function(db, passport) {
 
     });
 
+    /* GET cc reservation page. */
+    router.get('/cc-res', function(req, res, next) {
+        res.render('cc-res', {
+          title: 'The Harp and Fiddle - Celebrity Chef Reservation',
+          hours: hours
+        });
+    });
+
+    /* POST cc reservation page. */
+    router.post('/cc-res', function(req, res) {
+        var smtpTransporter = nodemailer.createTransport({
+          service: 'Mailgun',
+          auth: {
+            user: 'postmaster@sandbox8942345cff734588a349b18a65da4253.mailgun.org',
+            pass: 'e8ce8cf8eb9112b55cfd3f6bd09a8882'
+          }
+        });
+        var message = {
+          from: 'theharpandfiddle.com',
+          to: 'fiddlersonmain@gmail.com',
+          subject: 'Celebrity Chef Reservation: ' + req.body.name,
+          text: "Name: " + req.body.name + "\n" + "Phone Number: " + req.body.phnum + "\n" + "Email: " + req.body.email + "\nParty Size: " + req.body.party
+        };
+
+        smtpTransporter.sendMail(message, function(err, info) {
+           if (err) {
+               console.log(err);
+               res.render('cc-res', {
+                  title: 'The Harp and Fiddle - error',
+                  message: "Error: message did not send. Please try emailing declan@theharpandfiddle.com!",
+                  hours: hours
+                });
+           } else {
+                console.log(req.body);
+                res.render('cc-res', {
+                  title: 'The Harp and Fiddle - Thank you',
+                  message: "Success! Your reservation is set!",
+                  hours: hours
+                });
+           }
+        });
+    });
+
     // /* GET logout page */
     // router.get('/logout', function(req, res, next) {
     //   req.logout();
