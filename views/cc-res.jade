@@ -28,7 +28,7 @@ block scripts
         });
 
 block content
-    div.primary-content(style="padding: 40px 20px")
+    div.primary-content(style="padding: 40px 20px; background: none")
       if message
         h2=message
       form(action='/cc-res' method='post' enctype='application/x-www-form-urlencoded' name="contact-form" id="contact-form")
