@@ -275,6 +275,28 @@ h1.hours {
     font-size: 4em
 }
 
+span.sae1 {
+  font-size:43px;
+}
+span.sae2 {
+  font-size:25px;
+}
+span.sae3 {
+  font-size:43px;
+}
+
+@media(max-width:1075px) {
+  span.sae1 {
+    font-size:34px;
+  }
+  span.sae2 {
+    font-size:20;
+  }
+  span.sae3 {
+    font-size:40;
+  }
+}
+
 @media (max-width:992px) {
     #listcal td,
     thead {
@@ -613,7 +635,7 @@ form button:hover {
     }
     .primary-content {
         margin-top: 60px;
-        border-radius: 15px
+        border-radius: 15px;
     }
     form button {
         font-size: 1em!important

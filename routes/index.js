@@ -47,7 +47,6 @@ module.exports = function(db, passport) {
                     promises.push(push(response.entries[i].path_display));
                   }
                   Promise.all(promises).then(values => {
-                    console.log("Values: ", values);
                     res.render('index', {
                         title: 'The Harp and Fiddle',
                         hours: hours,
@@ -72,6 +71,14 @@ module.exports = function(db, passport) {
                 hours: hours,
                 menu: JSON.stringify(menu)
             });
+        });
+    });
+
+    /* GET ladies night page. */
+    router.get('/ladiesnight', function(req, res, next) {
+        res.render('ladiesnight', {
+          title: 'The Harp and Fiddle - Dinner Menu',
+          hours: hours
         });
     });
 
