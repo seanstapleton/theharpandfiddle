@@ -422,16 +422,16 @@ span.sae3 {
         font-size: 3.5em !important;
     }
     .menu h1 {
-        font-size: 7em !important;
-    }
-    .menu h2 {
-        font-size: 6em !important;
-    }
-    .menu h3 {
         font-size: 5em !important;
     }
+    .menu h2 {
+        font-size: 4em !important;
+    }
+    .menu h3 {
+        font-size: 3.5em !important;
+    }
     .menu p {
-        font-size: 4.5em !important;
+        font-size: 3em !important;
     }
     form h1,
     form label {
