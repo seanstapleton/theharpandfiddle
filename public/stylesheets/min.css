@@ -298,6 +298,9 @@ span.sae3 {
 }
 
 @media (max-width:992px) {
+    .lnvid {
+      margin-top: 5%;
+    }
     #listcal td,
     thead {
         font-size: 2em
