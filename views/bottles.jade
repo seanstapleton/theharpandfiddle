@@ -35,6 +35,10 @@ block scripts
                     $('#col-1').append(container);
                  } else if(sections[i].col == 2) {
                     $('#col-2').append(container);
+                 } else if(sections[i].col == 3) {
+                    $('#col-3').append(container);
+                 } else if(sections[i].col == 4) {
+                    $('#col-4').append(container);
                  }
                 
                 var items = sections[i].items;
@@ -60,4 +64,11 @@ block content
         div.row(style='margin: 0')
             div.col-md-6(id="col-1")
             div.col-md-6(id="col-2")
+        div.row(style='margin: 0')
+            h1(style='text-align: center') Craft &amp Specialty
+            div.col-md-6(id="col-3")
+            div.col-md-6(id="col-4")
+        div.row(style='margin: 0')
+            p *Gluten Free
+            p Please drink responsibly - alcohol by volume % included above in parenthesis
         
