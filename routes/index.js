@@ -276,6 +276,54 @@ module.exports = function(db, passport) {
         });
     });
 
+    /* GET events addition  page. */
+    router.get('/add-event', function(req, res, next) {
+        res.render('add-event', {
+          title: 'The Harp and Fiddle - Add an event',
+          hours: hours
+        });
+    });
+
+    /* POST add events page. */
+    router.post('/add-event', function(req, res) {
+
+        console.log(req.body);
+
+        var start = req.body.evdate + " " + req.body.evtime_start;
+        var end = req.body.evdate + " " + req.body.evtime_end;
+
+        var ev = (req.body.url) ? new eventsSchema({title: req.body.evtitle, start: start, end: end, description: req.body.evdesc, url: req.body.url}) : new eventsSchema({title: req.body.evtitle, start: start, end: end, description: req.body.evdesc});
+
+        console.log(process.env.emp);
+
+        if (req.body.evpassword == process.env.emp) {
+          ev.save(function(err) {
+            if (err) {
+              console.log(err)
+              res.render('add-event', {
+                 title: 'The Harp and Fiddle - error',
+                 message: "Error: Save Failed. Try using mlab.com",
+                 hours: hours
+               });
+            } else {
+              res.render('add-event', {
+                 title: 'The Harp and Fiddle - error',
+                 message: "Save Successful!",
+                 hours: hours
+               });
+            }
+          });
+        } else {
+          res.render('add-event', {
+             title: 'The Harp and Fiddle - error',
+             message: "Error: Password Incorrect",
+             hours: hours
+           });
+        }
+
+
+    });
+
     /* POST cc reservation page. */
     router.post('/cc-res', function(req, res) {
         var smtpTransporter = nodemailer.createTransport({

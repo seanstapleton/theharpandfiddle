@@ -1,0 +1,72 @@
+extends layout
+
+block stylesheets
+    style.
+        @media(max-width: 992px) {
+            footer {
+                display: none;
+            }
+        }
+
+block scripts
+    script(src='lib/validator/validator.min.js')
+    script.
+        $(document).ready(function() {
+          $("#contact-form").submit(function() {
+            var name = $('#name').val(),
+                email = $('#email').val(),
+                phone = $('#phnum').val(),
+                party = $('#party').val();
+                
+                $('#name').val(validator.escape(name));
+                $('#email').val(validator.escape(email));
+                $('#phnum').val(validator.escape(phone));
+                $('#subject').val(validator.escape(subject));
+                $('#message').val(validator.escape(message));
+                
+                return true;
+          });
+        });
+
+block content
+    div.primary-content(style="padding: 40px 20px; background: none")
+      if message
+        h2=message
+      form(action='/add-event' method='post' enctype='application/x-www-form-urlencoded' name="contact-form" id="contact-form")
+          h1(style="text-align: center") Add an Event
+          
+          div.form-group
+          label(for='evtitle') Title
+          input.form-control(name='evtitle' type='text' id='evtitle')
+          
+          div.form-group
+          label(for='evdesc') Description
+          input.form-control(name='evdesc' type='text' id='evdesc' required)
+          
+          div.form-group
+          label(for='evdate') Date
+          input.form-control(name='evdate' value='' type='date' id='evdate' required)
+          
+          div.row
+            div.form-group.col-md-6
+              label(for='evtime_start') Start Time
+              input.form-control(name='evtime_start' type='time' id='evtime_start' required)
+            
+            div.form-group.col-md-6
+              label(for='evtime_end') End Time
+              input.form-control(name='evtime_end' type='time' id='evtime_end' required)
+          
+          div.form-group
+          label(for='evcolor') Link
+          input.form-control(name='evcolor' type='text' id='evcolor' placeholder='(optional)')
+          
+          div.form-group
+          label(for='evpassword') Password
+          input.form-control(name='evpassword' type='password' id='evpassword' required)
+          
+          button(name='submit' type='submit' class='btn' style='background: #6AA841; color: #fff') Submit
+
+block footer
+      
+            
+        
