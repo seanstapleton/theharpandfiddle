@@ -1,0 +1,46 @@
+<html ng-app='harpandfiddle'>
+    <head>
+        <title>The Harp and Fiddle</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="/img/favicon/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/img/favicon/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="/img/favicon/manifest.json">
+        <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/img/favicon/favicon.ico">
+        <link rel='stylesheet' type="text/css" href='/lib/bootstrap/css/bootstrap.min.css'>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Secular+One|Suez+One" rel="stylesheet">
+        <link rel='stylesheet' href='/stylesheets/min.css'>
+        <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div ng-include src="'/views/nav.html'"></div>
+
+        <div style="width: 100%; height: 100px"></div>
+        <div class='container'>
+            <div ng-view></div>
+        </div>
+
+        
+
+        <script src="/lib/angular/angular.min.js"></script>
+        <script src='/lib/angular/angular-route.min.js'></script>
+    </body>
+</html>
+<script src='/js/angular/angular-messages.min.js'></script>
+<script type='text/javascript'>
+    (function() {
+        var app = angular.module('theharpandfiddle', ['ngRoute']);
+        app.config(['$routeProvider', function($routeProvider, $locationProvider){
+            $routeProvider
+                .when('/', {
+                    templateUrl: '/views/home.html',
+                    controller: 'homeController'
+
+                })
+                .otherwise({
+                    templateUrl: '/views/home.html',
+                    controller: 'homeController'
+                });
+        }]);
+    }());
+</script>

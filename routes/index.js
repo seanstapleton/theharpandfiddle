@@ -284,6 +284,14 @@ module.exports = function(db, passport) {
         });
     });
 
+    /* GET events removal  page. */
+    router.get('/remove-event', function(req, res, next) {
+        res.render('remove-event', {
+          title: 'The Harp and Fiddle - Remove an event',
+          hours: hours
+        });
+    });
+
     /* POST add events page. */
     router.post('/add-event', function(req, res) {
 
@@ -321,6 +329,29 @@ module.exports = function(db, passport) {
            });
         }
 
+
+    });
+
+    /* POST remove events page. */
+    router.post('/remove-event', function(req, res) {
+      if (req.body.evdate) {
+        eventsSchema.find({start: new RegExp('^' + req.body.evdate)}, {'_id': false}, function(err, events) {
+          if (err) {
+            console.log(err);
+            res.render('remove-event', {
+               title: 'The Harp and Fiddle - error',
+               message: "Error: Could not complete search!",
+               hours: hours
+             });
+          } else {
+            res.render('remove-event', {
+               title: 'The Harp and Fiddle - error',
+               hours: hours,
+               events: events
+             });
+          }
+        });
+      }
 
     });
 
