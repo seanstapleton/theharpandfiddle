@@ -1,6 +1,7 @@
-<html ng-app='harpandfiddle'>
+<html ng-app='theharpandfiddle'>
     <head>
         <title>The Harp and Fiddle</title>
+        <base href='/'>
         <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" href="/img/favicon/favicon-32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="/img/favicon/favicon-16x16.png" sizes="16x16">
@@ -9,38 +10,42 @@
         <link rel="shortcut icon" href="/img/favicon/favicon.ico">
         <link rel='stylesheet' type="text/css" href='/lib/bootstrap/css/bootstrap.min.css'>
         <link href="https://fonts.googleapis.com/css?family=Montserrat|Secular+One|Suez+One" rel="stylesheet">
-        <link rel='stylesheet' href='/stylesheets/min.css'>
+        <link rel='stylesheet' href='/css/min.css'>
         <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+        <script type='text/javascript' src='/lib/jquery/jquery.min.js'></script>
+        <script type='text/javascript' src='/js/header.js'></script>
     </head>
     <body>
-        <div ng-include src="'/views/nav.html'"></div>
+        <ng-include src="'views/nav.html'"></ng-include>
 
-        <div style="width: 100%; height: 100px"></div>
         <div class='container'>
             <div ng-view></div>
         </div>
 
-        
+        <ng-include src="'views/footer.html'"></ng-include>
 
         <script src="/lib/angular/angular.min.js"></script>
         <script src='/lib/angular/angular-route.min.js'></script>
     </body>
 </html>
-<script src='/js/angular/angular-messages.min.js'></script>
+<script src='/lib/angular/angular-messages.min.js'></script>
 <script type='text/javascript'>
     (function() {
         var app = angular.module('theharpandfiddle', ['ngRoute']);
-        app.config(['$routeProvider', function($routeProvider, $locationProvider){
+        app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
             $routeProvider
                 .when('/', {
                     templateUrl: '/views/home.html',
-                    controller: 'homeController'
+                    controller: 'MainController'
 
                 })
                 .otherwise({
                     templateUrl: '/views/home.html',
-                    controller: 'homeController'
+                    controller: 'MainController'
                 });
+            $locationProvider.html5Mode(true);
         }]);
     }());
 </script>
+<script src="/js/controllers/main.js"></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
