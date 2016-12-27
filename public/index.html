@@ -1,0 +1,103 @@
+<html ng-app='theharpandfiddle'>
+    <head>
+        <title>The Harp and Fiddle</title>
+        <base href='/'>
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="/img/favicon/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/img/favicon/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="/img/favicon/manifest.json">
+        <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/img/favicon/favicon.ico">
+        <link rel='stylesheet' type="text/css" href='/lib/bootstrap/css/bootstrap.min.css'>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Secular+One|Suez+One" rel="stylesheet">
+        <link rel='stylesheet' href='/css/min.css'>
+        <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/lib/fullcalendar/jquery-ui.min.css"/>
+        <link rel="stylesheet" href="/lib/fullcalendar/fullcalendar.min.css"/>
+        <link rel="stylesheet" href="/lib/fullcalendar/fullcalendar.print.css" media="print"/>
+        <link rel="stylesheet" href="/lib/swipebox/css/swipebox.min.css"/>
+        <link rel="stylesheet" href="/css/gallery.css"/>
+        <script type='text/javascript' src='/lib/jquery/jquery.min.js'></script>
+        <script type='text/javascript' src='/js/header.js'></script>
+        <script type="text/javascript" src='lib/validator/validator.min.js'></script>
+        <script src="/lib/fullcalendar/moment.min.js"></script>
+        <script src="/lib/fullcalendar/fullcalendar.min.js"></script>
+        <script src="/lib/swipebox/js/jquery.swipebox.min.js"></script>
+        <script src="/js/gallery.js"></script>
+    </head>
+    <body ng-controller="MainController">
+        <ng-include src="'views/nav.html'"></ng-include>
+
+        <div class='container'>
+            <div ng-view></div>
+        </div>
+
+        <ng-include src="'views/footer.html'"></ng-include>
+
+        <script src="/lib/angular/angular.min.js"></script>
+        <script src='/lib/angular/angular-route.min.js'></script>
+    </body>
+</html>
+<script src='/lib/angular/angular-messages.min.js'></script>
+<script type='text/javascript'>
+    (function() {
+        var app = angular.module('theharpandfiddle', ['ngRoute']);
+        app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
+            $routeProvider
+                .when('/', {
+                    templateUrl: '/views/home.html',
+                    controller: 'WelcomeController'
+
+                })
+                .when('/dinner', {
+                    templateUrl: '/views/menu.html',
+                    controller: 'MenuController'
+                })
+                .when('/lunch', {
+                    templateUrl: '/views/menu.html',
+                    controller: 'MenuController'
+                })
+                .when('/draft', {
+                    templateUrl: '/views/beer.html',
+                    controller: 'BeerController'
+                })
+                .when('/bottles', {
+                    templateUrl: '/views/beer.html',
+                    controller: 'BeerController'
+                })
+                .when('/wine', {
+                    templateUrl: '/views/wine.html',
+                    controller: 'BeerController'
+                })
+                .when('/signature', {
+                    templateUrl: '/views/signature.html',
+                    controller: 'BeerController'
+                })
+                .when('/contact', {
+                    templateUrl: '/views/contact.html',
+                    controller: 'ContactController'
+                })
+                .when('/events', {
+                    templateUrl: '/views/events.html',
+                    controller: 'EventsController'
+                })
+                .when('/gallery', {
+                    templateUrl: '/views/gallery.html',
+                    controller: 'GalleryController'
+                })
+                .otherwise({
+                    templateUrl: '/views/home.html',
+                    controller: 'MainController'
+                });
+            $locationProvider.html5Mode(true);
+        }]);
+    }());
+</script>
+<script src="/js/controllers/main.js"></script>
+<script src="/js/controllers/welcome.js"></script>
+<script src="/js/controllers/menu.js"></script>
+<script src="/js/controllers/beer.js"></script>
+<script src="/js/controllers/contact.js"></script>
+<script src="/js/controllers/events.js"></script>
+<script src="/js/controllers/gallery.js"></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js"></script>

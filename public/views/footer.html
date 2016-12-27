@@ -1,0 +1,71 @@
+<footer>
+  <div class="row">
+    <div class="col-md-3 info-section specials-section">
+      <h1><span>Specials</span></h1>
+      <div class="hours"></div>
+    </div>
+    <div class="col-md-3 info-section events-section">
+      <h1><a href="events" style="color: #333"><span>Events</span></a></h1>
+      <div class="hours"></div>
+    </div>
+    <div class="col-md-3 info-section hours-section">
+      <h1><span>Hours</span></h1>
+      <div class="hours">
+        <div class="row" ng-repeat="hour in hours">
+          <div class="col-xs-5">
+            <p>{{hour.day}}</p>
+          </div>
+          <div class="col-xs-7">
+            <p>{{hour.timeframe}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 info-section call">
+      <h1><span>Call Us</span></h1>
+      <div class="info-body"><a href="tel: 8477204466">(847) 720-4466</a></div>
+    </div>
+    <div class="col-md-3 info-section">
+      <h1><a href="contact" style="color: #333"><span>Contact Us</span></a></h1>
+      <div class="info-body">
+        <p>110 Main Street <br/> Park Ridge, IL 60068</p>
+        <p class="phnum">P:<a href="tel:8477204466">(847) 720-4466</a></p>
+        <p><a href="contact" id="contact-email">declan@theharpandfiddle.com</a></p>
+        <button type="button" data-toggle="modal" data-target="#mailing-list" id="joinbtn" class="btn btn-default btn-lg btn-block">Join our Mailing List!</button>
+        <!--Mailing List Modal-->
+        <div id="mailing-list" tabindex="-1" role="dialog" aria-labelledby="ml-label" class="modal fade">
+          <div role="document" class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span sria-hidden="true">&times;</span></button>
+                <h4 id="ml-label" class="modal-title">Subscribe to our Mailing List!</h4>
+              </div>
+              <div class="modal-body"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2964.563677004332!2d-87.83397288517205!3d42.00963876515232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fc9b7151ccd95%3A0xf4d931d39d0b7486!2sThe+Harp+And+Fiddle!5e0!3m2!1sen!2sus!4v1467863161355" frameborder="0" style="border:0" allowfullscreen="allowfullscreen" id="contact-dirs"></iframe>
+    </div>
+    <div id="directions" class="col-md-3 info-section">
+      <h1><span>Directions</span></h1>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2964.563677004332!2d-87.83397288517205!3d42.00963876515232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fc9b7151ccd95%3A0xf4d931d39d0b7486!2sThe+Harp+And+Fiddle!5e0!3m2!1sen!2sus!4v1467863161355" frameborder="0" style="border:0" allowfullscreen="allowfullscreen"></iframe>
+    </div>
+    <div id="social-media" class="col-md-3 info-section">
+      <h1><span>Social Media</span></h1>
+      <div class="info-body">
+        <p>Facebook:<a href="http://www.facebook.com/parkridgebar">Harp &amp Fiddle</a></p>
+        <p>Twitter:<a href="http://www.twitter.com/harpandfiddlepr">harpandfiddlepr</a></p>
+        <p>Instagram:<a href="http://www.instagram.com/theharpandfiddle">theharpandfiddle</a></p>
+        <ul class="social-thumbnails">
+          <li><a href="http://www.facebook.com/parkridgebar" target="_blank"><img src="/img/social-media/fb-thumbnail-min.png" alt="fb-social"/></a></li>
+          <li><a href="http://www.twitter.com/harpandfiddlepr" target="_blank"><img src="/img/social-media/tw-thumbnail-min.png" alt="tw-social"/></a></li>
+          <li><a href="http://www.instagram.com/theharpandfiddle" target="_blank"><img src="/img/social-media/inst-thumbnail-min.png" alt="inst-social"/></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="credit">
+    <p></p>
+  </div>
+</footer>

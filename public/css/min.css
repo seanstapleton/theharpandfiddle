@@ -1,3 +1,7 @@
+.container {
+  margin: 0 !important;
+  width: 100%;
+}
 .home-router,
 .logo-flap {
     box-shadow: 0 1px 10px #000
@@ -30,6 +34,7 @@ ul.nav a:first-letter {
 
 body {
     background: url(/img/grain-wood-min.jpg);
+    /*background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/img/bphoto22.jpg);*/
     background-size: 100%
 }
 
@@ -51,9 +56,9 @@ a {
     color: #00B7FF
 }
 
-.row {
+/*.row {
     margin: 0!important
-}
+}*/
 
 div.container-fluid {
     padding: 0;
@@ -209,7 +214,7 @@ ul.nav {
 }
 
 .flap-spacer {
-    height: 100%;
+    min-height: 1px;
     margin-left: 5%;
     float: left
 }
@@ -249,7 +254,7 @@ h1.hours {
 }
 
 .social-thumbnails img {
-    width: 33%;
+    width: 32%;
     border-radius: 50%
 }
 
@@ -508,7 +513,7 @@ p {
 }
 
 .menu h2 {
-    font-size: 2.5
+    font-size: 2.5em
 }
 
 .menu h3 {
@@ -616,7 +621,7 @@ form button:hover {
         margin-top: 5%!important
     }
     .row {
-      margin-top: 5% !important;
+      margin-top: 5%;
     }
     .nmt {
       margin-top: 0 !important;
