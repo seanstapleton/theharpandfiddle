@@ -8,6 +8,15 @@
             $scope.hours = res.data;
           });
       }
+
+      $scope.getWelcome = function() {
+        $http.get('/backendServices/loadWelcome')
+          .then(function(res) {
+            $scope.welcome = res.data;
+          });
+      }
+
       $scope.getHours();
+      $scope.getWelcome();
   }]);
 }());
