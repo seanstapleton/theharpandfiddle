@@ -68,6 +68,10 @@
                     templateUrl: '/views/contact.html',
                     controller: 'ContactController'
                 })
+                .when('/events', {
+                    templateUrl: '/views/events.html',
+                    controller: 'EventsController'
+                })
                 .otherwise({
                     templateUrl: '/views/home.html',
                     controller: 'MainController'
@@ -81,4 +85,5 @@
 <script src="/js/controllers/menu.js"></script>
 <script src="/js/controllers/beer.js"></script>
 <script src="/js/controllers/contact.js"></script>
+<script src="/js/controllers/events.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
