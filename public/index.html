@@ -15,7 +15,7 @@
         <script type='text/javascript' src='/lib/jquery/jquery.min.js'></script>
         <script type='text/javascript' src='/js/header.js'></script>
     </head>
-    <body>
+    <body ng-controller="MainController">
         <ng-include src="'views/nav.html'"></ng-include>
 
         <div class='container'>
@@ -36,8 +36,32 @@
             $routeProvider
                 .when('/', {
                     templateUrl: '/views/home.html',
-                    controller: 'MainController'
+                    controller: 'WelcomeController'
 
+                })
+                .when('/dinner', {
+                    templateUrl: '/views/menu.html',
+                    controller: 'MenuController'
+                })
+                .when('/lunch', {
+                    templateUrl: '/views/menu.html',
+                    controller: 'MenuController'
+                })
+                .when('/draft', {
+                    templateUrl: '/views/beer.html',
+                    controller: 'BeerController'
+                })
+                .when('/bottles', {
+                    templateUrl: '/views/beer.html',
+                    controller: 'BeerController'
+                })
+                .when('/wine', {
+                    templateUrl: '/views/wine.html',
+                    controller: 'BeerController'
+                })
+                .when('/signature', {
+                    templateUrl: '/views/signature.htm.html',
+                    controller: 'BeerController'
                 })
                 .otherwise({
                     templateUrl: '/views/home.html',
@@ -48,4 +72,7 @@
     }());
 </script>
 <script src="/js/controllers/main.js"></script>
+<script src="/js/controllers/welcome.js"></script>
+<script src="/js/controllers/menu.js"></script>
+<script src="/js/controllers/beer.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>

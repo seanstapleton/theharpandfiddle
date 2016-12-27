@@ -1,0 +1,40 @@
+<div class="primary-content menu">
+  <h1 style="text-align: center">{{menu.type}}</h1>
+  <div class="row wine-header">
+    <h1 class="col-md-10">Bubbly</h1>
+    <h2 class="col-xs-1" style="font-size: 1.5em">Glass</h2>
+    <h2 class="col-xs-1" style="font-size: 1.5em">Bottle</h2>
+  </div>
+  <div class="row" ng-repeat="item in menu.sections[0].items">
+    <div class="wine-item col-md-10">
+      <h2 style="font-size: 30px">{{item.title}}</h2>
+      <p>{{item.description}}</p>
+    </div>
+    <p class="col-md-1 glass" ng-if="item.glass > 0">{{item.glass}}</p>
+    <p class="col-md-1 glass" ng-if="item.glass <= 0"></p>
+    <p class="col-md-1 bottle" ng-if="item.bottle > 0">{{item.bottle}}</p>
+    <p class="col-md-1 bottle" ng-if="item.bottle <= 0"></p>
+  </div>
+  <h1>{{menu.sections[1].title}}</h1>
+  <div class="row" ng-repeat="item in menu.sections[1].items">
+    <div class="wine-item col-md-10">
+      <h2 style="font-size: 30px">{{item.title}}</h2>
+      <p>{{item.description}}</p>
+    </div>
+    <p class="col-md-1 glass" ng-if="item.glass > 0">{{item.glass}}</p>
+    <p class="col-md-1 glass" ng-if="item.glass <= 0"></p>
+    <p class="col-md-1 bottle" ng-if="item.bottle > 0">{{item.bottle}}</p>
+    <p class="col-md-1 bottle" ng-if="item.bottle <= 0"></p>
+  </div>
+  <h1>{{menu.sections[2].title}}</h1>
+  <div class="row" ng-repeat="item in menu.sections[2].items">
+    <div class="wine-item col-md-10">
+      <h2 style="font-size: 30px">{{item.title}}</h2>
+      <p>{{item.description}}</p>
+    </div>
+    <p class="col-md-1 glass" ng-if="item.glass > 0">{{item.glass}}</p>
+    <p class="col-md-1 glass" ng-if="item.glass <= 0"></p>
+    <p class="col-md-1 bottle" ng-if="item.bottle > 0">{{item.bottle}}</p>
+    <p class="col-md-1 bottle" ng-if="item.bottle <= 0"></p>
+  </div>
+</div>

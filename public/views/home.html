@@ -25,16 +25,46 @@
         <div class="col-md-4">
           <div class="panel panel-default specials">
             <div class="panel-heading">Today's Specials</div>
-            <ul class="list-group"></ul>
+            <ul class="list-group">
+              <li class="list-group-item" ng-repeat="special in welcome.specials">{{special.title}}</li>
+            </ul>
           </div>
           <div class="panel panel-default events">
             <div class="panel-heading">Today's Events</div>
-            <ul class="list-group"></ul>
+            <ul class="list-group">
+              <li class="list-group-item" ng-repeat="event in welcome.events">{{event.title}}</li>
+              <li class="list-group-item" ng-if="welcome.events.length < 1">Come enjoy the atmosphere!</li>
+            </ul>
           </div>
         </div>
       </div>
       <div class="row home-routers">
-        <div class="hr-wrap"></div>
+        <div class="hr-wrap">
+          <div class="col-md-4">
+            <a href="dinner">
+              <div class="home-router">
+                <img src="/img/shepardspie-min.jpg">
+                <h1>food</h1>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="draft">
+              <div class="home-router">
+                <img src="/img/drinks-min.jpg">
+                <h1>drinks</h1>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="events">
+              <div class="home-router">
+                <img src="/img/events.jpg">
+                <h1>events</h1>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

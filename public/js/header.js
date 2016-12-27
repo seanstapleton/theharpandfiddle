@@ -23,49 +23,4 @@ $(document).ready(function() {
       return check;
     }
 
-    var events = [
-    {
-        title: "food",
-        href: "menu",
-        src: "/img/shepardspie-min.jpg"
-    },
-    {
-        title: "drinks",
-        href: "draft",
-        src: "/img/drinks-min.jpg"
-    },
-    {
-        title: "events",
-        href: "events",
-        src: "/img/events.jpg"
-    }
-    ];
-
-    var loadEvent = function(title, href, src) {
-        var col = $('<div></div>').addClass("col-md-4");
-        var link = $('<a></a>').attr("href", href);
-        var div = $('<div></div>').addClass("home-router");
-        var title = $('<h1></h1>').text(title);
-
-        var $img = $("<img>");
-        $img.attr("src", src);
-        $img.load(function(){
-          div.append($img);
-          div.append(title);
-          link.append(div);
-          col.append(link);
-          $('.hr-wrap').append(col);
-        });
-    }
-
-    $('.hr-wrap').css("display", "none");
-
-    for (var i = 0; i < events.length; i++) {
-        loadEvent(events[i].title, events[i].href, events[i].src);
-    }
-
-
-    $('.hr-wrap').css("display", "block");
-
-
 });

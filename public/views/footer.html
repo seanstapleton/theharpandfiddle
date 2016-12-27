@@ -10,7 +10,16 @@
     </div>
     <div class="col-md-3 info-section hours-section">
       <h1><span>Hours</span></h1>
-      <div class="hours"></div>
+      <div class="hours">
+        <div class="row" ng-repeat="hour in hours">
+          <div class="col-xs-5">
+            <p>{{hour.day}}</p>
+          </div>
+          <div class="col-xs-7">
+            <p>{{hour.timeframe}}</p>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-md-3 info-section call">
       <h1><span>Call Us</span></h1>
