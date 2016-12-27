@@ -12,7 +12,6 @@ module.exports = function(db) {
     var passport = require('passport');
 
     var routes = require('./routes/index');
-    var backendServices = require('./routes/backendServices');
 
     var app = express();
 
@@ -29,7 +28,6 @@ module.exports = function(db) {
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, 'public')));
 
-
     // Passport Configuration
     app.use(session({
         secret:'mySecretKey',
@@ -42,8 +40,7 @@ module.exports = function(db) {
 
     require('./passport/config.js')(passport);
 
-    app.use('/backendServices', backendServices(db, passport));
-    app.get('*', function(req,res) {res.sendFile(__dirname + '/public/index.html'); })
+    app.use('/', routes(db, passport));
 
     //route static files
     app.use('/public', express.static(__dirname + '/public'));
