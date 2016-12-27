@@ -8,6 +8,8 @@
             $scope.photos = res.data;
           });
       }
+      
+      $('footer').css("display", "none");
       $scope.getPhotos();
   }]);
 }());

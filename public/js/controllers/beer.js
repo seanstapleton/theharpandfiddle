@@ -29,6 +29,7 @@
       }
     }
 
+    $('footer').css("display", "none");
     $scope.getMenu();
 
   }]);

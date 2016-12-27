@@ -1,5 +1,6 @@
 .container {
   margin: 0 !important;
+  padding: 0 !important;
   width: 100%;
 }
 .home-router,
@@ -303,6 +304,9 @@ span.sae3 {
 }
 
 @media (max-width:992px) {
+    footer {
+      display: none;
+    }
     .lnvid {
       margin-top: 5%;
     }

@@ -46,7 +46,8 @@
           console.log(count);
       }
     }
-
+    
+    $('footer').css("display", "none");
     $scope.getMenu();
   }]);
 }());
