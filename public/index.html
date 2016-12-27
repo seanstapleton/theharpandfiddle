@@ -14,6 +14,7 @@
         <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
         <script type='text/javascript' src='/lib/jquery/jquery.min.js'></script>
         <script type='text/javascript' src='/js/header.js'></script>
+        <script type="text/javascript" src='lib/validator/validator.min.js'></script>
     </head>
     <body ng-controller="MainController">
         <ng-include src="'views/nav.html'"></ng-include>
@@ -60,8 +61,12 @@
                     controller: 'BeerController'
                 })
                 .when('/signature', {
-                    templateUrl: '/views/signature.htm.html',
+                    templateUrl: '/views/signature.html',
                     controller: 'BeerController'
+                })
+                .when('/contact', {
+                    templateUrl: '/views/contact.html',
+                    controller: 'ContactController'
                 })
                 .otherwise({
                     templateUrl: '/views/home.html',
@@ -75,4 +80,5 @@
 <script src="/js/controllers/welcome.js"></script>
 <script src="/js/controllers/menu.js"></script>
 <script src="/js/controllers/beer.js"></script>
+<script src="/js/controllers/contact.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
