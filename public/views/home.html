@@ -26,12 +26,14 @@
           <div class="panel panel-default specials">
             <div class="panel-heading">Today's Specials</div>
             <ul class="list-group">
+              <li class="list-group-item" ng-if="!welcome.specials"><img src="/img/ellipsis.svg" style="display: block; width: 20%; margin: 0 auto;"/></li>
               <li class="list-group-item" ng-repeat="special in welcome.specials">{{special.title}}</li>
             </ul>
           </div>
           <div class="panel panel-default events">
             <div class="panel-heading">Today's Events</div>
             <ul class="list-group">
+              <li class="list-group-item" ng-if="!welcome.events"><img src="/img/ellipsis.svg" style="display: block; width: 20%; margin: 0 auto;"></li>
               <li class="list-group-item" ng-repeat="event in welcome.events">{{event.title}}</li>
               <li class="list-group-item" ng-if="welcome.events.length < 1">Come enjoy the atmosphere!</li>
             </ul>

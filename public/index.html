@@ -12,9 +12,18 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat|Secular+One|Suez+One" rel="stylesheet">
         <link rel='stylesheet' href='/css/min.css'>
         <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/lib/fullcalendar/jquery-ui.min.css"/>
+        <link rel="stylesheet" href="/lib/fullcalendar/fullcalendar.min.css"/>
+        <link rel="stylesheet" href="/lib/fullcalendar/fullcalendar.print.css" media="print"/>
+        <link rel="stylesheet" href="/lib/swipebox/css/swipebox.min.css"/>
+        <link rel="stylesheet" href="/css/gallery.css"/>
         <script type='text/javascript' src='/lib/jquery/jquery.min.js'></script>
         <script type='text/javascript' src='/js/header.js'></script>
         <script type="text/javascript" src='lib/validator/validator.min.js'></script>
+        <script src="/lib/fullcalendar/moment.min.js"></script>
+        <script src="/lib/fullcalendar/fullcalendar.min.js"></script>
+        <script src="/lib/swipebox/js/jquery.swipebox.min.js"></script>
+        <script src="/js/gallery.js"></script>
     </head>
     <body ng-controller="MainController">
         <ng-include src="'views/nav.html'"></ng-include>
@@ -72,6 +81,10 @@
                     templateUrl: '/views/events.html',
                     controller: 'EventsController'
                 })
+                .when('/gallery', {
+                    templateUrl: '/views/gallery.html',
+                    controller: 'GalleryController'
+                })
                 .otherwise({
                     templateUrl: '/views/home.html',
                     controller: 'MainController'
@@ -86,4 +99,5 @@
 <script src="/js/controllers/beer.js"></script>
 <script src="/js/controllers/contact.js"></script>
 <script src="/js/controllers/events.js"></script>
+<script src="/js/controllers/gallery.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
