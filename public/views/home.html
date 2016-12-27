@@ -1,7 +1,10 @@
 <div ng-controller="MainController as hc">
   <div class="row start">
     <div class="postcards col-md-2 col-md-offset-1">
-      <h1 style="font-family:Classic Roman;color: #fff;" class="sae"><span class="sae1">Events</span><span class="sae2">And</span><span style="display:block; line-height:30px; color: #fff" class="sae3">Specials</span></h1><a href="/img/postcards/postcard_hawks_championship.jpg" data-lightbox="postcards"><img src="/img/postcards/postcard_hawks_championship.jpg"/></a><a href="/img/postcards/postcard1.jpg" data-lightbox="postcards"><img src="/img/postcards/postcard1.jpg"/></a><a href="/img/postcards/postcard3.jpg" data-lightbox="postcards"><img src="/img/postcards/postcard3.jpg"/></a>
+      <h1 style="font-family:Classic Roman;color: #fff;" class="sae"><span class="sae1">Events</span><span class="sae2">And</span><span style="display:block; line-height:30px; color: #fff" class="sae3">Specials</span></h1>
+      <a href="/img/postcards/postcard_nyedinner.jpg" data-lightbox="postcards"><img src="/img/postcards/postcard_nyedinner.jpg"/></a>
+      <a href="/img/postcards/postcard1.jpg" data-lightbox="postcards"><img src="/img/postcards/postcard1.jpg"/></a>
+      <a href="/img/postcards/postcard3.jpg" data-lightbox="postcards"><img src="/img/postcards/postcard3.jpg"/></a>
     </div>
     <div class="launch-content col-md-8">
       <div class="row nmt">
@@ -26,12 +29,14 @@
           <div class="panel panel-default specials">
             <div class="panel-heading">Today's Specials</div>
             <ul class="list-group">
+              <li class="list-group-item" ng-if="!welcome.specials"><img src="/img/ellipsis.svg" style="display: block; width: 20%; margin: 0 auto;"/></li>
               <li class="list-group-item" ng-repeat="special in welcome.specials">{{special.title}}</li>
             </ul>
           </div>
           <div class="panel panel-default events">
             <div class="panel-heading">Today's Events</div>
             <ul class="list-group">
+              <li class="list-group-item" ng-if="!welcome.events"><img src="/img/ellipsis.svg" style="display: block; width: 20%; margin: 0 auto;"></li>
               <li class="list-group-item" ng-repeat="event in welcome.events">{{event.title}}</li>
               <li class="list-group-item" ng-if="welcome.events.length < 1">Come enjoy the atmosphere!</li>
             </ul>

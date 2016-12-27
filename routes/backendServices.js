@@ -76,10 +76,18 @@ module.exports = function(db, passport) {
 
     /* GET dinner menu page. */
     router.get('/getEvents', function(req, res, next) {
-        eventsSchema.find({"type": new RegExp('^' + req.query.menutype, "i")}, {'_id': false}, {sort: {"start": -1}}, function(err, menu) {
-            console.log(req.query.menutype);
-            console.log(menu, err);
-            res.send(menu);
+        eventsSchema.find({}, {'_id': false}, {sort: {"start": -1}}, function(err, events) {
+            if (events) {
+              // var rel = [];
+              // var date = new Date();
+              // for (var i = 0; i < events.length; i++) {
+              //   var d = new Date(events[i].end);
+              //   if (d > new Date()) rel.push(events[i]);
+              // }
+              res.send(events);
+            } else {
+              res.end();
+            }
         });
     });
 
@@ -138,11 +146,7 @@ module.exports = function(db, passport) {
           }
           Promise.all(promises).then(values => {
             console.log("Values: ", values);
-            res.render('gallery', {
-                title: 'The Harp and Fiddle - Gallery',
-                hours: hours,
-                entries: JSON.stringify(values)
-            });
+            res.send(values);
           });
         })
         .catch(function(error) {
