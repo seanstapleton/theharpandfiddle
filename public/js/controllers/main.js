@@ -1,6 +1,6 @@
 (function() {
   var app = angular.module('theharpandfiddle');
-  app.controller('MainController', ['$scope','$http', function($scope, $http) {
+  app.controller('MainController', ['$scope','$http', '$location', function($scope, $http, $location) {
 
       $scope.getHours = function() {
         $http.get('/backendServices/getHours')
@@ -22,6 +22,10 @@
             $scope.welcome = res.data;
             $scope.parseWelcome();
           });
+      }
+
+      $scope.moveTo = function(str) {
+        $location.path('/' + str);
       }
 
       $scope.rel = function(str) {
