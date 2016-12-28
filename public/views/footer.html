@@ -3,6 +3,9 @@
     <div class="col-md-3 info-section specials-section">
       <h1><span>Specials</span></h1>
       <div class="hours">
+        <div class="row" ng-if="!welcome.specials">
+          <img src="/img/ellipsis.svg">
+        </div>
         <div class="row" ng-repeat="sp in welcome.specials">
           <p>{{sp.title}}</p>
         </div>
@@ -11,10 +14,13 @@
     <div class="col-md-3 info-section events-section">
       <h1><a href="events" style="color: #333"><span>Events</span></a></h1>
       <div class="hours">
-        <div class="row" ng-repeat="ev in welcome.events">
-          <p>{{ev.title}}</p>
+        <div class="row" ng-if="!welcome.events">
+          <img src="/img/ellipsis.svg">
         </div>
-        <div class="row" ng-if="welcome.events.length < 1">
+        <div class="row" ng-repeat="ev in welcome.events" ng-if="rel(ev.start)">
+          <p>{{ev.title}} ({{ev.rdate}})</p>
+        </div>
+        <div class="row" ng-if="!evs1 && welcome.events">
           <p>Come enjoy the atmosphere!</p>
         </div>
       </div>

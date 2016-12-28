@@ -29,7 +29,7 @@ module.exports = function(db, passport) {
         var d = new Date(d1.getTime() - 18000000);
         var str = d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2);
         specialsSchema.find({dotw: days[d.getDay()]}, {'_id': false}, function(err, specials) {
-            eventsSchema.find({start: new RegExp('^' + str)}, {'_id': false}, function(err, events) {
+            eventsSchema.find({}, {'_id': false}, function(err, events) {
 
               var dbx = new Dropbox({ accessToken: process.env.dropbox_token });
 
