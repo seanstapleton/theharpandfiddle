@@ -3,6 +3,14 @@
   padding: 0 !important;
   width: 100%;
 }
+.lb-outerContainer {
+  width: 50% !important;
+  height: auto !important;
+}
+.lb-container, .lb-image {
+  width: 100% !important;
+  height: auto !important;
+}
 .home-router,
 .logo-flap {
     box-shadow: 0 1px 10px #000
@@ -195,6 +203,10 @@ ul.nav {
     .launch-content {
         margin: 5% auto
     }
+}
+
+.launch-content {
+  padding: 0 !important;
 }
 
 .nav,
@@ -652,10 +664,6 @@ form button:hover {
     form button {
         font-size: 1em!important
     }
-}
-
-#contact-email {
-    font-size: 0.5em
 }
 
 @media(min-width: 992px) {
