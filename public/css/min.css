@@ -316,6 +316,9 @@ span.sae3 {
 }
 
 @media (max-width:992px) {
+    .primary-content {
+      padding-top: 50px;
+    }
     footer {
       display: none;
     }
