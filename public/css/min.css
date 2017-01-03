@@ -16,6 +16,9 @@
   font-family: Sansation Light;
   font-weight: normal !important;
 }
+.oo-btn {
+  display: none !important;
+}
 .lb-outerContainer {
   width: 50% !important;
   height: auto !important;
