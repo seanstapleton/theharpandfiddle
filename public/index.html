@@ -54,6 +54,9 @@
                     templateUrl: '/views/menu.html',
                     controller: 'MenuController'
                 })
+                .when('/menu', {
+                    redirectTo: '/dinner'
+                })
                 .when('/lunch', {
                     templateUrl: '/views/menu.html',
                     controller: 'MenuController'
