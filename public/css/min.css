@@ -3,6 +3,18 @@
   padding: 0 !important;
   width: 100%;
 }
+.oo-btn {
+  width: 100%;
+  margin: 10px auto;
+}
+.oo-btn span {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  background: #409C4D !important;
+  background-size: 100%;
+  width: 100% !important;
+  font-family: Sansation Light;
+}
 .lb-outerContainer {
   width: 50% !important;
   height: auto !important;
@@ -411,6 +423,12 @@ span.sae3 {
     .info-section {
         width: 90%;
         margin: 0 auto
+    }
+    .oo-btn span {
+      width: 90% !important;
+      margin-left: 5% !important;
+      font-size: 2.5em;
+      margin-top: 20px !important;
     }
     .hours {
         padding: 10px 0
