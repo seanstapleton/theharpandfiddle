@@ -9,6 +9,10 @@
           });
       }
 
+      $scope.submit = function() {
+        console.log($scope.formData);
+      }
+
       $scope.parseWelcome = function() {
         for (var i = 0; i < $scope.welcome.events.length; i++) {
           var rdate = new Date($scope.welcome.events[i].start);

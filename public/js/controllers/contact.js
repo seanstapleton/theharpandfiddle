@@ -2,6 +2,7 @@
   var app = angular.module('theharpandfiddle');
   app.controller('ContactController', ['$scope','$http', function($scope, $http) {
     $scope.submit = function() {
+      console.log($scope.formData);
       var name = $('#name').val(),
           email = $('#email').val(),
           phone = $('#phnum').val(),
@@ -13,6 +14,8 @@
           $('#phnum').val(validator.escape(phone));
           $('#subject').val(validator.escape(subject));
           $('#message').val(validator.escape(message));
+
+      console.log($scope.formData);
 
       $http.post('/backendServices/contact', $scope.formData)
         .then(function(res) {

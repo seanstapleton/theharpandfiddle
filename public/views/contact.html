@@ -1,4 +1,4 @@
-<div style="padding: 40px 20px" class="primary-content">
+<div style="padding: 40px 20px" class="primary-content" ng-controller="ContactController">
   <h2 ng-if="message" style="text-align: center; padding: 40px 0;">{{message}}</h2>
   <form name="contact-form" id="contact-form" ng-submit="submit()" ng-if="!message">
     <h1 style="text-align: center">Questions? Comments? Concerns?</h1>
@@ -19,4 +19,5 @@
     <textarea ng-model="formData.message" name="message" id="message" required="required" class="form-control"></textarea>
     <button name="submit" type="submit" class="btn btn-default">Submit</button>
   </form>
+  {{formData}}
 </div>
