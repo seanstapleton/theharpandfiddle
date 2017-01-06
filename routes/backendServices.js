@@ -18,6 +18,20 @@ module.exports = function(db, passport) {
         hours = returnHours;
     });
 
+    router.post('/eventUpload', function(req, res) {
+      var event = new eventsSchema({
+          title: req.body.title,
+          start: req.body.start,
+          end: req.body.end,
+          description: req.body.desc,
+          allDay: false,
+          url: req.body.url
+      });
+      event.save(function(err, ev) {
+        console.log(err);
+      });
+    });
+
     router.get('/getHours', function(req, res, next) {
       res.send(hours);
     });

@@ -49,6 +49,10 @@
                     templateUrl: '/views/home.html',
                     controller: 'WelcomeController'
                 })
+                .when('/upload', {
+                    templateUrl: '/views/upload.html',
+                    controller: 'UploadController'
+                })
                 .when('/dinner', {
                     templateUrl: '/views/menu.html',
                     controller: 'MenuController'
@@ -106,4 +110,5 @@
 <script src="/js/controllers/contact.js"></script>
 <script src="/js/controllers/events.js"></script>
 <script src="/js/controllers/gallery.js"></script>
+<script src="/js/controllers/upload.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>

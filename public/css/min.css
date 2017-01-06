@@ -58,7 +58,7 @@ ul.nav a:first-letter {
 }
 
 body {
-    background: url(/img/grain-wood-min.jpg);
+    background: url(/img/op/grain-wood-min.jpg);
     /*background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/img/bphoto22.jpg);*/
     background-size: 100%
 }
