@@ -5,18 +5,6 @@
     $scope.formData = {};
 
     $scope.submit = function() {
-      var name = $('#name').val(),
-          email = $('#email').val(),
-          phone = $('#phnum').val(),
-          subject = $('#subject').val(),
-          message = $('#message').val();
-
-          $('#name').val(validator.escape(name));
-          $('#email').val(validator.escape(email));
-          $('#phnum').val(validator.escape(phone));
-          $('#subject').val(validator.escape(subject));
-          $('#message').val(validator.escape(message));
-
       $http.post('/backendServices/contact', $scope.formData)
         .then(function(res) {
           if (res.data.success) {
