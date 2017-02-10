@@ -16,6 +16,33 @@
   font-family: Sansation Light;
   font-weight: normal !important;
 }
+.ro-btn, .oo-btn {
+  width: 100%;
+  margin: 10px auto;
+}
+.oo-btn span {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  background: #409C4D !important;
+  background-size: 100%;
+  width: 100% !important;
+  font-family: Sansation Light;
+  font-weight: normal !important;
+  padding: 20px;
+  font-size: 18px;
+}
+.ro-btn a {
+  margin: 0;
+  background: #E15952;
+  font-family: Sansation Light;
+  padding: 20px;
+  color: #fff;
+  width: 100%;
+  font-size: 18px;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+}
 .lb-outerContainer {
   width: 50% !important;
   height: auto !important;
