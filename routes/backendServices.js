@@ -107,7 +107,7 @@ module.exports = function(db, passport) {
 
     /* POST contact page. */
     router.post('/contact', function(req, res) {
-        if (!req.body.name) res.send({success: false});
+        if (!req.body.name) {res.send({success: false}); return false;};
         var smtpTransporter = nodemailer.createTransport({
           service: 'Mailgun',
           auth: {
