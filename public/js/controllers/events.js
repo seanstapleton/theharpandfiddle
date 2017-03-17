@@ -13,6 +13,7 @@
     }
 
     $scope.loadEvents = function() {
+      console.log("yo", $scope.events);
       $('#calendar').fullCalendar({
           theme: true,
           header: {
@@ -67,7 +68,7 @@
       var formatDate = function(d) {
           var h = d.getHours();
           var m = ("0" + d.getMinutes()).slice(-2);
-          var t = h > 12 ? (h - 12) + ":" + m + "pm" : h + ":" + m + "am";
+          var t = h >= 12 ? (h - 12) + ":" + m + "pm" : h + ":" + m + "am";
           return t;
       }
 
