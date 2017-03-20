@@ -65,6 +65,19 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
   height: 40vh;
   margin-bottom: 50px;
 }
+.map-overlay {
+  position: absolute;
+  width: 85%;
+  margin-left: 7.5%;
+  height: 40vh;
+  z-index: 9999999999;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
 .ev-box {
   width: 45vh;
   height: 45vh;

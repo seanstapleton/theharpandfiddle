@@ -36,11 +36,11 @@
       <div id="primary-container">
         <section id="events">
           <h1>What's Goin' On?</h1>
-          <div class="ev-box" data-aos="fade-up">
+          <div class="ev-box" data-aos="fade-up" data-aos-anchor-placement='center-bottom'>
             <h4>St. Paddy's Day Celebration</h4>
             <p>Friday, March 17 ALL DAY</p>
           </div>
-          <div class="ev-box" data-aos="fade-up">
+          <div class="ev-box" data-aos="fade-up" data-aos-anchor-placement='center-bottom'>
             <h4>St. Paddy's Day Celebration</h4>
             <p>Friday, March 17 ALL DAY</p>
           </div>
@@ -48,7 +48,8 @@
 
         <section id="about">
           <h1>Where to find us</h1>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2974.859471108635!2d-87.8322370853504!3d42.009562119007306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fc9b7151ccd95%3A0xf4d931d39d0b7486!2sThe+Harp+And+Fiddle!5e0!3m2!1sen!2sus!4v1489964007207" frameborder="0" style="border:0" allowfullscreen></iframe>
+          <div class="map-overlay"></div>
+          <iframe data-aos="zoom-in-up" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2974.859471108635!2d-87.8322370853504!3d42.009562119007306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fc9b7151ccd95%3A0xf4d931d39d0b7486!2sThe+Harp+And+Fiddle!5e0!3m2!1sen!2sus!4v1489964007207" frameborder="0" style="border:0" allowfullscreen></iframe>
           <p id="contact-info"><span id="address">The Harp and Fiddle<br/>110 Main St,<br/>Park Ridge, IL 60068</span><br/><a id="ph-num" href="tel:8477204466">(847) 720-4466</a><br/><span id="email">declan@theharpandfiddle.com</span></p>
           <table class="table">
             <thead>
@@ -71,8 +72,8 @@
         </section>
         <section id="social">
           <h1>We're "on the line"</h1>
-          <div class="soc-box"></div>
-          <div class="soc-box"></div>
+          <div data-aos="zoom-in" class="soc-box"></div>
+          <div data-aos="zoom-in" class="soc-box"></div>
         </section>
 
         <footer>
@@ -97,3 +98,21 @@
     </body>
 </html>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src='/lib/aos/dist/aos.js'></script>
+<script type="text/javascript">
+  AOS.init({
+    duration: 1000
+  });
+
+  $(".map-overlay").click(function() {
+    $(this).addClass("hide");
+    $(this).removeClass("show");
+  });
+
+  $(document).scroll(function() {
+    if ($(".map-overlay").hasClass("hide")) {
+      $(".map-overlay").addClass("show");
+      $(".map-overlay").removeClass("hide");
+    }
+  });
+</script>
