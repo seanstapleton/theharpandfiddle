@@ -1,4 +1,5 @@
-<html ng-app='theharpandfiddle'>
+<!DOCTYPE html>
+<html>
     <head>
         <title>The Harp and Fiddle</title>
         <base href='/'>
@@ -18,6 +19,8 @@
         <link rel="stylesheet" href="/lib/lightbox/css/lightbox.min.css"/>
         <link href='/lib/aos/dist/aos.css' rel='stylesheet'>
         <script type='text/javascript' src='/lib/jquery/jquery.min.js'></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="/lib/fullcalendar/moment.min.js"></script>
         <script src="/lib/fullcalendar/fullcalendar.min.js"></script>
     </head>
@@ -70,10 +73,62 @@
             </tr>
           </table>
         </section>
+
         <section id="social">
+          <div id="instafeed"></div>
           <h1>We're "on the line"</h1>
           <div data-aos="zoom-in" class="soc-box"></div>
           <div data-aos="zoom-in" class="soc-box"></div>
+        </section>
+
+        <section id="reserve">
+          <h1>Reserve a Table</h1>
+          <input style="display: none" name="dateval" id="dateval"/>
+          <div id="datepicker"></div>
+          <fieldset>
+            <select name="time" id="time">
+              <option value="1100" selected>11am</option>
+              <option value="1130">11:30am</option>
+              <option value="1200">12:00pm</option>
+              <option value="1230">12:30pm</option>
+              <option value="1300">1:00pm</option>
+              <option value="1330">1:30pm</option>
+              <option value="1400">2:00pm</option>
+              <option value="1430">2:30pm</option>
+              <option value="1500">3:00pm</option>
+              <option value="1530">3:30pm</option>
+              <option value="1600">4:00pm</option>
+              <option value="1630">4:30pm</option>
+              <option value="1700">5:00pm</option>
+              <option value="1730">5:30pm</option>
+              <option value="1800">6:00pm</option>
+              <option value="1830">6:30pm</option>
+              <option value="1900">7:00pm</option>
+              <option value="1930">7:30pm</option>
+              <option value="2000">8:00pm</option>
+              <option value="2030">8:30pm</option>
+              <option value="2100">9:00pm</option>
+              <option value="2130">9:30pm</option>
+            </select>
+            <select name="party" id="party">
+              <option value="1">1 person</option>
+              <option value="2" selected>2 people</option>
+              <option value="3">3 people</option>
+              <option value="4">4 people</option>
+              <option value="5">5 people</option>
+              <option value="6">6 people</option>
+            </select>
+            <div id="btn-container">
+              <button id="reserve-btn">Reserve Now</button>
+            </div>
+          </fieldset>
+          <form>
+
+          </form>
+        </section>
+
+        <section id="menus">
+          <h1>Menu</h1>
         </section>
 
         <footer>
@@ -114,5 +169,21 @@
       $(".map-overlay").addClass("show");
       $(".map-overlay").removeClass("hide");
     }
+  });
+
+  $('#datepicker').datepicker({
+      onSelect: function(dateText, inst) {
+        $("input[name='dateval']").val(dateText);
+      },
+      minDate: 0
+  });
+  $("#time").selectmenu();
+  $("#party").selectmenu();
+
+  $("#reserve-btn").click(function() {
+    var d = new Date($("input[name='dateval']").val()).toISOString().substring(0,10);
+    var t = $("#time").val();
+    var p = $("#party").val();
+    window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
   });
 </script>

@@ -13,6 +13,48 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
   position: fixed;
   z-index: -99999;
 }
+#yelp-reservations-widget {
+  width: 90%;
+}
+#datepicker {
+  margin-top: 10vh;
+}
+.ui-menu-item {
+  color: #333 !important;
+  font-size: 3em;
+}
+.ui-selectmenu-menu .ui-menu.customicons .ui-menu-item .ui-icon {
+      height: 24px;
+      width: 24px;
+      top: 0.1em;
+}
+#time-button, #party-button {
+  font-size: 3em;
+  display: block;
+  margin: auto;
+  width: 714px;
+}
+#btn-container {
+  width: 714px;
+  margin: auto;
+  background: rgb(237, 237, 237);
+  padding: 20px;
+}
+#reserve-btn {
+  padding: 40px;
+  border-radius: 15px;
+  border: none;
+  font-size: 3em;
+  background-color: rgb(211, 35, 35);
+  color: #fff;
+  width: 95%;
+  display: block;
+  margin: auto;
+}
+div.ui-datepicker {
+  font-size: 3em;
+  margin: auto;
+}
 #intro img {
   width: 90%;
   margin-top: 35vh;
@@ -38,7 +80,7 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
   z-index: 0;
 }
 
-#events, #about, #social {
+#events, #about, #social, #menus, #reserve {
   width: 100%;
   min-height: 100vh;
   background: #fff;
@@ -50,7 +92,13 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
   background-position: center center;
   background-attachment: fixed;
 }
-#events h1, #about h1, #social h1 {
+#reserve {
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("/img/backgrounds/barside.JPG");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+#events h1, #about h1, #social h1, #menus h1, #reserve h1 {
   text-transform: uppercase;
   font-size: 6em;
   text-align: center;
@@ -58,6 +106,9 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
   margin-bottom: 2vh;
   color: #333;
   font-weight: normal;
+}
+#reserve h1 {
+  color: #fff;
 }
 #about iframe {
   width: 85%;
