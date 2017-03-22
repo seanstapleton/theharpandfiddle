@@ -17,14 +17,21 @@
         <link rel="stylesheet" href="/lib/fullcalendar/fullcalendar.min.css"/>
         <link rel="stylesheet" href="/lib/fullcalendar/fullcalendar.print.css" media="print"/>
         <link rel="stylesheet" href="/lib/lightbox/css/lightbox.min.css"/>
+        <link href='/lib/animate.css/animate.min.css' rel='stylesheet'>
         <link href='/lib/aos/dist/aos.css' rel='stylesheet'>
         <script type='text/javascript' src='/lib/jquery/jquery.min.js'></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="/lib/fullcalendar/moment.min.js"></script>
         <script src="/lib/fullcalendar/fullcalendar.min.js"></script>
+        <script type="text/javascript">
+          !function(e,n){var t=document.createElement("script"),a=document.getElementsByTagName("script")[0];t.async=1,a.parentNode.insertBefore(t,a),t.onload=t.onreadystatechange=function(e,a){(a||!t.readyState||/loaded|complete/.test(t.readyState))&&(t.onload=t.onreadystatechange=null,t=void 0,a||n&&n())},t.src=e}("https://embed-menu-preloader.untappdapi.com/embed-menu-preloader.min.js",function(){PreloadEmbedMenu("menu-container",6484,22214)});
+        </script>
     </head>
     <body>
+      <div id="overlay"><p id="close">Close X</p><div id="menu-container" class="beer-menu"></div></div>
+
+
       <nav>
         <div id="menu">
           <span></span><span></span><span></span><span></span><span></span><span></span>
@@ -33,7 +40,7 @@
 
       <section id="intro">
         <img src="/img/logos/home1.png"/>
-        <h2>A modern bar with an <span>Irish Flair</span></h2>
+        <h2>A modern bar with an <span class="animated tada">Irish Flair</span></h2>
       </section>
 
       <div id="primary-container">
@@ -75,10 +82,9 @@
         </section>
 
         <section id="social">
-          <div id="instafeed"></div>
           <h1>We're "on the line"</h1>
-          <div data-aos="zoom-in" class="soc-box"></div>
-          <div data-aos="zoom-in" class="soc-box"></div>
+          <div id="ig-links"></div>
+          <a>Clik here to see more!</a>
         </section>
 
         <section id="reserve">
@@ -129,6 +135,11 @@
 
         <section id="menus">
           <h1>Menu</h1>
+          <div class="menu-box"><h4>Brunch</h4></div>
+          <div class="menu-box"><h4>Lunch</h4></div>
+          <div class="menu-box"><h4>Dinner</h4></div>
+          <div class="menu-box" id="beer-menu" href="menu-container"><h4>Beer</h4></div>
+          <div class="menu-box"><h4>Wine</h4></div>
         </section>
 
         <footer>
@@ -164,6 +175,10 @@
     $(this).removeClass("show");
   });
 
+  $("#menu").click(function() {
+    $(this).toggleClass("open");
+  });
+
   $(document).scroll(function() {
     if ($(".map-overlay").hasClass("hide")) {
       $(".map-overlay").addClass("show");
@@ -185,5 +200,28 @@
     var t = $("#time").val();
     var p = $("#party").val();
     window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
+  });
+
+  $.post('/backendServices/insta', function(data) {
+    var imgs = data.data.slice(0,4);
+    console.log(imgs);
+    for (var i = 0; i < imgs.length; i++) {
+      var div = $("<div data-aos='zoom-in' class='soc-box'></div>");
+      div.css("background-image", "url(" + imgs[i].images.standard_resolution.url+")");
+      $("#ig-links").append(div);
+    }
+  });
+
+  $(".menu-box").click(function() {
+    $("#overlay").toggleClass("show");
+    $("#" + $(this).attr("href")).toggleClass("show");
+    $("body").toggleClass("noscroll");
+    $("#close").attr("href",$(this).attr("id"));
+  });
+
+  $("#close").click(function() {
+    $("#overlay").toggleClass("show");
+    $("."+$(this).attr("href")).toggleClass("show");
+    $("body").toggleClass("noscroll");
   });
 </script>
