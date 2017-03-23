@@ -35,6 +35,21 @@
         <div class="menu-modal lunch-menu"><img src="/img/menus/lunch.pdf"/></div>
         <div class="menu-modal dinner-menu"><img src="/img/menus/dinner.pdf"/></div>
         <div id="menu-container" class="beer-menu"></div>
+        <div class="contact-form">
+          <form>
+            <div class="alert alert-success successmail">Message sent!</div>
+            <div class="alert alert-danger failmail">Bollocks, there's something wrong with the servers! Please try emailing declan@theharpandfiddle.com instead!</div>
+            <div id="contact-inputs">
+              <h1>Contact Us</h1>
+              <input required class="form-control" id="name" type="text" placeholder="full name"/>
+              <input required class="form-control" id="email" type="email" placeholder="email"/>
+              <input class="form-control" id="phone" type="tel" placeholder="phone number"/>
+              <input required class="form-control" id="subject" type="text" placeholder="subject"/>
+              <textarea required class="form-control" id="message" placeholder="message"></textarea>
+              <button class="btn btn-primary" id="contact-form-submit">Send</button>
+            </div>
+          </form>
+        </div>
       </div>
 
       <div class="offscreen-nav-wrapper">
@@ -45,7 +60,7 @@
             <li><a href="#social">Social</a></li>
             <li><a href="#reserve">Reserve</a></li>
             <li><a href="#menus">Menus</a></li>
-            <li><a>Contact</a></li>
+            <li id="contact" href="contact-form">Contact</li>
           </ul>
         </div>
       </div>
@@ -265,6 +280,31 @@
           return false;
         }
       }
+    });
+  });
+
+  $("#contact").click(function() {
+    $("#overlay").toggleClass("show");
+    $("." + $(this).attr("href")).toggleClass("show");
+    $("body").toggleClass("noscroll");
+    $("#close").attr("href",$(this).attr("href"));
+  });
+
+  $("#contact-form-submit").click(function() {
+    var formData = {
+      name: $("#name").val(),
+      email: $("#email").val(),
+      phone: $("#phone").val(),
+      subject: $("#subject").val(),
+      message: $("#message").val()
+    }
+
+    $.post("/backendServices/sendMessage", formData, function(data) {
+      if (data.success) $("div.successmail").toggleClass("show");
+      else {
+        $("div.failmail").toggleClass("show");
+      }
+      $("#contact-inputs").toggleClass("hide");
     });
   });
 </script>

@@ -13,6 +13,7 @@ module.exports = function(db, passport) {
     var Dropbox         = require('dropbox');
     var validator       = require('validator');
     var path            = require('path');
+    var mg              = require('nodemailer-mailgun-transport');
 
     router.post('/insta', function(req, response, next) {
 
@@ -123,6 +124,34 @@ module.exports = function(db, passport) {
     router.get('/logout', function(req, res, next) {
       req.logout();
       res.send("logged out");
+    });
+
+    router.post('/sendMessage', function(req, res, next) {
+      var auth = {
+        auth: {
+          api_key: process.env.api_key,
+          domain: process.env.domain
+        }
+      }
+      var data = req.body;
+      var result;
+      var smtpTransporter = nodemailer.createTransport(mg(auth));
+      var message = {
+        from: 'fiddlersonmain@gmail.com',
+        to: 'fiddlersonmain@gmail.com',
+        subject: 'Contact Form: ' + data.name,
+        text: "Name: " + data.name + "\nEmail: " + data.email + "\nPhone Number: " + data.phone + "\nSubject: " + data.subject + "\nMessage: " + data.message
+      };
+
+      smtpTransporter.sendMail(message, function(err, info) {
+         if (err) {
+            console.log(err);
+            return res.send({success: false, err: err});
+         } else {
+            console.log(info);
+            return res.send({success: true});
+         }
+      });
     });
 
     // /* GET logout page */

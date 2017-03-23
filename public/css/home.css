@@ -31,6 +31,9 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
   font-size: 3vh;
   text-align: right;
 }
+.failmail, .successmail {
+  display: none;
+}
 .noscroll {
   overflow: hidden;
 }
@@ -171,6 +174,31 @@ div.ui-datepicker {
 }
 .menu-modal img {
   width: 100%;
+}
+
+
+
+.contact-form {
+  background: #ccc;
+  width: 90%;
+  margin: 3vh auto;
+  padding: 40px;
+  display: none;
+  border-radius: 10px;
+}
+.contact-form h1 {
+  font-size: 4em;
+}
+.contact-form input, .contact-form textarea {
+  padding: 60px 20px;
+  font-size: 3em;
+  margin-top: 1vh;
+}
+.contact-form button {
+  padding: 40px 0;
+  width: 100%;
+  font-size: 3em;
+  margin-top: 1vh;
 }
 
 /* ----------------------------------------------
