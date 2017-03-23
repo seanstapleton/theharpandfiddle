@@ -1,6 +1,7 @@
 module.exports = function(passport) {
-  var LocalStrategy = require('passport-local').Strategy;
+  var LocalStrategy = require('passport-local');
   var User = require('../models/users');
+  var bCrypt = require('bcrypt-nodejs');
 
   passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -12,7 +13,7 @@ module.exports = function(passport) {
     });
   });
 
-  passport.use('signup', new LocalStrategy({
+  passport.use('register', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true
@@ -26,20 +27,24 @@ module.exports = function(passport) {
         }
         if (user) {
           console.log("Email already in use");
-          return done(null, false, req.flash('signUpMessage', 'Email already in use'));
+          return done(null, false, req.flash({message: 'Email already in use'}));
         }
         else {
           var newUser = new User();
           newUser.email = email;
-          newUser.password = newUser.generateHash(password);
+          newUser.password = newUser.generateHash();
 
           newUser.save(function(err) {
             if (err) {
-              console.log(err);
-              throw err;
+              console.log('Error in registration: ' + err);
+              done(null, false, req.flash({message: 'Save Error.'}));
             }
-            else return done(null, newUser);
+            else {
+              console.log("User registration successful!");
+              return done(null, newUser);
+            }
           });
+          return done(null, newUser);
         }
       });
     });

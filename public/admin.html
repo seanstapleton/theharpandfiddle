@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>The Harp and Fiddle</title>
+        <base href='/admin/'>
+        <link rel='stylesheet' type="text/css" href='/lib/bootstrap/css/bootstrap.min.css'>
+        <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Montserrat:100,200i,400|Open+Sans|Secular+One|Suez+One" rel="stylesheet">
+        <link href='/lib/animate.css/animate.min.css' rel='stylesheet'>
+        <link href='/lib/aos/dist/aos.css' rel='stylesheet'>
+        <link href='/css/admin.css' rel='stylesheet'>
+        <script type='text/javascript' src='/lib/jquery/jquery.min.js'></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+    <body ng-app="theharpandfiddle">
+
+      <div class='container'>
+          <div ng-view></div>
+      </div>
+
+    </body>
+</html>
+<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src='/lib/aos/dist/aos.js'></script>
+<script src='/lib/angular/angular.min.js'></script>
+<script src='/lib/angular/angular-route.min.js'></script>
+<script src='/lib/angular/angular-messages.min.js'></script>
+<script type='text/javascript'>
+    (function() {
+        var app = angular.module('theharpandfiddle', ['ngRoute']);
+        app.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider){
+            $routeProvider
+                .when('/', {
+                    templateUrl: '/views/login.html',
+                    controller: 'LoginController'
+                })
+                .when('/dash', {
+                    templateUrl: '/views/dashboard.html',
+                    controller: 'DashController'
+                })
+                .otherwise({
+                  redirectTo: '/'
+                });
+                $locationProvider.html5Mode(true);
+        }]);
+    }());
+
+</script>
+<script type="text/javascript" src="/js/controllers/login.js"></script>
+<script type="text/javascript" src="/js/controllers/register.js"></script>
+<script type="text/javascript" src="/js/controllers/dash.js"></script>

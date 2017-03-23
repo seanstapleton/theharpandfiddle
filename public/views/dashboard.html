@@ -1,0 +1,41 @@
+<div class="overlay" ng-click="toggleEventUpload()"></div>
+<div id="eventModal">
+  <div id="eventBody">
+    <h1 ng-if="evMessage">{{evMessage}}</h1>
+    <form ng-if="!evMessage" ng-submit="addEvent()">
+      <h1 style="color: #fff">New Event</h1>
+      <input ng-model="eventData.title" class="form-control" type="text" placeholder="title"/>
+      <input ng-model="eventData.desc" class="form-control" type="text" placeholder="description"/>
+      <input ng-model="eventData.start" class="form-control" type="datetime-local"/>
+      <input ng-model="eventData.end" class="form-control" type="datetime-local"/>
+      <input ng-model="eventData.url" class="form-control" type="text" placeholder="link"/>
+      <button class="btn btn-primary btn-dash">Upload</button>
+    </form>
+  </div>
+</div>
+<section id="events">
+  <h1 ng-click="collapseEvs()" style="cursor: pointer">Events</h1>
+  <table class="table">
+    <thead>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Link</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="event in events" class="collapsable-ev hide">
+        <td>{{event.title}}</td>
+        <td>{{event.description}}</td>
+        <td>{{event.start}}</td>
+        <td>{{event.end}}</td>
+        <td>{{event.url}}</td>
+        <td><button class="btn btn-danger" ng-click="deleteEvent(event._id)">Delete</button></td>
+      </tr>
+      <tr>
+        <td><button ng-click="toggleEventUpload()">Add new event</button></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

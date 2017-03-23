@@ -43,6 +43,7 @@ module.exports = function(db) {
     require('./passport/config.js')(passport);
 
     app.use('/backendServices', backendServices(db, passport));
+    app.get('/admin*', function(req,res) {res.sendFile(__dirname + '/public/admin.html'); })
     app.get('*', function(req,res) {res.sendFile(__dirname + '/public/index.html'); })
 
     //route static files
