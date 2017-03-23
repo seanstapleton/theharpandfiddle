@@ -7,7 +7,9 @@ var eventsSchema = new Schema({
     end: String,
     description: String,
     date: String,
-    url: String
+    url: String,
+    img: String,
+    featured: Boolean
 });
 
 module.exports = mongoose.model('Event', eventsSchema);

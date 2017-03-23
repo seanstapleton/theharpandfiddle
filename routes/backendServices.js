@@ -73,9 +73,11 @@ module.exports = function(db, passport) {
           title: req.body.title,
           start: req.body.start,
           end: req.body.end,
-          description: req.body.desc,
+          description: req.body.description,
           allDay: false,
-          url: req.body.url
+          url: req.body.url,
+          img: req.body.img,
+          featured: req.body.featured
       });
       event.save(function(err, ev) {
         if (err) return res.send({success: false, err: err});
@@ -84,10 +86,23 @@ module.exports = function(db, passport) {
       console.log(req.body);
     });
 
+    router.post('/editEvent', function(req, res, next) {
+      eventsSchema.findOneAndUpdate({_id: req.body._id}, req.body, {upsert: true}, function(err, doc) {
+          if (err) return res.send({success: false, err: err});
+          else return res.send({success: true});
+      });
+    });
+
     router.post('/deleteEvent', function(req, res, next) {
       eventsSchema.find({_id: req.body.id}).remove(function(err, data) {
         if (err) {console.log(err); return res.send({success: false, err: err});}
         else return res.send({success: true});
+      });
+    });
+
+    router.get('/featuredEvents', function(res, req) {
+      eventsSchema.find({featured: true}, function(err, events) {
+        console.log(events);
       });
     });
 

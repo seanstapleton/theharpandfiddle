@@ -43,6 +43,12 @@
                 });
                 $locationProvider.html5Mode(true);
         }]);
+
+        app.filter('iif', function () {
+           return function(input, trueValue, falseValue) {
+                return input ? trueValue : falseValue;
+           };
+        });
     }());
 
 </script>

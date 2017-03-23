@@ -15,12 +15,27 @@
       }
 
       $scope.toggleEventUpload = function() {
+        $scope.mode = "new";
         $(".overlay").toggleClass("show");
         $("#eventModal").toggleClass("show");
+        $scope.evMessage = false;
       }
 
       $scope.collapseEvs = function() {
         $(".collapsable-ev").toggleClass("hide");
+      }
+
+      $scope.editEvent = function(id) {
+        $scope.mode = "edit";
+        var ev = $scope.events.filter(function(obj) {
+          return obj._id == id;
+        })[0];
+        ev.start = new Date(ev.start);
+        ev.end = new Date(ev.end);
+        $scope.eventData = ev;
+        $(".overlay").toggleClass("show");
+        $("#eventModal").toggleClass("show");
+        console.log(ev);
       }
 
       $scope.deleteEvent = function(id) {
@@ -38,12 +53,16 @@
           });
       }
 
-      $scope.addEvent = function() {
+      $scope.uploadEvent = function() {
+        var serv;
+        if ($scope.mode == "new") serv = "addEvent";
+        else if ($scope.mode == "edit") serv = "editEvent";
         var formData = $scope.eventData;
-        $http.post('/backendServices/addEvent', formData)
+        $http.post('/backendServices/' + serv, formData)
           .then(function(res) {
             if (res.data.success) {
-              $scope.evMessage = "Go on ya mad champ! Event successfully added."
+              var change = ($scope.mode == "new") ? "added" : "updated";
+              $scope.evMessage = "Go on ya mad champ! Event successfully " + change + ".";
               $scope.loadEvents();
             } else {
               $scope.evMessage = "Bollocks, there's something wrong."
