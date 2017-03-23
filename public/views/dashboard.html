@@ -15,8 +15,8 @@
     </form>
   </div>
 </div>
-
-<section id="events">
+<button id="logout" class="btn btn-primary" style="position: absolute; top: 50px; right: 100px;" ng-click="logout()">Logout</button>
+<section id="events" ng-if="loggedIn">
   <h1 ng-click="collapseEvs()" style="cursor: pointer">Events</h1>
   <table class="table">
     <thead>

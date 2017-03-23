@@ -1,9 +1,22 @@
 (function() {
     var app = angular.module('theharpandfiddle');
 
-    app.controller('DashController', ['$scope', '$http', function($scope, $http) {
+    app.controller('DashController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
     $scope.eventData = {};
+
+    $scope.checkStatus = function() {
+      $http.get("/backendServices/isLoggedIn")
+        .then(function(res) {
+          console.log(res.data);
+          if (!res.data.loggedIn)
+            $window.location = "/admin";
+          else
+            $scope.loggedIn = true;
+        });
+    }
+
+    $scope.checkStatus();
 
       $scope.loadEvents = function() {
         $http.get('/backendServices/getEvents')
@@ -39,18 +52,23 @@
       }
 
       $scope.deleteEvent = function(id) {
-        var data = {id: id};
-        $http.post('/backendServices/deleteEvent', data)
-          .then(function(res) {
-            if (res.data.success) {
-              alert("Event deleted");
-              $scope.loadEvents();
-            } else {
-              alert("An error occurred. Please try again later");
-              console.log(res.data.err);
-              $scope.loadEvents();
-            }
-          });
+        var ev = $scope.events.filter(function(obj) {
+          return obj._id == id;
+        })[0];
+        if (confirm('Are you sure you want to DELETE "'+ev.title+'"?')) {
+          var data = {id: id};
+          $http.post('/backendServices/deleteEvent', data)
+            .then(function(res) {
+              if (res.data.success) {
+                alert("Event deleted");
+                $scope.loadEvents();
+              } else {
+                alert("An error occurred. Please try again later");
+                console.log(res.data.err);
+                $scope.loadEvents();
+              }
+            });
+          }
       }
 
       $scope.uploadEvent = function() {
@@ -67,6 +85,13 @@
             } else {
               $scope.evMessage = "Bollocks, there's something wrong."
             }
+          });
+      }
+
+      $scope.logout = function() {
+        $http.get('/backendServices/logout')
+          .then(function(res) {
+            $window.location = "/admin";
           });
       }
 

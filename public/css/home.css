@@ -59,7 +59,7 @@ footer {
 }
 footer li {
   list-style-type: none;
-  display: inline;
+  display: inline-block;
   font-size: 2.5em;
   padding: 10px;
 }
@@ -162,6 +162,16 @@ div.ui-datepicker {
   background-position: center center;
   background-repeat: no-repeat;
 }
+.menu-modal {
+  width: 90%;
+  margin: 3vh auto;
+  padding: 20px;
+  background: #fff;
+  display: none;
+}
+.menu-modal img {
+  width: 100%;
+}
 
 /* ----------------------------------------------
 -------------- Intro Styles ---------------------
@@ -222,6 +232,8 @@ div.ui-datepicker {
   margin: 50px auto;
   background-image: url('http://placehold.it/500x500');
   background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
   position: relative;
 }
 .ev-box h4, .menu-box h4{
@@ -304,6 +316,37 @@ div.ui-datepicker {
   font-family: Montserrat;
   color: #ddd;
 }
+
+.offscreen-nav-wrapper {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.offscreen-nav {
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  -webkit-transition: right 2s; /* Safari */
+  transition: right 2s;
+}
+.offscreen-nav {
+  background: #222;
+}
+.offscreen-nav li {
+  list-style-type: none;
+  padding: 4vh;
+  background: #333;
+  color: #ccc;
+  font-size: 4em;
+}
+.onscreen {
+  right: 0;
+}
+
 
 /* ----------------------------------------------
 ---- Hamburger Menu animation by Jesse Couch ----

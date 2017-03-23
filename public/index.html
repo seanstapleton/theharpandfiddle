@@ -29,7 +29,26 @@
         </script>
     </head>
     <body>
-      <div id="overlay"><p id="close">Close X</p><div id="menu-container" class="beer-menu"></div></div>
+      <div id="overlay">
+        <p id="close">Close X</p>
+        <div class="menu-modal brunch-menu"><img src="/img/menus/brunch.pdf"/></div>
+        <div class="menu-modal lunch-menu"><img src="/img/menus/lunch.pdf"/></div>
+        <div class="menu-modal dinner-menu"><img src="/img/menus/dinner.pdf"/></div>
+        <div id="menu-container" class="beer-menu"></div>
+      </div>
+
+      <div class="offscreen-nav-wrapper">
+        <div class="offscreen-nav">
+          <ul>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#social">Social</a></li>
+            <li><a href="#reserve">Reserve</a></li>
+            <li><a href="#menus">Menus</a></li>
+            <li><a>Contact</a></li>
+          </ul>
+        </div>
+      </div>
 
 
       <nav>
@@ -46,14 +65,7 @@
       <div id="primary-container">
         <section id="events">
           <h1>What's Goin' On?</h1>
-          <div class="ev-box" data-aos="fade-up" data-aos-anchor-placement='center-bottom'>
-            <h4>St. Paddy's Day Celebration</h4>
-            <p>Friday, March 17 ALL DAY</p>
-          </div>
-          <div class="ev-box" data-aos="fade-up" data-aos-anchor-placement='center-bottom'>
-            <h4>St. Paddy's Day Celebration</h4>
-            <p>Friday, March 17 ALL DAY</p>
-          </div>
+          <div id="featured-evs"></div>
         </section>
 
         <section id="about">
@@ -135,25 +147,24 @@
 
         <section id="menus">
           <h1>Menu</h1>
-          <div class="menu-box"><h4>Brunch</h4></div>
-          <div class="menu-box"><h4>Lunch</h4></div>
-          <div class="menu-box"><h4>Dinner</h4></div>
-          <div class="menu-box" id="beer-menu" href="menu-container"><h4>Drinks</h4></div>
+          <div class="menu-box" id="brunch-menu" href="brunch-menu"><h4>Brunch</h4></div>
+          <div class="menu-box" id="lunch-menu" href="lunch-menu"><h4>Lunch</h4></div>
+          <div class="menu-box" id="dinner-menu" href="brunch-menu"><h4>Dinner</h4></div>
+          <div class="menu-box" id="beer-menu" href="beer-menu"><h4>Drinks</h4></div>
         </section>
 
         <footer>
-          <ul>
+          <!-- <ul>
             <li><img/></li>
             <li><img/></li>
             <li><img/></li>
-          </ul>
+          </ul> -->
 
           <ul>
-            <li>Menu</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li>Events</li>
-            <li>Reserve</li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#reserve">Reserve</a></li>
+            <li><a href="#menus">Menu</a></li>
           </ul>
 
           <p>Site by // Sean Stapleton</p>
@@ -176,6 +187,12 @@
 
   $("#menu").click(function() {
     $(this).toggleClass("open");
+    $('.offscreen-nav').toggleClass("onscreen");
+  });
+
+  $(".offscreen-nav a").click(function() {
+    $("#menu").toggleClass("open");
+    $('.offscreen-nav').toggleClass("onscreen");
   });
 
   $(document).scroll(function() {
@@ -211,16 +228,43 @@
     }
   });
 
+  $.get('/backendServices/featuredEvents', function(data) {
+    var evs = data.events;
+    for (var i = 0; i < evs.length; i++) {
+      var anchor = $('<a href='+evs[i].url+'></a>');
+      var div = $("<div class='ev-box' data-aos='fade-up' data-aos-anchor-placement='center-bottom'></div>");
+      if (evs[i].img) div.css("background-image", "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(" + evs[i].img + ")");
+      div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(evs[i].description));
+      anchor.append(div);
+      $("#featured-evs").append(anchor);
+    }
+  });
+
   $(".menu-box").click(function() {
     $("#overlay").toggleClass("show");
-    $("#" + $(this).attr("href")).toggleClass("show");
+    $("." + $(this).attr("href")).toggleClass("show");
     $("body").toggleClass("noscroll");
-    $("#close").attr("href",$(this).attr("id"));
+    $("#close").attr("href",$(this).attr("href"));
   });
 
   $("#close").click(function() {
     $("#overlay").toggleClass("show");
-    $(".te"+$(this).attr("href")).toggleClass("show");
+    $("."+$(this).attr("href")).toggleClass("show");
     $("body").toggleClass("noscroll");
+  });
+
+  $(function() {
+    $('a[href*="#"]:not([href="#"])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html, body').animate({
+            scrollTop: target.offset().top
+          }, 2000);
+          return false;
+        }
+      }
+    });
   });
 </script>

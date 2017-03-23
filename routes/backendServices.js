@@ -49,13 +49,22 @@ module.exports = function(db, passport) {
       passport.authenticate('login', function(err, user, info) {
         if (err) return next(err);
         if (!user) return res.send({success: false});
-        return res.send({success: true})
+        req.login(user, loginErr => {
+            if(loginErr) {
+                return next(loginErr);
+            }
+            return res.send({success: true});
+        });
       })(req, res, next);
     });
 
     var isLoggedIn = function(req, res, next) {
-      if (req.isAuthenticated()) return next();
-      res.redirect("/");
+      if (req.isAuthenticated()) {
+        console.log("logged in");
+        return res.send({loggedIn: true});
+      } else {
+        return res.send({loggedIn: false});
+      }
     }
 
     router.get('/getEvents', function(req, res) {
@@ -100,10 +109,20 @@ module.exports = function(db, passport) {
       });
     });
 
-    router.get('/featuredEvents', function(res, req) {
+    router.get('/featuredEvents', function(req, res) {
       eventsSchema.find({featured: true}, function(err, events) {
-        console.log(events);
+        if (err) {console.log(err); return res.send({success: false, err: err});}
+        else return res.send({success: true, events: events});
       });
+    });
+
+    router.get('/isLoggedIn', function(req, res, next) {
+      return isLoggedIn(req, res, next);
+    });
+
+    router.get('/logout', function(req, res, next) {
+      req.logout();
+      res.send("logged out");
     });
 
     // /* GET logout page */
