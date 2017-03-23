@@ -474,3 +474,67 @@ div.ui-datepicker {
   left: calc(50% - 5px);
   top: 29px;
 }
+
+.top-nav {
+  display: none;
+}
+
+/* ----------------------------------------------
+--------------- Desktop Styles ------------------
+---------------------------------------------- */
+@media (min-width: 968px) {
+  #intro img {
+    width: 50%;
+    margin-left: 25%;
+  }
+  #intro h2 {
+    font-size: 2em;
+  }
+  #events h1 {
+    text-align: left;
+    font-size: 2em;
+    margin-left: 40px;
+  }
+  #featured-evs div {
+    float: left;
+  }
+  #featured-evs div h4 {
+    font-size: 2em;
+    padding-top: 20%;
+  }
+  #featured-evs div p {
+    font-size: 1em;
+  }
+  #about h1 {
+    text-align: left;
+    font-size: 3em;
+    margin-left: 40px;
+  }
+  #about iframe, .map-overlay {
+    float: left;
+    width: 40%;
+    height: 50vh;;
+  }
+  #about p {
+    font-size: 2em;
+  }
+  .offscreen-nav-wrapper {
+    display: none;
+  }
+  .top-nav {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #333;
+    z-index: 99999999999999;
+  }
+  .top-nav li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 20px 40px;
+  }
+  #menu {
+    display: none;
+  }
+}
