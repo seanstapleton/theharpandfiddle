@@ -24,6 +24,7 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="/lib/fullcalendar/moment.min.js"></script>
         <script src="/lib/fullcalendar/fullcalendar.min.js"></script>
+        <script src="/lib/pdfjs/build/pdf.js"></script>
         <script type="text/javascript">
           !function(e,n){var t=document.createElement("script"),a=document.getElementsByTagName("script")[0];t.async=1,a.parentNode.insertBefore(t,a),t.onload=t.onreadystatechange=function(e,a){(a||!t.readyState||/loaded|complete/.test(t.readyState))&&(t.onload=t.onreadystatechange=null,t=void 0,a||n&&n())},t.src=e}("https://embed-menu-preloader.untappdapi.com/embed-menu-preloader.min.js",function(){PreloadEmbedMenu("menu-container",6484,22214)});
         </script>
@@ -31,10 +32,9 @@
     <body>
       <div id="overlay">
         <p id="close">Close X</p>
-        <div class="menu-modal brunch-menu"><img src="/img/menus/brunch.pdf"/></div>
-        <div class="menu-modal lunch-menu"><img src="/img/menus/lunch.pdf"/></div>
-        <div class="menu-modal dinner-menu"><img src="/img/menus/dinner.pdf"/></div>
-        <div id="menu-container" class="beer-menu"></div>
+        <div class="menu-modal" id="menuContainer">
+          <div id="menu-container" class="drinks-menu"></div>
+        </div>
         <div class="contact-form">
           <form>
             <div class="alert alert-success successmail">Message sent!</div>
@@ -162,10 +162,10 @@
 
         <section id="menus">
           <h1>Menu</h1>
-          <div class="menu-box" id="brunch-menu" href="brunch-menu"><h4>Brunch</h4></div>
-          <div class="menu-box" id="lunch-menu" href="lunch-menu"><h4>Lunch</h4></div>
-          <div class="menu-box" id="dinner-menu" href="brunch-menu"><h4>Dinner</h4></div>
-          <div class="menu-box" id="beer-menu" href="beer-menu"><h4>Drinks</h4></div>
+          <div class="menu-box" id="brunch-menu" data-pt="brunch-menu" href="/img/menus/brunch.pdf"><h4>Brunch</h4></div>
+          <div class="menu-box" id="lunch-menu" data-pt="lunch-menu" href="/img/menus/lunch.pdf"><h4>Lunch</h4></div>
+          <div class="menu-box" id="dinner-menu" data-pt="dinner-menu" href="/img/menus/dinner.pdf"><h4>Dinner</h4></div>
+          <div class="menu-box" id="beer-menu" data-pt="drinks-menu" href="beer-menu"><h4>Drinks</h4></div>
         </section>
 
         <footer>
@@ -256,15 +256,50 @@
   });
 
   $(".menu-box").click(function() {
+    var pointer = $(this).attr("data-pt");
+    $("#close").attr("data-pt",pointer);
+    if ($("." + pointer)[0])
+      $("."+pointer).toggleClass("show");
+    else {
+      displayMenu($(this).attr("href"), pointer);
+    }
     $("#overlay").toggleClass("show");
-    $("." + $(this).attr("href")).toggleClass("show");
     $("body").toggleClass("noscroll");
-    $("#close").attr("href",$(this).attr("href"));
   });
+
+  var displayMenu = function(src, pointer) {
+    PDFJS.getDocument(src).promise.then(function(pdf) {
+      renderNewPage(pdf, 1, pointer);
+    });
+  }
+
+  var renderNewPage = function(pdf, num, pointer) {
+    pdf.getPage(num).then(function(page) {
+      var scale = 1.5;
+      var viewport = page.getViewport(scale);
+
+      var canvas = document.createElement("canvas");
+      canvas.className += " menu-page show " + pointer;
+      var context = canvas.getContext('2d');
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+      var renderContext = {
+        canvasContext: context,
+        viewport: viewport
+      };
+      page.render(renderContext).then(function() {
+        $("#menuContainer").append(canvas);
+        num++;
+        if (num <= pdf.numPages) renderNewPage(pdf, num, pointer);
+      });
+    }, function(reason) {
+      console.log("Error: " + reason);
+    });
+  }
 
   $("#close").click(function() {
     $("#overlay").toggleClass("show");
-    $("."+$(this).attr("href")).toggleClass("show");
+    $("."+$(this).attr("data-pt")).toggleClass("show");
     $("body").toggleClass("noscroll");
   });
 
@@ -285,7 +320,7 @@
 
   $("#contact").click(function() {
     $("#overlay").toggleClass("show");
-    $("." + $(this).attr("href")).toggleClass("show");
+    $(".menu-modal").toggleClass("show");
     $("body").toggleClass("noscroll");
     $("#close").attr("href",$(this).attr("href"));
   });

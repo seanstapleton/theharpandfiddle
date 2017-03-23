@@ -88,6 +88,9 @@ footer p {
 .hide {
   display: none;
 }
+#menuContainer canvas {
+  width: 100%;
+}
 
 /* ----------------------------------------------
 -------------- Reservation Styles -------------------
@@ -170,10 +173,12 @@ div.ui-datepicker {
   margin: 3vh auto;
   padding: 20px;
   background: #fff;
-  display: none;
 }
 .menu-modal img {
   width: 100%;
+}
+.menu-page {
+  display: none;
 }
 
 
