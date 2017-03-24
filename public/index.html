@@ -327,9 +327,9 @@
 
   $("#contact").click(function() {
     $("#overlay").toggleClass("show");
-    $(".menu-modal").toggleClass("show");
+    $(".contact-form").toggleClass("show");
     $("body").toggleClass("noscroll");
-    $("#close").attr("href",$(this).attr("href"));
+    $("#close").attr("data-pt", "contact-form");
   });
 
   $("#contact-form-submit").click(function() {
