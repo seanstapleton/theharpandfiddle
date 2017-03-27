@@ -68,16 +68,6 @@
           </ul>
         </div>
       </div>
-      <div class="top-nav">
-        <ul>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#social">Social</a></li>
-          <li><a href="#reserve">Reserve</a></li>
-          <li><a href="#menus">Menus</a></li>
-          <li id="contact" href="contact-form">Contact</li>
-        </ul>
-      </div>
       <nav>
         <div id="menu">
           <span></span><span></span><span></span><span></span><span></span><span></span>
@@ -90,6 +80,18 @@
       </section>
 
       <div id="primary-container">
+        <div class="top-nav">
+          <ul>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#social">Social</a></li>
+            <li><a href="#reserve">Reserve</a></li>
+            <li><a href="#menus">Menus</a></li>
+            <li id="contact" href="contact-form">Contact</li>
+          </ul>
+        </div>
+
+
         <section id="events">
           <h1>What's Goin' On?</h1>
           <div id="featured-evs"></div>
@@ -200,12 +202,15 @@
       </div>
     </body>
 </html>
+<script src="/lib/stickyjs/jquery.sticky.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 <script src='/lib/aos/dist/aos.js'></script>
 <script type="text/javascript">
   AOS.init({
     duration: 1000
   });
+
+  $(".top-nav").sticky({topSpacing: 0});
 
   $(".map-overlay").click(function() {
     $(this).addClass("hide");
