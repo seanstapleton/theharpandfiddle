@@ -526,7 +526,6 @@ div.ui-datepicker {
     position: fixed;
     top: 0;
     right: 0;
-    background-color: #333;
     z-index: 99999999999999;
   }
   .top-nav li {

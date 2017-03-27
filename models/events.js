@@ -6,7 +6,6 @@ var eventsSchema = new Schema({
     start: String,
     end: String,
     description: String,
-    date: String,
     url: String,
     img: String,
     featured: Boolean
