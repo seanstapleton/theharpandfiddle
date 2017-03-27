@@ -482,7 +482,7 @@ div.ui-datepicker {
 /* ----------------------------------------------
 --------------- Desktop Styles ------------------
 ---------------------------------------------- */
-@media (min-width: 968px) {
+/*@media (min-width: 968px) {
   #intro img {
     width: 50%;
     margin-left: 25%;
@@ -536,4 +536,4 @@ div.ui-datepicker {
   #menu {
     display: none;
   }
-}
+}*/
