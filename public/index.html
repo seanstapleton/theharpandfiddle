@@ -99,27 +99,75 @@
 
         <section id="about">
           <h1>Where to find us</h1>
-          <div class="map-overlay"></div>
-          <iframe data-aos="zoom-in-up" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2974.859471108635!2d-87.8322370853504!3d42.009562119007306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fc9b7151ccd95%3A0xf4d931d39d0b7486!2sThe+Harp+And+Fiddle!5e0!3m2!1sen!2sus!4v1489964007207" frameborder="0" style="border:0" allowfullscreen></iframe>
-          <p id="contact-info"><span id="address">The Harp and Fiddle<br/>110 Main St,<br/>Park Ridge, IL 60068</span><br/><a id="ph-num" href="tel:8477204466">(847) 720-4466</a><br/><span id="email">declan@theharpandfiddle.com</span></p>
-          <table class="table">
-            <thead>
-              <th>Hours</th>
-              <th></th>
-            </thead>
-            <tr>
-              <td>Mon-Fri</td>
-              <td>11am-2am</td>
-            </tr>
-            <tr>
-              <td>Saturday</td>
-              <td>11am-2am</td>
-            </tr>
-            <tr>
-              <td>Sunday</td>
-              <td>11am-2am</td>
-            </tr>
-          </table>
+          <div id="location-map">
+            <div class="map-overlay"></div>
+            <iframe data-aos="zoom-in-up" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2974.859471108635!2d-87.8322370853504!3d42.009562119007306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fc9b7151ccd95%3A0xf4d931d39d0b7486!2sThe+Harp+And+Fiddle!5e0!3m2!1sen!2sus!4v1489964007207" frameborder="0" style="border:0" allowfullscreen></iframe>
+          </div>
+          <div id="contact-info-body">
+            <p id="contact-info"><span id="address">The Harp and Fiddle<br/>110 Main St,<br/>Park Ridge, IL 60068</span><br/><a id="ph-num" href="tel:8477204466">(847) 720-4466</a><br/><span id="email">declan@theharpandfiddle.com</span></p>
+          </div>
+          <div id="hours-of-operation">
+            <table class="table">
+              <thead>
+                <th>Hours</th>
+                <th></th>
+              </thead>
+              <tr>
+                <td>Mon-Fri</td>
+                <td>11am-2am</td>
+              </tr>
+              <tr>
+                <td>Saturday</td>
+                <td>11am-2am</td>
+              </tr>
+              <tr>
+                <td>Sunday</td>
+                <td>11am-2am</td>
+              </tr>
+            </table>
+          </div>
+
+          <div id="reservation">
+            <input style="display: none" name="dateval" id="dateval"/>
+            <div id="datepicker"></div>
+            <fieldset>
+              <select name="time" id="time">
+                <option value="1100" selected>11am</option>
+                <option value="1130">11:30am</option>
+                <option value="1200">12:00pm</option>
+                <option value="1230">12:30pm</option>
+                <option value="1300">1:00pm</option>
+                <option value="1330">1:30pm</option>
+                <option value="1400">2:00pm</option>
+                <option value="1430">2:30pm</option>
+                <option value="1500">3:00pm</option>
+                <option value="1530">3:30pm</option>
+                <option value="1600">4:00pm</option>
+                <option value="1630">4:30pm</option>
+                <option value="1700">5:00pm</option>
+                <option value="1730">5:30pm</option>
+                <option value="1800">6:00pm</option>
+                <option value="1830">6:30pm</option>
+                <option value="1900">7:00pm</option>
+                <option value="1930">7:30pm</option>
+                <option value="2000">8:00pm</option>
+                <option value="2030">8:30pm</option>
+                <option value="2100">9:00pm</option>
+                <option value="2130">9:30pm</option>
+              </select>
+              <select name="party" id="party">
+                <option value="1">1 person</option>
+                <option value="2" selected>2 people</option>
+                <option value="3">3 people</option>
+                <option value="4">4 people</option>
+                <option value="5">5 people</option>
+                <option value="6">6 people</option>
+              </select>
+              <div id="btn-container">
+                <button id="reserve-btn">Reserve Now</button>
+              </div>
+            </fieldset>
+          </div>
         </section>
 
         <section id="social">
@@ -128,7 +176,7 @@
           <a>Clik here to see more!</a>
         </section>
 
-        <section id="reserve">
+        <!-- <section id="reserve">
           <h1>Reserve a Table</h1>
           <input style="display: none" name="dateval" id="dateval"/>
           <div id="datepicker"></div>
@@ -169,17 +217,14 @@
               <button id="reserve-btn">Reserve Now</button>
             </div>
           </fieldset>
-          <form>
-
-          </form>
-        </section>
+        </section> -->
 
         <section id="menus">
           <h1>Menu</h1>
-          <div class="menu-box" id="brunch-menu" data-pt="brunch-menu" href="/img/menus/brunch.pdf"><h4>Brunch</h4></div>
-          <div class="menu-box" id="lunch-menu" data-pt="lunch-menu" href="/img/menus/lunch.pdf"><h4>Lunch</h4></div>
-          <div class="menu-box" id="dinner-menu" data-pt="dinner-menu" href="/img/menus/dinner.pdf"><h4>Dinner</h4></div>
-          <div class="menu-box" id="beer-menu" data-pt="drinks-menu" href="beer-menu"><h4>Drinks</h4></div>
+          <div class="menu-box" id="brunch-menu" data-pt="brunch-menu" data-aos="fade-left" href="/img/menus/brunch.pdf"><h4>Brunch</h4></div>
+          <div class="menu-box" id="lunch-menu" data-pt="lunch-menu" data-aos="fade-left" href="/img/menus/lunch.pdf"><h4>Lunch</h4></div>
+          <div class="menu-box" id="dinner-menu" data-pt="dinner-menu" data-aos="fade-left" href="/img/menus/dinner.pdf"><h4>Dinner</h4></div>
+          <div class="menu-box" id="beer-menu" data-pt="drinks-menu" data-aos="fade-left" href="beer-menu"><h4>Drinks</h4></div>
         </section>
 
         <footer>
@@ -264,12 +309,17 @@
     var evs = data.events;
     for (var i = 0; i < evs.length; i++) {
       var anchor = $('<a href='+evs[i].url+'></a>');
-      var div = $("<div class='ev-box' data-aos='fade-up' data-aos-anchor-placement='center-bottom'></div>");
+      var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay="+i*200+" data-aos-anchor-placement='center-bottom'></div>");
       if (evs[i].img) div.css("background-image", "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(" + evs[i].img + ")");
       div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(evs[i].description));
       anchor.append(div);
       $("#featured-evs").append(anchor);
     }
+    var anchor = $('<a href="/events"></a>');
+    var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay="+i*200+" data-aos-anchor-placement='center-bottom'></div>");
+    div.append($("<h4></h4>").text("See more..."), $("<p></p>").text("More events st the Harp & Fiddle"));
+    anchor.append(div);
+    $("#featured-evs").append(anchor);
   });
 
   $(".menu-box").click(function() {
