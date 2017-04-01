@@ -127,7 +127,7 @@
             </table>
           </div>
 
-          <div id="reservation">
+          <div id="reservation" class="desktop-item">
             <input style="display: none" name="dateval" id="dateval"/>
             <div id="datepicker"></div>
             <fieldset>
@@ -173,7 +173,7 @@
         <section id="social">
           <h1>We're "on the line"</h1>
           <div id="ig-links"></div>
-          <a>Clik here to see more!</a>
+          <a>Click here to see more!</a>
         </section>
 
         <!-- <section id="reserve">
@@ -309,12 +309,13 @@
 
   $.get('/backendServices/featuredEvents', function(data) {
     var evs = data.events;
-    for (var i = 0; i < evs.length; i++) {
+    for (var i = 0; i < evs.length && i < 7; i++) {
       var anchor = $('<a href='+evs[i].url+'></a>');
       var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay="+i*200+" data-aos-anchor-placement='center-bottom'></div>");
       if (evs[i].img) div.css("background-image", "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(" + evs[i].img + ")");
       div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(evs[i].description));
       anchor.append(div);
+      if (i > 2) anchor.addClass("desktop-item");
       $("#featured-evs").append(anchor);
     }
     var anchor = $('<a href="/events"></a>');
