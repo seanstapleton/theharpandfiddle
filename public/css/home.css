@@ -453,11 +453,11 @@ div.ui-datepicker {
 }
 #menu.open span:nth-child(1) {
   left: 5px;
-  top: 7px;
+  top: 8px;
 }
 #menu.open span:nth-child(2) {
   left: calc(50% - 5px);
-  top: 7px;
+  top: 8px;
 }
 #menu.open span:nth-child(3) {
   left: -50%;
@@ -469,17 +469,19 @@ div.ui-datepicker {
 }
 #menu.open span:nth-child(5) {
   left: 5px;
-  top: 29px;
+  top: 20px;
 }
 #menu.open span:nth-child(6) {
   left: calc(50% - 5px);
-  top: 29px;
+  top: 20px;
 }
 
 .top-nav {
   display: none;
 }
-
+.desktop-item {
+  display: none;
+}
 /* ----------------------------------------------
 --------------- Desktop Styles ------------------
 ---------------------------------------------- */
@@ -574,8 +576,17 @@ div.ui-datepicker {
   #location-map, #hours-of-operation, #contact-info-body, #reservation {
     width: 50%;
     height: 50vh;
-    overflow: auto;
+    overflow: hidden;
     float: left;
+  }
+  #featured-evs {
+    overflow: hidden;
+  }
+  #menus {
+    overflow: hidden;
+  }
+  .desktop-item {
+    display: block;
   }
   #reservation {
     padding: 40px;
