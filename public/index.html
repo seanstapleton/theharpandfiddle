@@ -87,7 +87,7 @@
             <li><a href="#social">Social</a></li>
             <li><a href="#reserve">Reserve</a></li>
             <li><a href="#menus">Menus</a></li>
-            <li id="contact" href="contact-form">Contact</li>
+            <li id="contact-topnav" href="contact-form">Contact</li>
           </ul>
         </div>
 
@@ -170,21 +170,6 @@
           </div>
         </section>
 
-        <section id="social">
-          <div class="soc-box" data-aos="zoom-in">
-            <h4>#theharpandfiddle</h4>
-          </div>
-          <div id="ig-links"></div>
-          <div class="soc-box" data-aos="zoom-in">
-            <h4>@theharpandfiddle</h4>
-          </div>
-          <div id="fb-links"></div>
-          <div class="soc-box" data-aos="zoom-in">
-            <h4>The Harp and Fiddle</h4>
-          </div>
-          <a class="mobile-item">Click here to see more!</a>
-        </section>
-
         <!-- <section id="reserve">
           <h1>Reserve a Table</h1>
           <input style="display: none" name="dateval" id="dateval"/>
@@ -229,21 +214,37 @@
         </section> -->
 
         <section id="menus">
-          <h1>Menu</h1>
-          <div class="menu-box" id="brunch-menu" data-pt="brunch-menu" data-aos="flip-left" href="/img/menus/brunch.pdf"><h4>Brunch</h4></div>
+          <h1 class="mobile-item">Menu</h1>
+          <!-- <div class="menu-box" id="brunch-menu" data-pt="brunch-menu" data-aos="flip-left" href="/img/menus/brunch.pdf"><h4>Brunch</h4></div>
           <div class="menu-box" id="lunch-menu" data-pt="lunch-menu" data-aos="flip-left" href="/img/menus/lunch.pdf"><h4>Lunch</h4></div>
           <div class="menu-box" id="dinner-menu" data-pt="dinner-menu" data-aos="flip-left" href="/img/menus/dinner.pdf"><h4>Dinner</h4></div>
           <div class="menu-box" id="beer-menu" data-pt="drinks-menu" data-aos="flip-left" href="beer-menu"><h4>Beer</h4></div>
           <div class="menu-box" id="beer-menu" data-pt="drinks-menu" data-aos="flip-left" href="beer-menu"><h4>Wine</h4></div>
-          <div class="menu-box" id="beer-menu" data-pt="drinks-menu" data-aos="flip-left" href="beer-menu"><h4>Specialties</h4></div>
+          <div class="menu-box" id="beer-menu" data-pt="drinks-menu" data-aos="flip-left" href="beer-menu"><h4>Specialties</h4></div> -->
+          <svg viewBox="0 0 100 60">
+            <defs>
+            <pattern id="img1" patternUnits="userSpaceOnUse" width="100" height="100">
+              <image xlink:href="/img/backgrounds/bar.jpg" x="0" y="-35" width="100" height="100" />
+            </pattern>
+            <pattern id="img2" patternUnits="userSpaceOnUse" width="100" height="100">
+              <image xlink:href="/img/backgrounds/barside.JPG" x="0" y="-20" width="100" height="100" />
+            </pattern>
+            <pattern id="img3" patternUnits="userSpaceOnUse" width="100" height="100">
+              <image xlink:href="/img/backgrounds/chat.JPG" x="0" y="0" width="100" height="100" />
+            </pattern>
+          </defs>
+            <polygon data-aos="fade-left" points="0,0 100,0 100,15 0,22.5" style="fill: url(#img1)"/>
+            <polygon data-aos="fade-right" points="0,22.5 100,15 100,45 0,37.5" style="fill: url(#img2)"/>
+            <polygon data-aos="fade-left" points="0,37.5 100,45 100,60 0,60" style="fill: url(#img3)"/>
+          </svg>
+        </section>
+
+        <section id="social">
+          <h2 style="margin-top: -10px; margin-bottom: 0; padding: 10px">#theharpandfiddle</h2>
+          <div id="ig-links"></div>
         </section>
 
         <footer>
-          <!-- <ul>
-            <li><img/></li>
-            <li><img/></li>
-            <li><img/></li>
-          </ul> -->
 
           <ul>
             <li><a href="#events">Events</a></li>
@@ -307,9 +308,9 @@
   });
 
   $.post('/backendServices/insta', function(data) {
-    var imgs = data.data.slice(0,3);
+    var imgs = data.data.slice(0,5);
     for (var i = 0; i < imgs.length; i++) {
-      var div = $("<div data-aos='zoom-in' class='soc-box'></div>");
+      var div = $("<div data-aos='fade-left' data-aos-delay='"+i*100+"' class='soc-box'></div>");
       div.css("background-image", "url(" + imgs[i].images.standard_resolution.url+")");
       $("#ig-links").append(div);
     }
@@ -333,17 +334,17 @@
     $("#featured-evs").append(anchor);
   });
 
-  $.get('/backendServices/getFBID', function(fbid) {
-    $.get('https://graph.facebook.com/parkridgebar/photos?type=uploaded&&access_token=' + fbid, function(data) {
-      var imgs = data.data.slice(0,3);
-      console.log(imgs);
-      for (var i = 0; i < imgs.length; i++) {
-        var div = $("<div data-aos='zoom-in' class='soc-box'></div>");
-        div.css("background-image", "url(" + imgs[i].source+")");
-        $("#fb-links").append(div);
-      }
-    })
-  });
+  // $.get('/backendServices/getFBID', function(fbid) {
+  //   $.get('https://graph.facebook.com/parkridgebar/photos?type=uploaded&&access_token=' + fbid, function(data) {
+  //     var imgs = data.data.slice(0,3);
+  //     console.log(imgs);
+  //     for (var i = 0; i < imgs.length; i++) {
+  //       var div = $("<div data-aos='zoom-in' class='soc-box'></div>");
+  //       div.css("background-image", "url(" + imgs[i].source+")");
+  //       $("#fb-links").append(div);
+  //     }
+  //   })
+  // });
 
   $(".menu-box").click(function() {
     var pointer = $(this).attr("data-pt");
@@ -409,6 +410,13 @@
   });
 
   $("#contact").click(function() {
+    $("#overlay").toggleClass("show");
+    $(".contact-form").toggleClass("show");
+    $("body").toggleClass("noscroll");
+    $("#close").attr("data-pt", "contact-form");
+  });
+
+  $("#contact-topnav").click(function() {
     $("#overlay").toggleClass("show");
     $(".contact-form").toggleClass("show");
     $("body").toggleClass("noscroll");
