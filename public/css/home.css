@@ -76,7 +76,7 @@ footer p {
   width: 45vh;
   height: 45vh;
   margin: 5vh auto;
-  background-image: url('http://placehold.it/500x500');
+  background-color: #000;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -482,6 +482,9 @@ div.ui-datepicker {
 .desktop-item {
   display: none;
 }
+.mobile-item {
+  display: block;
+}
 /* ----------------------------------------------
 --------------- Desktop Styles ------------------
 ---------------------------------------------- */
@@ -561,6 +564,9 @@ div.ui-datepicker {
     background-repeat: no-repeat;
     position: relative;
   }
+  .ev-box h4, .menu-box h4 {
+    margin-top: 10vh;
+  }
   #events {
     overflow: auto;
     padding: 0;
@@ -604,7 +610,7 @@ div.ui-datepicker {
   #reservation fieldset {
     float: left;
     margin: 0;
-    height: 278.98px;
+    height: 304.98px;
     background-color: rgb(237, 237, 237);
     padding-top: 30px;
   }
@@ -655,7 +661,25 @@ div.ui-datepicker {
   }
   .soc-box {
     float: left;
-    width: 25%;
+    width: 33.3%;
+    height: 33.3vh;
+    margin: 0;
+    background-color: #000;
   }
-
+  .soc-box h4 {
+    color: #fff;
+    text-align: center;
+    margin-top: 13vh;
+    font-weight: bold;
+    font-size: 2em;
+  }
+  #social {
+    background-color: #000;
+  }
+  .mobile-item {
+    display: none !important;
+  }
+  .primary-container {
+    background-color: #000;
+  }
 }

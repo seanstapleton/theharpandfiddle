@@ -37,6 +37,10 @@ module.exports = function(db, passport) {
       });
     });
 
+    router.get('/getFBID', function(req, res) {
+      return res.send(process.env.fbid);
+    });
+
     var LocalStrategy = require('passport-local').Strategy;
     var register = require('../passport/config.js')(passport);
     router.post('/register', function(req, res, next) {

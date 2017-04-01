@@ -171,9 +171,18 @@
         </section>
 
         <section id="social">
-          <h1>We're "on the line"</h1>
+          <div class="soc-box" data-aos="zoom-in">
+            <h4>#theharpandfiddle</h4>
+          </div>
           <div id="ig-links"></div>
-          <a>Click here to see more!</a>
+          <div class="soc-box" data-aos="zoom-in">
+            <h4>@theharpandfiddle</h4>
+          </div>
+          <div id="fb-links"></div>
+          <div class="soc-box" data-aos="zoom-in">
+            <h4>The Harp and Fiddle</h4>
+          </div>
+          <a class="mobile-item">Click here to see more!</a>
         </section>
 
         <!-- <section id="reserve">
@@ -298,8 +307,7 @@
   });
 
   $.post('/backendServices/insta', function(data) {
-    var imgs = data.data.slice(0,4);
-    console.log(imgs);
+    var imgs = data.data.slice(0,3);
     for (var i = 0; i < imgs.length; i++) {
       var div = $("<div data-aos='zoom-in' class='soc-box'></div>");
       div.css("background-image", "url(" + imgs[i].images.standard_resolution.url+")");
@@ -323,6 +331,18 @@
     div.append($("<h4></h4>").text("See more..."), $("<p></p>").text("More events st the Harp & Fiddle"));
     anchor.append(div);
     $("#featured-evs").append(anchor);
+  });
+
+  $.get('/backendServices/getFBID', function(fbid) {
+    $.get('https://graph.facebook.com/parkridgebar/photos?type=uploaded&&access_token=' + fbid, function(data) {
+      var imgs = data.data.slice(0,3);
+      console.log(imgs);
+      for (var i = 0; i < imgs.length; i++) {
+        var div = $("<div data-aos='zoom-in' class='soc-box'></div>");
+        div.css("background-image", "url(" + imgs[i].source+")");
+        $("#fb-links").append(div);
+      }
+    })
   });
 
   $(".menu-box").click(function() {
