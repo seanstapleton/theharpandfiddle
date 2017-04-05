@@ -1,1 +1,10 @@
-<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg enable-background="new 0 0 50 50" id="Icons" version="1.1" viewBox="0 0 50 50" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="  M8.552,35.887c1.469,1.44,1.323,5.067-4.636,9.629c6.875,2.281,13.506-4.261,15.604-3.793c1.752,0.391,3.588,0.599,5.48,0.599  c12.15,0,22-8.579,22-19.161S37.15,4,25,4S3,12.579,3,23.161C3,28.045,5.098,32.503,8.552,35.887z" fill="none" id="Comment" stroke="#171616" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<path id="Comment" class="st0" d="M8.6,35.9c1.5,1.4,1.3,5.1-4.6,9.6c6.9,2.3,13.5-4.3,15.6-3.8c1.8,0.4,3.6,0.6,5.5,0.6
+	c12.2,0,22-8.6,22-19.2S37.2,4,25,4S3,12.6,3,23.2C3,28,5.1,32.5,8.6,35.9z"/>
+</svg>
