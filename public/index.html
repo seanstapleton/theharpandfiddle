@@ -245,13 +245,15 @@
         </section>
 
         <footer>
-
-          <ul>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#reserve">Reserve</a></li>
-            <li><a href="#menus">Menu</a></li>
-          </ul>
+          <div class="tbl">
+            <ul>
+              <li><a href="#events">Events</a></li>
+              <li><a href="#about">About</a></li>
+              <li class="mobile-item-inline"><a href="#reserve">Reserve</a></li>
+              <li class="desktop-item-inline"><a href="https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge" target="_blank">Reserve</a></li>
+              <li><a href="#menus">Menu</a></li>
+            </ul>
+          </div>
 
           <p>Site by // Sean Stapleton</p>
 
@@ -310,19 +312,38 @@
   $.post('/backendServices/insta', function(data) {
     var imgs = data.data.slice(0,5);
     for (var i = 0; i < imgs.length; i++) {
-      var div = $("<div data-aos='fade-left' data-aos-delay='"+i*100+"' class='soc-box'></div>");
+      var div = $("<div id='guess' data-aos='fade-left' data-aos-delay='"+i*100+"' class='soc-box'></div>");
+      var overlay = $("<div class='insta-overlay'></div>");
+      overlay.attr("href", imgs[i].link);
+      var likes = $("<p></p>").text(imgs[i].likes.count).addClass("insta-likes");
+      var comments = $("<p></p>").text(imgs[i].comments.count).addClass("insta-comments");
+      var captionText = (imgs[i].caption.text.length > 100) ? imgs[i].caption.text.substring(0,100) + "..." : imgs[i].caption.text;
+      var caption = $("<p></p>").text(captionText).addClass("insta-caption");
+      overlay.append(likes,comments,caption);
       div.css("background-image", "url(" + imgs[i].images.standard_resolution.url+")");
+      div.append(overlay);
       $("#ig-links").append(div);
     }
+  });
+
+  $("#ig-links").on('mouseover', 'div', function() {
+    $(this).find(".insta-overlay").css("display", "block");
+  });
+  $("#ig-links").on('mouseout', 'div', function() {
+    $(this).find(".insta-overlay").css("display", "none");
+  });
+  $("#ig-links").on('click', 'div.insta-overlay', function() {
+    window.open($(this).attr("href"), "_blank");
   });
 
   $.get('/backendServices/featuredEvents', function(data) {
     var evs = data.events;
     for (var i = 0; i < evs.length && i < 7; i++) {
+      var date = moment(evs[i].start).format('MMMM Do, YYYY @ h:mm a');
       var anchor = $('<a href='+evs[i].url+'></a>');
       var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay="+i*200+" data-aos-anchor-placement='center-bottom'></div>");
       if (evs[i].img) div.css("background-image", "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(" + evs[i].img + ")");
-      div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(evs[i].description));
+      div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(date));
       anchor.append(div);
       if (i > 2) anchor.addClass("desktop-item");
       $("#featured-evs").append(anchor);

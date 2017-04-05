@@ -479,11 +479,22 @@ div.ui-datepicker {
 .top-nav {
   display: none;
 }
-.desktop-item {
+.desktop-item, .desktop-item-inline {
   display: none;
 }
 .mobile-item {
   display: block;
+}
+.mobile-item-inline {
+  display: inline-block;
+}
+.insta-overlay {
+  display: none;
+  cursor: pointer;
+}
+.tbl {
+  display: table;
+  margin: 0 auto;
 }
 /* ----------------------------------------------
 --------------- Desktop Styles ------------------
@@ -574,6 +585,7 @@ div.ui-datepicker {
     padding: 20px;
     min-height: 0vh;
     height: auto;
+    overflow-x: hidden;
   }
   #social h2 {
     background-color: #000;
@@ -617,6 +629,9 @@ div.ui-datepicker {
   }
   .desktop-item {
     display: block;
+  }
+  .desktop-item-inline {
+    display: inline-block;
   }
   #reservation {
     padding: 40px;
@@ -689,6 +704,7 @@ div.ui-datepicker {
     height: 25vh;
     margin: 0;
     background-color: #000;
+    position: relative;
   }
   .soc-box h4 {
     color: #fff;
@@ -700,7 +716,7 @@ div.ui-datepicker {
   #social {
     background-color: #000;
   }
-  .mobile-item {
+  .mobile-item, .mobile-item-inline {
     display: none !important;
   }
   .primary-container {
@@ -711,5 +727,36 @@ div.ui-datepicker {
   }
   section {
     padding: 0 !important;
+  }
+  .insta-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+    padding-top: 25px;
+  }
+  .insta-likes {
+    padding-left: 25px;
+    background-image: url("/img/icons/like.svg");
+    background-repeat: no-repeat;
+    background-position: left top;
+    float: left;
+    margin-left: 30%;
+  }
+  .insta-comments {
+    padding-left: 25px;
+    background-image: url("/img/icons/comment.svg");
+    background-repeat: no-repeat;
+    background-position: left top;
+    float: right;
+    margin-right: 30%;
+  }
+  .insta-caption {
+    width: 80%;
+    text-align: center;
+    display: block;
+    margin: 0 10%;
+    float: left;
   }
 }
