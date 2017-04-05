@@ -3,7 +3,7 @@
 <svg version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st0{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 </style>
 <path id="Like" class="st0" d="M7.4,28.8C4.7,26.4,3,22.9,3,19C3,11.8,8.8,6,16,6c3.5,0,6.7,1.4,9,3.6C27.3,7.4,30.5,6,34,6
 	c7.2,0,13,5.8,13,13c0,3.9-1.7,7.4-4.4,9.8C38.2,33.5,25,46,25,46S11.8,33.5,7.4,28.8z"/>
