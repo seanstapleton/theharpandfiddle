@@ -170,7 +170,7 @@
           </div>
         </section>
 
-        <!-- <section id="reserve">
+        <section id="reserve" class="mobile-item">
           <h1>Reserve a Table</h1>
           <input style="display: none" name="dateval" id="dateval"/>
           <div id="datepicker"></div>
@@ -211,7 +211,7 @@
               <button id="reserve-btn">Reserve Now</button>
             </div>
           </fieldset>
-        </section> -->
+        </section>
 
         <section id="menus">
           <h1 class="mobile-item">Menu</h1>
@@ -232,10 +232,24 @@
             <pattern id="img3" patternUnits="userSpaceOnUse" width="100" height="100">
               <image xlink:href="/img/backgrounds/chat.JPG" x="0" y="0" width="100" height="100" />
             </pattern>
+            <linearGradient id="overlayGradientDark">
+              <stop offset="5%" stop-color="rgba(0,0,0,0.3)" />
+              <stop offset="95%" stop-color="rgba(0,0,0,0.3)" />
+            </linearGradient>
+            <linearGradient id="overlayGradientLight">
+              <stop offset="5%" stop-color="rgba(0,0,0,0.1)" />
+              <stop offset="95%" stop-color="rgba(0,0,0,0.1)" />
+            </linearGradient>
           </defs>
             <polygon data-aos="fade-left" points="0,0 100,0 100,15 0,22.5" style="fill: url(#img1)"/>
+            <polygon class="overlayGradient" data-aos="fade-left" points="0,0 100,0 100,15 0,22.5"/>
+            <text id="foodLink" data-aos="fade" data-aos-delay="1500" y="11.25" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Food</text>
             <polygon data-aos="fade-right" points="0,22.5 100,15 100,45 0,37.5" style="fill: url(#img2)"/>
+            <polygon class="overlayGradient" data-aos="fade-right" points="0,22.5 100,15 100,45 0,37.5"/>
+            <text id="foodLink" data-aos="fade" data-aos-delay="1500" y="30" x="90" text-anchor="end" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Drinks</text>
             <polygon data-aos="fade-left" points="0,37.5 100,45 100,60 0,60" style="fill: url(#img3)"/>
+            <polygon class="overlayGradient" data-aos="fade-left" points="0,37.5 100,45 100,60 0,60"/>
+            <text id="foodLink" data-aos="fade" data-aos-delay="1500" y="48.75" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Cocktails</text>
           </svg>
         </section>
 
@@ -267,6 +281,11 @@
 <script type="text/javascript">
   AOS.init({
     duration: 1000
+  });
+
+  $(".overlayGradient").mouseover(function() {
+    $(".overlayGradient").css("fill", "url(#overlayGradientDark)");
+    $(this).css("fill", "url(#overlayGradientLight)");
   });
 
   $(".top-nav").sticky({topSpacing: 0});

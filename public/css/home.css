@@ -237,6 +237,9 @@ div.ui-datepicker {
   display: block;
   margin-top: 10px;
 }
+.overlayGradient {
+  fill: url(#overlayGradientDark);
+}
 
 /* ----------------------------------------------
 --------- Primary Content Styles ----------------
@@ -263,7 +266,8 @@ div.ui-datepicker {
   width: 45vh;
   height: 45vh;
   margin: 50px auto;
-  background-image: url('http://placehold.it/500x500');
+  /*background-image: url('http://placehold.it/500x500');*/
+  background-color: #000;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -569,7 +573,8 @@ div.ui-datepicker {
     width: 25%;
     height: 45vh;
     margin: 0;
-    background-image: url('http://placehold.it/500x500');
+    /*background-image: url('http://placehold.it/500x500');*/
+    background-color: #000;
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -758,5 +763,11 @@ div.ui-datepicker {
     display: block;
     margin: 0 10%;
     float: left;
+  }
+  #foodLink {
+    color: #fff;
+  }
+  #menus {
+    position: relative;
   }
 }
