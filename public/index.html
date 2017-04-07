@@ -37,15 +37,12 @@
     <body>
       <div id="overlay">
         <p id="close">Close X</p>
-        <div class="menu-modal" id="menuContainer">
-          <div id="menu-container" class="drinks-menu"></div>
-        </div>
-        <div class="contact-form">
+        <div id="contact-form">
+          <h1>Contact Us</h1>
           <form>
             <div class="alert alert-success successmail">Message sent!</div>
             <div class="alert alert-danger failmail">Bollocks, there's something wrong with the servers! Please try emailing declan@theharpandfiddle.com instead!</div>
             <div id="contact-inputs">
-              <h1>Contact Us</h1>
               <input required class="form-control" id="name" type="text" placeholder="full name"/>
               <input required class="form-control" id="email" type="email" placeholder="email"/>
               <input class="form-control" id="phone" type="tel" placeholder="phone number"/>
@@ -54,6 +51,52 @@
               <button class="btn btn-primary" id="contact-form-submit">Send</button>
             </div>
           </form>
+          <div id="contact-form-info">
+            <div class="bar"></div>
+            <p>declan@theharpandfiddle.com</p>
+            <br/>
+            <p><span>The Harp and Fiddle</span><span>110 Main Street</span><span>Park Ridge, IL 60068</span>
+            <div class="bar"></div>
+            <img class="icon" src="/img/icons/fb-icon.svg"/>
+            <img class="icon" src="/img/icons/twitter-icon.svg"/>
+            <img class="icon" src="/img/icons/insta-icon.svg"/>
+            <p style="margin-left: 10px; float: left;">@theharpandfiddle</p>
+          </div>
+        </div>
+
+        <div id="food">
+          <div class="selectContainer">
+            <p>Menu: </p>
+            <select id="foodMenuSelector">
+              <option value="/img/menus/brunch.pdf">Brunch</option>
+              <option value="/img/menus/lunch.pdf" selected>Lunch</option>
+              <option value="/img/menus/dinner.pdf">Dinner</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="drinks">
+          <div class="selectContainer">
+            <p>Menu: </p>
+            <select id="drinksMenuSelector">
+              <option value="/img/menus/draft.pdf">Draft Beer</option>
+              <option value="/img/menus/bottles.pdf" selected>Bottles and Cans</option>
+              <option value="/img/menus/wine.pdf">Wine</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="cocktails">
+          <div class="selectContainer">
+            <p>Menu: </p>
+            <select id="cocktailsMenuSelector">
+              <option value="/img/menus/specialties.pdf" selected>Specialty Cocktails</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="events-pu">
+          <div id="events-calendar"></div>
         </div>
       </div>
       <div class="offscreen-nav-wrapper">
@@ -77,34 +120,43 @@
       <section id="intro">
         <img src="/img/logos/home1.png"/>
         <h2>A modern bar with an <span class="animated tada">Irish Flair</span></h2>
+        <a href="#events">Take a Tour</a>
       </section>
 
       <div id="primary-container">
         <div class="top-nav">
           <ul>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#social">Social</a></li>
-            <li><a href="#reserve">Reserve</a></li>
-            <li><a href="#menus">Menus</a></li>
             <li id="contact-topnav" href="contact-form">Contact</li>
+            <li><a href="https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge" target="_blank">Reserve</a></li>
+            <li><a href="#social">Social</a></li>
+            <li><a href="#menus">Menus</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#events">Events</a></li>
           </ul>
         </div>
 
 
         <section id="events">
           <h1>What's Goin' On?</h1>
-          <div id="featured-evs"></div>
+          <div id="featured-evs">
+            <a id="events-more" style="cursor: pointer">
+              <div class='ev-box' data-aos='fade-left' data-aos-delay="1600" data-aos-anchor-placement='center-bottom'>
+                <h4>See more...</h4>
+                <p>More events at the Harp &amp Fiddle</p>
+              </div>
+            </a>
+          </div>
         </section>
 
         <section id="about">
           <h1>Where to find us</h1>
+          <div id="about-container">
           <div id="location-map">
             <div class="map-overlay"></div>
             <iframe data-aos="zoom-in-up" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2974.859471108635!2d-87.8322370853504!3d42.009562119007306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fc9b7151ccd95%3A0xf4d931d39d0b7486!2sThe+Harp+And+Fiddle!5e0!3m2!1sen!2sus!4v1489964007207" frameborder="0" style="border:0" allowfullscreen></iframe>
           </div>
           <div id="contact-info-body">
-            <p id="contact-info"><span id="address">The Harp and Fiddle<br/>110 Main St,<br/>Park Ridge, IL 60068</span><br/><a id="ph-num" href="tel:8477204466">(847) 720-4466</a><br/><span id="email">declan@theharpandfiddle.com</span></p>
+            <p id="contact-info"><span id="address">The Harp and Fiddle<br/>110 Main St,<br/>Park Ridge, IL 60068</span><br/><a id="ph-num" href="tel:8477204466">(847) 720-4466</a><br/><span id="email-info">declan@theharpandfiddle.com</span></p>
           </div>
           <div id="hours-of-operation">
             <table class="table">
@@ -168,6 +220,7 @@
               </div>
             </fieldset>
           </div>
+        </div>
         </section>
 
         <section id="reserve" class="mobile-item">
@@ -221,7 +274,7 @@
           <div class="menu-box" id="beer-menu" data-pt="drinks-menu" data-aos="flip-left" href="beer-menu"><h4>Beer</h4></div>
           <div class="menu-box" id="beer-menu" data-pt="drinks-menu" data-aos="flip-left" href="beer-menu"><h4>Wine</h4></div>
           <div class="menu-box" id="beer-menu" data-pt="drinks-menu" data-aos="flip-left" href="beer-menu"><h4>Specialties</h4></div> -->
-          <svg viewBox="0 0 100 60">
+          <svg viewBox="0 0 100 60" class="desktop-item">
             <defs>
             <pattern id="img1" patternUnits="userSpaceOnUse" width="100" height="100">
               <image xlink:href="/img/backgrounds/bar.jpg" x="0" y="-35" width="100" height="100" />
@@ -233,8 +286,8 @@
               <image xlink:href="/img/backgrounds/chat.JPG" x="0" y="0" width="100" height="100" />
             </pattern>
             <linearGradient id="overlayGradientDark">
-              <stop offset="5%" stop-color="rgba(0,0,0,0.3)" />
-              <stop offset="95%" stop-color="rgba(0,0,0,0.3)" />
+              <stop offset="5%" stop-color="rgba(0,0,0,0.4)" />
+              <stop offset="95%" stop-color="rgba(0,0,0,0.4)" />
             </linearGradient>
             <linearGradient id="overlayGradientLight">
               <stop offset="5%" stop-color="rgba(0,0,0,0.1)" />
@@ -242,14 +295,14 @@
             </linearGradient>
           </defs>
             <polygon data-aos="fade-left" points="0,0 100,0 100,15 0,22.5" style="fill: url(#img1)"/>
-            <polygon class="overlayGradient" data-aos="fade-left" points="0,0 100,0 100,15 0,22.5"/>
-            <text id="foodLink" data-aos="fade" data-aos-delay="1500" y="11.25" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Food</text>
+            <polygon id="foodLink" class="overlayGradient" data-aos="fade-left" points="0,0 100,0 100,15 0,22.5"/>
+            <text data-aos="fade" data-aos-delay="1500" y="11.25" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Food</text>
             <polygon data-aos="fade-right" points="0,22.5 100,15 100,45 0,37.5" style="fill: url(#img2)"/>
-            <polygon class="overlayGradient" data-aos="fade-right" points="0,22.5 100,15 100,45 0,37.5"/>
-            <text id="foodLink" data-aos="fade" data-aos-delay="1500" y="30" x="90" text-anchor="end" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Drinks</text>
+            <polygon id="drinksLink" class="overlayGradient" data-aos="fade-right" points="0,22.5 100,15 100,45 0,37.5"/>
+            <text data-aos="fade" data-aos-delay="1500" y="30" x="90" text-anchor="end" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Drinks</text>
             <polygon data-aos="fade-left" points="0,37.5 100,45 100,60 0,60" style="fill: url(#img3)"/>
-            <polygon class="overlayGradient" data-aos="fade-left" points="0,37.5 100,45 100,60 0,60"/>
-            <text id="foodLink" data-aos="fade" data-aos-delay="1500" y="48.75" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Cocktails</text>
+            <polygon id="cocktailsLink" class="overlayGradient" data-aos="fade-left" points="0,37.5 100,45 100,60 0,60"/>
+            <text data-aos="fade" data-aos-delay="1500" y="48.75" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Cocktails</text>
           </svg>
         </section>
 
@@ -278,206 +331,4 @@
 <script src="/lib/stickyjs/jquery.sticky.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 <script src='/lib/aos/dist/aos.js'></script>
-<script type="text/javascript">
-  AOS.init({
-    duration: 1000
-  });
-
-  $(".overlayGradient").mouseover(function() {
-    $(".overlayGradient").css("fill", "url(#overlayGradientDark)");
-    $(this).css("fill", "url(#overlayGradientLight)");
-  });
-
-  $(".top-nav").sticky({topSpacing: 0});
-
-  $(".map-overlay").click(function() {
-    $(this).addClass("hide");
-    $(this).removeClass("show");
-  });
-
-  $("#menu").click(function() {
-    $(this).toggleClass("open");
-    $('.offscreen-nav').toggleClass("onscreen");
-  });
-
-  $(".offscreen-nav a").click(function() {
-    $("#menu").toggleClass("open");
-    $('.offscreen-nav').toggleClass("onscreen");
-  });
-
-  $(document).scroll(function() {
-    if ($(".map-overlay").hasClass("hide")) {
-      $(".map-overlay").addClass("show");
-      $(".map-overlay").removeClass("hide");
-    }
-  });
-
-  $('#datepicker').datepicker({
-      onSelect: function(dateText, inst) {
-        $("input[name='dateval']").val(dateText);
-      },
-      minDate: 0
-  });
-  $("#time").selectmenu();
-  $("#party").selectmenu();
-
-  $("#reserve-btn").click(function() {
-    var d = new Date($("input[name='dateval']").val()).toISOString().substring(0,10);
-    var t = $("#time").val();
-    var p = $("#party").val();
-    window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
-  });
-
-  $.post('/backendServices/insta', function(data) {
-    var imgs = data.data.slice(0,5);
-    for (var i = 0; i < imgs.length; i++) {
-      var div = $("<div id='guess' data-aos='fade-left' data-aos-delay='"+i*100+"' class='soc-box'></div>");
-      var overlay = $("<div class='insta-overlay'></div>");
-      overlay.attr("href", imgs[i].link);
-      var likes = $("<p></p>").text(imgs[i].likes.count).addClass("insta-likes");
-      var comments = $("<p></p>").text(imgs[i].comments.count).addClass("insta-comments");
-      var captionText = (imgs[i].caption.text.length > 100) ? imgs[i].caption.text.substring(0,100) + "..." : imgs[i].caption.text;
-      var caption = $("<p></p>").text(captionText).addClass("insta-caption");
-      overlay.append(likes,comments,caption);
-      div.css("background-image", "url(" + imgs[i].images.standard_resolution.url+")");
-      div.append(overlay);
-      $("#ig-links").append(div);
-    }
-  });
-
-  $("#ig-links").on('mouseover', 'div', function() {
-    $(this).find(".insta-overlay").css("display", "block");
-  });
-  $("#ig-links").on('mouseout', 'div', function() {
-    $(this).find(".insta-overlay").css("display", "none");
-  });
-  $("#ig-links").on('click', 'div.insta-overlay', function() {
-    window.open($(this).attr("href"), "_blank");
-  });
-
-  $.get('/backendServices/featuredEvents', function(data) {
-    var evs = data.events;
-    for (var i = 0; i < evs.length && i < 7; i++) {
-      var date = moment(evs[i].start).format('MMMM Do, YYYY @ h:mm a');
-      var anchor = $('<a href='+evs[i].url+'></a>');
-      var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay="+i*200+" data-aos-anchor-placement='center-bottom'></div>");
-      if (evs[i].img) div.css("background-image", "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(" + evs[i].img + ")");
-      div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(date));
-      anchor.append(div);
-      if (i > 2) anchor.addClass("desktop-item");
-      $("#featured-evs").append(anchor);
-    }
-    var anchor = $('<a href="/events"></a>');
-    var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay="+i*200+" data-aos-anchor-placement='center-bottom'></div>");
-    div.append($("<h4></h4>").text("See more..."), $("<p></p>").text("More events st the Harp & Fiddle"));
-    anchor.append(div);
-    $("#featured-evs").append(anchor);
-  });
-
-  // $.get('/backendServices/getFBID', function(fbid) {
-  //   $.get('https://graph.facebook.com/parkridgebar/photos?type=uploaded&&access_token=' + fbid, function(data) {
-  //     var imgs = data.data.slice(0,3);
-  //     console.log(imgs);
-  //     for (var i = 0; i < imgs.length; i++) {
-  //       var div = $("<div data-aos='zoom-in' class='soc-box'></div>");
-  //       div.css("background-image", "url(" + imgs[i].source+")");
-  //       $("#fb-links").append(div);
-  //     }
-  //   })
-  // });
-
-  $(".menu-box").click(function() {
-    var pointer = $(this).attr("data-pt");
-    $("#close").attr("data-pt",pointer);
-    if ($("." + pointer)[0])
-      $("."+pointer).toggleClass("show");
-    else {
-      displayMenu($(this).attr("href"), pointer);
-    }
-    $("#overlay").toggleClass("show");
-    $("body").toggleClass("noscroll");
-  });
-
-  var displayMenu = function(src, pointer) {
-    PDFJS.getDocument(src).promise.then(function(pdf) {
-      renderNewPage(pdf, 1, pointer);
-    });
-  }
-
-  var renderNewPage = function(pdf, num, pointer) {
-    pdf.getPage(num).then(function(page) {
-      var scale = 1.5;
-      var viewport = page.getViewport(scale);
-
-      var canvas = document.createElement("canvas");
-      canvas.className += " menu-page show " + pointer;
-      var context = canvas.getContext('2d');
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-      var renderContext = {
-        canvasContext: context,
-        viewport: viewport
-      };
-      page.render(renderContext).then(function() {
-        $("#menuContainer").append(canvas);
-        num++;
-        if (num <= pdf.numPages) renderNewPage(pdf, num, pointer);
-      });
-    }, function(reason) {
-      console.log("Error: " + reason);
-    });
-  }
-
-  $("#close").click(function() {
-    $("#overlay").toggleClass("show");
-    $("."+$(this).attr("data-pt")).toggleClass("show");
-    $("body").toggleClass("noscroll");
-  });
-
-  $(function() {
-    $('a[href*="#"]:not([href="#"])').click(function() {
-      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-        var target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-        if (target.length) {
-          $('html, body').animate({
-            scrollTop: target.offset().top
-          }, 2000);
-          return false;
-        }
-      }
-    });
-  });
-
-  $("#contact").click(function() {
-    $("#overlay").toggleClass("show");
-    $(".contact-form").toggleClass("show");
-    $("body").toggleClass("noscroll");
-    $("#close").attr("data-pt", "contact-form");
-  });
-
-  $("#contact-topnav").click(function() {
-    $("#overlay").toggleClass("show");
-    $(".contact-form").toggleClass("show");
-    $("body").toggleClass("noscroll");
-    $("#close").attr("data-pt", "contact-form");
-  });
-
-  $("#contact-form-submit").click(function() {
-    var formData = {
-      name: $("#name").val(),
-      email: $("#email").val(),
-      phone: $("#phone").val(),
-      subject: $("#subject").val(),
-      message: $("#message").val()
-    }
-
-    $.post("/backendServices/sendMessage", formData, function(data) {
-      if (data.success) $("div.successmail").toggleClass("show");
-      else {
-        $("div.failmail").toggleClass("show");
-      }
-      $("#contact-inputs").toggleClass("hide");
-    });
-  });
-</script>
+<script type="text/javascript" src="/js/home.js"></script>

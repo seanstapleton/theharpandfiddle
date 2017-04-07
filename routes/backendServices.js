@@ -115,7 +115,7 @@ module.exports = function(db, passport) {
     });
 
     router.get('/featuredEvents', function(req, res) {
-      eventsSchema.find({featured: true},{},{sort: {"start": 1}}, function(err, events) {
+      eventsSchema.find({featured: true},{},{sort: {"start": -1}}, function(err, events) {
         if (err) {console.log(err); return res.send({success: false, err: err});}
         else return res.send({success: true, events: events});
       });
