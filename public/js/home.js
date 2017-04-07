@@ -164,6 +164,8 @@
       var scale = 1.5;
       var viewport = page.getViewport(scale);
 
+
+
       var canvas = document.createElement("canvas");
       canvas.className += " menu-page show " + pointer;
       var context = canvas.getContext('2d');
@@ -176,7 +178,7 @@
       page.render(renderContext).then(function() {
         $(location).append(canvas);
         num++;
-        if (num <= pdf.numPages) renderNewPage(pdf, num, pointer);
+        if (num <= pdf.numPages) renderNewPage(pdf, num, pointer, location);
       });
     }, function(reason) {
       console.log("Error: " + reason);
@@ -264,6 +266,10 @@
     $("#overlay").toggleClass("show");
     $("#drinks").toggleClass("show");
     $("body").toggleClass("noscroll");
+    if ($("#drinks").find("canvas").length == 0) {
+      var currentMenu = $("#drinksMenuSelector").find(":selected");
+      displayMenu(currentMenu.val(),currentMenu.text(),"#drinks");
+    }
   });
 
   $("#cocktailsLink").click(function() {
