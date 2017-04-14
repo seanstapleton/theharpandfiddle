@@ -170,11 +170,11 @@ a:hover {
   font-size: 1em;
   display: block;
   margin: auto;
-  width: 357px;
+  width: 297.5px;
   min-height: 50px;
 }
 .btn-container {
-  width: 357px;
+  width: 297.5px;
   margin: auto;
   background: rgb(237, 237, 237);
   padding: 20px;
@@ -191,7 +191,7 @@ a:hover {
   margin: auto;
 }
 div.ui-datepicker {
-  font-size: 1.5em;
+  font-size: 1.25em;
   margin: auto;
 }
 #reserve {
@@ -370,7 +370,7 @@ div.bar:not(:first-child) {
   border: 1px solid #fff;
   text-align: center;
   display: block;
-  width: 30%;
+  width: 35%;
   margin: 10vh auto;
 }
 #look {
@@ -444,7 +444,7 @@ div.bar:not(:first-child) {
   color: #ddd;
   font-family: Montserrat;
   font-weight: 300;
-  font-size: 2em;
+  font-size: 1.8em;
   width: auto;
 }
 #about td:nth-child(2n) {
@@ -474,7 +474,7 @@ div.bar:not(:first-child) {
   background-position: left center;
   background-repeat: no-repeat;
   padding-left: 70px;
-  font-size: 0.7em !important;
+  font-size: 0.6em !important;
 }
 #ph-num {
   background-image: url('/img/icons/phone.svg');
