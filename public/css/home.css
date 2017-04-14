@@ -40,11 +40,16 @@ td {
 .noscroll {
   overflow: hidden;
 }
-#events, #about, #social, #menus, #reserve {
+#events, #about, #menus, #reserve {
   width: 100%;
   min-height: 100vh;
   background: #000;
   padding: 50px 0;
+}
+#social {
+  width: 100%;
+  background: #000;
+  padding: 25px 0 0 0 ;
 }
 #events h1, #about h1, #social h1, #menus h1, #reserve h1 {
   text-transform: uppercase;
@@ -311,7 +316,27 @@ div.bar:not(:first-child) {
 #food, #events-pu, #contact-form, #drinks, #cocktails {
   display: none;
 }
-
+#food canvas, #drinks canvas, #cocktails canvas {
+  width: 95%;
+  margin: 0 auto;
+}
+.selectContainer {
+  width: 95%;
+  background-color: rgba(238,238,238,0.8);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin: 2.5%;
+}
+.selectContainer select {
+  background-color: white !important;
+}
+.glf-button {
+  margin-top: -25px !important;
+}
+#social h2 {
+  text-align: center;
+}
 /* ----------------------------------------------
 -------------- Intro Styles ---------------------
 ---------------------------------------------- */
@@ -392,7 +417,7 @@ div.bar:not(:first-child) {
   font-weight: bold;
   font-family: Montserrat;
   font-size: 2em;
-  padding-top: 40%;
+  padding: 40% 0;
 }
 .ev-box p {
   text-align: center;
@@ -467,15 +492,27 @@ div.bar:not(:first-child) {
   font-family: Montserrat;
   color: #ddd;
 }
-.soc-box, .menu-box {
+.menu-box {
   width: 45vh;
   height: 45vh;
   margin: 5vh auto;
-  background-color: #000;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+.soc-box {
+  width: 45vh;
+  height: 45vh;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#ig-links {
+  height: 45vh;
+}
+.slick-track {
+  height: 45vh;
 }
 .spinner {
   display: none;
@@ -929,5 +966,8 @@ div.bar:not(:first-child) {
   }
   #soc-links img {
     width: 100%;
+  }
+  #ig-links {
+    height: auto;
   }
 }

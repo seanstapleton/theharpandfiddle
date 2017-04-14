@@ -2,6 +2,8 @@
     duration: 1000
   });
 
+  var isMobile = !window.matchMedia('(min-width: 960px)').matches;
+
   $(".overlayGradient").mouseover(function() {
     $(".overlayGradient").css("fill", "url(#overlayGradientDark)");
     $(this).css("fill", "url(#overlayGradientLight)");
@@ -103,13 +105,19 @@
       div.append(overlay);
       $("#ig-links").append(div);
     }
+    if (isMobile) {
+      alert("y")
+      $("#ig-links").slick({
+        autoplay: false
+      });
+    }
   });
 
   $("#ig-links").on('mouseover', 'div', function() {
-    $(this).find(".insta-overlay").css("display", "block");
+    if (!isMobile) $(this).find(".insta-overlay").css("display", "block");
   });
   $("#ig-links").on('mouseout', 'div', function() {
-    $(this).find(".insta-overlay").css("display", "none");
+    if (!isMobile) $(this).find(".insta-overlay").css("display", "none");
   });
   $("#ig-links").on('click', 'div.insta-overlay', function() {
     window.open($(this).attr("href"), "_blank");
@@ -121,7 +129,7 @@
       var date = moment(evs[i].start).format('MMMM Do, YYYY @ h:mm a');
       var anchor = $('<a href='+evs[i].url+'></a>');
       l = i;
-      if (!window.matchMedia('(min-width: 960px)').matches) l = 7;
+      if (isMobile) l = 7;
       var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay="+(1400-l*200)+" data-aos-anchor-placement='center-bottom'></div>");
       if (evs[i].img) div.css("background-image", "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(" + evs[i].img + ")");
       div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(date));
@@ -129,7 +137,7 @@
       if (i > 2) anchor.addClass("desktop-item");
       $("#featured-evs").prepend(anchor);
     }
-    if (!window.matchMedia('(min-width: 960px)').matches) $("#seemore").attr("data-aos-delay", "0");
+    if (isMobile) $("#seemore").attr("data-aos-delay", "0");
   });
 
   // $.get('/backendServices/getFBID', function(fbid) {
@@ -239,17 +247,7 @@
     $("body").toggleClass("noscroll");
   });
 
-  $("#foodLink").click(function() {
-    $("#overlay").toggleClass("show");
-    $("#food").toggleClass("show");
-    $("body").toggleClass("noscroll");
-    $(".spinner").toggleClass("show");
-    if ($("#food").find("canvas").length == 0) {
-      var currentMenu = $("#foodMenuSelector").find(":selected");
-      displayMenu(currentMenu.val(),currentMenu.text(),"#food");
-    }
-  });
-  $("#foodLinkText").click(function() {
+  $(".foodLink").click(function() {
     $("#overlay").toggleClass("show");
     $("#food").toggleClass("show");
     $("body").toggleClass("noscroll");
@@ -296,7 +294,7 @@
     }
   });
 
-  $("#drinksLink").click(function() {
+  $(".drinksLink").click(function() {
     $("#overlay").toggleClass("show");
     $("#drinks").toggleClass("show");
     $("body").toggleClass("noscroll");
@@ -307,29 +305,7 @@
     }
   });
 
-  $("#drinksLinkText").click(function() {
-    $("#overlay").toggleClass("show");
-    $("#drinks").toggleClass("show");
-    $("body").toggleClass("noscroll");
-    $(".spinner").toggleClass("show");
-    if ($("#drinks").find("canvas").length == 0) {
-      var currentMenu = $("#drinksMenuSelector").find(":selected");
-      displayMenu(currentMenu.val(),currentMenu.text(),"#drinks");
-    }
-  });
-
-  $("#cocktailLink").click(function() {
-    $("#overlay").toggleClass("show");
-    $("#cocktails").toggleClass("show");
-    $("body").toggleClass("noscroll");
-    $(".spinner").toggleClass("show");
-    if ($("#cocktails").find("canvas").length == 0) {
-      var currentMenu = $("#cocktailsMenuSelector").find(":selected");
-      displayMenu(currentMenu.val(),currentMenu.text(),"#cocktails");
-    }
-  });
-
-  $("#cocktailLinkText").click(function() {
+  $(".cocktailLink").click(function() {
     $("#overlay").toggleClass("show");
     $("#cocktails").toggleClass("show");
     $("body").toggleClass("noscroll");

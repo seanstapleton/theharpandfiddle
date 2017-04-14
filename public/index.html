@@ -24,6 +24,8 @@
         <link rel="stylesheet" href="/lib/lightbox/css/lightbox.min.css"/>
         <link href='/lib/animate.css/animate.min.css' rel='stylesheet'>
         <link href='/lib/aos/dist/aos.css' rel='stylesheet'>
+        <link href="/lib/slick/slick.css" rel="stylesheet">
+        <link href="/lib/slick/slick-theme.css" rel="stylesheet">
         <script type='text/javascript' src='/lib/jquery/jquery.min.js'></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -273,12 +275,9 @@
 
         <section id="menus">
           <h1 class="mobile-item">Menu</h1>
-          <!-- <div class="menu-box" id="brunch-menu" data-pt="brunch-menu" data-aos="flip-left" href="/img/menus/brunch.pdf"><h4>Brunch</h4></div>
-          <div class="menu-box" id="lunch-menu" data-pt="lunch-menu" data-aos="flip-left" href="/img/menus/lunch.pdf"><h4>Lunch</h4></div>
-          <div class="menu-box" id="dinner-menu" data-pt="dinner-menu" data-aos="flip-left" href="/img/menus/dinner.pdf"><h4>Dinner</h4></div>
-          <div class="menu-box" id="beer-menu" data-pt="drinks-menu" data-aos="flip-left" href="beer-menu"><h4>Beer</h4></div>
-          <div class="menu-box" id="beer-menu" data-pt="drinks-menu" data-aos="flip-left" href="beer-menu"><h4>Wine</h4></div>
-          <div class="menu-box" id="beer-menu" data-pt="drinks-menu" data-aos="flip-left" href="beer-menu"><h4>Specialties</h4></div> -->
+          <div class="menu-box foodLink mobile-item" data-aos="flip-left"><h4 class="foodLink">Food</h4></div>
+          <div class="menu-box drinksLink mobile-item" data-aos="flip-left"><h4 class="drinksLink">Drinks</h4></div>
+          <div class="menu-box cocktailsLink mobile-item" data-aos="flip-left"><h4 class="cockatilsLink">Cocktails</h4></div>
           <svg viewBox="0 0 100 60" class="desktop-item">
             <defs>
             <pattern id="img1" patternUnits="userSpaceOnUse" width="100" height="100">
@@ -300,14 +299,14 @@
             </linearGradient>
           </defs>
             <polygon data-aos="fade-left" points="0,0 100,0 100,15 0,22.5" style="fill: url(#img1)"/>
-            <polygon id="foodLink" class="overlayGradient" data-aos="fade-left" points="0,0 100,0 100,15 0,22.5"/>
-            <text id="foodLinkText" data-aos="fade" data-aos-delay="1500" y="11.25" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Food</text>
+            <polygon class="overlayGradient foodLink" data-aos="fade-left" points="0,0 100,0 100,15 0,22.5"/>
+            <text class="foodLink" data-aos="fade" data-aos-delay="1500" y="11.25" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Food</text>
             <polygon data-aos="fade-right" points="0,22.5 100,15 100,45 0,37.5" style="fill: url(#img2)"/>
-            <polygon id="drinksLink" class="overlayGradient" data-aos="fade-right" points="0,22.5 100,15 100,45 0,37.5"/>
-            <text id="drinksLinkText" data-aos="fade" data-aos-delay="1500" y="30" x="90" text-anchor="end" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Drinks</text>
+            <polygon class="overlayGradient drinksLink" data-aos="fade-right" points="0,22.5 100,15 100,45 0,37.5"/>
+            <text class="drinksLink" data-aos="fade" data-aos-delay="1500" y="30" x="90" text-anchor="end" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Drinks</text>
             <polygon data-aos="fade-left" points="0,37.5 100,45 100,60 0,60" style="fill: url(#img3)"/>
-            <polygon id="cocktailsLink" class="overlayGradient" data-aos="fade-left" points="0,37.5 100,45 100,60 0,60"/>
-            <text id="cocktailsLinkText" data-aos="fade" data-aos-delay="1500" y="48.75" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Cocktails</text>
+            <polygon class="overlayGradient cocktailsLink" data-aos="fade-left" points="0,37.5 100,45 100,60 0,60"/>
+            <text class="coctailsLink" data-aos="fade" data-aos-delay="1500" y="48.75" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Cocktails</text>
           </svg>
         </section>
 
@@ -343,4 +342,5 @@
 <script src="/lib/stickyjs/jquery.sticky.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 <script src='/lib/aos/dist/aos.js'></script>
+<script type="text/javascript" src="/lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="/js/home.js"></script>
