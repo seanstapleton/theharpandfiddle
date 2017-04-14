@@ -54,6 +54,7 @@
           <div id="contact-form-info">
             <div class="bar"></div>
             <p>declan@theharpandfiddle.com</p>
+            <p><a style="color: #333; font-weight: 400" href="tel:8477204466">(847) 720-4466</a></p>
             <br/>
             <p><span>The Harp and Fiddle</span><span>110 Main Street</span><span>Park Ridge, IL 60068</span>
             <div class="bar"></div>
@@ -65,13 +66,15 @@
         </div>
 
         <div id="food">
-          <div class="selectContainer">
+          <div class="selectContainer" style="overflow: auto">
             <p>Menu: </p>
             <select id="foodMenuSelector">
               <option value="/img/menus/brunch.pdf">Brunch</option>
               <option value="/img/menus/lunch.pdf" selected>Lunch</option>
               <option value="/img/menus/dinner.pdf">Dinner</option>
             </select>
+            <span style="float: right; background-color: green; padding: 16px; margin-top: -40px;" id="btn-oo" class="glf-button" data-glf-cuid="54184d32-b385-4993-8d7b-56408285995c" data-glf-ruid="2b4ec7ef-f180-4125-913a-76bd1658ea24" data-glf-auto-open="false"> Order Online</span>
+            <script src="https://www.foodbooking.com/widget/js/ewm2.js" defer async ></script>
           </div>
         </div>
 
@@ -97,6 +100,8 @@
         <div id="events-pu">
           <div id="events-calendar"></div>
         </div>
+
+        <img src="/img/icons/spin.svg" class="spinner"/>
       </div>
       <div class="offscreen-nav-wrapper">
         <div class="offscreen-nav">
@@ -119,7 +124,7 @@
       <section id="intro">
         <img src="/img/logos/home1.png"/>
         <h2>A modern bar with an <span class="animated tada">Irish Flair</span></h2>
-        <a href="#events">Take a Tour</a>
+        <a href="#events">Take a Look</a>
       </section>
 
       <div id="primary-container">
@@ -136,10 +141,11 @@
 
 
         <section id="events">
-          <h1>What's Goin' On?</h1>
+          <h1>Upcoming Events</h1>
           <div id="featured-evs">
             <a id="events-more" style="cursor: pointer">
-              <div class='ev-box' data-aos='fade-left' data-aos-delay="1600" data-aos-anchor-placement='center-bottom'>
+              <div class='ev-box' id="see
+              more" data-aos='fade-left' data-aos-delay="1600" data-aos-anchor-placement='center-bottom'>
                 <h4>See more...</h4>
                 <p>More events at the Harp &amp Fiddle</p>
               </div>
@@ -180,9 +186,9 @@
 
           <div id="reservation" class="desktop-item">
             <input style="display: none" name="dateval" id="dateval"/>
-            <div id="datepicker"></div>
+            <div id="datepicker" class="datepicker"></div>
             <fieldset>
-              <select name="time" id="time">
+              <select name="time" class="time">
                 <option value="1100" selected>11am</option>
                 <option value="1130">11:30am</option>
                 <option value="1200">12:00pm</option>
@@ -206,7 +212,7 @@
                 <option value="2100">9:00pm</option>
                 <option value="2130">9:30pm</option>
               </select>
-              <select name="party" id="party">
+              <select name="party" class="party">
                 <option value="1">1 person</option>
                 <option value="2" selected>2 people</option>
                 <option value="3">3 people</option>
@@ -214,8 +220,8 @@
                 <option value="5">5 people</option>
                 <option value="6">6 people</option>
               </select>
-              <div id="btn-container">
-                <button id="reserve-btn">Reserve Now</button>
+              <div class="btn-container">
+                <button class="reserve-btn">Reserve Now</button>
               </div>
             </fieldset>
           </div>
@@ -225,9 +231,9 @@
         <section id="reserve" class="mobile-item">
           <h1>Reserve a Table</h1>
           <input style="display: none" name="dateval" id="dateval"/>
-          <div id="datepicker"></div>
+          <div id="datepicker" class="datepicker"></div>
           <fieldset>
-            <select name="time" id="time">
+            <select id="time" class="time">
               <option value="1100" selected>11am</option>
               <option value="1130">11:30am</option>
               <option value="1200">12:00pm</option>
@@ -251,7 +257,7 @@
               <option value="2100">9:00pm</option>
               <option value="2130">9:30pm</option>
             </select>
-            <select name="party" id="party">
+            <select id="party" class="party">
               <option value="1">1 person</option>
               <option value="2" selected>2 people</option>
               <option value="3">3 people</option>
@@ -259,8 +265,8 @@
               <option value="5">5 people</option>
               <option value="6">6 people</option>
             </select>
-            <div id="btn-container">
-              <button id="reserve-btn">Reserve Now</button>
+            <div id="btn-container" class="btn-container">
+              <button class="reserve-btn">Reserve Now</button>
             </div>
           </fieldset>
         </section>
@@ -295,13 +301,13 @@
           </defs>
             <polygon data-aos="fade-left" points="0,0 100,0 100,15 0,22.5" style="fill: url(#img1)"/>
             <polygon id="foodLink" class="overlayGradient" data-aos="fade-left" points="0,0 100,0 100,15 0,22.5"/>
-            <text data-aos="fade" data-aos-delay="1500" y="11.25" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Food</text>
+            <text id="foodLinkText" data-aos="fade" data-aos-delay="1500" y="11.25" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Food</text>
             <polygon data-aos="fade-right" points="0,22.5 100,15 100,45 0,37.5" style="fill: url(#img2)"/>
             <polygon id="drinksLink" class="overlayGradient" data-aos="fade-right" points="0,22.5 100,15 100,45 0,37.5"/>
-            <text data-aos="fade" data-aos-delay="1500" y="30" x="90" text-anchor="end" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Drinks</text>
+            <text id="drinksLinkText" data-aos="fade" data-aos-delay="1500" y="30" x="90" text-anchor="end" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Drinks</text>
             <polygon data-aos="fade-left" points="0,37.5 100,45 100,60 0,60" style="fill: url(#img3)"/>
             <polygon id="cocktailsLink" class="overlayGradient" data-aos="fade-left" points="0,37.5 100,45 100,60 0,60"/>
-            <text data-aos="fade" data-aos-delay="1500" y="48.75" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Cocktails</text>
+            <text id="cocktailsLinkText" data-aos="fade" data-aos-delay="1500" y="48.75" x="10" text-anchor="start" alignment-baseline="middle" font-family="Great Vibes" font-weight="400" fill="#fff" font-size="0.4em">Cocktails</text>
           </svg>
         </section>
 
@@ -311,6 +317,13 @@
         </section>
 
         <footer>
+          <div class="tbl">
+            <ul id="soc-links">
+              <a href="http://facebook.com/parkridgebar" target="_blank"><li><img src="/img/icons/fb-icon-white.svg"></li></a>
+              <a href="http://instagram.com/theharpandfiddle" target="_blank"><li><img src="/img/icons/insta-icon-white.svg"></li></a>
+              <a href="http://twitter.com/harpandfiddle_" target="_blank"><li><img src="/img/icons/twitter-icon-white.svg"></li></a>
+            </ul>
+          </div>
           <div class="tbl">
             <ul>
               <li><a href="#events">Events</a></li>

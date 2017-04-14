@@ -14,7 +14,7 @@ td {
   width: 85%;
   margin-left: 7.5%;
   height: 40vh;
-  z-index: 9999999999;
+  z-index: 999;
 }
 #overlay {
   width: 100%;
@@ -23,7 +23,7 @@ td {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99999999999;
+  z-index: 9999;
   display: none;
   background: rgba(0,0,0,0.8);
 }
@@ -43,8 +43,8 @@ td {
 #events, #about, #social, #menus, #reserve {
   width: 100%;
   min-height: 100vh;
-  background: #fff;
-  padding: 100px 0;
+  background: #000;
+  padding: 50px 0;
 }
 #events h1, #about h1, #social h1, #menus h1, #reserve h1 {
   text-transform: uppercase;
@@ -52,7 +52,7 @@ td {
   text-align: center;
   font-family: Montserrat;
   margin-bottom: 2vh;
-  color: #333;
+  color: #fff;
   font-weight: normal;
 }
 footer {
@@ -75,28 +75,72 @@ footer p {
   color: #ccc;
   margin-top: 10px;
 }
-.soc-box, .menu-box {
-  width: 45vh;
-  height: 45vh;
-  margin: 5vh auto;
-  background-color: #000;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
 .show {
   display: block;
 }
 .hide {
   display: none;
 }
-#menuContainer canvas {
-  width: 100%;
+.icon {
+  width: 10%;
+  float: left;
+  margin-left: 10px;
+}
+.tbl {
+  display: table;
+  margin: 0 auto;
+}
+.desktop-item, .desktop-item-inline {
+  display: none;
+}
+.mobile-item {
+  display: block;
+}
+.mobile-item-inline {
+  display: inline-block;
+}
+a:hover {
+  color: green;
 }
 
 /* ----------------------------------------------
--------------- Reservation Styles -------------------
+-------------- Navigation Styles ----------------
+---------------------------------------------- */
+.offscreen-nav-wrapper {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.offscreen-nav {
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  -webkit-transition: right 2s; /* Safari */
+  transition: right 2s;
+}
+.offscreen-nav {
+  background: #222;
+}
+.offscreen-nav li {
+  list-style-type: none;
+  padding: 4vh;
+  background: #333;
+  color: #ccc;
+  font-size: 2em;
+}
+.onscreen {
+  right: 0;
+}
+.top-nav {
+  display: none;
+}
+
+/* ----------------------------------------------
+-------------- Reservation Styles ---------------
 ---------------------------------------------- */
 #yelp-reservations-widget {
   width: 90%;
@@ -118,14 +162,15 @@ footer p {
   display: block;
   margin: auto;
   width: 357px;
+  min-height: 50px;
 }
-#btn-container {
+.btn-container {
   width: 357px;
   margin: auto;
   background: rgb(237, 237, 237);
   padding: 20px;
 }
-#reserve-btn {
+.reserve-btn {
   padding: 20px;
   border-radius: 15px;
   border: none;
@@ -151,41 +196,8 @@ div.ui-datepicker {
 }
 
 /* ----------------------------------------------
----------------- Menu Styles --------------------
+------------ Contact Form Styles ----------------
 ---------------------------------------------- */
-#menu-container {
-  padding: 20px;
-  background: #fff;
-  width: 90%;
-  margin: auto;
-  margin-bottom: 3vh;
-  display: none;
-  border-radius: 10px;
-}
-.menu-list-item a {
-  font-size: 2em !important;
-}
-#beer-menu {
-  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/img/backgrounds/guiness.JPG');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-.menu-modal {
-  width: 90%;
-  margin: 3vh auto;
-  padding: 20px;
-  background: #fff;
-}
-.menu-modal img {
-  width: 100%;
-}
-.menu-page {
-  display: none;
-}
-
-
-
 #contact-form {
   background: rgba(238,238,238,1);
   width: 90%;
@@ -252,10 +264,52 @@ div.bar:not(:first-child) {
     color: #333;
     margin: 10px auto;
 }
-.icon {
-  width: 10%;
-  float: left;
-  margin-left: 10px;
+
+/* ----------------------------------------------
+---------------- Menu Styles --------------------
+---------------------------------------------- */
+#menu-container {
+  padding: 20px;
+  background: #fff;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 3vh;
+  display: none;
+  border-radius: 10px;
+}
+.menu-list-item a {
+  font-size: 2em !important;
+}
+#beer-menu {
+  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/img/backgrounds/guiness.JPG');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.menu-modal {
+  width: 90%;
+  margin: 3vh auto;
+  padding: 20px;
+  background: #fff;
+}
+.menu-modal img {
+  width: 100%;
+}
+.menu-page {
+  display: none;
+}
+.overlayGradient {
+  fill: url(#overlayGradientDark);
+  cursor: pointer;
+}
+#menuContainer canvas {
+  width: 100%;
+}
+#events-pu {
+  display: none;
+}
+#food, #events-pu, #contact-form, #drinks, #cocktails {
+  display: none;
 }
 
 /* ----------------------------------------------
@@ -289,10 +343,16 @@ div.bar:not(:first-child) {
   display: block;
   margin-top: 10px;
 }
-.overlayGradient {
-  fill: url(#overlayGradientDark);
-  cursor: pointer;
+#intro a {
+  color: #fff;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  text-align: center;
+  display: block;
+  width: 30%;
+  margin: 10vh auto;
 }
+
 
 /* ----------------------------------------------
 --------- Primary Content Styles ----------------
@@ -318,7 +378,7 @@ div.bar:not(:first-child) {
 .ev-box {
   width: 45vh;
   height: 45vh;
-  margin: 50px auto;
+  margin: 20px auto;
   /*background-image: url('http://placehold.it/500x500');*/
   background-color: #000;
   background-position: center center;
@@ -407,37 +467,27 @@ div.bar:not(:first-child) {
   font-family: Montserrat;
   color: #ddd;
 }
-
-.offscreen-nav-wrapper {
-  position: fixed;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+.soc-box, .menu-box {
+  width: 45vh;
+  height: 45vh;
+  margin: 5vh auto;
+  background-color: #000;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
-.offscreen-nav {
-  position: absolute;
-  top: 0;
-  right: -100%;
-  width: 100%;
-  -webkit-transition: right 2s; /* Safari */
-  transition: right 2s;
+.spinner {
+  display: none;
+  margin: 100px auto;
 }
-.offscreen-nav {
-  background: #222;
+#email-info {
+  cursor: pointer;
 }
-.offscreen-nav li {
-  list-style-type: none;
-  padding: 4vh;
-  background: #333;
-  color: #ccc;
-  font-size: 2em;
+.insta-overlay {
+  display: none;
+  cursor: pointer;
 }
-.onscreen {
-  right: 0;
-}
-
 
 /* ----------------------------------------------
 ---- Hamburger Menu animation by Jesse Couch ----
@@ -533,45 +583,39 @@ div.bar:not(:first-child) {
   top: 20px;
 }
 
-.top-nav {
-  display: none;
-}
-.desktop-item, .desktop-item-inline {
-  display: none;
-}
-.mobile-item {
-  display: block;
-}
-.mobile-item-inline {
-  display: inline-block;
-}
-.insta-overlay {
-  display: none;
-  cursor: pointer;
-}
-.tbl {
-  display: table;
-  margin: 0 auto;
-}
-#intro a {
-  color: #fff;
-  padding: 10px 20px;
-  border: 1px solid #fff;
-  text-align: center;
-  display: block;
-  width: 10%;
-  margin: 10vh auto;
-}
-#events-pu {
-  display: none;
-}
-#food, #events-pu, #contact-form, #drinks, #cocktails {
-  display: none;
-}
 /* ----------------------------------------------
 --------------- Desktop Styles ------------------
 ---------------------------------------------- */
 @media (min-width: 968px) {
+
+  a {
+    text-decoration: none !important;
+  }
+  .desktop-item {
+    display: block;
+  }
+  .desktop-item-inline {
+    display: inline-block;
+  }
+  footer {
+    background-color: #000;
+  }
+  .mobile-item, .mobile-item-inline {
+    display: none !important;
+  }
+  .primary-container {
+    background-color: #000;
+  }
+  svg {
+    width: 100%;
+  }
+  section {
+    padding: 0 !important;
+  }
+
+  /* ----------------------------------------------
+  ---------------- Intro Styles -------------------
+  ---------------------------------------------- */
   #intro img {
     width: 50%;
     margin-left: 25%;
@@ -579,6 +623,13 @@ div.bar:not(:first-child) {
   #intro h2 {
     font-size: 2em;
   }
+  #intro a {
+    width: 10%;
+  }
+
+  /* ----------------------------------------------
+  ----------- Featured Events Styles --------------
+  ---------------------------------------------- */
   #events h1 {
     text-align: left;
     font-size: 2em;
@@ -594,6 +645,39 @@ div.bar:not(:first-child) {
   #featured-evs div p {
     font-size: 1em;
   }
+  .ev-box {
+    width: 25%;
+    height: 45vh;
+    margin: 0;
+    /*background-image: url('http://placehold.it/500x500');*/
+    background-color: #000;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+  .ev-box h4, .menu-box h4 {
+    margin-top: 10vh;
+  }
+  #events {
+    overflow: auto;
+    padding: 0;
+    background-color: #000;
+  }
+  #events h1 {
+    color: #fff;
+  }
+  #featured-evs {
+    overflow: hidden;
+  }
+  #events-calendar {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  /* ----------------------------------------------
+  ---------------- About Styles -------------------
+  ---------------------------------------------- */
   #about h1 {
     text-align: left;
     font-size: 3em;
@@ -613,6 +697,117 @@ div.bar:not(:first-child) {
     width: 90%;
     margin-left: 10%;
   }
+  #about p {
+    font-size: 2em;
+  }
+  #about {
+    padding-bottom: 40px !important;
+  }
+  #about {
+    overflow: auto;
+    padding: 20px 0;
+  }
+  #location-map, #hours-of-operation, #contact-info-body, #reservation {
+    width: 50%;
+    height: 50vh;
+    overflow: hidden;
+    float: left;
+  }
+  #reservation {
+    padding: 40px;
+  }
+  #datepicker {
+    width: 266px;
+    height: 100%;
+    float: left;
+    margin: 0;
+  }
+  #reservation fieldset {
+    float: left;
+    margin: 0;
+    height: 304.98px;
+    background-color: rgb(237, 237, 237);
+    padding-top: 30px;
+  }
+  .time-button, .party-button {
+    font-size: 1em;
+    display: block;
+    margin: 0;
+    width: 200px;
+  }
+  .btn-container {
+    width: 200px;
+    margin: 0;
+    background-color: rgb(237, 237, 237);
+  }
+  .reserve-btn {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1em;
+    width: 95%;
+    display: block;
+    margin: auto;
+  }
+  div.ui-datepicker {
+    margin: auto;
+    font-size: 0.5em;
+  }
+  div.ui-datepicker-inline {
+    width: 38em !important;
+  }
+  .ui-datepicker-header {
+    font-size: 2em;
+  }
+  div.menu-box {
+    width: 33.3%;
+    float: left;
+    margin: 0;
+  }
+  #about-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ----------------------------------------------
+  ----------------- Nav Styles --------------------
+  ---------------------------------------------- */
+  .offscreen-nav-wrapper {
+    display: none;
+  }
+  .top-nav {
+    display: block;
+    background-color: #000;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+  }
+  .sticky-wrapper.is-sticky .top-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 99999 !important;
+  }
+  .top-nav ul {
+    margin: 0;
+  }
+  .top-nav li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 20px 40px;
+    float: right;
+  }
+  #contact-topnav {
+    cursor: pointer;
+  }
+  #contact-topnav:hover {
+    color: rgba(35,82,124,1);
+  }
+
+  /* ----------------------------------------------
+  ----------------- Menu Styles -------------------
+  ---------------------------------------------- */
   .menu-page {
     margin: 0 auto;
   }
@@ -637,56 +832,32 @@ div.bar:not(:first-child) {
     min-height: 40px;
     height: 40px;
   }
-  #about p {
-    font-size: 2em;
-  }
-  .offscreen-nav-wrapper {
-    display: none;
-  }
-  .top-nav {
-    display: block;
-    background-color: #000;
-    overflow: auto;
-    margin: 0;
-    padding: 0;
-  }
-  .sticky-wrapper.is-sticky .top-nav {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 9999999999999 !important;
-  }
-  .top-nav ul {
-    margin: 0;
-  }
-  .top-nav a {
-  }
-  .top-nav li {
-    list-style-type: none;
-    display: inline-block;
-    padding: 20px 40px;
-    float: right;
-  }
   #menu {
     display: none;
   }
-  .ev-box {
-    width: 25%;
-    height: 45vh;
-    margin: 0;
-    /*background-image: url('http://placehold.it/500x500');*/
+  #menus {
+    overflow: hidden;
+  }
+  #menus {
     background-color: #000;
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    overflow: auto;
+  }
+  #menus h1 {
+    color: #fff;
+  }
+  #foodLink {
+    color: #fff;
+  }
+  #foodLinkText, #drinksLinkText, #cocktailsLinkText {
+    cursor: pointer;
+  }
+  #menus {
     position: relative;
   }
-  .ev-box h4, .menu-box h4 {
-    margin-top: 10vh;
-  }
-  #about {
-    padding-bottom: 40px !important;
-  }
+
+  /* ----------------------------------------------
+  ---------------- Social Styles ------------------
+  ---------------------------------------------- */
   #social {
     padding: 20px;
     min-height: 0vh;
@@ -699,106 +870,6 @@ div.bar:not(:first-child) {
     width: 100%;
     display: block;
     text-align: center;
-  }
-  #contact-topnav {
-    cursor: pointer;
-  }
-  #contact-topnav:hover {
-    color: rgba(35,82,124,1);
-  }
-  a {
-    text-decoration: none !important;
-  }
-  #events {
-    overflow: auto;
-    padding: 0;
-    background-color: #000;
-  }
-  #events h1 {
-    color: #fff;
-  }
-  #about {
-    overflow: auto;
-    padding: 20px 0;
-  }
-  #location-map, #hours-of-operation, #contact-info-body, #reservation {
-    width: 50%;
-    height: 50vh;
-    overflow: hidden;
-    float: left;
-  }
-  #featured-evs {
-    overflow: hidden;
-  }
-  #menus {
-    overflow: hidden;
-  }
-  .desktop-item {
-    display: block;
-  }
-  .desktop-item-inline {
-    display: inline-block;
-  }
-  #reservation {
-    padding: 40px;
-  }
-  #datepicker {
-    width: 266px;
-    height: 100%;
-    float: left;
-    margin: 0;
-  }
-  #reservation fieldset {
-    float: left;
-    margin: 0;
-    height: 304.98px;
-    background-color: rgb(237, 237, 237);
-    padding-top: 30px;
-  }
-  #time-button, #party-button {
-    font-size: 1em;
-    display: block;
-    margin: 0;
-    width: 200px;
-  }
-  #btn-container {
-    width: 200px;
-    margin: 0;
-    background-color: rgb(237, 237, 237);
-  }
-  #reserve-btn {
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    font-size: 1em;
-    width: 95%;
-    display: block;
-    margin: auto;
-  }
-  div.ui-datepicker {
-    margin: auto;
-    font-size: 0.5em;
-  }
-  div.ui-datepicker-inline {
-    width: 38em !important;
-  }
-  .ui-datepicker-header {
-    font-size: 2em;
-  }
-  div.menu-box {
-    width: 33.3%;
-    float: left;
-    margin: 0;
-  }
-  #menus {
-    background-color: #000;
-    overflow: auto;
-  }
-  #menus h1 {
-    color: #fff;
-  }
-  footer {
-    background-color: #000;
   }
   .soc-box {
     float: left;
@@ -817,18 +888,6 @@ div.bar:not(:first-child) {
   }
   #social {
     background-color: #000;
-  }
-  .mobile-item, .mobile-item-inline {
-    display: none !important;
-  }
-  .primary-container {
-    background-color: #000;
-  }
-  svg {
-    width: 100%;
-  }
-  section {
-    padding: 0 !important;
   }
   .insta-overlay {
     position: absolute;
@@ -861,19 +920,14 @@ div.bar:not(:first-child) {
     margin: 0 10%;
     float: left;
   }
-  #foodLink {
-    color: #fff;
-  }
-  #menus {
-    position: relative;
-  }
-  #about-container {
-    width: 90%;
-    max-width: 1100px;
+  ul#soc-links {
+    width: 50%;
     margin: 0 auto;
   }
-  #events-calendar {
-    width: 60%;
-    margin: 0 auto;
+  #soc-links li {
+    width: 31%;
+  }
+  #soc-links img {
+    width: 100%;
   }
 }

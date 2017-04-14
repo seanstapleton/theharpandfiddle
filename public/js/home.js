@@ -72,7 +72,7 @@
     }
   });
 
-  $('#datepicker').datepicker({
+  $('.datepicker').datepicker({
       onSelect: function(dateText, inst) {
         $("input[name='dateval']").val(dateText);
       },
@@ -120,13 +120,16 @@
     for (var i = 0; i < evs.length && i < 7; i++) {
       var date = moment(evs[i].start).format('MMMM Do, YYYY @ h:mm a');
       var anchor = $('<a href='+evs[i].url+'></a>');
-      var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay="+(1400-i*200)+" data-aos-anchor-placement='center-bottom'></div>");
+      l = i;
+      if (!window.matchMedia('(min-width: 960px)').matches) l = 7;
+      var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay="+(1400-l*200)+" data-aos-anchor-placement='center-bottom'></div>");
       if (evs[i].img) div.css("background-image", "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(" + evs[i].img + ")");
       div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(date));
       anchor.append(div);
       if (i > 2) anchor.addClass("desktop-item");
       $("#featured-evs").prepend(anchor);
     }
+    if (!window.matchMedia('(min-width: 960px)').matches) $("#seemore").attr("data-aos-delay", "0");
   });
 
   // $.get('/backendServices/getFBID', function(fbid) {
@@ -179,6 +182,7 @@
         $(location).append(canvas);
         num++;
         if (num <= pdf.numPages) renderNewPage(pdf, num, pointer, location);
+        $(".spinner").removeClass("show");
       });
     }, function(reason) {
       console.log("Error: " + reason);
@@ -193,6 +197,13 @@
       var p = $(panels[i]);
       if (p.hasClass("show")) p.toggleClass("show");
     }
+    $(".spinner").removeClass("show");
+  });
+
+  $("#btn-oo").click(function() {
+    $("#overlay").toggleClass("show");
+    $("body").toggleClass("noscroll");
+    $("#food").toggleClass("show");
   });
 
   $(function() {
@@ -222,10 +233,27 @@
     $("body").toggleClass("noscroll");
   });
 
+  $("#email-info").click(function() {
+    $("#overlay").toggleClass("show");
+    $("#contact-form").toggleClass("show");
+    $("body").toggleClass("noscroll");
+  });
+
   $("#foodLink").click(function() {
     $("#overlay").toggleClass("show");
     $("#food").toggleClass("show");
     $("body").toggleClass("noscroll");
+    $(".spinner").toggleClass("show");
+    if ($("#food").find("canvas").length == 0) {
+      var currentMenu = $("#foodMenuSelector").find(":selected");
+      displayMenu(currentMenu.val(),currentMenu.text(),"#food");
+    }
+  });
+  $("#foodLinkText").click(function() {
+    $("#overlay").toggleClass("show");
+    $("#food").toggleClass("show");
+    $("body").toggleClass("noscroll");
+    $(".spinner").toggleClass("show");
     if ($("#food").find("canvas").length == 0) {
       var currentMenu = $("#foodMenuSelector").find(":selected");
       displayMenu(currentMenu.val(),currentMenu.text(),"#food");
@@ -235,6 +263,8 @@
   $("#foodMenuSelector").change(function() {
     var currentMenu = $(this).find(":selected");
 
+    $(".spinner").toggleClass("show");
+
     $("#food").find("canvas").each(function() {
       if (!$(this).hasClass(currentMenu.text()) && $(this).hasClass("show")) $(this).toggleClass("show");
     });
@@ -242,6 +272,7 @@
     var menuObj = $("#food").find("." + currentMenu.text());
     if (menuObj.length != 0 && !menuObj.hasClass("show")) {
       menuObj.toggleClass("show");
+      $(".spinner").removeClass("show");
     } else if (menuObj.length == 0){
       displayMenu(currentMenu.val(),currentMenu.text(),"#food");
     }
@@ -250,6 +281,8 @@
   $("#drinksMenuSelector").change(function() {
     var currentMenu = $(this).find(":selected");
 
+    $(".spinner").toggleClass("show");
+
     $("#drinks").find("canvas").each(function() {
       if (!$(this).hasClass(currentMenu.text()) && $(this).hasClass("show")) $(this).toggleClass("show");
     });
@@ -257,6 +290,7 @@
     var menuObj = $("#drinks").find("." + currentMenu.text());
     if (menuObj.length != 0 && !menuObj.hasClass("show")) {
       menuObj.toggleClass("show");
+      $(".spinner").removeClass("show");
     } else if (menuObj.length == 0){
       displayMenu(currentMenu.val(),currentMenu.text(),"#drinks");
     }
@@ -266,16 +300,44 @@
     $("#overlay").toggleClass("show");
     $("#drinks").toggleClass("show");
     $("body").toggleClass("noscroll");
+    $(".spinner").toggleClass("show");
     if ($("#drinks").find("canvas").length == 0) {
       var currentMenu = $("#drinksMenuSelector").find(":selected");
       displayMenu(currentMenu.val(),currentMenu.text(),"#drinks");
     }
   });
 
-  $("#cocktailsLink").click(function() {
+  $("#drinksLinkText").click(function() {
+    $("#overlay").toggleClass("show");
+    $("#drinks").toggleClass("show");
+    $("body").toggleClass("noscroll");
+    $(".spinner").toggleClass("show");
+    if ($("#drinks").find("canvas").length == 0) {
+      var currentMenu = $("#drinksMenuSelector").find(":selected");
+      displayMenu(currentMenu.val(),currentMenu.text(),"#drinks");
+    }
+  });
+
+  $("#cocktailLink").click(function() {
     $("#overlay").toggleClass("show");
     $("#cocktails").toggleClass("show");
     $("body").toggleClass("noscroll");
+    $(".spinner").toggleClass("show");
+    if ($("#cocktails").find("canvas").length == 0) {
+      var currentMenu = $("#cocktailsMenuSelector").find(":selected");
+      displayMenu(currentMenu.val(),currentMenu.text(),"#cocktails");
+    }
+  });
+
+  $("#cocktailLinkText").click(function() {
+    $("#overlay").toggleClass("show");
+    $("#cocktails").toggleClass("show");
+    $("body").toggleClass("noscroll");
+    $(".spinner").toggleClass("show");
+    if ($("#cocktails").find("canvas").length == 0) {
+      var currentMenu = $("#cocktailsMenuSelector").find(":selected");
+      displayMenu(currentMenu.val(),currentMenu.text(),"#cocktails");
+    }
   });
 
   $("#contact-form-submit").click(function() {
