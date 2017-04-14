@@ -159,7 +159,7 @@ a:hover {
 }
 .ui-menu-item {
   color: #333 !important;
-  font-size: 0.5em;
+  font-size: 1.25em;
 }
 .ui-selectmenu-menu .ui-menu.customicons .ui-menu-item .ui-icon {
       height: 24px;
@@ -528,6 +528,12 @@ div.bar:not(:first-child) {
 .insta-overlay {
   display: none;
   cursor: pointer;
+}
+.ui-state-hover {
+  background-color: #ccc !important;
+}
+.ui-state-highlight {
+  background-color: #fffa90 !important;
 }
 
 /* ----------------------------------------------
