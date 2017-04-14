@@ -60,6 +60,7 @@
   $("#menu").click(function() {
     $(this).toggleClass("open");
     $('.offscreen-nav').toggleClass("onscreen");
+    $('.offscreen-nav-wrapper').toggleClass("onscreen-wrapper");
   });
 
   $(".offscreen-nav a").click(function() {
@@ -106,9 +107,11 @@
       $("#ig-links").append(div);
     }
     if (isMobile) {
-      alert("y")
       $("#ig-links").slick({
-        autoplay: false
+        autoplay: true,
+        arrows: true,
+        fade: true,
+        speed: 1500
       });
     }
   });
@@ -137,7 +140,7 @@
       if (i > 2) anchor.addClass("desktop-item");
       $("#featured-evs").prepend(anchor);
     }
-    if (isMobile) $("#seemore").attr("data-aos-delay", "0");
+    if (isMobile) $("#events-more div").attr("data-aos-delay", "0");
   });
 
   // $.get('/backendServices/getFBID', function(fbid) {
