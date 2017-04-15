@@ -154,7 +154,7 @@ a:hover {
 #yelp-reservations-widget {
   width: 90%;
 }
-#datepicker {
+.datepicker {
   margin-top: 10vh;
 }
 .ui-menu-item {
@@ -179,7 +179,7 @@ a:hover {
   background: rgb(237, 237, 237);
   padding: 20px;
 }
-.reserve-btn {
+#reserve-btn {
   padding: 20px;
   border-radius: 15px;
   border: none;
@@ -505,6 +505,12 @@ div.bar:not(:first-child) {
   background-size: cover;
   position: relative;
 }
+#drinksCard {
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/guiness.JPG");
+}
+#cocktailsCard {
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/beautifulday.jpg");
+}
 .soc-box {
   width: 45vh;
   height: 45vh;
@@ -775,7 +781,7 @@ ul#soc-links {
   #reservation {
     padding: 40px;
   }
-  #datepicker {
+  .datepicker {
     width: 266px;
     height: 100%;
     float: left;
@@ -788,7 +794,7 @@ ul#soc-links {
     background-color: rgb(237, 237, 237);
     padding-top: 30px;
   }
-  .time-button, .party-button {
+  #time-desktop-button, #party-desktop-button {
     font-size: 1em;
     display: block;
     margin: 0;
@@ -799,7 +805,7 @@ ul#soc-links {
     margin: 0;
     background-color: rgb(237, 237, 237);
   }
-  .reserve-btn {
+  #reserve-btn-desktop {
     padding: 10px;
     border-radius: 10px;
     border: none;
@@ -807,6 +813,8 @@ ul#soc-links {
     width: 95%;
     display: block;
     margin: auto;
+    background-color: rgb(211, 35, 35);
+    color: #fff;
   }
   div.ui-datepicker {
     margin: auto;

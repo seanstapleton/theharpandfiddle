@@ -4,6 +4,7 @@
     app.controller('DashController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
     $scope.eventData = {};
+    $scope.eventOrder = "start";
 
     $scope.checkStatus = function() {
       $http.get("/backendServices/isLoggedIn")
@@ -97,5 +98,11 @@
 
       $scope.loadEvents();
     }]);
+
+    app.filter('dateInMillis', function() {
+      return function(dateString) {
+        return Date.parse(dateString);
+      };
+    });
 
 }());

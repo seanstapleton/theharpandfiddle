@@ -17,7 +17,15 @@
 </div>
 <button id="logout" class="btn btn-primary" style="position: absolute; top: 50px; right: 100px;" ng-click="logout()">Logout</button>
 <section id="events" ng-if="loggedIn">
-  <h1 ng-click="collapseEvs()" style="cursor: pointer">Events</h1>
+  <h1 ng-click="collapseEvs()" style="cursor: pointer">Events<span class="dropdown"><span class="caret"></span></span></h1>
+  <select ng-model="eventOrder">
+    <option value="title">Title</option>
+    <option value="description">Description</option>
+    <option value="start" selected>Date</option>
+    <option value="featured">Featured</option>
+  </select>
+  <label for="reversed" style="margin-left: 20px">Reverse</label>
+  <input type="checkbox" style="margin-left: 10px" ng-model="reversed" id="reversed"/>
   <table class="table">
     <thead>
       <th>Title</th>
@@ -31,20 +39,22 @@
       <th>Delete</th>
     </thead>
     <tbody>
-      <tr ng-repeat="event in events" class="collapsable-ev hide">
+      <tr ng-repeat="event in events | orderBy:eventOrder:reversed" class="collapsable-ev hide">
         <td>{{event.title}}</td>
         <td>{{event.description}}</td>
-        <td>{{event.start}}</td>
-        <td>{{event.end}}</td>
+        <td>{{event.start | dateInMillis | date:'medium'}}</td>
+        <td>{{event.end | dateInMillis | date:'medium'}}</td>
         <td>{{event.url}}</td>
         <td>{{event.img}}</td>
         <td>{{event.featured ? "true" : "false"}}</td>
         <td><button class="btn btn-primary" ng-click="editEvent(event._id)">Edit</button></td>
         <td><button class="btn btn-danger" ng-click="deleteEvent(event._id)">Delete</button></td>
       </tr>
+    </tbody>
+    <tfoot>
       <tr>
         <td><button ng-click="toggleEventUpload()">Add new event</button></td>
       </tr>
-    </tbody>
+    </tfoot>
   </table>
 </section>

@@ -83,11 +83,20 @@
   });
   $("#time").selectmenu();
   $("#party").selectmenu();
+  $("#time-desktop").selectmenu();
+  $("#party-desktop").selectmenu();
 
   $("#reserve-btn").click(function() {
-    var d = new Date($("input[name='dateval']").val()).toISOString().substring(0,10);
+    var d = ($("input[name='dateval']").val().length > 0) ? new Date($("input[name='dateval']").val()).toISOString().substring(0,10) : new Date().toISOString().substring(0,10);
     var t = $("#time").val();
     var p = $("#party").val();
+    window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
+  });
+
+  $("#reserve-btn-desktop").click(function() {
+    var d = ($("input[name='dateval']").val().length > 0) ? new Date($("input[name='dateval']").val()).toISOString().substring(0,10) : new Date().toISOString().substring(0,10);
+    var t = $("#time-desktop").val();
+    var p = $("#party-desktop").val();
     window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
   });
 

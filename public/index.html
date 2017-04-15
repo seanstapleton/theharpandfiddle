@@ -187,10 +187,9 @@
           </div>
 
           <div id="reservation" class="desktop-item">
-            <input style="display: none" name="dateval" id="dateval"/>
-            <div id="datepicker" class="datepicker"></div>
+            <div class="datepicker"></div>
             <fieldset>
-              <select name="time" class="time">
+              <select id="time-desktop" class="time">
                 <option value="1100" selected>11am</option>
                 <option value="1130">11:30am</option>
                 <option value="1200">12:00pm</option>
@@ -214,7 +213,7 @@
                 <option value="2100">9:00pm</option>
                 <option value="2130">9:30pm</option>
               </select>
-              <select name="party" class="party">
+              <select id="party-desktop" class="party">
                 <option value="1">1 person</option>
                 <option value="2" selected>2 people</option>
                 <option value="3">3 people</option>
@@ -223,7 +222,7 @@
                 <option value="6">6 people</option>
               </select>
               <div class="btn-container">
-                <button class="reserve-btn">Reserve Now</button>
+                <button id="reserve-btn-desktop">Reserve Now</button>
               </div>
             </fieldset>
           </div>
@@ -233,7 +232,7 @@
         <section id="reserve" class="mobile-item">
           <h1>Reserve a Table</h1>
           <input style="display: none" name="dateval" id="dateval"/>
-          <div id="datepicker" class="datepicker"></div>
+          <div class="datepicker"></div>
           <fieldset>
             <select id="time" class="time">
               <option value="1100" selected>11am</option>
@@ -267,17 +266,17 @@
               <option value="5">5 people</option>
               <option value="6">6 people</option>
             </select>
-            <div id="btn-container" class="btn-container">
-              <button class="reserve-btn">Reserve Now</button>
+            <div class="btn-container">
+              <button id="reserve-btn">Reserve Now</button>
             </div>
           </fieldset>
         </section>
 
         <section id="menus">
           <h1 class="mobile-item">Menu</h1>
-          <div class="menu-box foodLink mobile-item" data-aos="flip-left"><h4 class="foodLink">Food</h4></div>
-          <div class="menu-box drinksLink mobile-item" data-aos="flip-left"><h4 class="drinksLink">Drinks</h4></div>
-          <div class="menu-box cocktailsLink mobile-item" data-aos="flip-left"><h4 class="cockatilsLink">Cocktails</h4></div>
+          <div id="foodCard" class="menu-box foodLink mobile-item" data-aos="flip-left"><h4 class="foodLink">Food</h4></div>
+          <div id="drinksCard" class="menu-box drinksLink mobile-item" data-aos="flip-left"><h4 class="drinksLink">Drinks</h4></div>
+          <div id="cocktailsCard" class="menu-box cocktailsLink mobile-item" data-aos="flip-left"><h4 class="cockatilsLink">Cocktails</h4></div>
           <svg viewBox="0 0 100 60" class="desktop-item">
             <defs>
             <pattern id="img1" patternUnits="userSpaceOnUse" width="100" height="100">
