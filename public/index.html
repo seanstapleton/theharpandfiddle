@@ -8,8 +8,6 @@
         <meta name="viewport" content="width=device-width; initial-scale=1; minimum-scale=1; maximum-scale=1; user-scalable=no;">
         <meta name="description" content="">
         <meta name="author" content="">
-
-
     </head>
     <body>
       <div id="overlay">
@@ -338,6 +336,15 @@
   !function(e,n){var t=document.createElement("script"),a=document.getElementsByTagName("script")[0];t.async=1,a.parentNode.insertBefore(t,a),t.onload=t.onreadystatechange=function(e,a){(a||!t.readyState||/loaded|complete/.test(t.readyState))&&(t.onload=t.onreadystatechange=null,t=void 0,a||n&&n())},t.src=e}("https://embed-menu-preloader.untappdapi.com/embed-menu-preloader.min.js",function(){PreloadEmbedMenu("menu-container",6484,22214)});
 </script>
 <script type='text/javascript' src='/lib/jquery/jquery.min.js'></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var intro_img = $("<img>");
+    intro_img.load(function(){
+     $("#intro").css("background-image", "linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('"+$(this).attr("src")+"')");
+    });
+    intro_img.attr("src", "/img/backgrounds/bar.jpg");
+  });
+</script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/lib/fullcalendar/moment.min.js"></script>
 <script src="/lib/fullcalendar/fullcalendar.min.js"></script>
