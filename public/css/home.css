@@ -22,8 +22,9 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
   height: 20vh;
   top: 0;
   left: 10px;
-  z-index: 1;
+  z-index: 2;
   cursor: pointer;
+  animation-delay: 1.5s;
 }
 td {
   color: #000;
