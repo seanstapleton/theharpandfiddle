@@ -6,6 +6,17 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
   font-family: Montserrat;
   font-weight: lighter;
 }
+#tour-360 {
+  display: none;
+  animation-delay: 1s;
+  animation-duration: 2s;
+}
+#tour-360 iframe {
+  width: 90%;
+  height: 90vh;
+  display: block;
+  margin: auto;
+}
 td {
   color: #000;
 }

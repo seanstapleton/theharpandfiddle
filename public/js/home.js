@@ -2,6 +2,15 @@
     duration: 1000
   });
 
+  $.fn.extend({
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+        });
+    }
+});
+
   var isMobile = !window.matchMedia('(min-width: 960px)').matches;
 
   $(".overlayGradient").mouseover(function() {
@@ -14,6 +23,13 @@
   $(".map-overlay").click(function() {
     $(this).addClass("hide");
     $(this).removeClass("show");
+  });
+
+  $("#show-360").click(function() {
+    $("#overlay").toggleClass("show");
+    $("#tour-360").toggleClass("show");
+    $("body").toggleClass("noscroll");
+    $("#tour-360 iframe").animateCss("zoomIn");
   });
 
   $("#events-more").click(function() {
@@ -212,7 +228,7 @@
   $("#close").click(function() {
     $("#overlay").toggleClass("show");
     $("body").toggleClass("noscroll");
-    var panels = ["#food", "#drinks", "#cocktails", "#contact-form", "#events-pu"];
+    var panels = ["#tour-360","#food", "#drinks", "#cocktails", "#contact-form", "#events-pu"];
     for (var i = 0; i < panels.length; i++) {
       var p = $(panels[i]);
       if (p.hasClass("show")) p.toggleClass("show");
