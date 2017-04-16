@@ -390,7 +390,7 @@ div.bar:not(:first-child) {
   border: 1px solid #fff;
   text-align: center;
   display: block;
-  width: 35%;
+  width: 40%;
   margin: 10vh auto;
 }
 #look {
@@ -524,6 +524,9 @@ div.bar:not(:first-child) {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+#foodCard {
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/beef_wellington.JPG");
 }
 #drinksCard {
   background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/guiness.JPG");
@@ -717,7 +720,7 @@ ul#soc-links {
     font-size: 2em;
   }
   #intro a {
-    width: 10%;
+    width: 13%;
   }
 
   /* ----------------------------------------------
