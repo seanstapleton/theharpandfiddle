@@ -4,7 +4,7 @@
 p, h1, h2, h3, h4, h5, h6, td, a, li {
   color: #fff;
   font-family: Montserrat;
-  font-weight: lighter;
+  font-weight: 200;
 }
 #tour-360 {
   display: none;
@@ -18,11 +18,12 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
   margin: auto;
 }
 #show-360 {
-  position: absolute;
-  width: 10vh;
-  height: 10vh;
-  top: 10px;
+  position: fixed;
+  height: 20vh;
+  top: 0;
   left: 10px;
+  z-index: 1;
+  cursor: pointer;
 }
 td {
   color: #000;
@@ -405,7 +406,7 @@ div.bar:not(:first-child) {
 #primary-container {
   position: relative;
   top: 100vh;
-  z-index: 0;
+  z-index: 1;
 }
 #about {
   background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url("/img/backgrounds/chat.JPG");
@@ -665,6 +666,14 @@ ul#soc-links {
 #soc-links img {
   width: 100%;
 }
+.fc-scroller {
+  overflow-y: auto !important;
+  height: auto !important;
+}
+#events-pu {
+  width: 90%;
+  margin-left: 5%;
+}
 
 /* ----------------------------------------------
 --------------- Desktop Styles ------------------
@@ -798,6 +807,7 @@ ul#soc-links {
   }
   #reservation {
     padding: 40px;
+    height: auto;
   }
   .datepicker {
     width: 266px;
@@ -808,9 +818,12 @@ ul#soc-links {
   #reservation fieldset {
     float: left;
     margin: 0;
-    height: 304.98px;
+    height: 298.98px;
     background-color: rgb(237, 237, 237);
     padding-top: 30px;
+  }
+  #about {
+    overflow: auto;
   }
   #time-desktop-button, #party-desktop-button {
     font-size: 1em;
