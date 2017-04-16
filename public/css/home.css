@@ -17,6 +17,13 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
   display: block;
   margin: auto;
 }
+#show-360 {
+  position: absolute;
+  width: 10vh;
+  height: 10vh;
+  top: 10px;
+  left: 10px;
+}
 td {
   color: #000;
 }
