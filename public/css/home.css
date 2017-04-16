@@ -4,7 +4,7 @@
 p, h1, h2, h3, h4, h5, h6, td, a, li {
   color: #fff;
   font-family: Montserrat;
-  font-weight: 200;
+  font-weight: 300;
 }
 #tour-360 {
   display: none;
@@ -215,7 +215,7 @@ div.ui-datepicker {
   margin: auto;
 }
 #reserve {
-  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("/img/backgrounds/barside.JPG");
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("/img/backgrounds/op/barside.jpg");
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
@@ -302,7 +302,7 @@ div.bar:not(:first-child) {
   font-size: 2em !important;
 }
 #beer-menu {
-  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/img/backgrounds/guiness.JPG');
+  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/img/backgrounds/op/guiness.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -410,7 +410,7 @@ div.bar:not(:first-child) {
   z-index: 1;
 }
 #about {
-  background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url("/img/backgrounds/chat.JPG");
+  background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url("/img/backgrounds/op/chat.jpg");
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
@@ -439,6 +439,9 @@ div.bar:not(:first-child) {
   font-family: Montserrat;
   font-size: 2em;
   padding-top: 40%;
+}
+.menu-box h4 {
+  font-size: 3em;
 }
 .menu-box h4 {
   padding: 40% 0;
@@ -526,13 +529,13 @@ div.bar:not(:first-child) {
   position: relative;
 }
 #foodCard {
-  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/beef_wellington.JPG");
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/op/beef_wellington.jpg");
 }
 #drinksCard {
-  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/guiness.JPG");
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/op/guiness.jpg");
 }
 #cocktailsCard {
-  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/beautifulday.jpg");
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/op/beautifulday.jpg");
 }
 .soc-box {
   width: 45vh;
