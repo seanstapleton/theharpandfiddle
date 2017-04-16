@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 1366 768" style="enable-background:new 0 0 1366 768;" xml:space="preserve">
+	 viewBox="0 0 283 281" style="enable-background:new 0 0 283 281;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#FFFFFF;}
 	.st1{fill:#111111;}
-	.st2{font-family:'LeagueGothic-Regular';}
-	.st3{font-size:50.3114px;}
-	.st4{font-size:33.309px;}
-	.st5{fill:#EAEAEA;}
+	.st2{font-family:'ClassicRomanStd-Regular';}
+	.st3{font-size:31px;}
+	.st4{font-family:'LeagueGothic-Regular';}
+	.st5{font-size:33.309px;}
 	.st6{font-size:43.0222px;}
 	.st7{font-family:'MyriadPro-Regular';}
 </style>
@@ -197,19 +197,19 @@ C0Z24PbAZK07FelEB6gALLwWAXgR2VNnPJB59715hVO8ZyRQNAF4efdb8kf0LDgBUgAWNBBemuui
 AMQiH1sR8FVzCa2IKMHH+9hzUNEduCEACxoBXpEIGXFnuWtjDXn/9NnU1DsoCCivDgVIAVjQhK+X
 BzAPaBSA1BSrj0ahRRkuKRLv2uC5QAAW9CaAafApgrdTv19ydsLRAORtUgFAAVjQwgAWjZiR98eU
 23xZMa3N+FoACsCCVvL6FiN8/ZQuawiEACgAC9rga/6u90c70ddCABaE98LsIAZBEARBEARBUEj/
-L8AAYnX5G66QcjwAAAAASUVORK5CYII=" transform="matrix(1 0 0 1 530 224)">
+L8AAYnX5G66QcjwAAAAASUVORK5CYII=" transform="matrix(1 0 0 1 -8 -8)">
 	</image>
 	<g>
-		<circle class="st0" cx="673" cy="367" r="135"/>
+		<circle class="st0" cx="135" cy="135" r="135"/>
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 574.5396 438.6445)" class="st1 st2 st3">VIRTUAL TOUR</text>
-<text transform="matrix(1 0 0 1 638.2173 309.8955)" class="st1 st2 st4">TAKE A</text>
+<text transform="matrix(1 0 0 1 27.6548 206.6445)" class="st1 st2 st3">VIRTUAL TOUR</text>
+<text transform="matrix(1 0 0 1 100.2173 77.8955)" class="st1 st4 st5">TAKE A</text>
 <g>
-	<path class="st1" d="M723,386.4c-31.9,2.8-61.1,2.8-93,0c-6.6-0.4-12.1-5.8-13.4-12.4c-3-12.3-3-23.7,0-36
-		c1.3-6.6,6.8-12,13.4-12.4c31.9-2.8,61.1-2.8,93,0c6.6,0.4,12.1,5.8,13.4,12.4c3,12.3,3,23.7,0,36C735.1,380.6,729.6,386,723,386.4
+	<path class="st1" d="M185,154.4c-31.9,2.8-61.1,2.8-93,0c-6.6-0.4-12.1-5.8-13.4-12.4c-3-12.3-3-23.7,0-36
+		c1.3-6.6,6.8-12,13.4-12.4c31.9-2.8,61.1-2.8,93,0c6.6,0.4,12.1,5.8,13.4,12.4c3,12.3,3,23.7,0,36C197.1,148.6,191.6,154,185,154.4
 		z"/>
 </g>
-<rect x="693" y="353" class="st0" width="0" height="3"/>
-<text transform="matrix(1 0 0 1 650.2402 372.2441)"><tspan x="0" y="0" class="st5 st2 st6">360</tspan><tspan x="44.4" y="0" class="st5 st7 st6">°</tspan></text>
+<rect x="155" y="121" class="st0" width="0" height="3"/>
+<text transform="matrix(1 0 0 1 112.2402 140.2441)"><tspan x="0" y="0" class="st0 st4 st6">360</tspan><tspan x="44.4" y="0" class="st0 st7 st6">°</tspan></text>
 </svg>
