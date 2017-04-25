@@ -40,6 +40,7 @@
       $("body").toggleClass("noscroll");
 
       $.get('/backendServices/getEvents', function(data) {
+        console.log(data);
         $('#events-calendar').fullCalendar({
               theme: true,
               header: {
@@ -156,7 +157,7 @@
     $.get('/backendServices/featuredEvents', function(data) {
       var evs = data.events;
       for (var i = 0; i < evs.length && i < 7; i++) {
-        var date = moment(evs[i].start).format('MMMM Do, YYYY @ h:mm a');
+        var date = moment(evs[i].start).add(5,'h').format('MMMM Do, YYYY @ h:mm a');
         var anchor = $('<a href='+evs[i].url+'></a>');
         l = i;
         if (isMobile) l = 7;

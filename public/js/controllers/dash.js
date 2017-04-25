@@ -76,6 +76,8 @@
         var serv;
         if ($scope.mode == "new") serv = "addEvent";
         else if ($scope.mode == "edit") serv = "editEvent";
+        $scope.eventData.start = new Date($scope.eventData.start.getTime() - 300*60000);
+        $scope.eventData.end = new Date($scope.eventData.end.getTime() - 300*60000);
         var formData = $scope.eventData;
         $http.post('/backendServices/' + serv, formData)
           .then(function(res) {
