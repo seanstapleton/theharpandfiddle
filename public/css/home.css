@@ -664,14 +664,12 @@ div.bar:not(:first-child) {
 }
 
 ul#soc-links {
-  width: 60%;
-  margin: 0 auto;
 }
 #soc-links li {
-  
 }
 #soc-links img {
-  width: 100%;
+  width: 50px;
+  margin: 0 auto;
 }
 .fc-scroller {
   overflow-y: auto !important;
