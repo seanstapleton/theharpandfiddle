@@ -336,7 +336,7 @@
       }
     });
 
-    $(".cocktailLink").click(function() {
+    $(".cocktailsLink").click(function() {
       $("#overlay").toggleClass("show");
       $("#cocktails").toggleClass("show");
       $("body").toggleClass("noscroll");

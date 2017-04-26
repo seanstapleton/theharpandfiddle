@@ -957,6 +957,10 @@ ul#soc-links {
   #menus {
     position: relative;
   }
+  #food canvas, #drinks canvas, #cocktails canvas {
+    width: 70%;
+    margin: 0 auto;
+  }
 
   /* ----------------------------------------------
   ---------------- Social Styles ------------------
