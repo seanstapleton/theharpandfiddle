@@ -356,10 +356,15 @@
         message: $("#message").val()
       }
 
+
       $.post("/backendServices/sendMessage", formData, function(data) {
-        if (data.success) $("div.successmail").toggleClass("show");
+        if (data.success) {
+          $("div.successmail").toggleClass("show");
+          swal("Success!", "Your message was sent", "success");
+        }
         else {
           $("div.failmail").toggleClass("show");
+          swal("Error", "please try sending an email to declan@theharpandfiddle.com instead!", "error");
         }
         $("#contact-inputs").toggleClass("hide");
       });

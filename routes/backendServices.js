@@ -8,6 +8,7 @@ module.exports = function(db, passport) {
     var menuSchema      = require('../models/menu.js');
     var eventsSchema    = require('../models/events.js');
     var specialsSchema  = require('../models/specials.js');
+    var messageSchema   = require('../models/message.js');
     var flash           = require('connect-flash');
     var https           = require('https');
     var Dropbox         = require('dropbox');
