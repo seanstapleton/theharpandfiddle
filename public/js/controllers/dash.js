@@ -76,8 +76,9 @@
         var serv;
         if ($scope.mode == "new") serv = "addEvent";
         else if ($scope.mode == "edit") serv = "editEvent";
-        $scope.eventData.start = new Date($scope.eventData.start.getTime() - 300*60000);
-        $scope.eventData.end = new Date($scope.eventData.end.getTime() - 300*60000);
+        $scope.eventData.start = new Date($scope.eventData.start.getTime());
+        $scope.eventData.end = new Date($scope.eventData.end.getTime());
+        alert(new Date($scope.eventData.start.getFullYear(),$scope.eventData.start.getMonth(),$scope.eventData.start.getDate(),$scope.eventData.start.getHours(),$scope.eventData.start.getMinutes(),$scope.eventData.start.getSeconds()));
         var formData = $scope.eventData;
         $http.post('/backendServices/' + serv, formData)
           .then(function(res) {
@@ -87,6 +88,20 @@
               $scope.loadEvents();
             } else {
               $scope.evMessage = "Bollocks, there's something wrong."
+            }
+          });
+      }
+
+      $scope.updateFeatured = function(ev) {
+        var event = ev;
+        event.start = new Date(ev.start);
+        event.end = new Date(ev.end);
+        event.featured = ev.selected;
+
+        $http.post('/backendServices/editEvent', event)
+          .then(function(res) {
+            if (!res.data.success) {
+              alert("Sorry, your change was unsuccessful.");
             }
           });
       }

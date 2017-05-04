@@ -46,7 +46,7 @@
         <td>{{event.end | dateInMillis | date:'medium'}}</td>
         <td>{{event.url}}</td>
         <td>{{event.img}}</td>
-        <td>{{event.featured ? "true" : "false"}}</td>
+        <td><input type="checkbox" ng-init="event.selected = event.featured" ng-model="event.selected" ng-click="updateFeatured(event)"></td>
         <td><button class="btn btn-primary" ng-click="editEvent(event._id)">Edit</button></td>
         <td><button class="btn btn-danger" ng-click="deleteEvent(event._id)">Delete</button></td>
       </tr>
