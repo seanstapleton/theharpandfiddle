@@ -165,7 +165,7 @@
         if (evs[i].img) div.css("background-image", "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(" + evs[i].img + ")");
         div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(date));
         anchor.append(div);
-        if (i > 2) anchor.addClass("desktop-item");
+        if (i < 4) anchor.addClass("desktop-item");
         $("#featured-evs").prepend(anchor);
       }
       if (isMobile) $("#events-more div").attr("data-aos-delay", "0");
@@ -347,6 +347,8 @@
       }
     });
 
+
+
     $("#contact-form-submit").click(function() {
       var formData = {
         name: $("#name").val(),
@@ -358,15 +360,22 @@
 
 
       $.post("/backendServices/sendMessage", formData, function(data) {
+        var response;
+        var msg = {
+          "success": "Your message was sent",
+          "error": "please try sending an email to declan@theharpandfiddle.com instead!"
+        }
         if (data.success) {
-          $("div.successmail").toggleClass("show");
-          swal("Success!", "Your message was sent", "success");
+          response = "success";
+          alert(reponse);
         }
         else {
-          $("div.failmail").toggleClass("show");
-          swal("Error", "please try sending an email to declan@theharpandfiddle.com instead!", "error");
+          response = "error";
         }
+        swal("success", "message", "success");
         $("#contact-inputs").toggleClass("hide");
+        swal("success1", "message", "success");
+        alert("test");
       });
     });
 
