@@ -450,7 +450,7 @@ div.bar:not(:first-child) {
   text-align: center;
   font-size: 2em;
   font-family: Montserrat;
-  font-weight: lighter;
+  font-weight: 300;
 }
 #social a {
   text-align: center;
