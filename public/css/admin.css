@@ -23,6 +23,7 @@ td {
   top: 0;
   left: 0;
   display: none;
+  z-index: 99;
 }
 #eventModal {
   padding: 40px;

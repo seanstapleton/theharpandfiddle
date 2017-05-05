@@ -9,7 +9,12 @@
       <input ng-model="eventData.start" class="form-control" type="datetime-local"/>
       <input ng-model="eventData.end" class="form-control" type="datetime-local"/>
       <input ng-model="eventData.url" class="form-control" type="text" placeholder="link"/>
-      <input ng-model="eventData.img" class="form-control" type="text" placeholder="image url"/>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-default" style="padding-top: 10px; padding-bottom: 10px; background-color:#eee" type="button" ng-click="linkDrivePhoto()">Format Link (Drive, Dropbox)</button>
+        </span>
+        <input ng-model="eventData.img" class="form-control" type="text" placeholder="image url"/>
+      </div>
       <label class="checkbox-inline"><input ng-model="eventData.featured" class="" type="checkbox"/><span>Featured</span></label>
       <button class="btn btn-primary btn-dash">Upload</button>
     </form>

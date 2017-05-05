@@ -40,7 +40,11 @@
       $("body").toggleClass("noscroll");
 
       $.get('/backendServices/getEvents', function(data) {
-        console.log(data);
+        console.log("data", data);
+        for (var i = 0; i < data.length; i++) {
+          data[i].start = new Date(data[i].start);
+          data[i].end = new Date(data[i].end);
+        }
         $('#events-calendar').fullCalendar({
               theme: true,
               header: {
@@ -156,6 +160,7 @@
 
     $.get('/backendServices/featuredEvents', function(data) {
       var evs = data.events;
+      console.log(evs);
       for (var i = 0; i < evs.length && i < 7; i++) {
         var date = moment(evs[i].start).format("MMMM Do @ h:mm a");
         var anchor = $('<a href='+evs[i].url+'></a>');

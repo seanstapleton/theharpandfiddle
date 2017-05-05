@@ -72,13 +72,22 @@
           }
       }
 
+      $scope.linkDrivePhoto = function() {
+        var url = $scope.eventData.img;
+        if (url.indexOf("drive.google.com") > -1) {
+          var tokens = url.split("/");
+          $scope.eventData.img = "https://www.drive.google.com/uc?id=" + tokens[tokens.indexOf("d")+1];
+        } else if (url.indexOf("dropbox.com") > -1) {
+          $scope.eventData.img = url.replace("www.dropbox.com", "dl.dropboxusercontent.com");
+        }
+      }
+
       $scope.uploadEvent = function() {
         var serv;
         if ($scope.mode == "new") serv = "addEvent";
         else if ($scope.mode == "edit") serv = "editEvent";
         $scope.eventData.start = new Date($scope.eventData.start.getTime());
         $scope.eventData.end = new Date($scope.eventData.end.getTime());
-        alert(new Date($scope.eventData.start.getFullYear(),$scope.eventData.start.getMonth(),$scope.eventData.start.getDate(),$scope.eventData.start.getHours(),$scope.eventData.start.getMinutes(),$scope.eventData.start.getSeconds()));
         var formData = $scope.eventData;
         $http.post('/backendServices/' + serv, formData)
           .then(function(res) {
