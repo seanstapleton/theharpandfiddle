@@ -683,6 +683,12 @@ ul#soc-links {
 /* ----------------------------------------------
 --------------- Desktop Styles ------------------
 ---------------------------------------------- */
+@media (min-width: 1105px) {
+  #reservation {
+    padding: 40px;
+  }
+}
+
 @media (min-width: 968px) {
 
   a {
@@ -805,13 +811,18 @@ ul#soc-links {
     padding: 20px 0;
   }
   #location-map, #hours-of-operation, #contact-info-body, #reservation {
-    width: 50%;
     height: 50vh;
     overflow: hidden;
     float: left;
   }
+  #location-map, #hours-of-operation {
+    width: 45%;
+  }
+  #contact-info-body, #reservation {
+    width: 55%;
+  }
   #reservation {
-    padding: 40px;
+    padding: 0 0 0 10px;
     height: auto;
   }
   .datepicker {

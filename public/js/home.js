@@ -11,7 +11,8 @@
               $(this).removeClass('animated ' + animationName);
           });
       }
-  });
+    });
+
 
     var isMobile = !window.matchMedia('(min-width: 960px)').matches;
 
@@ -383,6 +384,8 @@
         alert("test");
       });
     });
+
+    $("#reservation fieldset").css("height", $(".datepicker").height());
 
   });
 }());
