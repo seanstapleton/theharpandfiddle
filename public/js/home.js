@@ -90,6 +90,7 @@
     $(".offscreen-nav a").click(function() {
       $("#menu").toggleClass("open");
       $('.offscreen-nav').toggleClass("onscreen");
+      $('.offscreen-nav-wrapper').toggleClass("onscreen-wrapper");
     });
 
     $(document).scroll(function() {
