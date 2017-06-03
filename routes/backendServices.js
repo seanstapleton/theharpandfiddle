@@ -43,7 +43,7 @@ module.exports = function(db, passport) {
     });
 
     var LocalStrategy = require('passport-local').Strategy;
-    var register = require('../passport/config.js')(passport);
+    require('../passport/config.js')(passport);
     router.post('/register', function(req, res, next) {
         passport.authenticate('register', function(err, newUser, info) {
           if (err) return next(err);
@@ -52,9 +52,16 @@ module.exports = function(db, passport) {
     });
 
     router.post('/login', function(req, res, next) {
+      console.log("body parsing: ", req.body);
       passport.authenticate('login', function(err, user, info) {
-        if (err) return next(err);
-        if (!user) return res.send({success: false});
+        if (err) {
+          console.log("error: ", err);
+          return next(err);
+        }
+        if (!user) {
+          console.log("error user");
+          return res.send({success: false});
+        }
         req.login(user, loginErr => {
             if(loginErr) {
                 return next(loginErr);
@@ -65,6 +72,7 @@ module.exports = function(db, passport) {
     });
 
     var isLoggedIn = function(req, res, next) {
+      console.log("checking login");
       if (req.isAuthenticated()) {
         console.log("logged in");
         return res.send({loggedIn: true});

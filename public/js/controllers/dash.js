@@ -3,6 +3,8 @@
 
     app.controller('DashController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
+    $scope.pageData.current = "events";
+
     $scope.eventData = {};
     $scope.eventOrder = "start";
 
@@ -13,7 +15,7 @@
           if (!res.data.loggedIn)
             $window.location = "/admin";
           else
-            $scope.loggedIn = true;
+            $scope.userData.isLoggedIn = true;
         });
     }
 
@@ -102,23 +104,25 @@
       }
 
       $scope.updateFeatured = function(ev) {
-        var event = ev;
-        event.start = new Date(ev.start);
-        event.end = new Date(ev.end);
-        event.featured = ev.selected;
+        var upEvent = {
+          "_id": ev._id,
+          title: ev.title,
+          start: new Date(ev.start),
+          end: new Date(ev.end),
+          description: ev.description,
+          url: ev.url,
+          img: ev.img
+        };
 
-        $http.post('/backendServices/editEvent', event)
+        var el = $("#fav-" + ev._id);
+        upEvent.featured = !(el.attr("data-checked") == "true");
+        el.attr("data-checked", upEvent.featured);
+
+        $http.post('/backendServices/editEvent', upEvent)
           .then(function(res) {
             if (!res.data.success) {
               alert("Sorry, your change was unsuccessful.");
             }
-          });
-      }
-
-      $scope.logout = function() {
-        $http.get('/backendServices/logout')
-          .then(function(res) {
-            $window.location = "/admin";
           });
       }
 

@@ -1,7 +1,5 @@
 body {
-  background-image: url("/img/backgrounds/grain-wood.jpg");
-  background-position: center center;
-  background-size: 100%;
+  background-color: rgba(240,240,240,1);
 }
 td {
   max-width: 20px;
@@ -10,9 +8,13 @@ td {
 #primary {
   margin-top: 5vh;
   margin-bottom: 5vh;
-  padding: 40px;
-  background-color: #ccc;
-  border-radius: 10px;
+  padding: 10px 40px;
+}
+.active {
+  background-color: #45A5F7 !important;
+}
+p.dispControls {
+  float: right;
 }
 .overlay {
   width: 100%;
@@ -74,4 +76,59 @@ input[type=checkbox] {
   display: block;
   margin: auto;
   text-align: center;
+}
+
+
+
+.event-card {
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(230,230,230,1);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  position: relative;
+  overflow: auto;
+}
+.event-fav, .event-edit {
+  width: 40px;
+  min-height: 40px;
+  position: absolute;
+  background-size: cover;
+  background-position: center center;
+  cursor: pointer;
+}
+.event-edit {
+  top: 10px;
+  right: 10px;
+}
+.event-edit[data-status="saved"] {
+  background-image: url("/img/icons/saved.svg");
+}
+.event-edit[data-status='edited'] {
+  background-image: url("/img/icons/update.svg");
+}
+.event-fav {
+  top: 10px;
+  right: 60px;
+}
+.event-fav[data-checked] {
+  background-image: url("/img/icons/star.svg");
+}
+.event-fav[data-checked='false'] {
+  background-image: url("/img/icons/star_open.svg");
+}
+.event-img {
+  float: left;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+}
+.event-info {
+  float: left;
+  padding: 10px;
+  width: calc(100% - 200px);
+}
+.event-info h5 {
+  font-size: 2em;
 }

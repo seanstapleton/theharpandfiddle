@@ -20,8 +20,10 @@
     </form>
   </div>
 </div>
-<button id="logout" class="btn btn-primary" style="position: absolute; top: 50px; right: 100px;" ng-click="logout()">Logout</button>
-<section id="events" ng-if="loggedIn">
+<section id="events" ng-if="userData.isLoggedIn && pageData.current == 'events'">
+  <p class="dispControls">
+    <a>Card view</a> | <a>List view</a>
+  </p>
   <h1 ng-click="collapseEvs()" style="cursor: pointer">Events<span class="dropdown"><span class="caret"></span></span></h1>
   <select ng-model="eventOrder">
     <option value="title">Title</option>
@@ -31,7 +33,7 @@
   </select>
   <label for="reversed" style="margin-left: 20px">Reverse</label>
   <input type="checkbox" style="margin-left: 10px" ng-model="reversed" id="reversed"/>
-  <table class="table">
+  <!-- <table class="table">
     <thead>
       <th>Title</th>
       <th>Description</th>
@@ -61,5 +63,19 @@
         <td><button ng-click="toggleEventUpload()">Add new event</button></td>
       </tr>
     </tfoot>
-  </table>
+  </table> -->
+  <div id="events-container">
+    <div class="event-card" ng-repeat="event in events | orderBy:eventOrder:reversed">
+      <div class="event-fav" id="fav-{{event._id}}" data-checked="{{event.featured}}" ng-click="updateFeatured(event)"></div>
+      <div class="event-edit" id="edit-{{event._id}}" data-status="saved"></div>
+      <div class="event-img" style="background-image: url('{{event.img}}')" ></div>
+      <div class="event-info">
+        <h5>{{event.title}}</h5>
+        <p><a>{{event.url}}</a></p>
+        <p>{{event.description}}</p>
+        <p><b>Start: </b>{{event.start | dateInMillis | date:'medium'}}</p>
+        <p><b>End: </b>{{event.end | dateInMillis | date:'medium'}}</p>
+      </div>
+    </div>
+  </div>
 </section>

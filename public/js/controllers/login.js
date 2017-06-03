@@ -6,10 +6,9 @@
       $scope.login = function() {
           $http.post('/backendServices/login',{
               email: $scope.email,
-              password: $scope.password,
+              password: $scope.password
           }).then(function(res) {
               if(res.data.success) {
-                  console.log("ayy");
                   $window.location = '/admin/dash';
               } else {
                   $scope.loginError = true;
