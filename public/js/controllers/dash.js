@@ -8,6 +8,14 @@
     $scope.eventData = {};
     $scope.eventOrder = "start";
 
+    $scope.alert = function(str) {
+      alert(str);
+    }
+
+    $scope.updatePreview = function() {
+      $("#previewWindow").css("background-image", "url("+$scope.linkDrivePhoto($scope.imageEditData.current)+")")
+    }
+
     $scope.checkStatus = function() {
       $http.get("/backendServices/isLoggedIn")
         .then(function(res) {
@@ -17,6 +25,14 @@
           else
             $scope.userData.isLoggedIn = true;
         });
+    }
+
+    $scope.editImage = function(ev) {
+      $(".overlay, .imageEditModal").addClass("show");
+      $scope.imageEditData = {
+        current: ev.img,
+        ev: ev
+      }
     }
 
     $scope.checkStatus();
@@ -78,6 +94,21 @@
         }
       }
 
+      $scope.updateImage = function() {
+        var upEvent = {
+          "_id": $scope.imageEditData.ev._id,
+          img: $scope.imageEditData.current
+        };
+        $scope.imageEditData.ev.img = $scope.imageEditData.current;
+        $http.post('/backendServices/editEvent', upEvent)
+          .then(function(res) {
+            if (!res.data.success) {
+              alert("Sorry, your change was unsuccessful.");
+            }
+          });
+        $scope.clearImageData();
+      }
+
       $scope.deleteEvent = function(id) {
         var ev = $scope.events.filter(function(obj) {
           return obj._id == id;
@@ -98,14 +129,20 @@
           }
       }
 
-      $scope.linkDrivePhoto = function() {
-        var url = $scope.eventData.img;
+      $scope.linkDrivePhoto = function(url) {
         if (url.indexOf("drive.google.com") > -1) {
           var tokens = url.split("/");
-          $scope.eventData.img = "https://www.drive.google.com/uc?id=" + tokens[tokens.indexOf("d")+1];
+          return "https://www.drive.google.com/uc?id=" + tokens[tokens.indexOf("d")+1];
         } else if (url.indexOf("dropbox.com") > -1) {
-          $scope.eventData.img = url.replace("www.dropbox.com", "dl.dropboxusercontent.com");
+          return url.replace("www.dropbox.com", "dl.dropboxusercontent.com");
+        } else {
+          return url;
         }
+      }
+
+      $scope.clearImageData = function() {
+        $(".overlay, .imageEditModal").removeClass("show");
+        $scope.imageEditData = {};
       }
 
       $scope.uploadEvent = function() {

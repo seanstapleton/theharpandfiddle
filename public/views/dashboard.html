@@ -1,4 +1,15 @@
-<div class="overlay" ng-click="toggleEventUpload()"></div>
+<div class="overlay" ng-click="clearImageData()"></div>
+<div class="imageEditModal">
+  <div class="imgSearch">
+    <input type="text" placeholder="type in url here" ng-model="imageEditData.current"/>
+    <button class="btn btn-primary" ng-click="updatePreview()">Preview</button>
+    <button class="btn btn-success" ng-click="updateImage()">Apply</button>
+  </div>
+
+  <div id="previewContainer">
+    <div id="previewWindow"></div>
+  </div>
+</div>
 <!-- <div id="eventModal">
   <div id="eventBody">
     <h1 ng-if="evMessage">{{evMessage}}</h1>
@@ -68,7 +79,9 @@
     <div class="event-card" ng-repeat="event in events | orderBy:eventOrder:reversed">
       <div class="event-fav" id="fav-{{event._id}}" data-checked="{{event.featured}}" ng-click="updateFeatured(event)"></div>
       <div class="event-edit" id="edit-{{event._id}}" data-status="saved" ng-click="editEvent(event)"></div>
-      <div class="event-img" style="background-image: url('{{event.img}}')" ></div>
+      <div class="event-img" style="background-image: url('{{event.img}}')" ng-mouseover="event.editImg = true" ng-mouseout="event.editImg = false">
+        <div class="event-img-overlay" ng-click="editImage(event)" ng-show="event.editImg" id="overlay-{{event._id}}"><img src="/img/icons/update-image.svg"/></div>
+      </div>
       <div class="event-info" ng-show="event.status != 'edited'">
         <h5>{{event.title}}</h5>
         <p><a href="{{event.url}}" target="_blank">{{event.url}}</a></p>

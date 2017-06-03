@@ -27,18 +27,43 @@ p.dispControls {
   display: none;
   z-index: 99;
 }
-#eventModal {
-  padding: 40px;
-  width: 40%;
-  margin: 10vh 30%;
-  display: block;
-  display: none;
-  position: absolute;
-  z-index: 9999999;
-  background: #ccc;
+.imageEditModal {
+  width: 80%;
+  margin: 0;
   border-radius: 10px;
-  top: 0;
-  left: 0;
+  background-color: rgba(240,240,240,1);
+  padding: 20px;
+  position: absolute;
+  display: none;
+  z-index: 100;
+  top: 100px;
+  left: 10%;
+}
+#previewWindow {
+  width: 400px;
+  height: 400px;
+  background-size: cover;
+  background-position: center center;
+  margin: 0 auto;
+}
+.imgSearch {
+  padding: 10px;
+  width: 100%;
+  background-color: rgba(250,250,250,1);
+}
+.imgSearch input {
+  border: none;
+  padding: 10px;
+  width: calc(100% - 220px);
+}
+#previewContainer {
+  width: 100%;
+  background: rgba(200,200,200,1);
+}
+.btn {
+  width: 100px !important;
+  border-radius: 0 !important;
+  margin-left: 5px;
 }
 #eventBody input {
   margin: 10px 0;
@@ -137,4 +162,17 @@ input[type=checkbox] {
   padding: 5px;
   display: block;
   margin: 5px 0;
+}
+.event-img-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.25);
+  position: relative;
+  padding: 40%;
+  cursor: pointer;
+}
+.event-img-overlay img {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
 }
