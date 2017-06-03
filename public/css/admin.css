@@ -103,7 +103,7 @@ input[type=checkbox] {
   right: 10px;
 }
 .event-edit[data-status="saved"] {
-  background-image: url("/img/icons/saved.svg");
+  background-image: url("/img/icons/edit.svg");
 }
 .event-edit[data-status='edited'] {
   background-image: url("/img/icons/update.svg");
@@ -124,11 +124,17 @@ input[type=checkbox] {
   height: 200px;
   background-size: cover;
 }
-.event-info {
+.event-info, .event-edit-info {
   float: left;
   padding: 10px;
   width: calc(100% - 200px);
 }
-.event-info h5 {
+.event-info h5, input.title-edit {
   font-size: 2em;
+}
+.event-edit-info input {
+  border: none;
+  padding: 5px;
+  display: block;
+  margin: 5px 0;
 }

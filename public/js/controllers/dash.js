@@ -41,17 +41,41 @@
         $(".collapsable-ev").toggleClass("hide");
       }
 
-      $scope.editEvent = function(id) {
-        $scope.mode = "edit";
-        var ev = $scope.events.filter(function(obj) {
-          return obj._id == id;
-        })[0];
-        ev.start = new Date(ev.start);
-        ev.end = new Date(ev.end);
-        $scope.eventData = ev;
-        $(".overlay").toggleClass("show");
-        $("#eventModal").toggleClass("show");
-        console.log(ev);
+      $scope.editEvent = function(ev) {
+        var el = $("#edit-" + ev._id);
+        var startel = $("#start-edit-" + ev._id);
+        var endel = $("#end-edit-" + ev._id);
+        if (ev.status != "edited") {
+          ev.status = "edited";
+          el.attr("data-status", "edited");
+
+
+          startel.val(ev.start.substring(0,16));
+          endel.val(ev.end.substring(0,16));
+        } else if (ev.status == "edited") {
+          ev.status = "saved";
+          el.attr("data-status", "saved");
+
+          ev.start = startel.val();
+          ev.end = endel.val();
+
+          var upEvent = {
+            "_id": ev._id,
+            title: ev.title,
+            start: ev.start,
+            end: ev.end,
+            description: ev.description,
+            url: ev.url,
+            img: ev.img
+          };
+
+          $http.post('/backendServices/editEvent', upEvent)
+            .then(function(res) {
+              if (!res.data.success) {
+                alert("Sorry, your change was unsuccessful.");
+              }
+            });
+        }
       }
 
       $scope.deleteEvent = function(id) {
