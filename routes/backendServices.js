@@ -91,6 +91,16 @@ module.exports = function(db, passport) {
         });
     });
 
+    router.get('/getMenus', function(req, res) {
+      menuSchema.find({}, {}, {sort: {"start": -1}}, function(err, events) {
+            if (events) {
+              res.send(events);
+            } else {
+              res.end();
+            }
+        });
+    });
+
     router.post('/addEvent', function(req, res, next) {
       var event = new eventsSchema({
           title: req.body.title,
@@ -117,8 +127,11 @@ module.exports = function(db, passport) {
     });
 
     router.post('/deleteEvent', function(req, res, next) {
-      eventsSchema.find({_id: req.body.id}).remove(function(err, data) {
-        if (err) {console.log(err); return res.send({success: false, err: err});}
+      eventsSchema.find({_id: req.body._id}).remove(function(err, data) {
+        if (err) {
+          console.log(err);
+          return res.send({success: false, err: err});
+        }
         else return res.send({success: true});
       });
     });

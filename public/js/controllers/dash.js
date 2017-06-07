@@ -5,8 +5,19 @@
 
     $scope.pageData.current = "events";
 
-    $scope.eventData = {};
-    $scope.eventOrder = "start";
+    $scope.eventData = {
+      order: "start:true"
+    };
+
+    $scope.detEvOrder = function() {
+      var idx = $scope.eventData.order.indexOf(":");
+      return $scope.eventData.order.substring(0,idx);
+    }
+
+    $scope.detEvDir = function() {
+      var idx = $scope.eventData.order.indexOf(":");
+      return $scope.eventData.order.substring(idx+1) == 'true';
+    }
 
     $scope.alert = function(str) {
       alert(str);
@@ -14,6 +25,29 @@
 
     $scope.updatePreview = function() {
       $("#previewWindow").css("background-image", "url("+$scope.linkDrivePhoto($scope.imageEditData.current)+")")
+    }
+
+    $scope.addEvent = function() {
+        var formData = {
+          title: "Untitled (New)",
+          start: $scope.events[0].start,
+          end: $scope.events[0].end,
+          description: "Type description here",
+          allDay: false,
+          url: "Type forwarding link here",
+          img: "https://labs.xda-developers.com/static/img/default-avatar.png",
+          featured: false,
+          status: "edited"
+        }
+        $http.post('/backendServices/addEvent', formData)
+          .then(function(res) {
+            if (res.data.success) {
+              $scope.loadEvents();
+            } else {
+              console.log("Error 500");
+            }
+          });
+        $scope.loadEvents();
     }
 
     $scope.checkStatus = function() {
@@ -42,6 +76,50 @@
           .then(function(res) {
             if (res.data) {
               $scope.events = res.data;
+            }
+          });
+      }
+
+      $scope.displayMenu = function(src, pointer, location, opts) {
+        console.log("trying to display menu", src, pointer, location, opts);
+        PDFJS.getDocument(src).promise.then(function(pdf) {
+          $scope.renderNewPage(pdf, 1, pointer, location, opts);
+        });
+      }
+
+      $scope.renderNewPage = function(pdf, num, pointer, location, opts) {
+        pdf.getPage(num).then(function(page) {
+          var scale = 1.5;
+          var viewport = page.getViewport(scale);
+
+          var canvas = document.createElement("canvas");
+          canvas.className += " menu-preview " + pointer;
+          var context = canvas.getContext('2d');
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+          var renderContext = {
+            canvasContext: context,
+            viewport: viewport
+          };
+          page.render(renderContext).then(function() {
+            $(location).append(canvas);
+            num++;
+            if (opts.numPages) {
+              if (num <= opts.numPages) $scope.renderNewPage(pdf, num, pointer, location, opts);
+            } else {
+              if (num <= pdf.numPages) $scope.renderNewPage(pdf, num, pointer, location, opts);
+            }
+          });
+        }, function(reason) {
+          console.log("Error: " + reason);
+        });
+      }
+
+      $scope.loadMenus = function() {
+        $http.get('/backendServices/getMenus')
+          .then(function(res) {
+            if (res.data) {
+              $scope.menus = res.data;
             }
           });
       }
@@ -109,25 +187,31 @@
         $scope.clearImageData();
       }
 
-      $scope.deleteEvent = function(id) {
-        var ev = $scope.events.filter(function(obj) {
-          return obj._id == id;
-        })[0];
-        if (confirm('Are you sure you want to DELETE "'+ev.title+'"?')) {
-          var data = {id: id};
-          $http.post('/backendServices/deleteEvent', data)
+      $scope.deleteEvent = function(ev) {
+
+        swal({
+          title: "Are you sure?",
+          text: "You will not be able to recover this event!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Yes, delete it!",
+          closeOnConfirm: false
+        },
+        function(){
+          $http.post('/backendServices/deleteEvent', ev)
             .then(function(res) {
               if (res.data.success) {
-                alert("Event deleted");
+                swal("Deleted!", "Your event has been deleted.", "success");
                 $scope.loadEvents();
               } else {
-                alert("An error occurred. Please try again later");
+                swal("Error", "Unfortunately your event could not be deleted", "error");
                 console.log(res.data.err);
                 $scope.loadEvents();
               }
             });
-          }
-      }
+          });
+      };
 
       $scope.linkDrivePhoto = function(url) {
         if (url.indexOf("drive.google.com") > -1) {
@@ -188,6 +272,7 @@
       }
 
       $scope.loadEvents();
+      $scope.loadMenus();
     }]);
 
     app.filter('dateInMillis', function() {
