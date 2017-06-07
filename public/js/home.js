@@ -356,7 +356,7 @@
 
 
 
-    $("#contact-form-submit").click(function() {
+    $("#contact-form-submit").submit(function(e) {
       var formData = {
         name: $("#name").val(),
         email: $("#email").val(),
@@ -366,24 +366,22 @@
       }
 
 
-      $.post("/backendServices/sendMessage", formData, function(data) {
-        var response;
-        var msg = {
-          "success": "Your message was sent",
-          "error": "please try sending an email to declan@theharpandfiddle.com instead!"
-        }
-        if (data.success) {
-          response = "success";
-          alert(reponse);
-        }
-        else {
-          response = "error";
-        }
-        swal("success", "message", "success");
-        $("#contact-inputs").toggleClass("hide");
-        swal("success1", "message", "success");
-        alert("test");
-      });
+      $.post("/backendServices/sendMessage", formData)
+        .then(function(data) {
+          var response;
+          var msg = {
+            "success": "Your message was sent",
+            "error": "please try sending an email to declan@theharpandfiddle.com instead!"
+          }
+          if (data.success) swal("Success!", "Your message was sent", "success");
+          else swal("Error", "Please try sending an email to declan@theharpandfiddle.com instead", "error");
+          $("#overlay").toggleClass("show");
+          $("#contact-form").toggleClass("show");
+          $("body").toggleClass("noscroll");
+        });
+
+
+      return false;
     });
 
     $("#reservation fieldset").css("height", $(".datepicker").height());
