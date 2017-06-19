@@ -62,8 +62,9 @@ td {
 }
 #events, #about, #menus, #reserve {
   width: 100%;
-  background: #333;
-  padding: 50px;
+  min-height: 100vh;
+  background: #000;
+  padding: 50px 0;
 }
 #social {
   width: 100%;
@@ -165,6 +166,62 @@ a:hover {
 }
 .top-nav {
   display: none;
+}
+
+/* ----------------------------------------------
+-------------- Reservation Styles ---------------
+---------------------------------------------- */
+#yelp-reservations-widget {
+  width: 90%;
+}
+.datepicker {
+  margin-top: 10vh;
+}
+.ui-menu-item {
+  color: #333 !important;
+  font-size: 1.25em;
+}
+.ui-selectmenu-menu .ui-menu.customicons .ui-menu-item .ui-icon {
+      height: 24px;
+      width: 24px;
+      top: 0.1em;
+}
+#time-button, #party-button {
+  font-size: 1em;
+  display: block;
+  margin: auto;
+  width: 297.5px;
+  min-height: 50px;
+}
+.btn-container {
+  width: 297.5px;
+  margin: auto;
+  background: rgb(237, 237, 237);
+  padding: 20px;
+}
+#reserve-btn {
+  padding: 20px;
+  border-radius: 15px;
+  border: none;
+  font-size: 1.5em;
+  background-color: rgb(211, 35, 35);
+  color: #fff;
+  width: 95%;
+  display: block;
+  margin: auto;
+}
+div.ui-datepicker {
+  font-size: 1.25em;
+  margin: auto;
+}
+#reserve {
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("/img/backgrounds/op/barside.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+#reserve h1 {
+  color: #fff;
 }
 
 /* ----------------------------------------------
@@ -306,6 +363,8 @@ div.bar:not(:first-child) {
   background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/op/bar-blur.jpg");
   background-size: cover;
   background-position: center center;
+  position: fixed;
+  z-index: 0;
 }
 #intro img {
   width: 90%;
@@ -344,6 +403,12 @@ div.bar:not(:first-child) {
 /* ----------------------------------------------
 --------- Primary Content Styles ----------------
 ---------------------------------------------- */
+
+#primary-container {
+  position: relative;
+  top: 100vh;
+  z-index: 1;
+}
 .ev-box {
   width: 45vh;
   height: 45vh;
@@ -382,9 +447,6 @@ div.bar:not(:first-child) {
   font-size: 2em;
   display: block;
   font-weight: normal;
-}
-#about h1 {
-  color: #fff;
 }
 #contact-link {
   font-family: Montserrat;
@@ -442,77 +504,6 @@ div.bar:not(:first-child) {
 }
 .ui-state-highlight {
   background-color: #fffa90 !important;
-}
-
-#location-map iframe, .map-overlay {
-  width: 100%;
-  min-height: 60vh;
-  margin: 0;
-}
-#location-map {
-  margin-bottom: -5px;
-}
-#contact-info {
-  width: 100%;
-  min-height: 96vh;
-  float: left;
-  background-color: rgba(240,240,240,1);
-}
-.contact-block {
-  width: 90%;
-  padding: 20px;
-  margin: 5% auto;
-  background: #fff;
-}
-.contact-block p, .contact-block a, .contact-block h4 {
-  color: #111;
-}
-.contact-block h4 {
-  font-size: 1.6em;
-}
-.contact-block p {
-  font-size: 1em;
-}
-.contact-block th {
-  color: #111;
-  font-family: Montserrat;
-  font-weight: 300;
-  font-size: 1.6em;
-}
-.contact-block td {
-  font-size: 1em !important;
-  color: #111 !important;
-  font-weight: 200;
-}
-#reservation-block input[type='date'], #reservation-block select  {
-  width: 50%;
-  float: left;
-  border: none;
-}
-#reservation-block input, #contact-form-block input, #contact-form-block textarea {
-  width: 100%;
-  min-height: 30px;
-  border: none;
-}
-#contact-form-block textarea {
-  min-height: 50px;
-}
-#reservation-block button[type='submit'] {
-  width: 100%;
-  color: #fff;
-  background-color: rgb(211, 35, 35);
-  border: none;
-  border-radius: 5px;
-  padding: 5px 0;
-  margin-top: 5px;
-}
-#contact-form-block button[type='submit'] {
-  width: 100%;
-  color: #fff;
-  background-color: rgb(211, 35, 35);
-  border: none;
-  padding: 5px 0;
-  margin-top: 5px;
 }
 
 /* ----------------------------------------------
@@ -610,6 +601,10 @@ div.bar:not(:first-child) {
   top: 20px;
 }
 
+ul#soc-links {
+}
+#soc-links li {
+}
 #soc-links img {
   width: 50px;
   margin: 0 auto;
@@ -621,4 +616,83 @@ div.bar:not(:first-child) {
 #events-pu {
   width: 90%;
   margin-left: 5%;
+}
+
+
+/*-----------------------------------------
+---------------- About styles -------------
+-----------------------------------------*/
+.map-overlay {
+  position: absolute;
+  z-index: 999;
+}
+#location-map iframe, .map-overlay {
+  width: 100%;
+  min-height: 60vh;
+  margin: 0;
+}
+#location-map {
+  margin-bottom: -5px;
+}
+#contact-info {
+  width: 100%;
+  min-height: 96vh;
+  float: left;
+  background-color: #111 !important;
+}
+.contact-block {
+  width: 90%;
+  padding: 20px;
+  margin: 5% auto;
+  background: #777 !important;
+}
+.contact-block p, .contact-block a, .contact-block h4 {
+  color: #111;
+}
+.contact-block h4 {
+  font-size: 1.6em;
+}
+.contact-block p {
+  font-size: 1em;
+}
+.contact-block th {
+  color: #111;
+  font-family: Montserrat;
+  font-weight: 300;
+  font-size: 1.6em;
+}
+.contact-block td {
+  font-size: 1em !important;
+  color: #111 !important;
+  font-weight: 200;
+}
+#reservation-block input[type='date'], #reservation-block select  {
+  width: 50%;
+  float: left;
+  border: none;
+}
+#reservation-block input, #contact-form-block input, #contact-form-block textarea {
+  width: 100%;
+  min-height: 30px;
+  border: none;
+}
+#contact-form-block textarea {
+  min-height: 50px;
+}
+#reservation-block button[type='submit'] {
+  width: 100%;
+  color: #fff;
+  background-color: rgb(211, 35, 35);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 0;
+  margin-top: 5px;
+}
+#contact-form-block button[type='submit'] {
+  width: 100%;
+  color: #fff;
+  background-color: rgb(211, 35, 35);
+  border: none;
+  padding: 5px 0;
+  margin-top: 5px;
 }

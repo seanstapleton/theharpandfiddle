@@ -16,6 +16,8 @@
 
     var isMobile = !window.matchMedia('(min-width: 960px)').matches;
 
+    if (!isMobile) $("#location-map iframe, .map-overlay").height($("#contact-info").height());
+
     $(".overlayGradient").mouseover(function() {
       $(".overlayGradient").css("fill", "url(#overlayGradientDark)");
       $(this).css("fill", "url(#overlayGradientLight)");
@@ -163,7 +165,7 @@
     $.get('/backendServices/featuredEvents', function(data) {
       var evs = data.events;
       console.log(evs);
-      for (var i = 0; i < evs.length && i < 7; i++) {
+      for (var i = 0; i < evs.length && i < 4; i++) {
         var date = moment(evs[i].start).format("MMMM Do @ h:mm a");
         var anchor = $('<a href='+evs[i].url+'></a>');
         l = i;
