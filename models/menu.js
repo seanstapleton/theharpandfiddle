@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var menuSchema = new Schema({
-    title: String,
+    id: String,
+    icon_path: String,
     src: String
 })
 

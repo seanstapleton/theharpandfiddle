@@ -38,6 +38,13 @@ module.exports = function(db, passport) {
       });
     });
 
+    router.get('/getMenus', function(req, res) {
+      menuSchema.find({},{}, function(err, menus) {
+        if (err) console.log(err);
+        else return res.send(menus);
+      });
+    });
+
     router.get('/getFBID', function(req, res) {
       return res.send(process.env.fbid);
     });

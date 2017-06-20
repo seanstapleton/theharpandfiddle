@@ -30,9 +30,6 @@
   svg {
     width: 100%;
   }
-  section {
-    padding: 0 !important;
-  }
 
   /* ----------------------------------------------
   ---------------- Intro Styles -------------------
@@ -109,34 +106,33 @@
     margin-left: 10%;
   }
   #about {
+    background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/brick.jpg");
     overflow: auto;
-    padding: 0 !important;
+    padding: 50px;
   }
 
   #location-map iframe {
     width: 100%;
-    height: 96vh;
+    height: 90vh;
     margin: 0;
     float: left;
   }
   #location-map, .map-overlay {
-    width: 70%;
+    width: 67.5%;
     height: 96vh;
-    margin: 0;
+    margin: 0 2.5% 0 0;
     float: left;
   }
   #contact-info {
     width: 30%;
-    min-height: 96vh;
+    min-height: 90vh;
     float: left;
     background-color: rgba(240,240,240,1);
   }
-  #about {
-    overflow: auto;
-  }
+
   .contact-block {
     width: 90%;
-    padding: 20px;
+    padding: 15px;
     margin: 5% auto;
     background: #fff;
   }
@@ -144,19 +140,19 @@
     color: #111;
   }
   .contact-block h4 {
-    font-size: 1.6em;
+    font-size: 1.4em;
   }
   .contact-block p {
-    font-size: 1em;
+    font-size: 0.8em;
   }
   .contact-block th {
     color: #111;
     font-family: Montserrat;
     font-weight: 300;
-    font-size: 1.6em;
+    font-size: 1.4em;
   }
   .contact-block td {
-    font-size: 1em !important;
+    font-size: 0.8em !important;
     color: #111 !important;
     font-weight: 200;
   }
@@ -167,7 +163,7 @@
   }
   #reservation-block input {
     width: 100%;
-    min-height: 30px;
+    min-height: 25px;
     border: none;
   }
   #reservation-block button[type='submit'] {
@@ -300,27 +296,48 @@
 ---------------------------------------------- */
 #menus {
   height: 100vh;
+  background-color: #222;
 }
 #menus-nav {
-  width: 20%;
-  padding: 10px;
+  width: 25%;
+  padding: 20px;
+  background-image: url("/img/backgrounds/paper.png");
   float: left;
-}
-#menus-canvas {
-  width: 80%;
-  height: 100vh;
-  float: left;
-  background-color: #ddd;
+  max-height: 80vh;
+  overflow: auto;
 }
 #menus-nav p {
-  width: 90%;
-  margin-left: 5%;
-  margin-top: 10px;
-  padding: 15px;
-  text-align: center;
-  background-color: #FB817E;
+  color: #222;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 20px;
   cursor: pointer;
 }
-#menus-nav p:hover {
-  background-color: #DBDBDB;
+#menus-nav span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  float: right;
+  background-size: cover;
+}
+#menus-canvas {
+  width: 72.5%;
+  margin-left: 2.5%;
+  height: 80vh;
+  background-image: url("/img/backgrounds/paper.png");
+  float: left;
+  overflow: auto;
+}
+
+.menu-item {
+  width: 47%;
+  padding: 20px;
+  float: left;
+  background: #ddd;
+  color: #222;
+  margin-left: 2%;
+  margin-bottom: 2%;
+}
+.menu-item h4, .menu-item p, .menu-container h2 {
+  color: #222;
 }

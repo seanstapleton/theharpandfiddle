@@ -232,15 +232,6 @@ div.bar:not(:first-child) {
 /* ----------------------------------------------
 ---------------- Menu Styles --------------------
 ---------------------------------------------- */
-#menu-container {
-  padding: 20px;
-  background: #fff;
-  width: 90%;
-  margin: auto;
-  margin-bottom: 3vh;
-  display: none;
-  border-radius: 10px;
-}
 .menu-list-item a {
   font-size: 2em !important;
 }
@@ -444,6 +435,10 @@ div.bar:not(:first-child) {
   background-color: #fffa90 !important;
 }
 
+#about {
+  background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)) url("/img/backgrounds/brick.jpg");
+  padding: 50px;
+}
 #location-map iframe, .map-overlay {
   width: 100%;
   min-height: 60vh;
