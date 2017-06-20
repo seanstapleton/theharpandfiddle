@@ -184,20 +184,65 @@
       if (isMobile) $("#events-more div").attr("data-aos-delay", "0");
     });
 
-    $.get('/backendServices/getMenus', function(data) {
-      var menus = data;
+    var menus;
+
+    var loadMenuCanvas = function() {
       for (var i = 0; i < menus.length; i++) {
-        var menu_link = $("<p></p>").text(menus[i].id);
-        var str = '"'+menus[i].icon_path+'"';
-        var menu_icon = $("<span class='menu-icon' href='"+menus[i].id+"' style='background-image: url("+str+")'></span>");
-        menu_link.append(menu_icon);
-        $("#menus-nav").append(menu_link);
-        $.get(menus[i].src, function(menuData) {
-          var source = menuData;
-          $("#menus-canvas").append(source);
-        });
+        var paragraph = $("<p href='"+menus[i].id.replace(/\W/g, '')+"'></p>").text(menus[i].id);
+        var icon_background = '"'+menus[i].icon_path+'"';
+        var span = $("<span class='menu-icon' style='background-image: url("+icon_background+")'></span>");
+        paragraph.append(span);
+        $("#menus-nav").append(paragraph);
+
+        var container = $("<div class='menu-container' id='"+menus[i].id.replace(/\W/g, '')+"'></div>");
+        var title = $("<h2></h2>").text(menus[i].id);
+        var subtitle;
+        if (menus[i].subtitle) subtitle = $("<p class='menu-subtitle'></p>").text(menus[i].subtitle);
+        var section = $("<div class='menu-section'></div>");
+        var itemDivs = [];
+
+        for (var j = 0; j < menus[i].items.length; j++) {
+          var item = menus[i].items[j];
+          var itemDiv = $("<div class='menu-item'></div>");
+          var price = $("<p class='item-prices'></p>").text(item.price);
+          var itemTitle = $("<h4 class='item-title'></h4>").text(item.title);
+          var itemDesc = $("<p class='item-description'></p>").text(item.desc);
+          itemDiv.append(price,itemTitle,itemDesc);
+          itemDivs.push(itemDiv);
+        }
+        container.append(title);
+        if (subtitle) container.append(subtitle);
+        section.append(itemDivs);
+        container.append(section);
+        $("#menus-canvas").append(container);
       }
+    }
+
+    $.get('/backendServices/getMenus', function(data) {
+      menus = data;
+      for (var i = 0; i < menus.length; i++) menus[i].items = [];
+
+      $.get('/backendServices/getItems', function(data) {
+        var items = data;
+        for (var i = 0; i < items.length; i++) {
+          var item = items[i];
+          for (var j = 0; j < item.tags.length; j++) {
+            var obj = $.grep(menus,function(e) { return e.id.replace(/\W/g, '') == item.tags[j]});
+            if (obj.length > 0) obj[0].items.push(item);
+            else console.log("tag " + item.tags[j] + " not found.");
+          }
+        }
+        loadMenuCanvas();
+      });
     });
+
+
+    $(document).on('click','#menus-nav p',function() {
+      var id = $(this).attr("href");
+      $('.menu-container').removeClass("show").addClass("hide");
+      $("#" + id).removeClass("hide").addClass("show");
+    })
+
 
     // $.get('/backendServices/getFBID', function(fbid) {
     //   $.get('https://graph.facebook.com/parkridgebar/photos?type=uploaded&&access_token=' + fbid, function(data) {

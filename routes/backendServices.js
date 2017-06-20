@@ -6,6 +6,7 @@ module.exports = function(db, passport) {
     var nodemailer      = require('nodemailer');
     var hoursSchema     = require('../models/hours.js');
     var menuSchema      = require('../models/menu.js');
+    var itemSchema      = require('../models/items.js');
     var eventsSchema    = require('../models/events.js');
     var specialsSchema  = require('../models/specials.js');
     var messageSchema   = require('../models/message.js');
@@ -42,6 +43,13 @@ module.exports = function(db, passport) {
       menuSchema.find({},{}, function(err, menus) {
         if (err) console.log(err);
         else return res.send(menus);
+      });
+    });
+
+    router.get('/getItems', function(req, res) {
+      itemSchema.find({},{}, function(err, items) {
+        if (err) console.log(err);
+        else return res.send(items);
       });
     });
 

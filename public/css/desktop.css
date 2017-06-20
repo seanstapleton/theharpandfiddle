@@ -318,7 +318,8 @@
   width: 20px;
   height: 20px;
   float: right;
-  background-size: cover;
+  background-size: 20px;
+  background-repeat: no-repeat;
 }
 #menus-canvas {
   width: 72.5%;
@@ -329,6 +330,17 @@
   overflow: auto;
 }
 
+.menu-container h2 {
+  text-align: center;
+}
+.menu-section {
+  margin-top: 40px;
+}
+.menu-subtitle {
+  text-align: center;
+  color: #222;
+  margin: 0;
+}
 .menu-item {
   width: 47%;
   padding: 20px;
@@ -337,7 +349,12 @@
   color: #222;
   margin-left: 2%;
   margin-bottom: 2%;
+  min-height: 170px;
 }
 .menu-item h4, .menu-item p, .menu-container h2 {
   color: #222;
+}
+.item-prices {
+  width: 100%;
+  text-align: right;
 }
