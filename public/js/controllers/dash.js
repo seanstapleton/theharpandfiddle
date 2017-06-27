@@ -50,6 +50,24 @@
         $scope.loadEvents();
     }
 
+    $scope.addItem = function() {
+        var formData = {
+          title: "Untitled",
+          desc: "Type description here",
+          price: "0.00",
+          tags: ["appetizers"],
+          availabilities: []
+        }
+        $http.post('/backendServices/addItem', formData)
+          .then(function(res) {
+            if (res.data.success) {
+              $scope.loadItems();
+            } else {
+              console.log("Error 500");
+            }
+          });
+    }
+
     $scope.checkStatus = function() {
       $http.get("/backendServices/isLoggedIn")
         .then(function(res) {
@@ -115,11 +133,11 @@
         });
       }
 
-      $scope.loadMenus = function() {
-        $http.get('/backendServices/getMenus')
+      $scope.loadItems = function() {
+        $http.get('/backendServices/getItems')
           .then(function(res) {
             if (res.data) {
-              $scope.menus = res.data;
+              $scope.items = res.data;
             }
           });
       }
@@ -168,6 +186,33 @@
               if (!res.data.success) {
                 alert("Sorry, your change was unsuccessful.");
               }
+            });
+        }
+      }
+
+      $scope.editItem = function(item) {
+        var el = $("#edit-" + item._id);
+        if (item.status != "edited") {
+          item.status = "edited";
+          el.attr("data-status", "edited");
+        } else if (item.status == "edited") {
+          item.status = "saved";
+          el.attr("data-status", "saved");
+
+          var upItem = {
+            "_id": item._id,
+            title: item.title,
+            desc: item.desc,
+            price: item.price,
+            tags: item.tags,
+            availabilities: []
+          };
+
+          $http.post('/backendServices/editItem', upItem)
+            .then(function(res) {
+              if (!res.data.success) {
+                alert("Sorry, your change was unsuccessful.");
+              } else loadItems();
             });
         }
       }
@@ -272,12 +317,18 @@
       }
 
       $scope.loadEvents();
-      $scope.loadMenus();
+      $scope.loadItems();
     }]);
 
     app.filter('dateInMillis', function() {
       return function(dateString) {
         return Date.parse(dateString);
+      };
+    });
+
+    app.filter('arrPrint', function() {
+      return function(arr) {
+        return arr.join(" ");
       };
     });
 

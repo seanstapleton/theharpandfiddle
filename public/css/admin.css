@@ -106,7 +106,7 @@ input[type=checkbox] {
 
 
 
-.event-card {
+.event-card, .item-card {
   width: 100%;
   margin: 0 auto;
   background-color: rgba(230,230,230,1);
@@ -116,7 +116,7 @@ input[type=checkbox] {
   position: relative;
   overflow: auto;
 }
-.event-fav, .event-edit, .event-delete {
+.event-fav, .event-edit, .event-delete, .item-edit, .item-delete {
   width: 40px;
   min-height: 40px;
   position: absolute;
@@ -124,19 +124,19 @@ input[type=checkbox] {
   background-position: center center;
   cursor: pointer;
 }
-.event-delete {
+.event-delete, .item-delete {
   top: 10px;
   right: 10px;
   background-image: url("/img/icons/delete.svg");
 }
-.event-edit {
+.event-edit, .item-edit {
   top: 10px;
   right: 60px;
 }
-.event-edit[data-status="saved"] {
+.event-edit[data-status="saved"], .item-edit[data-status="saved"] {
   background-image: url("/img/icons/edit.svg");
 }
-.event-edit[data-status='edited'] {
+.event-edit[data-status='edited'], .item-edit[data-status='edited'] {
   background-image: url("/img/icons/update.svg");
 }
 .event-fav {
@@ -155,15 +155,15 @@ input[type=checkbox] {
   height: 200px;
   background-size: cover;
 }
-.event-info, .event-edit-info {
+.event-info, .event-edit-info, .item-info, .item-edit-info {
   float: left;
   padding: 10px;
   width: calc(100% - 200px);
 }
-.event-info h5, input.title-edit {
+.event-info h5, input.title-edit, .item-info h5 {
   font-size: 2em;
 }
-.event-edit-info input {
+.event-edit-info input, .item-edit-info input {
   border: none;
   padding: 5px;
   display: block;
@@ -182,28 +182,10 @@ input[type=checkbox] {
   display: block;
   margin: 0 auto;
 }
-canvas.menu-preview {
-  border-radius: 10px 10px 0 0;
-  width: 180px;
-  height: 200px;
-}
-.menu-card {
-  width: 200px;
-  margin-top: 20px;
-}
-.menu-img {
-  width: 200px;
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 10px 10px 0 0;
-}
-.menu-info {
-  border-radius: 0 0 10px 10px;
-  background-color: rgba(250,250,250,1);
-  width: 200px;
-  padding: 10px;
-}
-.menu-info h5 {
-  margin: 0;
-  font-size: 1.5em;
+.tag {
+  background-color: #4B9BC7;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  margin-right: 2px;
 }

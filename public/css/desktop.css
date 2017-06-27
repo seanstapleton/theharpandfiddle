@@ -119,13 +119,11 @@
   }
   #location-map, .map-overlay {
     width: 67.5%;
-    height: 96vh;
     margin: 0 2.5% 0 0;
     float: left;
   }
   #contact-info {
     width: 30%;
-    min-height: 90vh;
     float: left;
     background-color: rgba(240,240,240,1);
   }
@@ -289,72 +287,83 @@
   #ig-links {
     height: auto;
   }
-}
 
-/* ----------------------------------------------
----------------- Menus Styles ------------------
----------------------------------------------- */
-#menus {
-  height: 100vh;
-  background-color: #222;
-}
-#menus-nav {
-  width: 25%;
-  padding: 20px;
-  background-image: url("/img/backgrounds/paper.png");
-  float: left;
-  max-height: 80vh;
-  overflow: auto;
-}
-#menus-nav p {
-  color: #222;
-  text-transform: uppercase;
-  margin: 0;
-  padding: 20px;
-  cursor: pointer;
-}
-#menus-nav span {
-  display: block;
-  width: 20px;
-  height: 20px;
-  float: right;
-  background-size: 20px;
-  background-repeat: no-repeat;
-}
-#menus-canvas {
-  width: 72.5%;
-  margin-left: 2.5%;
-  height: 80vh;
-  background-image: url("/img/backgrounds/paper.png");
-  float: left;
-  overflow: auto;
-}
+  /* ----------------------------------------------
+  ---------------- Menus Styles ------------------
+  ---------------------------------------------- */
+  #menus {
+    height: 100vh;
+    background-color: #222;
+  }
+  #menus-nav {
+    width: 25%;
+    padding: 20px;
+    background-image: url("/img/backgrounds/paper.png");
+    float: left;
+    max-height: 80vh;
+    overflow: auto;
+  }
+  #menus-nav p {
+    color: #222;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 20px;
+    cursor: pointer;
+  }
+  #menus-nav span {
+    display: block;
+    width: 20px;
+    height: 20px;
+    float: right;
+    background-size: 20px;
+    background-repeat: no-repeat;
+  }
+  #menus-canvas {
+    width: 72.5%;
+    margin-left: 2.5%;
+    height: 80vh;
+    background-image: url("/img/backgrounds/paper.png");
+    float: left;
+    overflow: auto;
+  }
 
-.menu-container h2 {
-  text-align: center;
-}
-.menu-section {
-  margin-top: 40px;
-}
-.menu-subtitle {
-  text-align: center;
-  color: #222;
-  margin: 0;
-}
-.menu-item {
-  width: 47%;
-  padding: 20px;
-  float: left;
-  background: #ddd;
-  color: #222;
-  margin-left: 2%;
-  margin-bottom: 2%;
-  min-height: 170px;
-}
-.menu-item h4, .menu-item p, .menu-container h2 {
-  color: #222;
-}
-.item-prices {
-  width: 100%;
-  text-align: right;
+  .menu-container h2 {
+    text-align: center;
+  }
+  .menu-section {
+    margin-top: 40px;
+  }
+  .menu-subtitle {
+    text-align: center;
+    color: #222;
+    margin: 0;
+  }
+  .menu-item {
+    width: 47%;
+    padding: 20px;
+    float: left;
+    background: #ddd;
+    color: #222;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    min-height: 170px;
+  }
+  .menu-details {
+    color: #555;
+    font-size: 1em;
+    margin: 5px 0 0 20px;
+  }
+  .menu-details::before {
+    content: '*';
+  }
+  .menu-item h4, .menu-item p, .menu-container h2 {
+    color: #222;
+  }
+  .item-prices {
+    width: 100%;
+    text-align: right;
+  }
+  .menu-title {
+    text-transform: capitalize;
+  }
 }

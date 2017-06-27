@@ -134,6 +134,20 @@ module.exports = function(db, passport) {
       console.log(req.body);
     });
 
+    router.post('/addItem', function(req, res, next) {
+      var item = new itemSchema({
+          title: req.body.title,
+          desc: req.body.desc,
+          price: req.body.price,
+          tags: req.body.tags,
+          availabilities: req.body.availabilities
+      });
+      item.save(function(err, item) {
+        if (err) return res.send({success: false, err: err});
+        else return res.send({success: true});
+      });
+    });
+
     router.post('/editEvent', function(req, res, next) {
       eventsSchema.findOneAndUpdate({_id: req.body._id}, req.body, {upsert: true}, function(err, doc) {
           if (err) return res.send({success: false, err: err});
@@ -141,8 +155,25 @@ module.exports = function(db, passport) {
       });
     });
 
+    router.post('/editItem', function(req, res, next) {
+      itemSchema.findOneAndUpdate({_id: req.body._id}, req.body, {upsert: true}, function(err, doc) {
+          if (err) return res.send({success: false, err: err});
+          else return res.send({success: true});
+      });
+    });
+
     router.post('/deleteEvent', function(req, res, next) {
       eventsSchema.find({_id: req.body._id}).remove(function(err, data) {
+        if (err) {
+          console.log(err);
+          return res.send({success: false, err: err});
+        }
+        else return res.send({success: true});
+      });
+    });
+
+    router.get('/deleteWithTag/:tag', function(req, res, next) {
+      itemSchema.find({tags: [req.params.tag]}).remove(function(err, data) {
         if (err) {
           console.log(err);
           return res.send({success: false, err: err});

@@ -20,6 +20,27 @@
           internalServerError: false
       }
 
+      // $scope.addMenuItems = function() {
+      //   $.get("http://localhost:3000/soupssalads.txt",function(txt){
+      //       var lines = txt.split("\n");
+      //       for (var i = 0; i < lines.length-1; i += 3) {
+      //         var data = lines.slice(i,i+3);
+      //
+      //         var itemData = {
+      //           title: data[1],
+      //           desc: data[2],
+      //           price: data[0],
+      //           tags: ["brunch"],
+      //           availabilities: []
+      //         }
+      //
+      //         $http.post("/backendServices/addItem", itemData);
+      //       }
+      //   });
+      // }
+      //
+      // $scope.addMenuItems();
+
     }]);
 
 }());

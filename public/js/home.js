@@ -27,8 +27,6 @@
       $(this).css("fill", "url(#overlayGradientLight)");
     });
 
-    $(".top-nav").sticky({topSpacing: 0});
-
     $(".map-overlay").click(function() {
       $(this).addClass("hide");
       $(this).removeClass("show");
@@ -178,7 +176,6 @@
         if (evs[i].img) div.css("background-image", "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(" + evs[i].img + ")");
         div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(date));
         anchor.append(div);
-        if (i < 4) anchor.addClass("desktop-item");
         $("#featured-evs").prepend(anchor);
       }
       if (isMobile) $("#events-more div").attr("data-aos-delay", "0");
@@ -191,36 +188,51 @@
         var paragraph = $("<p href='"+menus[i].id.replace(/\W/g, '')+"'></p>").text(menus[i].id);
         var icon_background = '"'+menus[i].icon_path+'"';
         var span = $("<span class='menu-icon' style='background-image: url("+icon_background+")'></span>");
-        paragraph.append(span);
-        $("#menus-nav").append(paragraph);
+        paragraph.append(span).addClass("menu-nav-link");
+        var pdiv = $("<div class='menu-nav-container'></div>");
+        pdiv.append(paragraph);
+
 
         var container = $("<div class='menu-container' id='"+menus[i].id.replace(/\W/g, '')+"'></div>");
-        var title = $("<h2></h2>").text(menus[i].id);
-        var subtitle;
+        var title = $("<h2 class='menu-title'></h2>").text(menus[i].id);
+        var subtitle, details;
         if (menus[i].subtitle) subtitle = $("<p class='menu-subtitle'></p>").text(menus[i].subtitle);
+        if (menus[i].details) details = $("<p class='menu-details'></p>").text(menus[i].details);
         var section = $("<div class='menu-section'></div>");
         var itemDivs = [];
 
         for (var j = 0; j < menus[i].items.length; j++) {
           var item = menus[i].items[j];
           var itemDiv = $("<div class='menu-item'></div>");
+          if (item.styles) itemDiv.css(item.styles);
           var price = $("<p class='item-prices'></p>").text(item.price);
           var itemTitle = $("<h4 class='item-title'></h4>").text(item.title);
           var itemDesc = $("<p class='item-description'></p>").text(item.desc);
           itemDiv.append(price,itemTitle,itemDesc);
           itemDivs.push(itemDiv);
         }
+
         container.append(title);
         if (subtitle) container.append(subtitle);
+        if (details) container.append(details);
         section.append(itemDivs);
         container.append(section);
-        $("#menus-canvas").append(container);
+
+        var mobileContainer = container.clone();
+        mobileContainer.attr("id",mobileContainer.attr("id")+"-mobile");
+        mobileContainer.attr("class","menu-container-mobile mobile-item");
+        pdiv.append(mobileContainer);
+        $("#menus-nav").append(pdiv);
+
+        $("#menus-canvas").append(container).addClass("desktop-item");
       }
+      $(".menu-container:not(:first-child)").addClass("hide")
     }
 
     $.get('/backendServices/getMenus', function(data) {
       menus = data;
       for (var i = 0; i < menus.length; i++) menus[i].items = [];
+      console.log(menus);
 
       $.get('/backendServices/getItems', function(data) {
         var items = data;
@@ -237,10 +249,13 @@
     });
 
 
-    $(document).on('click','#menus-nav p',function() {
+    $(document).on('click','.menu-nav-link',function() {
       var id = $(this).attr("href");
-      $('.menu-container').removeClass("show").addClass("hide");
-      $("#" + id).removeClass("hide").addClass("show");
+      if (isMobile) $("#"+id+"-mobile").slideToggle("slow");
+      else {
+        $('.menu-container').removeClass("show").addClass("hide");
+        $("#" + id).removeClass("hide").addClass("show");
+      }
     })
 
 
