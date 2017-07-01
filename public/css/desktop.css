@@ -19,7 +19,7 @@
     display: inline-block;
   }
   footer {
-    background-color: #000;
+    background-color: #111;
   }
   .mobile-item, .mobile-item-inline {
     display: none !important;
@@ -75,8 +75,14 @@
     background-repeat: no-repeat;
     position: relative;
   }
-  .ev-box h4, .menu-box h4 {
+  .ev-box h4 {
     margin-top: 10vh;
+    font-size: 2em;
+    height: initial;
+    overflow-y: visible;
+  }
+  .ev-box p {
+    display: block;
   }
   #events {
     overflow: auto;
@@ -85,12 +91,17 @@
     background-color: #222;
   }
   #featured-evs {
-    overflow: hidden;
+    overflow-x: hidden;
   }
   #events-calendar {
     width: 60%;
     margin: 0 auto;
   }
+  #events-more {
+    width: calc(10%);
+    cursor: pointer;
+  }
+
 
   /* ----------------------------------------------
   ---------------- About Styles -------------------
@@ -124,6 +135,7 @@
   }
   #contact-info {
     width: 30%;
+    margin-top: 0;
     float: left;
     background-color: rgba(240,240,240,1);
   }
@@ -219,7 +231,6 @@
     overflow-x: hidden;
   }
   #social h2 {
-    background-color: #000;
     color: #fff;
     width: 100%;
     display: block;
@@ -241,7 +252,7 @@
     font-size: 2em;
   }
   #social {
-    background-color: #000;
+    background-color: #111;
   }
   .insta-overlay {
     position: absolute;
@@ -295,9 +306,40 @@
     height: 100vh;
     background-color: #222;
   }
-  #menus-nav {
+  #menu-col-1 {
     width: 25%;
-    padding: 20px;
+    float: left;
+  }
+  #oo-btn {
+    background-color: #ADE6A3;
+    overflow: auto;
+    margin-bottom: 15px;
+  }
+  #oo-btn span {
+    color: #222;
+    text-transform: uppercase;
+    background-image: url("/img/backgrounds/paper.png");
+    margin: 0 !important;
+    padding: 30px 40px !important;
+    cursor: pointer;
+    background-color: rgba(221,221,221,1);
+    border-radius: 0;
+    display: block;
+    color: #222 !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 300 !important;
+    box-shadow: none;
+    font-size: 1em;
+    text-align: left;
+    text-shadow: none;
+  }
+  #oo-btn span:hover {
+    background-image: none;
+    background-color: #ADE6A3;
+  }
+  #menus-nav {
+    width: 100%;
+    padding: 20px 20px 20px 20px;
     background-image: url("/img/backgrounds/paper.png");
     float: left;
     max-height: 80vh;
@@ -320,10 +362,14 @@
   }
   #menus-canvas {
     width: 72.5%;
+    position: relative;
     margin-left: 2.5%;
     height: 80vh;
     background-image: url("/img/backgrounds/paper.png");
     float: left;
+    overflow: hidden;
+  }
+  #menus-canvas {
     overflow: auto;
   }
 
@@ -365,5 +411,14 @@
   }
   .menu-title {
     text-transform: capitalize;
+  }
+  .menu-overlay {
+    display: block;
+    position: absolute;
+    margin-left: 25%;
+    width: 72.5%;
+    height: 80vh;
+    z-index: 1;
+    background: rgba(255,255,255,0.01);
   }
 }

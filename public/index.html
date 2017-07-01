@@ -58,35 +58,6 @@
           <iframe data-aos="zoom-in-up" src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sen!2sus!4v1492355601778!6m8!1m7!1sL7LOzWVg63MAAAQ2riPeUA!2m2!1d42.00971333354779!2d-87.8317883760817!3f215.67246437761224!4f-5.588525507255483!5f0.7820865974627469" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
 
-        <div id="food">
-          <div class="selectContainer" style="overflow: auto">
-            <p>Menu: </p>
-            <select id="foodMenuSelector">
-              <option value="/img/menus/brunch.pdf">Brunch</option>
-              <option value="/img/menus/lunch.pdf" selected>Lunch</option>
-              <option value="/img/menus/dinner.pdf">Dinner</option>
-            </select>
-            <span style="float: right; background-color: green; padding: 16px; margin-top: -40px;" id="btn-oo" class="glf-button" data-glf-cuid="54184d32-b385-4993-8d7b-56408285995c" data-glf-ruid="2b4ec7ef-f180-4125-913a-76bd1658ea24" data-glf-auto-open="false"> Order Online</span>
-            <script src="https://www.foodbooking.com/widget/js/ewm2.js" defer async ></script>
-          </div>
-        </div>
-        <div id="drinks">
-          <div class="selectContainer">
-            <p>Menu: </p>
-            <select id="drinksMenuSelector">
-              <option value="/img/menus/beer.pdf" selected>Beer</option>
-              <option value="/img/menus/wine.pdf">Wine</option>
-            </select>
-          </div>
-        </div>
-        <div id="cocktails">
-          <div class="selectContainer">
-            <p>Menu: </p>
-            <select id="cocktailsMenuSelector">
-              <option value="/img/menus/cocktails.pdf" selected>Specialty Cocktails</option>
-            </select>
-          </div>
-        </div>
         <div id="events-pu">
           <div id="events-calendar"></div>
         </div>
@@ -177,11 +148,7 @@
               <h4>Reserve a Table</h4>
               <form id="reserve-table">
                 <input id="reserve-date-block" type="date"/>
-                <select id="reserve-time-block">
-                </select>
-                <input type="text" id="res-name" placeholder="Name" required/>
-                <input type="text" id="res-email" placeholder="Email" required/>
-                <input type="text" id="res-phnum" placeholder="Phone Number" required/>
+                <select id="reserve-time-block"></select>
                 <input type="text" id="res-size" placeholder="Party Size" required/>
                 <button type="submit">Reserve</button>
               </form>
@@ -201,8 +168,15 @@
         </section>
 
         <section id="menus">
-          <div id="menus-nav"></div>
+          <div id="menu-col-1">
+            <div id="oo-btn">
+              <span class="glf-button" data-glf-cuid="54184d32-b385-4993-8d7b-56408285995c" data-glf-ruid="2b4ec7ef-f180-4125-913a-76bd1658ea24" data-glf-auto-open="false"> Order Online</span>
+              <script src="https://www.foodbooking.com/widget/js/ewm2.js" defer async ></script>
+            </div>
+            <div id="menus-nav"></div>
+          </div>
           <div id="menus-canvas"></div>
+          <div class="menu-overlay"></div>
         </section>
 
         <section id="social">
@@ -266,7 +240,6 @@
 <script src="/lib/fullcalendar/moment.min.js"></script>
 <script src="/lib/moment/moment-timezone.min.js"></script>
 <script src="/lib/fullcalendar/fullcalendar.min.js"></script>
-<script src="/lib/pdfjs/build/pdf.js"></script>
 <script src="/lib/stickyjs/sticky.min.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 <script src='/lib/aos/dist/aos.js'></script>

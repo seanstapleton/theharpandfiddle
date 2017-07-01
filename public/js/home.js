@@ -27,7 +27,7 @@
       $(this).css("fill", "url(#overlayGradientLight)");
     });
 
-    $(".map-overlay").click(function() {
+    $(".map-overlay, .menu-overlay").click(function() {
       $(this).addClass("hide");
       $(this).removeClass("show");
     });
@@ -39,7 +39,7 @@
       $("#tour-360 iframe").animateCss("zoomIn");
     });
 
-    $("#events-more").click(function() {
+    $(document).on('click','#events-more',function() {
       $("#overlay").toggleClass("show");
       $("#events-pu").toggleClass("show");
       $("body").toggleClass("noscroll");
@@ -99,8 +99,10 @@
 
     $(document).scroll(function() {
       if ($(".map-overlay").hasClass("hide")) {
-        $(".map-overlay").addClass("show");
-        $(".map-overlay").removeClass("hide");
+        $(".map-overlay").addClass("show").removeClass("hide");
+      }
+      if ($(".menu-overlay").hasClass("hide")) {
+        $(".menu-overlay").addClass("show").removeClass("hide");
       }
     });
 
@@ -114,20 +116,6 @@
     $("#party").selectmenu();
     $("#time-desktop").selectmenu();
     $("#party-desktop").selectmenu();
-
-    $("#reserve-btn").click(function() {
-      var d = ($("input[name='dateval']").val().length > 0) ? new Date($("input[name='dateval']").val()).toISOString().substring(0,10) : new Date().toISOString().substring(0,10);
-      var t = $("#time").val();
-      var p = $("#party").val();
-      window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
-    });
-
-    $("#reserve-btn-desktop").click(function() {
-      var d = ($("input[name='dateval']").val().length > 0) ? new Date($("input[name='dateval']").val()).toISOString().substring(0,10) : new Date().toISOString().substring(0,10);
-      var t = $("#time-desktop").val();
-      var p = $("#party-desktop").val();
-      window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
-    });
 
     $.post('/backendServices/insta', function(data) {
       var imgs = data.data.slice(0,5);
@@ -178,6 +166,10 @@
         anchor.append(div);
         $("#featured-evs").prepend(anchor);
       }
+      var div = $("<div id='events-more' class='ev-box' data-aos='fade-left' data-aos-delay='1200' data-aos-anchor-placement='center-bottom'></div>");
+      div.css("background", "linear-gradient(rgba(25,25,25,0.8), rgba(25,25,25,0), rgba(25,25,25,0.8))");
+      div.append($("<h4></h4>").text("See More"), $("<p></p>").text("View calendar"));
+      $("#featured-evs").append(div);
       if (isMobile) $("#events-more div").attr("data-aos-delay", "0");
     });
 
@@ -435,6 +427,59 @@
       }
     });
 
+    Date.prototype.yyyymmdd = function() {
+      var mm = this.getMonth() + 1; // getMonth() is zero-based
+      var dd = this.getDate();
+
+      return [this.getFullYear(),
+              (mm>9 ? '' : '0') + mm,
+              (dd>9 ? '' : '0') + dd
+            ].join('-');
+    };
+
+    var setUpReservations = function(str) {
+      var d = moment(str);
+      d.hours(11);
+      d.minutes(59);
+      var timeSelect = $("#reserve-time-block");
+      var day = d.hours();
+      var close = (day > 0 && day < 5) ? 21 : 22;
+      var today = new moment();
+      var time = (d.dayOfYear() == today.dayOfYear()) ? today.hours() : d.hours();
+      $("#reserve-time-block").find("option").remove();
+      if (d.minutes() < 30) {
+        var am = (time < 12) ? "am" : "pm";
+        var t = (time % 12 == 0) ? 12 : time % 12;
+        timeSelect.append($("<option></option>").val("" + t + ":30" + am).text("" + t + ":30" + am));
+      }
+      for (var i = time + 1; i < close; i++) {
+        var am = (i < 12) ? "am" : "pm";
+        var t = (i % 12 == 0) ? 12 : i % 12;
+        timeSelect.append($("<option></option>").val("" + t + ":00" + am).text("" + t + ":00" + am));
+        timeSelect.append($("<option></option>").val("" + t + ":30" + am).text("" + t + ":30" + am));
+      }
+      if ($("#reserve-time-block option").length == 0) {
+        timeSelect.append($("<option disabled selected></option>").val("null").text("No times available"));
+      }
+    }
+    var today = new Date();
+    $("#reserve-date-block").val(today.yyyymmdd());
+    setUpReservations(today);
+
+    $("#reserve-date-block").change(function() {
+      var str = $(this).val()
+      setUpReservations(str);
+    });
+
+    $("#reserve-table").submit(function(e) {
+      alert("whatup");
+      var d = $("#reserve-date-block").val().toISOString().substring(0,10);
+      var t = $("#reserve-time-block").val();
+      var p = $("#res-size").val();
+      window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
+      return false;
+    });
+
 
 
     $("#contact-form-submit").click(function() {
@@ -445,7 +490,6 @@
         subject: $("#subject").val(),
         message: $("#message").val()
       }
-
 
       $.post("/backendServices/sendMessage", formData, function(data) {
         var response;
