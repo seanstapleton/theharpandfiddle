@@ -3,18 +3,8 @@
 
     app.controller('DashController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
-    $scope.pageData.current = "events";
-
     $scope.eventData = {};
     $scope.eventOrder = "start";
-
-    $scope.alert = function(str) {
-      alert(str);
-    }
-
-    $scope.updatePreview = function() {
-      $("#previewWindow").css("background-image", "url("+$scope.linkDrivePhoto($scope.imageEditData.current)+")")
-    }
 
     $scope.checkStatus = function() {
       $http.get("/backendServices/isLoggedIn")
@@ -23,16 +13,8 @@
           if (!res.data.loggedIn)
             $window.location = "/admin";
           else
-            $scope.userData.isLoggedIn = true;
+            $scope.loggedIn = true;
         });
-    }
-
-    $scope.editImage = function(ev) {
-      $(".overlay, .imageEditModal").addClass("show");
-      $scope.imageEditData = {
-        current: ev.img,
-        ev: ev
-      }
     }
 
     $scope.checkStatus();
@@ -57,56 +39,17 @@
         $(".collapsable-ev").toggleClass("hide");
       }
 
-      $scope.editEvent = function(ev) {
-        var el = $("#edit-" + ev._id);
-        var startel = $("#start-edit-" + ev._id);
-        var endel = $("#end-edit-" + ev._id);
-        if (ev.status != "edited") {
-          ev.status = "edited";
-          el.attr("data-status", "edited");
-
-
-          startel.val(ev.start.substring(0,16));
-          endel.val(ev.end.substring(0,16));
-        } else if (ev.status == "edited") {
-          ev.status = "saved";
-          el.attr("data-status", "saved");
-
-          ev.start = startel.val();
-          ev.end = endel.val();
-
-          var upEvent = {
-            "_id": ev._id,
-            title: ev.title,
-            start: ev.start,
-            end: ev.end,
-            description: ev.description,
-            url: ev.url,
-            img: ev.img
-          };
-
-          $http.post('/backendServices/editEvent', upEvent)
-            .then(function(res) {
-              if (!res.data.success) {
-                alert("Sorry, your change was unsuccessful.");
-              }
-            });
-        }
-      }
-
-      $scope.updateImage = function() {
-        var upEvent = {
-          "_id": $scope.imageEditData.ev._id,
-          img: $scope.imageEditData.current
-        };
-        $scope.imageEditData.ev.img = $scope.imageEditData.current;
-        $http.post('/backendServices/editEvent', upEvent)
-          .then(function(res) {
-            if (!res.data.success) {
-              alert("Sorry, your change was unsuccessful.");
-            }
-          });
-        $scope.clearImageData();
+      $scope.editEvent = function(id) {
+        $scope.mode = "edit";
+        var ev = $scope.events.filter(function(obj) {
+          return obj._id == id;
+        })[0];
+        ev.start = new Date(ev.start);
+        ev.end = new Date(ev.end);
+        $scope.eventData = ev;
+        $(".overlay").toggleClass("show");
+        $("#eventModal").toggleClass("show");
+        console.log(ev);
       }
 
       $scope.deleteEvent = function(id) {
@@ -129,20 +72,14 @@
           }
       }
 
-      $scope.linkDrivePhoto = function(url) {
+      $scope.linkDrivePhoto = function() {
+        var url = $scope.eventData.img;
         if (url.indexOf("drive.google.com") > -1) {
           var tokens = url.split("/");
-          return "https://www.drive.google.com/uc?id=" + tokens[tokens.indexOf("d")+1];
+          $scope.eventData.img = "https://www.drive.google.com/uc?id=" + tokens[tokens.indexOf("d")+1];
         } else if (url.indexOf("dropbox.com") > -1) {
-          return url.replace("www.dropbox.com", "dl.dropboxusercontent.com");
-        } else {
-          return url;
+          $scope.eventData.img = url.replace("www.dropbox.com", "dl.dropboxusercontent.com");
         }
-      }
-
-      $scope.clearImageData = function() {
-        $(".overlay, .imageEditModal").removeClass("show");
-        $scope.imageEditData = {};
       }
 
       $scope.uploadEvent = function() {
@@ -165,25 +102,23 @@
       }
 
       $scope.updateFeatured = function(ev) {
-        var upEvent = {
-          "_id": ev._id,
-          title: ev.title,
-          start: new Date(ev.start),
-          end: new Date(ev.end),
-          description: ev.description,
-          url: ev.url,
-          img: ev.img
-        };
+        var event = ev;
+        event.start = new Date(ev.start);
+        event.end = new Date(ev.end);
+        event.featured = ev.selected;
 
-        var el = $("#fav-" + ev._id);
-        upEvent.featured = !(el.attr("data-checked") == "true");
-        el.attr("data-checked", upEvent.featured);
-
-        $http.post('/backendServices/editEvent', upEvent)
+        $http.post('/backendServices/editEvent', event)
           .then(function(res) {
             if (!res.data.success) {
               alert("Sorry, your change was unsuccessful.");
             }
+          });
+      }
+
+      $scope.logout = function() {
+        $http.get('/backendServices/logout')
+          .then(function(res) {
+            $window.location = "/admin";
           });
       }
 
