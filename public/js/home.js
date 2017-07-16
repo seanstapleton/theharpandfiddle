@@ -87,8 +87,12 @@
 
     $("#menu").click(function() {
       $(this).toggleClass("open");
-      $('.offscreen-nav').toggleClass("onscreen");
-      $('.offscreen-nav-wrapper').toggleClass("onscreen-wrapper");
+      if (isMobile) {
+        $('.offscreen-nav').toggleClass("onscreen");
+        $('.offscreen-nav-wrapper').toggleClass("onscreen-wrapper");
+      } else {
+        $(".top-nav").animate({width: 'toggle'});
+      }
     });
 
     $(".offscreen-nav a").click(function() {
@@ -125,7 +129,7 @@
         overlay.attr("href", imgs[i].link);
         var likes = $("<p></p>").text(imgs[i].likes.count).addClass("insta-likes");
         var comments = $("<p></p>").text(imgs[i].comments.count).addClass("insta-comments");
-        var captionText = (imgs[i].caption.text.length > 100) ? imgs[i].caption.text.substring(0,100) + "..." : imgs[i].caption.text;
+        var captionText = (imgs[i].caption == null) ? "" : (imgs[i].caption.text.length > 100) ? imgs[i].caption.text.substring(0,100) + "..." : imgs[i].caption.text;
         var caption = $("<p></p>").text(captionText).addClass("insta-caption");
         overlay.append(likes,comments,caption);
         div.css("background-image", "url(" + imgs[i].images.standard_resolution.url+")");
@@ -151,6 +155,19 @@
     $("#ig-links").on('click', 'div.insta-overlay', function() {
       window.open($(this).attr("href"), "_blank");
     });
+
+    $(document).on('mouseover','#menus-canvas, #menus-nav', function() {
+      $("body").css("overflow","hidden");
+    });
+
+    $(document).on('mouseout','#menus-canvas, #menus-nav', function() {
+      $("body").css("overflow","initial");
+    });
+
+    $(document).on('load',"#beer-menu-container div", function() {
+      alert($("#beer-menu-container div").attr("css"));
+    });
+    $("#untappd-menu-mobile").append($("#beer-menu-container").clone().attr("id", $("#beer-menu-container").attr("id") + "-mobile").attr("class","menu-container-mobile mobile-item"));
 
     $.get('/backendServices/featuredEvents', function(data) {
       var evs = data.events;
@@ -214,9 +231,9 @@
         mobileContainer.attr("id",mobileContainer.attr("id")+"-mobile");
         mobileContainer.attr("class","menu-container-mobile mobile-item");
         pdiv.append(mobileContainer);
-        $("#menus-nav").append(pdiv);
+        $("#menus-nav").prepend(pdiv);
 
-        $("#menus-canvas").append(container).addClass("desktop-item");
+        $("#menus-canvas").prepend(container).addClass("desktop-item");
       }
       $(".menu-container:not(:first-child)").addClass("hide")
     }

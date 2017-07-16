@@ -78,7 +78,7 @@
         </div>
       </div>
       <nav>
-        <div id="menu" class="mobile-item">
+        <div id="menu">
           <span></span><span></span><span></span><span></span><span></span><span></span>
         </div>
       </nav>
@@ -92,6 +92,7 @@
           <li><a href="#menus">Menus</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#events">Events</a></li>
+          <li class="nav-logo"><a href="/index"><img src="/img/logos/fiddler.svg"/></a></li>
         </ul>
       </div>
 
@@ -173,10 +174,24 @@
               <span class="glf-button" data-glf-cuid="54184d32-b385-4993-8d7b-56408285995c" data-glf-ruid="2b4ec7ef-f180-4125-913a-76bd1658ea24" data-glf-auto-open="false"> Order Online</span>
               <script src="https://www.foodbooking.com/widget/js/ewm2.js" defer async ></script>
             </div>
-            <div id="menus-nav"></div>
+            <div id="menus-nav">
+              <div id="untappd-menu-mobile" class="menu-nav-container">
+                <p href="beer" class="menu-nav-link">Beer<span class="menu-icon"></span></p>
+              </div>
+            </div>
           </div>
-          <div id="menus-canvas"></div>
-          <div class="menu-overlay"></div>
+          <div id="menu-col-2">
+            <div id="menus-canvas">
+              <div class="menu-container" id="beer">
+                <div id="beer-menu-container"></div>
+                <script type="text/javascript">
+                  !function(e,n){var t=document.createElement("script"),a=document.getElementsByTagName("script")[0];t.async=1,a.parentNode.insertBefore(t,a),t.onload=t.onreadystatechange=function(e,a){(a||!t.readyState||/loaded|complete/.test(t.readyState))&&(t.onload=t.onreadystatechange=null,t=void 0,a||n&&n())},t.src=e}("https://embed-menu-preloader.untappdapi.com/embed-menu-preloader.min.js",function(){PreloadEmbedMenu("beer-menu-container",6484,22214)});
+                </script>
+              </div>
+            </div>
+            <!-- <div class="menu-overlay"></div> -->
+            <a href="https://www.dropbox.com/sh/eot9i5e3dz4gy5z/AACEBysDX1IcUxZ8b5GGYYnta?dl=0" target="_blank" style="margin-top: 10px; float: right; color: #ccc;">View PDFs</a>
+          </div>
         </section>
 
         <section id="social">
