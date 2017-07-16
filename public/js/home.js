@@ -140,7 +140,6 @@
         $("#ig-links").slick({
           autoplay: true,
           arrows: true,
-          fade: true,
           speed: 1500
         });
       }
@@ -163,11 +162,6 @@
     $(document).on('mouseout','#menus-canvas, #menus-nav', function() {
       $("body").css("overflow","initial");
     });
-
-    $(document).on('load',"#beer-menu-container div", function() {
-      alert($("#beer-menu-container div").attr("css"));
-    });
-    $("#untappd-menu-mobile").append($("#beer-menu-container").clone().attr("id", $("#beer-menu-container").attr("id") + "-mobile").attr("class","menu-container-mobile mobile-item"));
 
     $.get('/backendServices/featuredEvents', function(data) {
       var evs = data.events;
