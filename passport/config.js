@@ -32,7 +32,7 @@ module.exports = function(passport) {
         else {
           var newUser = new User();
           newUser.email = email;
-          newUser.password = newUser.generateHash();
+          newUser.password = newUser.generateHash(password);
 
           newUser.save(function(err) {
             if (err) {

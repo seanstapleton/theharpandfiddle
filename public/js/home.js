@@ -16,14 +16,18 @@
 
     var isMobile = !window.matchMedia('(min-width: 960px)').matches;
 
+    if (!isMobile) $("#location-map iframe, .map-overlay").height($("#contact-info").height());
+
+    $("#menus-nav span").each(function() {
+      $(this).css("background-image", "url('" + $(this).attr("href") + "')")
+    });
+
     $(".overlayGradient").mouseover(function() {
       $(".overlayGradient").css("fill", "url(#overlayGradientDark)");
       $(this).css("fill", "url(#overlayGradientLight)");
     });
 
-    $(".top-nav").sticky({topSpacing: 0});
-
-    $(".map-overlay").click(function() {
+    $(".map-overlay, .menu-overlay").click(function() {
       $(this).addClass("hide");
       $(this).removeClass("show");
     });
@@ -35,7 +39,7 @@
       $("#tour-360 iframe").animateCss("zoomIn");
     });
 
-    $("#events-more").click(function() {
+    $(document).on('click','#events-more',function() {
       $("#overlay").toggleClass("show");
       $("#events-pu").toggleClass("show");
       $("body").toggleClass("noscroll");
@@ -83,8 +87,12 @@
 
     $("#menu").click(function() {
       $(this).toggleClass("open");
-      $('.offscreen-nav').toggleClass("onscreen");
-      $('.offscreen-nav-wrapper').toggleClass("onscreen-wrapper");
+      if (isMobile) {
+        $('.offscreen-nav').toggleClass("onscreen");
+        $('.offscreen-nav-wrapper').toggleClass("onscreen-wrapper");
+      } else {
+        $(".top-nav").animate({width: 'toggle'});
+      }
     });
 
     $(".offscreen-nav a").click(function() {
@@ -95,8 +103,10 @@
 
     $(document).scroll(function() {
       if ($(".map-overlay").hasClass("hide")) {
-        $(".map-overlay").addClass("show");
-        $(".map-overlay").removeClass("hide");
+        $(".map-overlay").addClass("show").removeClass("hide");
+      }
+      if ($(".menu-overlay").hasClass("hide")) {
+        $(".menu-overlay").addClass("show").removeClass("hide");
       }
     });
 
@@ -111,20 +121,6 @@
     $("#time-desktop").selectmenu();
     $("#party-desktop").selectmenu();
 
-    $("#reserve-btn").click(function() {
-      var d = ($("input[name='dateval']").val().length > 0) ? new Date($("input[name='dateval']").val()).toISOString().substring(0,10) : new Date().toISOString().substring(0,10);
-      var t = $("#time").val();
-      var p = $("#party").val();
-      window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
-    });
-
-    $("#reserve-btn-desktop").click(function() {
-      var d = ($("input[name='dateval']").val().length > 0) ? new Date($("input[name='dateval']").val()).toISOString().substring(0,10) : new Date().toISOString().substring(0,10);
-      var t = $("#time-desktop").val();
-      var p = $("#party-desktop").val();
-      window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
-    });
-
     $.post('/backendServices/insta', function(data) {
       var imgs = data.data.slice(0,5);
       for (var i = 0; i < imgs.length; i++) {
@@ -133,7 +129,7 @@
         overlay.attr("href", imgs[i].link);
         var likes = $("<p></p>").text(imgs[i].likes.count).addClass("insta-likes");
         var comments = $("<p></p>").text(imgs[i].comments.count).addClass("insta-comments");
-        var captionText = (imgs[i].caption.text.length > 100) ? imgs[i].caption.text.substring(0,100) + "..." : imgs[i].caption.text;
+        var captionText = (imgs[i].caption == null) ? "" : (imgs[i].caption.text.length > 100) ? imgs[i].caption.text.substring(0,100) + "..." : imgs[i].caption.text;
         var caption = $("<p></p>").text(captionText).addClass("insta-caption");
         overlay.append(likes,comments,caption);
         div.css("background-image", "url(" + imgs[i].images.standard_resolution.url+")");
@@ -144,7 +140,6 @@
         $("#ig-links").slick({
           autoplay: true,
           arrows: true,
-          fade: true,
           speed: 1500
         });
       }
@@ -160,10 +155,18 @@
       window.open($(this).attr("href"), "_blank");
     });
 
+    $(document).on('mouseover','#menus-canvas, #menus-nav', function() {
+      $("body").css("overflow","hidden");
+    });
+
+    $(document).on('mouseout','#menus-canvas, #menus-nav', function() {
+      $("body").css("overflow","initial");
+    });
+
     $.get('/backendServices/featuredEvents', function(data) {
       var evs = data.events;
       console.log(evs);
-      for (var i = 0; i < evs.length && i < 7; i++) {
+      for (var i = 0; i < evs.length && i < 4; i++) {
         var date = moment(evs[i].start).format("MMMM Do @ h:mm a");
         var anchor = $('<a href='+evs[i].url+'></a>');
         l = i;
@@ -172,11 +175,92 @@
         if (evs[i].img) div.css("background-image", "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(" + evs[i].img + ")");
         div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(date));
         anchor.append(div);
-        if (i < 4) anchor.addClass("desktop-item");
         $("#featured-evs").prepend(anchor);
       }
+      var div = $("<div id='events-more' class='ev-box' data-aos='fade-left' data-aos-delay='1200' data-aos-anchor-placement='center-bottom'></div>");
+      div.css("background", "linear-gradient(rgba(25,25,25,0.8), rgba(25,25,25,0), rgba(25,25,25,0.8))");
+      div.append($("<h4></h4>").text("See More"), $("<p></p>").text("View calendar"));
+      $("#featured-evs").append(div);
       if (isMobile) $("#events-more div").attr("data-aos-delay", "0");
     });
+
+    var menus;
+
+    var loadMenuCanvas = function() {
+      for (var i = 0; i < menus.length; i++) {
+        var paragraph = $("<p href='"+menus[i].id.replace(/\W/g, '')+"'></p>").text(menus[i].id);
+        var icon_background = '"'+menus[i].icon_path+'"';
+        var span = $("<span class='menu-icon' style='background-image: url("+icon_background+")'></span>");
+        paragraph.append(span).addClass("menu-nav-link");
+        var pdiv = $("<div class='menu-nav-container'></div>");
+        pdiv.append(paragraph);
+
+
+        var container = $("<div class='menu-container' id='"+menus[i].id.replace(/\W/g, '')+"'></div>");
+        var title = $("<h2 class='menu-title'></h2>").text(menus[i].id);
+        var subtitle, details;
+        if (menus[i].subtitle) subtitle = $("<p class='menu-subtitle'></p>").text(menus[i].subtitle);
+        if (menus[i].details) details = $("<p class='menu-details'></p>").text(menus[i].details);
+        var section = $("<div class='menu-section'></div>");
+        var itemDivs = [];
+
+        for (var j = 0; j < menus[i].items.length; j++) {
+          var item = menus[i].items[j];
+          var itemDiv = $("<div class='menu-item'></div>");
+          if (item.styles) itemDiv.css(item.styles);
+          var price = $("<p class='item-prices'></p>").text(item.price);
+          var itemTitle = $("<h4 class='item-title'></h4>").text(item.title);
+          var itemDesc = $("<p class='item-description'></p>").text(item.desc);
+          itemDiv.append(price,itemTitle,itemDesc);
+          itemDivs.push(itemDiv);
+        }
+
+        container.append(title);
+        if (subtitle) container.append(subtitle);
+        if (details) container.append(details);
+        section.append(itemDivs);
+        container.append(section);
+
+        var mobileContainer = container.clone();
+        mobileContainer.attr("id",mobileContainer.attr("id")+"-mobile");
+        mobileContainer.attr("class","menu-container-mobile mobile-item");
+        pdiv.append(mobileContainer);
+        $("#menus-nav").prepend(pdiv);
+
+        $("#menus-canvas").prepend(container).addClass("desktop-item");
+      }
+      $(".menu-container:not(:first-child)").addClass("hide")
+    }
+
+    $.get('/backendServices/getMenus', function(data) {
+      menus = data;
+      for (var i = 0; i < menus.length; i++) menus[i].items = [];
+      console.log(menus);
+
+      $.get('/backendServices/getItems', function(data) {
+        var items = data;
+        for (var i = 0; i < items.length; i++) {
+          var item = items[i];
+          for (var j = 0; j < item.tags.length; j++) {
+            var obj = $.grep(menus,function(e) { return e.id.replace(/\W/g, '') == item.tags[j]});
+            if (obj.length > 0) obj[0].items.push(item);
+            else console.log("tag " + item.tags[j] + " not found.");
+          }
+        }
+        loadMenuCanvas();
+      });
+    });
+
+
+    $(document).on('click','.menu-nav-link',function() {
+      var id = $(this).attr("href");
+      if (isMobile) $("#"+id+"-mobile").slideToggle("slow");
+      else {
+        $('.menu-container').removeClass("show").addClass("hide");
+        $("#" + id).removeClass("hide").addClass("show");
+      }
+    })
+
 
     // $.get('/backendServices/getFBID', function(fbid) {
     //   $.get('https://graph.facebook.com/parkridgebar/photos?type=uploaded&&access_token=' + fbid, function(data) {
@@ -354,9 +438,63 @@
       }
     });
 
+    Date.prototype.yyyymmdd = function() {
+      var mm = this.getMonth() + 1; // getMonth() is zero-based
+      var dd = this.getDate();
+
+      return [this.getFullYear(),
+              (mm>9 ? '' : '0') + mm,
+              (dd>9 ? '' : '0') + dd
+            ].join('-');
+    };
+
+    var setUpReservations = function(str) {
+      var d = moment(str);
+      d.hours(11);
+      d.minutes(59);
+      var timeSelect = $("#reserve-time-block");
+      var day = d.hours();
+      var close = (day > 0 && day < 5) ? 21 : 22;
+      var today = new moment();
+      var time = (d.dayOfYear() == today.dayOfYear()) ? today.hours() : d.hours();
+      $("#reserve-time-block").find("option").remove();
+      if (d.minutes() < 30) {
+        var am = (time < 12) ? "am" : "pm";
+        var t = (time % 12 == 0) ? 12 : time % 12;
+        timeSelect.append($("<option></option>").val("" + t + ":30" + am).text("" + t + ":30" + am));
+      }
+      for (var i = time + 1; i < close; i++) {
+        var am = (i < 12) ? "am" : "pm";
+        var t = (i % 12 == 0) ? 12 : i % 12;
+        timeSelect.append($("<option></option>").val("" + t + ":00" + am).text("" + t + ":00" + am));
+        timeSelect.append($("<option></option>").val("" + t + ":30" + am).text("" + t + ":30" + am));
+      }
+      if ($("#reserve-time-block option").length == 0) {
+        timeSelect.append($("<option disabled selected></option>").val("null").text("No times available"));
+      }
+    }
+    var today = new Date();
+    $("#reserve-date-block").val(today.yyyymmdd());
+    setUpReservations(today);
+
+    $("#reserve-date-block").change(function() {
+      var str = $(this).val()
+      setUpReservations(str);
+    });
+
+    $("#reserve-table").submit(function(e) {
+      var d = new Date($("#reserve-date-block").val()).toISOString().substring(0,10);
+
+      var t = $("#reserve-time-block").val();
+      var p = $("#res-size").val();
+      window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
+      return false;
+    });
 
 
-    $("#contact-form-submit").submit(function(e) {
+
+
+    $("#contact-form form").submit(function(e) {
       var formData = {
         name: $("#name").val(),
         email: $("#email").val(),
@@ -365,21 +503,14 @@
         message: $("#message").val()
       }
 
+      $.post("/backendServices/sendMessage", formData, function(data) {
+        if (data.success) swal("Your message has been sent", "We will respond as soon as possible.", "success");
+        else swal("There was an error with our servers", "Please call (269) 469-6400 or email caseysnb136@gmail.com", "error");
 
-      $.post("/backendServices/sendMessage", formData)
-        .then(function(data) {
-          var response;
-          var msg = {
-            "success": "Your message was sent",
-            "error": "please try sending an email to declan@theharpandfiddle.com instead!"
-          }
-          if (data.success) swal("Success!", "Your message was sent", "success");
-          else swal("Error", "Please try sending an email to declan@theharpandfiddle.com instead", "error");
-          $("#overlay").toggleClass("show");
-          $("#contact-form").toggleClass("show");
-          $("body").toggleClass("noscroll");
-        });
-
+        $("#overlay").toggleClass("show");
+        $("body").toggleClass("noscroll");
+        $("#contact-form").removeClass("show");
+      });
 
       return false;
     });

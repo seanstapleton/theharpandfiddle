@@ -6,6 +6,7 @@ module.exports = function(db, passport) {
     var nodemailer      = require('nodemailer');
     var hoursSchema     = require('../models/hours.js');
     var menuSchema      = require('../models/menu.js');
+    var itemSchema      = require('../models/items.js');
     var eventsSchema    = require('../models/events.js');
     var specialsSchema  = require('../models/specials.js');
     var messageSchema   = require('../models/message.js');
@@ -38,12 +39,26 @@ module.exports = function(db, passport) {
       });
     });
 
+    router.get('/getMenus', function(req, res) {
+      menuSchema.find({},{}, function(err, menus) {
+        if (err) console.log(err);
+        else return res.send(menus);
+      });
+    });
+
+    router.get('/getItems', function(req, res) {
+      itemSchema.find({},{}, function(err, items) {
+        if (err) console.log(err);
+        else return res.send(items);
+      });
+    });
+
     router.get('/getFBID', function(req, res) {
       return res.send(process.env.fbid);
     });
 
     var LocalStrategy = require('passport-local').Strategy;
-    var register = require('../passport/config.js')(passport);
+    require('../passport/config.js')(passport);
     router.post('/register', function(req, res, next) {
         passport.authenticate('register', function(err, newUser, info) {
           if (err) return next(err);
@@ -52,9 +67,16 @@ module.exports = function(db, passport) {
     });
 
     router.post('/login', function(req, res, next) {
+      console.log("body parsing: ", req.body);
       passport.authenticate('login', function(err, user, info) {
-        if (err) return next(err);
-        if (!user) return res.send({success: false});
+        if (err) {
+          console.log("error: ", err);
+          return next(err);
+        }
+        if (!user) {
+          console.log("error user");
+          return res.send({success: false});
+        }
         req.login(user, loginErr => {
             if(loginErr) {
                 return next(loginErr);
@@ -65,6 +87,7 @@ module.exports = function(db, passport) {
     });
 
     var isLoggedIn = function(req, res, next) {
+      console.log("checking login");
       if (req.isAuthenticated()) {
         console.log("logged in");
         return res.send({loggedIn: true});
@@ -75,6 +98,16 @@ module.exports = function(db, passport) {
 
     router.get('/getEvents', function(req, res) {
       eventsSchema.find({}, {}, {sort: {"start": -1}}, function(err, events) {
+            if (events) {
+              res.send(events);
+            } else {
+              res.end();
+            }
+        });
+    });
+
+    router.get('/getMenus', function(req, res) {
+      menuSchema.find({}, {}, {sort: {"start": -1}}, function(err, events) {
             if (events) {
               res.send(events);
             } else {
@@ -101,6 +134,20 @@ module.exports = function(db, passport) {
       console.log(req.body);
     });
 
+    router.post('/addItem', function(req, res, next) {
+      var item = new itemSchema({
+          title: req.body.title,
+          desc: req.body.desc,
+          price: req.body.price,
+          tags: req.body.tags,
+          availabilities: req.body.availabilities
+      });
+      item.save(function(err, item) {
+        if (err) return res.send({success: false, err: err});
+        else return res.send({success: true});
+      });
+    });
+
     router.post('/editEvent', function(req, res, next) {
       eventsSchema.findOneAndUpdate({_id: req.body._id}, req.body, {upsert: true}, function(err, doc) {
           if (err) return res.send({success: false, err: err});
@@ -108,9 +155,29 @@ module.exports = function(db, passport) {
       });
     });
 
+    router.post('/editItem', function(req, res, next) {
+      itemSchema.findOneAndUpdate({_id: req.body._id}, req.body, {upsert: true}, function(err, doc) {
+          if (err) return res.send({success: false, err: err});
+          else return res.send({success: true});
+      });
+    });
+
     router.post('/deleteEvent', function(req, res, next) {
-      eventsSchema.find({_id: req.body.id}).remove(function(err, data) {
-        if (err) {console.log(err); return res.send({success: false, err: err});}
+      eventsSchema.find({_id: req.body._id}).remove(function(err, data) {
+        if (err) {
+          console.log(err);
+          return res.send({success: false, err: err});
+        }
+        else return res.send({success: true});
+      });
+    });
+
+    router.get('/deleteWithTag/:tag', function(req, res, next) {
+      itemSchema.find({tags: [req.params.tag]}).remove(function(err, data) {
+        if (err) {
+          console.log(err);
+          return res.send({success: false, err: err});
+        }
         else return res.send({success: true});
       });
     });

@@ -1,0 +1,494 @@
+/* ----------------------------------------------
+--------------- Desktop Styles ------------------
+---------------------------------------------- */
+@media (min-width: 1105px) {
+  #reservation {
+    padding: 40px;
+  }
+}
+
+@media (min-width: 968px) {
+
+  a {
+    text-decoration: none !important;
+  }
+  .desktop-item {
+    display: block;
+  }
+  .desktop-item-inline {
+    display: inline-block;
+  }
+  footer {
+    background-color: #111;
+  }
+  .mobile-item, .mobile-item-inline {
+    display: none !important;
+  }
+  .primary-container {
+    background-color: #000;
+  }
+  svg {
+    width: 100%;
+  }
+
+  /* ----------------------------------------------
+  ---------------- Intro Styles -------------------
+  ---------------------------------------------- */
+  #intro img {
+    width: 50%;
+    margin-left: 25%;
+  }
+  #intro h2 {
+    font-size: 2em;
+  }
+  #intro a {
+    width: 13%;
+  }
+
+  /* ----------------------------------------------
+  ----------- Featured Events Styles --------------
+  ---------------------------------------------- */
+  #events h1 {
+    text-align: left;
+    font-size: 2em;
+    margin: 20px 40px;
+    color: #fff;
+  }
+  #featured-evs div {
+    float: left;
+  }
+  #featured-evs div h4 {
+    font-size: 2em;
+    padding-top: 20%;
+  }
+  #featured-evs div p {
+    font-size: 1em;
+  }
+  .ev-box {
+    width: 20%;
+    height: 50vh;
+    margin: 0 0 0 2%;
+    /*background-image: url('http://placehold.it/500x500');*/
+    background-color: #000;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+  .ev-box h4 {
+    margin-top: 10vh;
+    font-size: 2em;
+    height: initial;
+    overflow-y: visible;
+  }
+  .ev-box p {
+    display: block;
+  }
+  #events {
+    overflow: auto;
+    padding: 30px !important;
+    padding-bottom: 60px !important;
+    background-color: #222;
+  }
+  #featured-evs {
+    overflow-x: hidden;
+  }
+  #events-calendar {
+    width: 60%;
+    margin: 0 auto;
+  }
+  #events-more {
+    width: calc(10%);
+    cursor: pointer;
+  }
+
+
+  /* ----------------------------------------------
+  ---------------- About Styles -------------------
+  ---------------------------------------------- */
+  #about h1 {
+    text-align: left;
+    font-size: 3em;
+    margin-left: 40px;
+  }
+  .map-overlay {
+    height: 100%;
+    width: 90%;
+    margin-left: 10%;
+  }
+  #about {
+    background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("/img/backgrounds/brick.jpg");
+    overflow: auto;
+    padding: 50px;
+  }
+
+  #location-map iframe {
+    width: 100%;
+    height: 90vh;
+    margin: 0;
+    float: left;
+  }
+  #location-map, .map-overlay {
+    width: 67.5%;
+    margin: 0 2.5% 0 0;
+    float: left;
+  }
+  #contact-info {
+    width: 30%;
+    margin-top: 0;
+    float: left;
+    background-color: rgba(240,240,240,1);
+  }
+
+  .contact-block {
+    width: 90%;
+    padding: 15px;
+    margin: 5% auto;
+    background: #fff;
+  }
+  .contact-block p, .contact-block a, .contact-block h4 {
+    color: #111;
+  }
+  .contact-block h4 {
+    font-size: 1.4em;
+  }
+  .contact-block p {
+    font-size: 0.8em;
+  }
+  .contact-block th {
+    color: #111;
+    font-family: Montserrat;
+    font-weight: 300;
+    font-size: 1.4em;
+  }
+  .contact-block td {
+    font-size: 0.8em !important;
+    color: #111 !important;
+    font-weight: 200;
+  }
+  #reservation-block input[type='date'], #reservation-block select {
+    width: 50%;
+    float: left;
+    border: none;
+  }
+  #reservation-block input {
+    width: 100%;
+    min-height: 25px;
+    border: none;
+  }
+  #reservation-block button[type='submit'] {
+    width: 100%;
+    color: #fff;
+    background-color: rgb(211, 35, 35);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 0;
+    margin-top: 5px;
+  }
+
+  /* ----------------------------------------------
+  ----------------- Nav Styles --------------------
+  ---------------------------------------------- */
+  .offscreen-nav-wrapper {
+    display: none;
+  }
+  .top-nav {
+    display: block;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    z-index: 99;
+    background-color: #111;
+    /*background-image: linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0,0.05)), url("/img/backgrounds/paper.png");*/
+    top: 0;
+    right: 70px;
+    display: none;
+    overflow: hidden;
+    max-height: 70px;
+  }
+  .sticky-wrapper.is-sticky .top-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 99999 !important;
+  }
+  .top-nav ul {
+    margin: 0;
+  }
+  .top-nav li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 20px 40px;
+    float: right;
+    line-height: 30px;
+  }
+  #contact-topnav {
+    cursor: pointer;
+  }
+  #contact-topnav:hover {
+    color: green;
+  }
+
+  /* ----------------------------------------------
+  ---------------- Social Styles ------------------
+  ---------------------------------------------- */
+  #social {
+    padding: 20px;
+    min-height: 0vh;
+    height: auto;
+    overflow-x: hidden;
+  }
+  #social h2 {
+    color: #fff;
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+  .soc-box {
+    float: left;
+    width: 20%;
+    height: 25vh;
+    margin: 0;
+    background-color: #000;
+    position: relative;
+  }
+  .soc-box h4 {
+    color: #fff;
+    text-align: center;
+    margin-top: 13vh;
+    font-weight: bold;
+    font-size: 2em;
+  }
+  #social {
+    background-color: #111;
+  }
+  .insta-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+    padding-top: 25px;
+  }
+  .insta-likes {
+    padding-left: 25px;
+    background-image: url("/img/icons/like.svg");
+    background-repeat: no-repeat;
+    background-position: left top;
+    float: left;
+    margin-left: 30%;
+  }
+  .insta-comments {
+    padding-left: 25px;
+    background-image: url("/img/icons/comment.svg");
+    background-repeat: no-repeat;
+    background-position: left top;
+    float: right;
+    margin-right: 30%;
+  }
+  .insta-caption {
+    width: 80%;
+    text-align: center;
+    display: block;
+    margin: 0 10%;
+    float: left;
+  }
+  ul#soc-links {
+    width: 50%;
+    margin: 0 auto;
+  }
+  #soc-links li {
+    width: 31%;
+  }
+  #soc-links img {
+    width: 100%;
+  }
+  #ig-links {
+    height: auto;
+  }
+
+  /* ----------------------------------------------
+  ---------------- Menus Styles ------------------
+  ---------------------------------------------- */
+  #menus {
+    height: 100vh;
+    background-color: #222;
+  }
+  #menu-col-1 {
+    width: 25%;
+    float: left;
+  }
+  #beer-menu-container {
+    padding: 40px;
+    background-color: #fff;
+  }
+  .section-heading {
+    background-color: #fff !important;
+    color: #111 !important;
+  }
+  #menus-nav {
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+    background-image: url("/img/backgrounds/paper.png");
+    float: left;
+    max-height: 50vh;
+    overflow: auto;
+  }
+  #menus-nav p {
+    color: #222;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 20px;
+    cursor: pointer;
+  }
+  #menus-nav span {
+    display: block;
+    width: 20px;
+    height: 20px;
+    float: right;
+    background-size: 20px;
+    background-repeat: no-repeat;
+  }
+  #menu-col-2 {
+    width: 72.5%;
+    min-height: 80vh;
+    margin-left: 2.5%;
+    float: left;
+    overflow: auto;
+  }
+  #menus-canvas {
+    width: 100%;
+    position: relative;
+    height: 80vh;
+    background-image: url("/img/backgrounds/paper.png");
+    float: left;
+    overflow: hidden;
+  }
+  #menus-canvas {
+    overflow: auto;
+  }
+
+  .menu-container h2 {
+    text-align: center;
+  }
+  .menu-section {
+    margin-top: 40px;
+  }
+  .menu-subtitle {
+    text-align: center;
+    color: #222;
+    margin: 0;
+  }
+  .menu-item {
+    width: 47%;
+    padding: 20px;
+    float: left;
+    background: #ddd;
+    color: #222;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    min-height: 170px;
+  }
+  .menu-details {
+    color: #555;
+    font-size: 1em;
+    margin: 5px 0 0 20px;
+  }
+  .menu-details::before {
+    content: '*';
+  }
+  .menu-item h4, .menu-item p, .menu-container h2 {
+    color: #222;
+  }
+  .item-prices {
+    width: 100%;
+    text-align: right;
+  }
+  .menu-title {
+    text-transform: capitalize;
+  }
+  .menu-overlay {
+    display: block;
+    position: absolute;
+    margin-left: 25%;
+    width: 72.5%;
+    height: 80vh;
+    z-index: 1;
+    background: rgba(255,255,255,0.01);
+  }
+  nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    /*background-image: linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0,0.05)), url("/img/backgrounds/paper.png");*/
+    padding: 20px;
+    z-index: 999;
+  }
+  #menu {
+    position: static;
+    top: 0;
+    right: 0;
+    height: 30px;
+    overflow: auto;
+    width: 30px;
+  }
+  #menu span {
+    background-color: #fff;
+  }
+  #menu span:nth-child(even) {
+    left: 50%;
+  }
+  #menu span:nth-child(odd) {
+    left:0px;
+  }
+  #menu span:nth-child(1), #menu span:nth-child(2) {
+    top: 0px;
+  }
+  #menu span:nth-child(3), #menu span:nth-child(4) {
+    top: 12px;
+  }
+  #menu span:nth-child(5), #menu span:nth-child(6) {
+    top: 24px;
+  }
+  #menu.open span {
+    height: 4px;
+  }
+  #menu.open span:nth-child(1),#menu.open span:nth-child(6) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  #menu.open span:nth-child(2),#menu.open span:nth-child(5) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  #menu.open span:nth-child(1) {
+    left: 4px;
+    top: 6px;
+  }
+  #menu.open span:nth-child(2) {
+    left: calc(50% - 4px);
+    top: 6px;
+  }
+  #menu.open span:nth-child(3) {
+    left: -50%;
+    opacity: 0;
+  }
+  #menu.open span:nth-child(4) {
+    left: 100%;
+    opacity: 0;
+  }
+  #menu.open span:nth-child(5) {
+    left: 4px;
+    top: 14px;
+  }
+  #menu.open span:nth-child(6) {
+    left: calc(50% - 4px);
+    top: 14px;
+  }
+}
