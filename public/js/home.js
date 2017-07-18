@@ -483,8 +483,8 @@
     });
 
     $("#reserve-table").submit(function(e) {
-      alert("whatup");
-      var d = $("#reserve-date-block").val().toISOString().substring(0,10);
+      var d = new Date($("#reserve-date-block").val()).toISOString().substring(0,10);
+
       var t = $("#reserve-time-block").val();
       var p = $("#res-size").val();
       window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
@@ -493,7 +493,7 @@
 
 
 
-    $("#contact-form-submit").click(function() {
+    $("#contact-form form").submit(function(e) {
       var formData = {
         name: $("#name").val(),
         email: $("#email").val(),
@@ -503,23 +503,15 @@
       }
 
       $.post("/backendServices/sendMessage", formData, function(data) {
-        var response;
-        var msg = {
-          "success": "Your message was sent",
-          "error": "please try sending an email to declan@theharpandfiddle.com instead!"
-        }
-        if (data.success) {
-          response = "success";
-          alert(reponse);
-        }
-        else {
-          response = "error";
-        }
-        swal("success", "message", "success");
-        $("#contact-inputs").toggleClass("hide");
-        swal("success1", "message", "success");
-        alert("test");
+        if (data.success) swal("Your message has been sent", "We will respond as soon as possible.", "success");
+        else swal("There was an error with our servers", "Please call (269) 469-6400 or email caseysnb136@gmail.com", "error");
+
+        $("#overlay").toggleClass("show");
+        $("body").toggleClass("noscroll");
+        $("#contact-form").removeClass("show");
       });
+
+      return false;
     });
 
     $("#reservation fieldset").css("height", $(".datepicker").height());
