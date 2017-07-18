@@ -59,6 +59,9 @@
     width: 20%;
     margin: 0 0 0 2%;
   }
+  #events-calendar {
+    width: 60%;
+  }
   .ev-box h4 {
     font-size: 2em;
     padding-top: 20%;

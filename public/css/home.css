@@ -1,6 +1,9 @@
 /* ----------------------------------------------
 -------------- General Styles -------------------
 ---------------------------------------------- */
+body {
+  overflow-x: hidden;
+}
 p, h1, h2, h3, h4, h5, h6, td, a, li {
   color: #fff;
   font-family: Montserrat;
@@ -570,7 +573,7 @@ div.bar:not(:first-child) {
 }
 
 #events-calendar {
-  width: 60%;
+  width: 90%;
   margin: 0 auto;
 }
 .menu-overlay {

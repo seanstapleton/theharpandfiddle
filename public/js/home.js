@@ -267,7 +267,7 @@
     });
 
     $(document).on('click', '.ev-box', function() {
-      if (!isMobile) {
+      if (!isMobile && $(this).parent().attr("id") != "events-more") {
           window.open($(this).attr("href"), "_blank");
       } else {
         $(this).parent().find(".ev-info-container").slideToggle("slow");
