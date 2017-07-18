@@ -350,6 +350,9 @@ div.bar:not(:first-child) {
   font-size: 2em;
   padding-top: 40%;
 }
+.featuredev-container {
+  width: 100%;
+}
 .menu-box h4 {
   font-size: 3em;
 }
@@ -505,7 +508,7 @@ div.bar:not(:first-child) {
 .ev-box {
   width: 100%;
   height: 10vh;
-  margin: 5px 0;
+  margin: 10px 0 0 0;
   background-color: #000;
   background-position: center center;
   background-size: cover;
@@ -513,6 +516,7 @@ div.bar:not(:first-child) {
   position: relative;
   padding: 10px;
   position: relative;
+  cursor: pointer;
 }
 .ev-box h4 {
   padding: 0;
@@ -804,5 +808,26 @@ div.bar:not(:first-child) {
   font-size: 10px !important;
 }
 #beer-mobile .date-time {
+  display: none;
+}
+.ev-info-container {
+  width: 100%;
+  padding: 20px;
+  background-image: url("/img/backgrounds/paper.png");
+  background-repeat: repeat;
+  margin: 0;
+}
+.ev-info-container p {
+  color: #555;
+  margin: 0;
+}
+.ev-info-container p:first-child {
+  font-size: 1.2em !important;
+  color: #222;
+}
+.ev-info-container a {
+  color: #2F61DB;
+}
+.ev-info-container {
   display: none;
 }

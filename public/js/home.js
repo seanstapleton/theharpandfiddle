@@ -168,19 +168,24 @@
       console.log(evs);
       for (var i = 0; i < evs.length && i < 4; i++) {
         var date = moment(evs[i].start).format("MMMM Do @ h:mm a");
-        var anchor = $('<a href='+evs[i].url+'></a>');
+        var containing_div = $("<div class='featuredev-container'></div>");
         l = i;
         if (isMobile) l = 7;
-        var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay="+(1400-l*200)+" data-aos-anchor-placement='center-bottom'></div>");
+        var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay="+(1400-l*200)+" data-aos-anchor-placement='center-bottom' href='"+evs[i].url+"'></div>");
         if (evs[i].img) div.css("background-image", "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(" + evs[i].img + ")");
         div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(date));
-        anchor.append(div);
-        $("#featured-evs").prepend(anchor);
+        containing_div.append(div);
+        var infoDiv = $("<div class='ev-info-container mobile-item'></div>");
+        infoDiv.append([$("<p></p>").text(date), $("<p></p>").text(evs[i].description),$("<a href='"+evs[i].url+"'></a>").text(evs[i].url)]);
+        containing_div.append(infoDiv);
+        $("#featured-evs").prepend(containing_div);
       }
-      var div = $("<div id='events-more' class='ev-box' data-aos='fade-left' data-aos-delay='1200' data-aos-anchor-placement='center-bottom'></div>");
+      var container = $("<div class='featuredev-container' id='events-more'></div>");
+      var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay='1200' data-aos-anchor-placement='center-bottom'></div>");
       div.css("background", "linear-gradient(rgba(25,25,25,0.8), rgba(25,25,25,0), rgba(25,25,25,0.8))");
       div.append($("<h4></h4>").text("See More"), $("<p></p>").text("View calendar"));
-      $("#featured-evs").append(div);
+      container.append(div)
+      $("#featured-evs").append(container);
       if (isMobile) $("#events-more div").attr("data-aos-delay", "0");
     });
 
@@ -259,7 +264,15 @@
         $('.menu-container').removeClass("show").addClass("hide");
         $("#" + id).removeClass("hide").addClass("show");
       }
-    })
+    });
+
+    $(document).on('click', '.ev-box', function() {
+      if (!isMobile) {
+          window.open($(this).attr("href"), "_blank");
+      } else {
+        $(this).parent().find(".ev-info-container").slideToggle("slow");
+      }
+    });
 
 
     // $.get('/backendServices/getFBID', function(fbid) {
