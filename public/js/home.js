@@ -335,12 +335,62 @@
     $("#close").click(function() {
       $("#overlay").toggleClass("show");
       $("body").toggleClass("noscroll");
-      var panels = ["#tour-360","#food", "#drinks", "#cocktails", "#contact-form", "#events-pu"];
+      var panels = ["#tour-360","#food", "#drinks", "#cocktails", "#contact-form", "#job-form", "#events-pu"];
       for (var i = 0; i < panels.length; i++) {
         var p = $(panels[i]);
         if (p.hasClass("show")) p.toggleClass("show");
       }
       $(".spinner").removeClass("show");
+    });
+
+    $("#job-form form").submit(function(e) {
+      var appData = {
+        first_name: $("#job_first_name").val(),
+        last_name: $("#job_last_name").val(),
+        email: $("#job_email").val(),
+        phnum: $("#job_phone").val(),
+        position: $("#job_position").val(),
+        message: $("#job_message").val()
+      }
+      $.post("/backendServices/applyToWork", appData, function(res) {
+        if (res.success) {
+          swal({
+            title: "Your application has been submitted",
+            text: "Please print and fill out the application form below and email to fiddlersonmain@gmail.com. We will contact you soon. <br/><a style='color: #2F61DB' href='/img/hf_application_for_employment.pdf' target='_blank'>Job Application</a>",
+            html: true,
+            type: "success"
+          }, function() {
+            window.open("/img/hf_application_for_employment.pdf", "_blank");
+          });
+        } else {
+          swal({
+            title: "Unfortunately, there was an error with our servers",
+            text: "Please print & fill out the application form below and email to fiddlersonmain@gmail.com.<br/><a style='color: #2F61DB' href='/img/hf_application_for_employment.pdf' target='_blank'>Job Application</a>",
+            html: true,
+            type: "error"
+          }, function() {
+            window.open("/img/hf_application_for_employment.pdf", "_blank");
+          });
+          console.log(res.err);
+        }
+
+        $("#overlay").toggleClass("show");
+        $("body").toggleClass("noscroll");
+        $("#job-form").removeClass("show");
+      });
+
+      return false;
+    });
+
+    $(".jobs-trigger").click(function() {
+      if ($(this).hasClass("nav-item")) {
+        $("#menu").toggleClass("open");
+        $('.offscreen-nav').toggleClass("onscreen");
+        $('.offscreen-nav-wrapper').toggleClass("onscreen-wrapper");
+      }
+      $("#overlay").toggleClass("show");
+      $("#job-form").toggleClass("show");
+      $("body").toggleClass("noscroll");
     });
 
     $("#btn-oo").click(function() {
@@ -518,7 +568,7 @@
 
       $.post("/backendServices/sendMessage", formData, function(data) {
         if (data.success) swal("Your message has been sent", "We will respond as soon as possible.", "success");
-        else swal("There was an error with our servers", "Please call (269) 469-6400 or email caseysnb136@gmail.com", "error");
+        else swal("There was an error with our servers", "Please call (847) 720-4466 or email fiddlersonmain@gmail.com", "error");
 
         $("#overlay").toggleClass("show");
         $("body").toggleClass("noscroll");

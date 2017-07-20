@@ -56,6 +56,41 @@ td {
   margin-top: 3vh;
   font-size: 3vh;
   text-align: right;
+  cursor: pointer;
+}
+#job-form {
+  background-image: url("/img/backgrounds/paper.png");
+  background-repeat: repeat;
+  width: 90%;
+  margin: 3vh auto;
+  padding: 40px;
+  padding-bottom: 50px;
+  display: none;
+  overflow: auto;
+}
+#job-form h1 {
+  color: #222;
+}
+#job-form input, #job-form textarea, #job-form select {
+  width: 100%;
+  margin: 10px auto;
+  border: none;
+  border-radius: 0;
+  padding: 25px 20px;
+}
+#job-form select {
+  height: 50px;
+  padding: 0 16px;
+}
+#job-form button {
+  padding: 10px 40px;
+}
+.form-50 {
+  float: left !important;
+  width: calc(50% - 5px) !important;
+}
+.form-50:nth-child(2n) {
+  margin-left: 10px !important;
 }
 .nav-logo {
   padding: 15px 40px !important;
@@ -175,6 +210,13 @@ a:hover {
 }
 .top-nav {
   display: none;
+}
+.popup-ll {
+  position: absolute !important;
+  right: 25px !important;
+  bottom: 25px !important;
+  width: 120px !important;
+  cursor: pointer;
 }
 
 /* ----------------------------------------------

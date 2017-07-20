@@ -233,6 +233,16 @@
   #contact-topnav:hover {
     color: green;
   }
+  #job-form {
+    width: 60%;
+  }
+  .popup-ll {
+    position: absolute !important;
+    right: 35px !important;
+    bottom: 35px !important;
+    width: 150px !important;
+    cursor: pointer;
+  }
 
   /* ----------------------------------------------
   ---------------- Social Styles ------------------
