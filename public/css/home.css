@@ -217,6 +217,8 @@ a:hover {
   bottom: 25px !important;
   width: 120px !important;
   cursor: pointer;
+  animation-delay: 2s;
+  animation-iteration-count: infinite;
 }
 
 /* ----------------------------------------------
