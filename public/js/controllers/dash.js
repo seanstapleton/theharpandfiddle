@@ -133,11 +133,25 @@
         });
       }
 
+      // $scope.tagShown = function(item) {
+      //   if $.inArray(itemmenuTagsShown)
+      // }
+
       $scope.loadItems = function() {
         $http.get('/backendServices/getItems')
           .then(function(res) {
             if (res.data) {
               $scope.items = res.data;
+              var uniqTags = [];
+              for (var i = 0; i < $scope.items.length; i++) {
+                for (var j = 0; j < $scope.items[i].tags.length; j++) {
+                  var tag = $scope.items[i].tags[j]
+                  if ($.inArray(tag,uniqTags) == -1) {
+                    uniqTags.push(tag);
+                  }
+                }
+              }
+              $scope.uniqMenuTags = uniqTags;
             }
           });
       }

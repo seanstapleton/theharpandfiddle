@@ -5,6 +5,12 @@ td {
   max-width: 20px;
   overflow: auto;
 }
+.menu-tag-selector {
+  font-size: 0.4em !important;
+  line-height: 1em !important;
+  font-weight: 400;
+  cursor: pointer;
+}
 #primary {
   margin-top: 5vh;
   margin-bottom: 5vh;
