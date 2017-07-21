@@ -1,0 +1,48 @@
+<div ng-init="loadParties()">
+  <div id="party-{{party._id}}" class="party-container" ng-repeat="party in pageData.parties" ng-click="toggleActive(party)" ng-class="{'party-active': party.active}">
+    <div class="party-header">
+      <h4>{{party.title}}</h4>
+      <p>{{party.booking_date | dateInMillis | date:'medium'}}</p>
+      <p><span class="party-size">{{party.event_info.num_guests.adults + party.event_info.num_guests.kids}}</span><span class="party-location">{{party.event_info.location}}</span>
+    </div>
+    <div id="party-{{party._id}}" class="party-info-ext">
+      <p><strong>Booked by: </strong>{{party.booked_by | dateInMillis | date:'medium'}}</p>
+      <p><strong>Booking Date: </strong>{{party.booking_date | dateInMillis | date:'medium'}}</p>
+      <p><strong>Host name: </strong>{{party.host_name}}</p>
+      <p><strong>Host phone number: </strong>{{party.host_phone}}</p>
+      <p><strong>Host email: </strong>{{party.host_email}}</p>
+      <p><strong>Event info: </strong></p>
+      <div class="party-event-info">
+        <p><strong>Description: </strong>{{party.event_info.description}}</p>
+        <p><strong>Date: </strong>{{party.event_info.date}}</p>
+        <p><strong>Location: </strong>{{party.event_info.location}}</p>
+        <p><strong>Number of guests: </strong><span class="party-guests-adults">{{party.event_info.num_guests.adults}}</span> <span class="party-guests-kids">{{party.event_info.num_guests.kids}}</span></p>
+      </div>
+      <p><strong>Drink info: </strong></p>
+      <div class="party-drink-info">
+        <p><strong>Package Type: </strong>{{party.drinks.package_type}}</p>
+        <p><strong>Price per person: </strong>{{party.drinks.unit_price}}</p>
+        <p><strong>Method of payment: </strong>{{party.drinks.payment_method}}</p>
+        <p><strong>Other: </strong>{{party.drinks.other}}</p>
+      </div>
+      <p><strong>Food info: </strong></p>
+      <div class="party-food-info">
+        <p><strong>Package type: </strong>{{party.food.package_type}}</p>
+        <p><strong>Serving type: </strong>{{party.food.serving_type}}</p>
+        <p><strong>Price per person: </strong><span class="party-guests-adults">{{party.food.price.adult}}</span> <span class="party-guests-kids">{{party.food.price.kid}}</span></p>
+        <p><strong>Method of payment: </strong>{{party.food.payment}}</p>
+        <p><strong>Food selections: </strong><span class="food-selection" ng-repeat="item in party.food.food_selections">{{item}}</span></p>
+      </div>
+      <p><strong>Linens on tables? </strong>{{party.linensOnTables}}</p>
+      <p><strong>Special Instructions: </strong>{{party.special_instructions}}</p>
+      <p><strong>Admin info: </strong></p>
+      <div class="party-admin-info">
+        <p><strong>Initial request: </strong>{{party.admin_info.initial_request}}</p>
+        <p><strong>Deposit amount: </strong>{{party.admin_info.deposit_amt}}</p>
+        <p><strong>Yelp? </strong>{{party.admin_info.yelp}}</p>
+        <p><strong>Party size confirmation: </strong>{{party.admin_info.party_size_confirmation.size}} guests confirmed on {{party.admin_info.party_size_confirmation.date}} by {{party.admin_info.party_size_confirmation.admin}}</p>
+        <p><strong>Food selections confirmation: </strong><span class="food-selection" ng-repeat="item in party.admin_info.food_selections_confirmation.selections">{{item}}</span> confirmed on {{party.admin_info.food_selections_confirmation.date}} by {{party.admin_info.food_selections_confirmation.admin}}</p>
+      </div>
+    </div>
+  </div>
+</div>

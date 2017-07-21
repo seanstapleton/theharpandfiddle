@@ -27,6 +27,29 @@
       $("#previewWindow").css("background-image", "url("+$scope.linkDrivePhoto($scope.imageEditData.current)+")")
     }
 
+    $scope.toggleActive = function(party) {
+      party.active = !party.active;
+      $("#party-" + party._id + " .party-info-ext").slideToggle();
+    }
+
+    $scope.loadLogs = function() {
+      $http.get('/backendServices/getLogs')
+        .then(function(res) {
+          if (res.data) {
+            $scope.pageData.logs = res.data;
+          }
+        });
+    }
+
+    $scope.loadParties = function() {
+      $http.get('/backendServices/getParties')
+        .then(function(res) {
+          if (res.data) {
+            $scope.pageData.parties = res.data;
+          }
+        });
+    }
+
     $scope.addEvent = function() {
         var formData = {
           title: "Untitled (New)",
@@ -50,12 +73,23 @@
         $scope.loadEvents();
     }
 
+    $scope.duplicateEvent = function(ev) {
+      $http.post('/backendServices/addEvent', ev)
+        .then(function(res) {
+          if (res.data.success) {
+            $scope.loadEvents();
+          } else {
+            console.log("Error 500");
+          }
+        });
+    }
+
     $scope.addItem = function() {
         var formData = {
           title: "Untitled",
           desc: "Type description here",
           price: "0.00",
-          tags: ["appetizers"],
+          tags: [],
           availabilities: []
         }
         $http.post('/backendServices/addItem', formData)
@@ -133,9 +167,23 @@
         });
       }
 
-      // $scope.tagShown = function(item) {
-      //   if $.inArray(itemmenuTagsShown)
-      // }
+      $scope.tagShown = function(item) {
+        if (item.tags.length == 0) return true;
+        for (var i = 0; i < item.tags.length; i++) {
+          if ($.inArray(item.tags[i], $scope.menuTagsShown) > -1) return true;
+        }
+      }
+
+      $scope.toggleMenuTag = function(tag) {
+        var idx = $.inArray(tag, $scope.menuTagsShown);
+        if (idx > -1) {
+          delete $scope.menuTagsShown[idx];
+          $("#menuTagSel-" + tag).addClass("inactive");
+        } else {
+          $scope.menuTagsShown.push(tag);
+          $("#menuTagSel-" + tag).removeClass("inactive");
+        }
+      }
 
       $scope.loadItems = function() {
         $http.get('/backendServices/getItems')
@@ -152,6 +200,7 @@
                 }
               }
               $scope.uniqMenuTags = uniqTags;
+              $scope.menuTagsShown = uniqTags.slice(0);
             }
           });
       }
@@ -267,6 +316,32 @@
                 swal("Error", "Unfortunately your event could not be deleted", "error");
                 console.log(res.data.err);
                 $scope.loadEvents();
+              }
+            });
+          });
+      };
+
+      $scope.deleteItem = function(item) {
+
+        swal({
+          title: "Are you sure?",
+          text: "You will not be able to recover this item!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Yes, delete it!",
+          closeOnConfirm: false
+        },
+        function(){
+          $http.post('/backendServices/deleteMenuItem', item)
+            .then(function(res) {
+              if (res.data.success) {
+                swal("Deleted!", "Your item has been deleted.", "success");
+                $scope.loadItems();
+              } else {
+                swal("Error", "Unfortunately your item could not be deleted", "error");
+                console.log(res.data.err);
+                $scope.loadItems();
               }
             });
           });

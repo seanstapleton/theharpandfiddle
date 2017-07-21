@@ -1,5 +1,10 @@
 body {
-  background-color: rgba(240,240,240,1);
+  background-color: rgba(230,230,230,1);
+}
+.container {
+  margin: 0 !important;
+  padding: 40px !important;
+  width: 100%;
 }
 td {
   max-width: 20px;
@@ -11,10 +16,14 @@ td {
   font-weight: 400;
   cursor: pointer;
 }
+.tag.inactive {
+  background-color: #A6CDDB !important;
+}
 #primary {
   margin-top: 5vh;
   margin-bottom: 5vh;
-  padding: 10px 40px;
+  /*padding: 10px 40px;*/
+  padding: 10px;
 }
 .active {
   background-color: #45A5F7 !important;
@@ -130,6 +139,17 @@ input[type=checkbox] {
   background-position: center center;
   cursor: pointer;
 }
+.event-dup {
+  position: absolute;
+  width: 30px;
+  height: 30px !important;
+  bottom: 10px;
+  right: 10px;
+  background-image: url("/img/icons/dup.svg");
+  background-size: cover;
+  background-position: center center;
+  cursor: pointer;
+}
 .event-delete, .item-delete {
   top: 10px;
   right: 10px;
@@ -194,4 +214,93 @@ input[type=checkbox] {
   padding: 5px;
   border-radius: 5px;
   margin-right: 2px;
+}
+.party-container {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  float: left;
+  transition: width 1s;
+}
+.party-header {
+  width: 100%;
+  padding: 20px;
+  background-color: #ddd;
+  overflow: auto;
+  border-radius: 10px;
+}
+.party-info-ext {
+  padding: 20px;
+  background-image: url("/img/backgrounds/paper.png");
+  display: none;
+}
+.party-container:not(:nth-child(4n)) {
+  margin-left: 10px;
+}
+.party-container {
+  margin-top: 10px;
+}
+.party-container.party-active {
+  width: 100%;
+}
+.party-container.party-active .party-header {
+  border-radius: 10px 10px 0 0;
+}
+.party-container h4 {
+  font-size: 4em;
+}
+.party-container p {
+  color: #555;
+  font-size: 3em !important;
+}
+span.party-size, span.party-location {
+  line-height: 35px;
+  float: left;
+}
+span.party-location {
+  margin-left: 5px;
+}
+span.party-size:before, span.party-location:before {
+  content: '';
+  width: 40px;
+  height: 35px;
+  background-size: 35px 35px;
+  background-repeat: no-repeat;
+  display: block;
+  float: left;
+  padding-right: 5px;
+}
+span.party-size:before {
+  background-image: url("/img/icons/person.svg");
+}
+span.party-location:before {
+  background-image: url("/img/icons/location.svg");
+}
+span.food-selection:not(:last-child):after {
+  content: ', ';
+}
+.party-event-info, .party-drink-info, .party-food-info, .party-admin-info {
+  margin: 10px 20px;
+  padding: 10px;
+  background-color: rgba(230,230,230,1);
+}
+.party-event-info p:last-child, .party-drink-info p:last-child, .party-food-info p:last-child, .party-admin-info p:last-child {
+  margin: 0;
+}
+@media (min-width: 960px) {
+  .party-container p {
+    font-size: 1em !important;
+  }
+  .party-container h4 {
+    font-size: 2em;
+    line-height: 0.75em;
+  }
+  span.party-size:before, span.party-location:before {
+    width: 15px;
+    height: 10px;
+    background-size: 10px 10px;
+  }
+  span.party-size, span.party-location {
+    line-height: 10px;
+  }
 }

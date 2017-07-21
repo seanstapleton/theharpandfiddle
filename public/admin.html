@@ -60,9 +60,25 @@
                     templateUrl: '/views/login.html',
                     controller: 'LoginController'
                 })
-                .when('/dash', {
-                    templateUrl: '/views/dashboard.html',
+                .when('/events', {
+                    templateUrl: '/views/events.html',
                     controller: 'DashController'
+                })
+                .when('/menus', {
+                  templateUrl: '/views/menus.html',
+                  controller: 'DashController'
+                })
+                .when('/photos', {
+                    templateUrl: '/views/photos.html',
+                    controller: 'DashController'
+                })
+                .when('/parties', {
+                    templateUrl: '/views/parties.html',
+                    controller: 'DashController'
+                })
+                .when('/logs', {
+                  templateUrl: '/views/logs.html',
+                  controller: 'DashController'
                 })
                 .otherwise({
                   redirectTo: '/'
