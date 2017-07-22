@@ -49,6 +49,11 @@ module.exports = function(db, passport) {
       });
     });
 
+    router.get("/getUser", function(req, res) {
+      if (req.user) res.send({"success": true, user: {name: req.user.name}});
+      else res.send({"success": false, "err": "500"});
+    });
+
     router.get('/getParties', function(req, res) {
       partySchema.find({},{}, function(err, menus) {
         if (err) console.log(err);
@@ -166,6 +171,17 @@ module.exports = function(db, passport) {
       logEdit(req.user,message,[req.body]);
     });
 
+    router.post('/addParty', function(req, res, next) {
+      var party = new partySchema({
+          title: req.body.title
+      });
+      party.save(function(err, ev) {
+        if (err) res.send({success: false, err: err});
+        else res.send({success: true});
+      });
+      logEdit(req.user,"added a new party",[req.body]);
+    });
+
     router.post('/addItem', function(req, res, next) {
       var item = new itemSchema({
           title: req.body.title,
@@ -189,6 +205,14 @@ module.exports = function(db, passport) {
       });
     });
 
+    router.post('/editParty', function(req, res, next) {
+      partySchema.findOneAndUpdate({_id: req.body._id}, req.body, {upsert: true}, function(err, doc) {
+          if (err) res.send({success: false, err: err});
+          else res.send({success: true});
+          logEdit(req.user,"edited a party", [req.body]);
+      });
+    });
+
     router.post('/editItem', function(req, res, next) {
       itemSchema.findOneAndUpdate({_id: req.body._id}, req.body, {upsert: true}, function(err, doc) {
           if (err) res.send({success: false, err: err});
@@ -205,6 +229,17 @@ module.exports = function(db, passport) {
         }
         else res.send({success: true});
         logEdit(req.user,"deleted an event", [req.body]);
+      });
+    });
+
+    router.post('/deleteParty', function(req, res, next) {
+      partySchema.find({_id: req.body._id}).remove(function(err, data) {
+        if (err) {
+          console.log(err);
+          res.send({success: false, err: err});
+        }
+        else res.send({success: true});
+        logEdit(req.user, "deleted a party", [req.body]);
       });
     });
 

@@ -1,5 +1,6 @@
 body {
   background-color: rgba(230,230,230,1);
+  overflow-x: hidden;
 }
 .container {
   margin: 0 !important;
@@ -15,6 +16,7 @@ td {
   line-height: 1em !important;
   font-weight: 400;
   cursor: pointer;
+  display: inline-block;
 }
 .tag.inactive {
   background-color: #A6CDDB !important;
@@ -124,7 +126,7 @@ input[type=checkbox] {
 .event-card, .item-card {
   width: 100%;
   margin: 0 auto;
-  background-color: rgba(230,230,230,1);
+  background-color: #eee;
   padding: 10px;
   margin: 10px 0;
   border-radius: 10px;
@@ -177,14 +179,14 @@ input[type=checkbox] {
 }
 .event-img {
   float: left;
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   background-size: cover;
 }
 .event-info, .event-edit-info, .item-info, .item-edit-info {
   float: left;
   padding: 10px;
-  width: calc(100% - 200px);
+  width: calc(100% - 100px);
 }
 .event-info h5, input.title-edit, .item-info h5 {
   font-size: 2em;
@@ -222,6 +224,12 @@ input[type=checkbox] {
   float: left;
   transition: width 1s;
 }
+.party-container-parent {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  overflow: auto;
+}
 .party-header {
   width: 100%;
   padding: 20px;
@@ -247,11 +255,11 @@ input[type=checkbox] {
   border-radius: 10px 10px 0 0;
 }
 .party-container h4 {
-  font-size: 4em;
+  font-size: 1.5em;
 }
 .party-container p {
   color: #555;
-  font-size: 3em !important;
+  font-size: 1em;
 }
 span.party-size, span.party-location {
   line-height: 35px;
@@ -287,10 +295,14 @@ span.food-selection:not(:last-child):after {
 .party-event-info p:last-child, .party-drink-info p:last-child, .party-food-info p:last-child, .party-admin-info p:last-child {
   margin: 0;
 }
+.party-guests-adults:after {
+  content: " (adults)";
+}
+.party-guests-kids:after {
+  content: " (kids)";
+}
+
 @media (min-width: 960px) {
-  .party-container p {
-    font-size: 1em !important;
-  }
   .party-container h4 {
     font-size: 2em;
     line-height: 0.75em;
@@ -302,5 +314,12 @@ span.food-selection:not(:last-child):after {
   }
   span.party-size, span.party-location {
     line-height: 10px;
+  }
+  .event-img {
+    width: 200px;
+    height: 200px;
+  }
+  .event-info, .event-edit-info, .item-info, .item-edit-info {
+    width: calc(100% - 200px);
   }
 }

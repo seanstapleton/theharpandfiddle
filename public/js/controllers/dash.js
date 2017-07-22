@@ -84,6 +84,20 @@
         });
     }
 
+    $scope.addParty = function() {
+        var formData = {
+          title: "Untitled (new)",
+        }
+        $http.post('/backendServices/addParty', formData)
+          .then(function(res) {
+            if (res.data.success) {
+              $scope.loadParties();
+            } else {
+              console.log("Error 500");
+            }
+          });
+    }
+
     $scope.addItem = function() {
         var formData = {
           title: "Untitled",
@@ -108,8 +122,18 @@
           console.log(res.data);
           if (!res.data.loggedIn)
             $window.location = "/admin";
-          else
+          else {
             $scope.userData.isLoggedIn = true;
+
+            $http.get("/backendServices/getUser")
+              .then(function(res) {
+                if (res.data.success) {
+                  $scope.userData.user = res.data.user;
+                } else {
+                  console.log("Error: ", res.data.err);
+                }
+              })
+          }
         });
     }
 
@@ -214,6 +238,71 @@
 
       $scope.collapseEvs = function() {
         $(".collapsable-ev").toggleClass("hide");
+      }
+
+      $scope.editParty = function(party) {
+        var element = $("#edit-" + party._id);
+        if (party.status != "edited") {
+          party.status = "edited";
+          element.attr("data-status", "edited");
+
+          //for all date values, dateval.value = date.substring(0,16)
+          $("#booking_date-" + party._id).val(party.booking_date.substring(0,16));
+          $("#party-date-" + party._id).val(party.event_info.date.substring(0,16));
+          $("#initial-request-" + party._id).val(party.admin_info.initial_request.substring(0,16));
+
+        } else if (party.status == "edited") {
+          party.status = "saved";
+          element.attr("data-status", "saved");
+
+          //for all date vals, dateval = date_element.val()
+          party.booking_date = $("#booking_date-" + party._id).val();
+          party.event_info.date = $("#party-date-" + party._id).val();
+          party.admin_info.initial_request = $("#initial-request-" + party._id).val();
+
+          if (typeof party.food.food_selections == "string")
+            party.food.food_selections = party.food.food_selections.split(",");
+          if (typeof party.admin_info.food_selections_confirmation.selections == "string")
+            party.admin_info.food_selections_confirmation.selections = party.admin_info.food_selections_confirmation.selections.split(",");
+
+          party.admin_info.party_size_confirmation.date = new Date();
+          if ($scope.userData.name) {
+            party.admin_info.party_size_confirmation.admin = $scope.userData.name;
+            party.admin_info.food_selections_confirmation.admin = $scope.userData.name;
+          }
+
+          $http.post("/backendServices/editParty", party)
+            .then(function(res) {
+              if (!res.data.success) {
+                alert("Sorry, your change was unsuccessful.");
+              }
+            });
+        }
+      }
+
+      $scope.deleteParty = function(party) {
+        swal({
+          title: "Are you sure?",
+          text: "You will not be able to recover this party!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Yes, delete it!",
+          closeOnConfirm: false
+        },
+        function(){
+          $http.post('/backendServices/deleteParty', party)
+            .then(function(res) {
+              if (res.data.success) {
+                swal("Deleted!", "Your party has been deleted.", "success");
+                $scope.loadParties();
+              } else {
+                swal("Error", "Unfortunately your party could not be deleted", "error");
+                console.log(res.data.err);
+                $scope.loadParties();
+              }
+            });
+          });
       }
 
       $scope.editEvent = function(ev) {
