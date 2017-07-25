@@ -247,18 +247,26 @@
           element.attr("data-status", "edited");
 
           //for all date values, dateval.value = date.substring(0,16)
-          $("#booking_date-" + party._id).val(party.booking_date.substring(0,16));
-          $("#party-date-" + party._id).val(party.event_info.date.substring(0,16));
-          $("#initial-request-" + party._id).val(party.admin_info.initial_request.substring(0,16));
+          if (party.booking_date != null)
+            $("#booking_date-" + party._id).val(party.booking_date.substring(0,16));
+          if (party.event_info.date != null)
+            $("#party-date-" + party._id).val(party.event_info.date.substring(0,16));
+          if (party.admin_info.initial_request != null)
+            $("#initial-request-" + party._id).val(party.admin_info.initial_request.substring(0,16));
 
         } else if (party.status == "edited") {
           party.status = "saved";
           element.attr("data-status", "saved");
 
           //for all date vals, dateval = date_element.val()
-          party.booking_date = $("#booking_date-" + party._id).val();
-          party.event_info.date = $("#party-date-" + party._id).val();
-          party.admin_info.initial_request = $("#initial-request-" + party._id).val();
+          if ($("#booking_date-" + party._id).val().length > 0) {
+            party.booking_date = $("#booking_date-" + party._id).val();
+            console.log($("#booking_date-" + party._id).val());
+          }
+          if ($("#party-date-" + party._id).val().length > 0)
+            party.event_info.date = $("#party-date-" + party._id).val();
+          if ($("#initial-request-" + party._id).val().length > 0)
+            party.admin_info.initial_request = $("#initial-request-" + party._id).val();
 
           if (typeof party.food.food_selections == "string")
             party.food.food_selections = party.food.food_selections.split(",");
