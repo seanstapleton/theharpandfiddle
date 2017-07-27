@@ -38,16 +38,15 @@ var partySchema = new Schema({
     linensOnTables: {type: Boolean, default: false},
     special_instructions: {type: String, default: ""},
     admin_info: {
-      initial_request: {type: String, default: ""},
       deposit_amt: {type: Number, default: 0},
       yelp: {type: Boolean, default: false},
       party_size_confirmation: {
-        size: {type: Number, default: 0},
+        val: {type: Boolean, default: false},
         date: {type: String, default: ""},
         admin: {type: String, default: ""},
       },
       food_selections_confirmation: {
-        selections: {type: Array, default: []},
+        val: {type: Boolean, default: false},
         date: {type: String, default: ""},
         admin: {type: String, default: ""},
       }

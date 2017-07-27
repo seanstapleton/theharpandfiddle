@@ -1,18 +1,18 @@
 <div ng-init="loadParties()">
-  <button ng-click="addParty()">Add new party</button>
-  <div class="party-container-parent" ng-repeat="party in pageData.parties">
-    <div class="event-edit" id="edit-{{party._id}}" data-status="saved" ng-click="editParty(party)"></div>
-    <div class="event-delete" ng-click="deleteParty(party)"></div>
+  <button ng-click="addParty()" ng-if="userData.user.admin">Add new party</button>
+  <div class="party-container-parent" ng-repeat="party in pageData.parties" ng-init="prepParty(party)">
+    <div class="event-edit" ng-if="userData.user.admin" id="edit-{{party._id}}" data-status="saved" ng-click="editParty(party)"></div>
+    <div class="event-delete" ng-if="userData.user.admin" ng-click="deleteParty(party)"></div>
     <div id="party-{{party._id}}" class="party-container" ng-class="{'party-active': party.active}">
       <div class="party-header" ng-click="toggleActive(party)">
         <h4 ng-show="party.status != 'edited'">{{party.title}}</h4>
         <input type="text" style="font-size: 2em" ng-model="party.title" placeholder="Party title" ng-show="party.status == 'edited'"/>
-        <p>{{party.booking_date | dateInMillis | date:'medium'}}</p>
+        <p>{{party.booking_date | date:'mediumDate'}}</p>
         <p><span class="party-size">{{party.event_info.num_guests.adults + party.event_info.num_guests.kids}}</span><span class="party-location">{{party.event_info.location}}</span>
       </div>
       <div id="party-{{party._id}}" class="party-info-ext" ng-show="party.status != 'edited'">
         <p><strong>Booked by: </strong>{{party.booked_by}}</p>
-        <p><strong>Booking Date: </strong>{{party.booking_date | dateInMillis | date:'medium'}}</p>
+        <p><strong>Booking Date: </strong>{{party.booking_date | date:'mediumDate'}}</p>
         <p><strong>Host name: </strong>{{party.host_name}}</p>
         <p><strong>Host phone number: </strong>{{party.host_phone}}</p>
         <p><strong>Host email: </strong>{{party.host_email}}</p>
@@ -42,16 +42,15 @@
         <p><strong>Special Instructions: </strong>{{party.special_instructions}}</p>
         <p><strong>Admin info: </strong></p>
         <div class="party-admin-info">
-          <p><strong>Initial request: </strong>{{party.admin_info.initial_request}}</p>
           <p><strong>Deposit amount: </strong>{{party.admin_info.deposit_amt}}</p>
           <p><strong>Yelp? </strong>{{party.admin_info.yelp}}</p>
-          <p><strong>Party size confirmation: </strong>{{party.admin_info.party_size_confirmation.size}} guests confirmed on {{party.admin_info.party_size_confirmation.date}} by {{party.admin_info.party_size_confirmation.admin}}</p>
-          <p><strong>Food selections confirmation: </strong><span class="food-selection" ng-repeat="item in party.admin_info.food_selections_confirmation.selections">{{item}}</span> confirmed on {{party.admin_info.food_selections_confirmation.date}} by {{party.admin_info.food_selections_confirmation.admin}}</p>
+          <p><strong>Party size confirmed? </strong><span ng-if="party.admin_info.party_size_confirmation.val">comfirmed on {{party.admin_info.party_size_confirmation.date}} by {{party.admin_info.party_size_confirmation.admin}}</span><span ng-if="!party.admin_info.party_size_confirmation.val">unconfirmed</span></p>
+          <p><strong>Food selections confirmed? </strong><span ng-if="party.admin_info.food_selections_confirmation.val">confirmed on {{party.admin_info.food_selections_confirmation.date}} by {{party.admin_info.food_selections_confirmation.admin}}</span><span ng-if="!party.admin_info.food_selections_confirmation.val">unconfirmed</span></p>
         </div>
       </div>
       <div id="party-edit-{{party._id}}" class="party-info-ext" ng-show="party.status == 'edited'">
         <p><strong>Booked by: </strong><input type="text" placeholder="Manager name" ng-model="party.booked_by"/></p>
-        <p><strong>Booking Date: </strong><input id="booking_date-{{party._id}}" type="datetime-local"/></p>
+        <p><strong>Booking Date: </strong><input id="booking_date-{{party._id}}" type="date"/></p>
         <p><strong>Host name: </strong><input type="text" placeholder="Customer name" ng-model="party.host_name"/></p>
         <p><strong>Host phone number: </strong><input type="tel" placeholder="e.g. (847) 720-4466" ng-model="party.host_phone"/></p>
         <p><strong>Host email: </strong><input type="email" placeholder="e.g. jim@scrantonpapercompany.com" ng-model="party.host_email"/></p>
@@ -81,11 +80,10 @@
         <p><strong>Special Instructions: </strong><input type="text" ng-model="party.specialInstructions"/></p>
         <p><strong>Admin info: </strong></p>
         <div class="party-admin-info">
-          <p><strong>Initial request: </strong><input type="datetime-local" id="initial-request-{{party._id}}"/></p>
           <p><strong>Deposit amount: </strong><input type="number" ng-model="party.admin_info.deposit_amt"/></p>
           <p><strong>Yelp? </strong><input type="checkbox" ng-model="party.admin_info.yelp"/></p>
-          <p><strong>Party size confirmation: </strong><input type="number" ng-model="party.admin_info.party_size_confirmation.size"/></p>
-          <p><strong>Food selections confirmation (comma separated): </strong><input type="text" ng-model="party.admin_info.food_selections_confirmation.selections"/></p>
+          <p><strong>Party size confirmed? </strong><input type="checkbox" ng-model="party.admin_info.party_size_confirmation.val"/></p>
+          <p><strong>Food selections confirmed? </strong><input type="checkbox" ng-model="party.admin_info.food_selections_confirmation.val"/></p>
         </div>
       </div>
     </div>

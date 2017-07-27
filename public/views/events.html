@@ -11,9 +11,6 @@
   </div>
 </div>
 <section id="events" ng-if="userData.isLoggedIn">
-  <p class="dispControls">
-    <a>Card view</a> | <a>List view</a>
-  </p>
   <h1>Events</h1>
   <select ng-model="eventData.order">
     <option value="title:false">Title</option>
@@ -22,16 +19,16 @@
     <option value="start:false">Date (oldest to newest)</option>
     <option value="featured:false">Featured</option>
   </select>
-  <a ng-click="addEvent()">Add new event</a>
+  <a ng-click="addEvent()" ng-if="userData.user.admin">Add new event</a>
 
   <div id="admin-container">
     <div class="event-card" ng-repeat="event in events | orderBy:detEvOrder():detEvDir()">
-      <div class="event-fav" id="fav-{{event._id}}" data-checked="{{event.featured}}" ng-click="updateFeatured(event)"></div>
-      <div class="event-edit" id="edit-{{event._id}}" data-status="saved" ng-click="editEvent(event)"></div>
-      <div class="event-delete" ng-click="deleteEvent(event)"></div>
-      <div class="event-dup" ng-click="duplicateEvent(event)"></div>
-      <div class="event-img" style="background-image: url('{{event.img}}')" ng-mouseover="event.editImg = true" ng-mouseout="event.editImg = false">
-        <div class="event-img-overlay" ng-click="editImage(event)" ng-show="event.editImg" id="overlay-{{event._id}}"><img src="/img/icons/update-image.svg"/></div>
+      <div class="event-fav" ng-if="userData.user.admin" id="fav-{{event._id}}" data-checked="{{event.featured}}" ng-click="updateFeatured(event)"></div>
+      <div class="event-edit" ng-if="userData.user.admin" id="edit-{{event._id}}" data-status="saved" ng-click="editEvent(event)"></div>
+      <div class="event-delete" ng-if="userData.user.admin" ng-click="deleteEvent(event)"></div>
+      <div class="event-dup" ng-if="userData.user.admin" ng-click="duplicateEvent(event)"></div>
+      <div class="event-img" style="background-image: url('{{event.img}}')" ng-mouseover="if (userData.user.admin) event.editImg = true" ng-mouseout="event.editImg = false">
+        <div class="event-img-overlay" ng-click="editImage(event)" ng-if="event.editImg" id="overlay-{{event._id}}"><img src="/img/icons/update-image.svg"/></div>
       </div>
       <div class="event-info" ng-show="event.status != 'edited'">
         <h5>{{event.title}}</h5>

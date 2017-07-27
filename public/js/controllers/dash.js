@@ -199,14 +199,10 @@
       }
 
       $scope.toggleMenuTag = function(tag) {
-        var idx = $.inArray(tag, $scope.menuTagsShown);
-        if (idx > -1) {
-          delete $scope.menuTagsShown[idx];
-          $("#menuTagSel-" + tag).addClass("inactive");
-        } else {
-          $scope.menuTagsShown.push(tag);
-          $("#menuTagSel-" + tag).removeClass("inactive");
-        }
+        var idx = $.inArray(tag.tag, $scope.menuTagsShown);
+        if (tag.active) delete $scope.menuTagsShown[idx];
+        else $scope.menuTagsShown.push(tag.tag);
+        tag.active = !tag.active;
       }
 
       $scope.loadItems = function() {
@@ -217,14 +213,15 @@
               var uniqTags = [];
               for (var i = 0; i < $scope.items.length; i++) {
                 for (var j = 0; j < $scope.items[i].tags.length; j++) {
-                  var tag = $scope.items[i].tags[j]
-                  if ($.inArray(tag,uniqTags) == -1) {
-                    uniqTags.push(tag);
+                  var tag = $scope.items[i].tags[j];
+                  if ($.grep(uniqTags, function(e) { return e.tag == tag}).length == 0) {
+                    uniqTags.push({tag: tag, active: false});
                   }
                 }
               }
               $scope.uniqMenuTags = uniqTags;
-              $scope.menuTagsShown = uniqTags.slice(0);
+              $scope.uniqMenuTags[0].active = true;
+              $scope.menuTagsShown = [$scope.uniqMenuTags[0].tag];
             }
           });
       }
@@ -248,7 +245,7 @@
 
           //for all date values, dateval.value = date.substring(0,16)
           if (party.booking_date != null)
-            $("#booking_date-" + party._id).val(party.booking_date.substring(0,16));
+            $("#booking_date-" + party._id).val(party.booking_date);
           if (party.event_info.date != null)
             $("#party-date-" + party._id).val(party.event_info.date.substring(0,16));
           if (party.admin_info.initial_request != null)
@@ -265,18 +262,22 @@
           }
           if ($("#party-date-" + party._id).val().length > 0)
             party.event_info.date = $("#party-date-" + party._id).val();
-          if ($("#initial-request-" + party._id).val().length > 0)
-            party.admin_info.initial_request = $("#initial-request-" + party._id).val();
 
           if (typeof party.food.food_selections == "string")
             party.food.food_selections = party.food.food_selections.split(",");
-          if (typeof party.admin_info.food_selections_confirmation.selections == "string")
-            party.admin_info.food_selections_confirmation.selections = party.admin_info.food_selections_confirmation.selections.split(",");
 
-          party.admin_info.party_size_confirmation.date = new Date();
-          if ($scope.userData.name) {
-            party.admin_info.party_size_confirmation.admin = $scope.userData.name;
-            party.admin_info.food_selections_confirmation.admin = $scope.userData.name;
+          if (party.admin_info.party_size_confirmation.val != party.confirmations.party_size) {
+            party.admin_info.party_size_confirmation.date = new Date();
+            if ($scope.userData.name) {
+              party.admin_info.party_size_confirmation.admin = $scope.userData.name;
+            }
+          }
+
+          if (party.admin_info.food_selections_confirmation.val != party.confirmations.food_selections) {
+            party.admin_info.food_selections_confirmation.date = new Date();
+            if ($scope.userData.name) {
+              party.admin_info.food_selections_confirmation.admin = $scope.userData.name;
+            }
           }
 
           $http.post("/backendServices/editParty", party)
@@ -285,6 +286,13 @@
                 alert("Sorry, your change was unsuccessful.");
               }
             });
+        }
+      }
+
+      $scope.prepParty = function(party) {
+        party.confirmations = {
+          party_size: party.admin_info.party_size_confirmation.val,
+          food_selections: party.admin_info.food_selections_confirmation.val
         }
       }
 
@@ -503,7 +511,6 @@
       }
 
       $scope.loadEvents();
-      $scope.loadItems();
     }]);
 
     app.filter('dateInMillis', function() {

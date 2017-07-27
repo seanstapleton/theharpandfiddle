@@ -50,7 +50,7 @@ module.exports = function(db, passport) {
     });
 
     router.get("/getUser", function(req, res) {
-      if (req.user) res.send({"success": true, user: {name: req.user.name}});
+      if (req.user) res.send({"success": true, user: {name: req.user.name, admin: req.user.admin}});
       else res.send({"success": false, "err": "500"});
     });
 
