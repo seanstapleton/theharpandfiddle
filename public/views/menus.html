@@ -3,7 +3,7 @@
     <a>Card view</a> | <a>List view</a>
   </p>
   <h1>Menus <span class="tag menu-tag-selector" ng-class="{inactive: tag.active == false}" id="menuTagSel-{{tag.tag}}" ng-click="toggleMenuTag(tag)" ng-repeat="tag in uniqMenuTags">{{tag.tag}}</span></h1>
-  <a ng-click="addItem()" ng-if="userData.user.admin">Add new item</a>
+  <a ng-click="addItem()" ng-if="userData.user.admin" style="cursor: pointer;">Add new item</a>
 
     <div class="item-card" ng-repeat="item in items | filter:tagShown | orderBy:title">
       <div ng-if="userData.user.admin" class="item-edit" id="edit-{{item._id}}" data-status="saved" ng-click="editItem(item)"></div>

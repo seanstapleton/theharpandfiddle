@@ -38,6 +38,7 @@ module.exports = function(db) {
     }));
     app.use(passport.initialize());
     app.use(passport.session());
+    // app.use(passport.authenticate('remember-me'));
     app.use(flash());
 
     require('./passport/config.js')(passport);
