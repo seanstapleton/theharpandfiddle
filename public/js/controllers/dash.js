@@ -109,7 +109,7 @@
         $http.post('/backendServices/addItem', formData)
           .then(function(res) {
             if (res.data.success) {
-              $scope.loadItems();
+              $scope.items.push(res.data.item);3
             } else {
               console.log("Error 500");
             }
@@ -192,10 +192,14 @@
       }
 
       $scope.tagShown = function(item) {
-        if (item.tags.length == 0) return true;
+        if (item.tags.length == 0 || typeof(item.tags) == "string") return true;
         for (var i = 0; i < item.tags.length; i++) {
+          if ($scope.uniqMenuTags.findIndex(function(menuItem) { return menuItem.tag == item.tags[i] }) == -1) {
+            $scope.uniqMenuTags.push({tag: item.tags[i], active: false});
+          }
           if ($.inArray(item.tags[i], $scope.menuTagsShown) > -1) return true;
         }
+        return false;
       }
 
       $scope.toggleMenuTag = function(tag) {
@@ -367,6 +371,11 @@
           item.status = "saved";
           el.attr("data-status", "saved");
 
+          if (item.tags.length > 0 && typeof(item.tags) == "string") {
+            item.tags.replace(/\s/g,'');
+            item.tags = item.tags.split(",");
+          }
+
           var upItem = {
             "_id": item._id,
             title: item.title,
@@ -380,7 +389,12 @@
             .then(function(res) {
               if (!res.data.success) {
                 alert("Sorry, your change was unsuccessful.");
-              } else loadItems();
+              } else {
+                var idx = $scope.items.findIndex(function(i) { return i._id == res.data.item._id });
+                console.log(idx, res.data.item);
+                $scope.items[idx] = res.data.item;
+                console.log($scope.items[idx]);
+              }
             });
         }
       }
@@ -442,11 +456,11 @@
             .then(function(res) {
               if (res.data.success) {
                 swal("Deleted!", "Your item has been deleted.", "success");
-                $scope.loadItems();
+                var idx = $scope.items.findIndex(function(i) { return i._id == res.data.item._id });
+                delete $scope.items[idx];
               } else {
                 swal("Error", "Unfortunately your item could not be deleted", "error");
                 console.log(res.data.err);
-                $scope.loadItems();
               }
             });
           });

@@ -192,7 +192,7 @@ module.exports = function(db, passport) {
       });
       item.save(function(err, item) {
         if (err) res.send({success: false, err: err});
-        else res.send({success: true});
+        else res.send({success: true, item: item});
       });
       logEdit(req.user,"added a new menu item", [item]);
     });
@@ -214,9 +214,9 @@ module.exports = function(db, passport) {
     });
 
     router.post('/editItem', function(req, res, next) {
-      itemSchema.findOneAndUpdate({_id: req.body._id}, req.body, {upsert: true}, function(err, doc) {
+      itemSchema.findOneAndUpdate({_id: req.body._id}, req.body, {upsert: true, new: true}, function(err, doc) {
           if (err) res.send({success: false, err: err});
-          else res.send({success: true});
+          else res.send({success: true, item: doc});
           logEdit(req.user,"edited a menu item", [req.body]);
       });
     });
@@ -249,7 +249,7 @@ module.exports = function(db, passport) {
           console.log(err);
           res.send({success: false, err: err});
         }
-        else res.send({success: true});
+        else res.send({success: true, item: {_id: req.body._id}});
         logEdit(req.user,"deleted a menu item", [req.body]);
       });
     });
