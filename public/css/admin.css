@@ -12,7 +12,7 @@ td {
   overflow: auto;
 }
 .login-container {
-  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("/img/backgrounds/op/distillery-barrels.JPG");
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("/img/backgrounds/op/distillery-barrels.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
