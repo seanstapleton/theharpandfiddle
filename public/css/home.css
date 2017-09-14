@@ -21,7 +21,7 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
   margin: auto;
 }
 #show-360 {
-  position: fixed;
+  position: absolute;
   height: 20vh;
   top: 0;
   left: 10px;
@@ -592,12 +592,12 @@ div.bar:not(:first-child) {
   overflow: auto;
   margin-bottom: 15px;
 }
-#oo-btn span {
+#oo-btn span.glf-button {
   color: #222;
   text-transform: uppercase;
   background-image: url("/img/backgrounds/paper.png");
   margin: 0 !important;
-  padding: 30px 40px !important;
+  padding: 15px !important;
   cursor: pointer;
   background-color: rgba(221,221,221,1);
   border-radius: 0;
@@ -609,10 +609,15 @@ div.bar:not(:first-child) {
   font-size: 1em;
   text-align: left;
   text-shadow: none;
+  line-height: 25px;
+  overflow: auto;
 }
-#oo-btn span:hover {
+#oo-btn span.glf-button:hover {
   background-image: none;
-  background-color: #ADE6A3;
+  background-color: #E5E5E5;
+}
+#gh-btn-nav {
+  padding: 15px 0;
 }
 
 #events-calendar {
