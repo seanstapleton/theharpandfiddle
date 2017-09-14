@@ -597,7 +597,7 @@ div.bar:not(:first-child) {
   text-transform: uppercase;
   background-image: url("/img/backgrounds/paper.png");
   margin: 0 !important;
-  padding: 15px !important;
+  padding: 5px !important;
   cursor: pointer;
   background-color: rgba(221,221,221,1);
   border-radius: 0;

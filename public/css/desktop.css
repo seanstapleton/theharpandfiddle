@@ -9,7 +9,6 @@
 
 @media (min-width: 375px) {
   #oo-btn span.glf-button {
-    padding: 15px 40px !important;
     line-height: 35px;
   }
   .logo-inline {
@@ -19,7 +18,6 @@
 
 @media (min-width: 425px) {
   #oo-btn span.glf-button {
-    padding: 15px 40px !important;
     line-height: 40px;
   }
   .logo-inline {
@@ -29,7 +27,7 @@
 
 @media (min-width: 968px) {
   #oo-btn span.glf-button {
-    padding: 15px 40px !important;
+    padding: 10px 40px !important;
     line-height: 35px;
   }
   .logo-inline {
