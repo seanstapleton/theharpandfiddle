@@ -213,7 +213,7 @@ a:hover {
 }
 .popup-ll {
   position: absolute !important;
-  right: 25px !important;
+  left: 25px !important;
   bottom: 25px !important;
   width: 120px !important;
   cursor: pointer;
@@ -351,7 +351,7 @@ div.bar:not(:first-child) {
   background-size: cover;
   background-position: center center;
 }
-#intro img {
+.i-logo {
   width: 90%;
   margin-top: 35vh;
   margin-left: 5%;
@@ -369,7 +369,7 @@ div.bar:not(:first-child) {
   display: block;
   margin-top: 10px;
 }
-#intro a {
+#look {
   color: #fff;
   padding: 10px 20px;
   border: 1px solid #fff;

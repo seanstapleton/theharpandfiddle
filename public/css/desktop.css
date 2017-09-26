@@ -58,14 +58,14 @@
   /* ----------------------------------------------
   ---------------- Intro Styles -------------------
   ---------------------------------------------- */
-  #intro img {
+  .i-logo {
     width: 50%;
     margin-left: 25%;
   }
   #intro h2 {
     font-size: 2em;
   }
-  #intro a {
+  #look {
     width: 13%;
   }
 
@@ -262,7 +262,7 @@
   }
   .popup-ll {
     position: absolute !important;
-    right: 35px !important;
+    left: 35px !important;
     bottom: 35px !important;
     width: 150px !important;
     cursor: pointer;
