@@ -277,6 +277,14 @@
      $("#intro").css("background-image", "linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('"+$(this).attr("src")+"')");
     });
     intro_img.attr("src", "/img/backgrounds/op/bar.jpg");
+
+    var ua = window.navigator.userAgent;
+    var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+    var webkit = !!ua.match(/WebKit/i);
+    var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+    if (iOSSafari) {
+      $("#intro").css("height", "calc(100vh - 44px)");
+    }
   });
 </script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
