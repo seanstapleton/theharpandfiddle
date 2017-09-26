@@ -215,7 +215,7 @@ a:hover {
   position: absolute !important;
   left: 25px !important;
   bottom: 25px !important;
-  width: 120px !important;
+  width: 80px !important;
   cursor: pointer;
   animation-delay: 2s;
 }
