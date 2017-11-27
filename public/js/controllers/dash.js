@@ -55,10 +55,10 @@
           title: "Untitled (New)",
           start: $scope.events[0].start,
           end: $scope.events[0].end,
-          description: "Type description here",
+          description: "",
           allDay: false,
-          url: "Type forwarding link here",
-          img: "https://labs.xda-developers.com/static/img/default-avatar.png",
+          url: "",
+          img: "/img/backgrounds/op/band_default.jpg",
           featured: false,
           status: "edited"
         }
