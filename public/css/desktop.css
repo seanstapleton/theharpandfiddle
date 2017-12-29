@@ -337,7 +337,7 @@
     margin: 0 auto;
   }
   #soc-links li {
-    width: 31%;
+    width: 24%;
   }
   #soc-links img {
     width: 100%;
@@ -402,9 +402,6 @@
     background-image: url("/img/backgrounds/paper.png");
     float: left;
     overflow: hidden;
-  }
-  #menus-canvas {
-    overflow: auto;
   }
 
   .menu-container h2 {

@@ -155,11 +155,21 @@
       window.open($(this).attr("href"), "_blank");
     });
 
-    $(document).on('mouseover','#menus-canvas, #menus-nav', function() {
-      $("body").css("overflow","hidden");
+    $(document).on('mouseover','#menus-canvas.inactive', function() {
+      $("#menu-overlay").addClass("show");
     });
 
-    $(document).on('mouseout','#menus-canvas, #menus-nav', function() {
+    $("#menu-overlay").click(function() {
+      $("#menus-canvas").removeClass("inactive").addClass("active");
+      $(this).removeClass("show");
+      $("body").css("overflow","hidden");
+    })
+
+    $(document).on('mouseout','#menus-canvas.inactive', function() {
+      $("#menu-overlay").removeClass("show");
+    });
+
+    $(document).on('mouseout','#menus-canvas', function() {
       $("body").css("overflow","initial");
     });
 

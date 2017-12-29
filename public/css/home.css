@@ -124,6 +124,32 @@ td {
   color: #fff;
   font-weight: normal;
 }
+#menu-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: none;
+  cursor: pointer;
+}
+#menu-overlay img {
+  width: 50px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 150px;
+}
+#menu-overlay p {
+  text-align: center;
+  color: #fff;
+}
+#menus-canvas.inactive {
+  overflow: hidden !important;
+}
+#menus-canvas.active {
+  overflow: auto !important;
+}
 footer {
   width: 100%;
   padding: 5vh;
