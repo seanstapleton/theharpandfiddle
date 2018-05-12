@@ -25,7 +25,7 @@
   }
 }
 
-@media (min-width: 968px) {
+@media (min-width: 992px) {
   #oo-btn span.glf-button {
     padding: 10px 40px !important;
     line-height: 35px;
@@ -53,6 +53,9 @@
   }
   svg {
     width: 100%;
+  }
+  #loader {
+    display: none;
   }
 
   /* ----------------------------------------------
@@ -192,7 +195,7 @@
   .contact-block td {
     font-size: 0.8em !important;
     color: #111 !important;
-    font-weight: 200;
+    font-weight: 300;
   }
   #reservation-block input[type='date'], #reservation-block select {
     width: 50%;
@@ -350,7 +353,6 @@
   ---------------- Menus Styles ------------------
   ---------------------------------------------- */
   #menus {
-    height: 100vh;
     background-color: #222;
   }
   #menu-col-1 {
@@ -394,6 +396,11 @@
     margin-left: 2.5%;
     float: left;
     overflow: auto;
+  }
+  #menu-viewer {
+    width: 100%;
+    height: 100%;
+    margin: 0;
   }
   #menus-canvas {
     width: 100%;
@@ -469,6 +476,26 @@
     overflow: auto;
     width: 30px;
   }
+
+
+  #menu-col-2 {
+    position: static;
+    display: block;
+  }
+  #menu-fullscreen-overlay {
+    display: none;
+  }
+  #menu-viewer, #beer {
+    position: static;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+  .menu-close {
+    display: none;
+  }
+
+
   #menu span {
     background-color: #fff;
   }

@@ -5,8 +5,8 @@ module.exports = function(db, passport) {
     var bodyParser      = require('body-parser');
     var nodemailer      = require('nodemailer');
     var hoursSchema     = require('../models/hours.js');
-    var menuSchema      = require('../models/menu.js');
-    var itemSchema      = require('../models/items.js');
+    var menuSchema      = require('../models/tag.js');
+    var itemSchema      = require('../models/item.js');
     var eventsSchema    = require('../models/events.js');
     var specialsSchema  = require('../models/specials.js');
     var messageSchema   = require('../models/message.js');
@@ -19,6 +19,8 @@ module.exports = function(db, passport) {
     var validator       = require('validator');
     var path            = require('path');
     var mg              = require('nodemailer-mailgun-transport');
+
+    const GLOBAL_CLIENT_ID = "598a62acf36d286bd490bccd";
 
     router.post('/insta', function(req, response, next) {
 
@@ -42,8 +44,48 @@ module.exports = function(db, passport) {
       });
     });
 
+
+
+    router.get("/menuSection/:id", function(req, res) {
+      menuSchema.find({id: req.params.id, clientID: GLOBAL_CLIENT_ID},{}, function(err, menus) {
+        if (err || menus.length == 0) {
+          console.log(err);
+          res.end();
+        } else {
+          menus[0] = JSON.parse(JSON.stringify(menus[0]));
+          itemSchema.find({clientID: GLOBAL_CLIENT_ID},{}, function(err, items) {
+            if (err) {
+              console.log(err);
+              res.end();
+            } else {
+              items = JSON.parse(JSON.stringify(items));
+              var formattedMenuData = {
+                header_title: menus[0].name,
+                header_img: menus[0].header_img,
+                subsections: []
+              }
+              for (var i = 0; i < menus[0].submenus.length; ++i) {
+                formattedMenuData.subsections.push({title: menus[0].submenus[i], items: []});
+              }
+              for (var i = 0; i < formattedMenuData.subsections.length; ++i) {
+                for (var j = 0; j < items.length; ++j) {
+                  for (var k = 0; k < items[j].tags.length; ++k) {
+                    // console.log(items[j].subsection, formattedMenuData.subsections[i].title);
+                    if (items[j].tags[k] == menus[0].name && items[j].subsection == formattedMenuData.subsections[i].title) {
+                      formattedMenuData.subsections[i].items.push(items[j]);
+                    }
+                  }
+                }
+              }
+              res.send({success: true, data: formattedMenuData});
+            }
+          });
+        }
+      });
+    });
+
     router.get('/getMenus', function(req, res) {
-      menuSchema.find({},{}, function(err, menus) {
+      menuSchema.find({clientID: GLOBAL_CLIENT_ID},{}, function(err, menus) {
         if (err) console.log(err);
         else res.send(menus);
       });

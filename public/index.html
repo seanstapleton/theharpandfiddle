@@ -201,17 +201,19 @@
             <div id="menus-nav">
               <div id="untappd-menu-mobile" class="menu-nav-container">
                 <p href="beer" class="menu-nav-link">Beer<span class="menu-icon"></span></p>
-                <div id="beer-mobile" class="menu-container-mobile mobile-item"></div>
-                <script type="text/javascript">
-                  !function(e,n){var t=document.createElement("script"),a=document.getElementsByTagName("script")[0];t.async=1,a.parentNode.insertBefore(t,a),t.onload=t.onreadystatechange=function(e,a){(a||!t.readyState||/loaded|complete/.test(t.readyState))&&(t.onload=t.onreadystatechange=null,t=void 0,a||n&&n())},t.src=e}("https://embed-menu-preloader.untappdapi.com/embed-menu-preloader.min.js",function(){PreloadEmbedMenu("beer-mobile",6484,22214)});
-                </script>
               </div>
             </div>
           </div>
           <div id="menu-col-2">
+            <div class="mobile-item" id="menu-fullscreen-overlay"></div>
+            <p class='menu-close'>Close X</p>
+            <div id="loader" class="loader"></div>
             <div id="menus-canvas" class="inactive">
               <div id="menu-overlay"><img src="/img/icons/click.png"><p>Click to scroll</p></div>
-              <div class="menu-container" id="beer">
+              <div id="menu-viewer">
+                <iframe id="menu-frame"></iframe>
+              </div>
+              <div class="menu-container hide" id="beer">
                 <div id="beer-menu-container"></div>
                 <script type="text/javascript">
                   !function(e,n){var t=document.createElement("script"),a=document.getElementsByTagName("script")[0];t.async=1,a.parentNode.insertBefore(t,a),t.onload=t.onreadystatechange=function(e,a){(a||!t.readyState||/loaded|complete/.test(t.readyState))&&(t.onload=t.onreadystatechange=null,t=void 0,a||n&&n())},t.src=e}("https://embed-menu-preloader.untappdapi.com/embed-menu-preloader.min.js",function(){PreloadEmbedMenu("beer-menu-container",6484,22214)});

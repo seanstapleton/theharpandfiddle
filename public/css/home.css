@@ -1,3 +1,12 @@
+@media (max-width: 992px) {
+  .show-mobile {
+    display: block !important;
+  }
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
 /* ----------------------------------------------
 -------------- General Styles -------------------
 ---------------------------------------------- */
@@ -366,6 +375,15 @@ div.bar:not(:first-child) {
 #social h2 {
   text-align: center;
 }
+#menu-viewer {
+  width: 100%;
+  height: 100%;
+}
+#menu-viewer iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 /* ----------------------------------------------
 -------------- Intro Styles ---------------------
 ---------------------------------------------- */
@@ -528,7 +546,7 @@ div.bar:not(:first-child) {
 .contact-block td {
   font-size: 1em !important;
   color: #111 !important;
-  font-weight: 200;
+  font-weight: 300;
 }
 #reservation-block input[type='date'], #reservation-block select  {
   width: 50%;
@@ -698,17 +716,63 @@ div.bar:not(:first-child) {
   background-repeat: no-repeat;
 }
 #menu-col-2 {
-  width: 72.5%;
-  margin-left: 2.5%;
-  float: left;
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  display: none;
   overflow: auto;
 }
-#menus-canvas {
+#menu-canvas {
+  position: relative;
+}
+#loader {
+  border: 12px solid #fff;
+  border-radius: 50%;
+  border-top: 12px solid rgba(0,0,0,0.4);
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s ease-in infinite; /* Safari */
+  animation: spin 2s ease-in infinite;
+  position: absolute;
+  left: calc(50% - 40px);
+  top: 40vh;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.no-scroll {
+  overflow: hidden !important;
+}
+#menu-fullscreen-overlay {
   width: 100%;
-  height: 80vh;
-  background-image: url("/img/backgrounds/paper.png");
-  float: left;
-  overflow: auto;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.4);
+}
+#menu-viewer, #beer {
+  position: absolute;
+  width: 90%;
+  height: calc(100% - 120px);
+  margin: 90px 5% 0 5%;
+}
+.menu-close {
+  color: #fff;
+  font-size: 2em;
+  position: absolute;
+  font-weight: bold;
+  top: 15px;
+  left: 15px;
+  cursor: pointer;
 }
 
 .menu-container-mobile {
