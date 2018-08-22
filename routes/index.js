@@ -1,32 +1,67 @@
-module.exports = function(db, passport) {
-    var express         = require('express');
-    var router          = express.Router();
-    var db              = require('../db');
-    var bodyParser      = require('body-parser');
-    var nodemailer      = require('nodemailer');
-    var hoursSchema     = require('../models/hours.js');
-    var menuSchema      = require('../models/menu.js');
-    var eventsSchema    = require('../models/events.js');
-    var specialsSchema  = require('../models/specials.js');
-    var flash           = require('connect-flash');
-    var http            = require('http');
-    var Dropbox         = require('dropbox');
-    var validator       = require('validator');
-    var hours;
+const express = require('express');
+const nodemailer = require('nodemailer');
+const mg = require('nodemailer-mailgun-transport');
+const https = require('https');
 
-    hoursSchema.find({}, {'_id': false, 'order': false}, function(err, returnHours) {
-        hours = returnHours;
+const router = express.Router();
+
+const menusRouter = require('./routes/menusRouter');
+const eventsRouter = require('./routes/eventsRouter');
+
+module.exports = (db, passport) => {
+  require('../passport/config.js')(passport); // eslint-disable-line global-require
+
+  router.post('/insta', (req, response) => {
+    const apiRoute = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${process.env.igaccess}`;
+    https.get(apiRoute, (res) => {
+      res.setEncoding('utf8');
+      let rawData = '';
+      res.on('data', (chunk) => { rawData += chunk; });
+      res.on('end', () => {
+        try {
+          const parsedData = JSON.parse(rawData);
+          response.send(parsedData);
+        } catch (e) {
+          console.error(e.message);
+        }
+      });
+    }).on('error', (e) => {
+      console.error(e);
     });
+  });
 
-    router.get('/backendServices/getHours', function(req, res, next) {
-      res.send(hours);
+  router.use('/menus', menusRouter);
+  router.use('/events', eventsRouter);
+
+  router.get('/fbid', (req, res) => {
+    res.send(process.env.fbid);
+  });
+
+  router.post('/sendMessage', (req, res) => {
+    const auth = {
+      auth: {
+        api_key: process.env.api_key,
+        domain: process.env.domain,
+      },
+    };
+    const data = req.body;
+    const smtpTransporter = nodemailer.createTransport(mg(auth));
+    const message = {
+      from: 'fiddlersonmain@gmail.com',
+      to: 'fiddlersonmain@gmail.com',
+      subject: `Contact Form: ${data.name}`,
+      text: `Name: ${data.name}\nEmail: ${data.email}\nPhone Number: ${data.phone}\n`
+        + `Subject: ${data.subject}\nMessage: ${data.message}`,
+    };
+
+    smtpTransporter.sendMail(message, (err) => {
+      if (err) {
+        res.send({ success: false, err });
+      } else {
+        res.send({ success: true });
+      }
     });
+  });
 
-    // /* GET logout page */
-    // router.get('/logout', function(req, res, next) {
-    //   req.logout();
-    //   res.redirect('/');
-    // });
-
-    return router;
-}
+  return router;
+};

@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var specialsSchema = new Schema({
-    title: String,
-    description: String,
-    dotw: String
+const { Schema } = mongoose;
+const specialsSchema = new Schema({
+  title: String,
+  description: String,
+  dotw: String,
 });
 
 module.exports = mongoose.model('Special', specialsSchema);

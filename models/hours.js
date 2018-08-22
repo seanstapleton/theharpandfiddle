@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var hoursSchema = new Schema({
-    day: String,
-    timeframe: String,
-    order: Number
+const { Schema } = mongoose;
+const hoursSchema = new Schema({
+  day: String,
+  timeframe: String,
+  order: Number,
 });
 
 module.exports = mongoose.model('Hour', hoursSchema);

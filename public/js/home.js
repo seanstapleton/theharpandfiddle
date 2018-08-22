@@ -1,414 +1,353 @@
-(function(){
-  $(document).ready(function() {
+((() => {
+  $(document).ready(() => {
     AOS.init({
-      duration: 1000
+      duration: 1000,
+      once: true,
     });
 
     $.fn.extend({
-      animateCss: function (animationName) {
-          var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-          this.addClass('animated ' + animationName).one(animationEnd, function() {
-              $(this).removeClass('animated ' + animationName);
-          });
-      }
+      animateCss: (animationName) => {
+        const animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass(`animated ${animationName}`).one(animationEnd, () => {
+          $(this).removeClass(`animated ${animationName}`);
+        });
+      },
     });
 
 
-    var isMobile = !window.matchMedia('(min-width: 960px)').matches;
+    let isMobile = !window.matchMedia('(min-width: 960px)').matches;
 
-    if (!isMobile) $("#location-map iframe, .map-overlay").height($("#contact-info").height());
+    if (!isMobile) $('#location-map iframe, .map-overlay').height($('#contact-info').height());
 
-    $(window).resize(function() {
+    $(window).resize(() => {
       isMobile = !window.matchMedia('(min-width: 960px)').matches;
     });
 
-    $("#menus-nav span").each(function() {
-      $(this).css("background-image", "url('" + $(this).attr("href") + "')")
+    $('#menus-nav span').each(() => {
+      $(this).css('background-image', `url('${$(this).attr('href')}')')`);
     });
 
-    $(".overlayGradient").mouseover(function() {
-      $(".overlayGradient").css("fill", "url(#overlayGradientDark)");
-      $(this).css("fill", "url(#overlayGradientLight)");
+    $('.overlayGradient').mouseover(() => {
+      $('.overlayGradient').css('fill', 'url(#overlayGradientDark)');
+      $(this).css('fill', 'url(#overlayGradientLight)');
     });
 
-    $(".map-overlay, .menu-overlay").click(function() {
-      $(this).addClass("hide");
-      $(this).removeClass("show");
+    $('.map-overlay, .menu-overlay').click(() => {
+      $(this).addClass('hide');
+      $(this).removeClass('show');
     });
 
-    $("#show-360").click(function() {
-      $("#overlay").toggleClass("show");
-      $("#tour-360").toggleClass("show");
-      $("body").toggleClass("noscroll");
-      $("#tour-360 iframe").animateCss("zoomIn");
+    $('#show-360').click(() => {
+      $('#overlay').toggleClass('show');
+      $('#tour-360').toggleClass('show');
+      $('body').toggleClass('noscroll');
+      $('#tour-360 iframe').animateCss('zoomIn');
     });
 
-    $(document).on('click','#events-more',function() {
-      $("#overlay").toggleClass("show");
-      $("#events-pu").toggleClass("show");
-      $("body").toggleClass("noscroll");
+    $(document).on('click', '#events-more', () => {
+      $('#overlay').toggleClass('show');
+      $('#events-pu').toggleClass('show');
+      $('body').toggleClass('noscroll');
 
-      $.get('/backendServices/getEvents', function(data) {
-        console.log("data", data);
-        for (var i = 0; i < data.length; i++) {
-          data[i].start = new Date(data[i].start);
-          data[i].end = new Date(data[i].end);
-        }
-        $('#events-calendar').fullCalendar({
-              theme: true,
-              header: {
-                  left: 'prev,next today',
-                  center: 'title',
-                  right: 'month,agendaWeek,agendaDay'
-              },
-              editable: false,
-              weekMode: 'liquid',
-              url: '#',
-              events: data,
-              eventRender: function(event, element) {
-                if (event.title.toLowerCase().indexOf("notre dame") >= 0) {
-                  element.css("background", "#3EA632");
-                }
-                if (event.background) {
-                  element.css("background", event.background);
-                }
-                element.text(event.title);
-                element.tooltip({title: event.description});
-                if (event.image) {
-                  var image = $('<img>').attr("src",event.image);
-                  var oe = element;
-                  element = $('<div>')
-                  element.append(oe).append(image);
-                }
-              },
-              eventClick: function(event, jsEvent, view) {
-                  window.location.href=event.url;
+      $.get('/backendServices/events/', (data) => {
+        if (data.success) {
+          for (let i = 0; i < data.length; i += 1) {
+            data[i].start = new Date(data[i].start);
+            data[i].end = new Date(data[i].end);
+          }
+          $('#events-calendar').fullCalendar({
+            theme: true,
+            header: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'month,agendaWeek,agendaDay',
+            },
+            editable: false,
+            weekMode: 'liquid',
+            url: '#',
+            events: data,
+            eventRender: (event, element) => {
+              if (event.title.toLowerCase().indexOf('notre dame') >= 0) {
+                element.css('background', '#3EA632');
               }
+              if (event.background) {
+                element.css('background', event.background);
+              }
+              element.text(event.title);
+              element.tooltip({ title: event.description });
+              if (event.image) {
+                const image = $('<img>').attr('src', event.image);
+                const oe = element;
+                element = $('<div>');
+                element.append(oe).append(image);
+              }
+            },
+            eventClick: (event) => {
+              window.location.href = event.url;
+            },
           });
+        }
       });
+    });
 
-    })
-
-    $("#menu").click(function() {
-      $(this).toggleClass("open");
+    $('#menu').click(() => {
+      $(this).toggleClass('open');
       if (isMobile) {
-        $('.offscreen-nav').toggleClass("onscreen");
-        $('.offscreen-nav-wrapper').toggleClass("onscreen-wrapper");
+        $('.offscreen-nav').toggleClass('onscreen');
+        $('.offscreen-nav-wrapper').toggleClass('onscreen-wrapper');
       } else {
-        $(".top-nav").animate({width: 'toggle'});
+        $('.top-nav').animate({ width: 'toggle' });
       }
     });
 
-    $(".offscreen-nav a").click(function() {
-      $("#menu").toggleClass("open");
-      $('.offscreen-nav').toggleClass("onscreen");
-      $('.offscreen-nav-wrapper').toggleClass("onscreen-wrapper");
+    $('.offscreen-nav a').click(() => {
+      $('#menu').toggleClass('open');
+      $('.offscreen-nav').toggleClass('onscreen');
+      $('.offscreen-nav-wrapper').toggleClass('onscreen-wrapper');
     });
 
-    $(document).scroll(function() {
-      if ($(".map-overlay").hasClass("hide")) {
-        $(".map-overlay").addClass("show").removeClass("hide");
+    $(document).scroll(() => {
+      if ($('.map-overlay').hasClass('hide')) {
+        $('.map-overlay').addClass('show').removeClass('hide');
       }
-      if ($(".menu-overlay").hasClass("hide")) {
-        $(".menu-overlay").addClass("show").removeClass("hide");
+      if ($('.menu-overlay').hasClass('hide')) {
+        $('.menu-overlay').addClass('show').removeClass('hide');
       }
     });
 
     $('.datepicker').datepicker({
-        onSelect: function(dateText, inst) {
-          $("input[name='dateval']").val(dateText);
-        },
-        minDate: 0
+      onSelect: (dateText) => {
+        $('input[name=\'dateval\']').val(dateText);
+      },
+      minDate: 0,
     });
-    $("#time").selectmenu();
-    $("#party").selectmenu();
-    $("#time-desktop").selectmenu();
-    $("#party-desktop").selectmenu();
+    $('#time').selectmenu();
+    $('#party').selectmenu();
+    $('#time-desktop').selectmenu();
+    $('#party-desktop').selectmenu();
 
-    $.post('/backendServices/insta', function(data) {
-      var imgs = data.data.slice(0,5);
-      for (var i = 0; i < imgs.length; i++) {
-        var div = $("<div id='guess' data-aos='fade-left' data-aos-delay='"+i*100+"' class='soc-box'></div>");
-        var overlay = $("<div class='insta-overlay'></div>");
-        overlay.attr("href", imgs[i].link);
-        var likes = $("<p></p>").text(imgs[i].likes.count).addClass("insta-likes");
-        var comments = $("<p></p>").text(imgs[i].comments.count).addClass("insta-comments");
-        var captionText = (imgs[i].caption == null) ? "" : (imgs[i].caption.text.length > 100) ? imgs[i].caption.text.substring(0,100) + "..." : imgs[i].caption.text;
-        var caption = $("<p></p>").text(captionText).addClass("insta-caption");
-        overlay.append(likes,comments,caption);
-        div.css("background-image", "url(" + imgs[i].images.standard_resolution.url+")");
-        div.append(overlay);
-        $("#ig-links").append(div);
-      }
-      if (isMobile) {
-        $("#ig-links").slick({
-          autoplay: true,
-          arrows: true,
-          speed: 1500
-        });
-      }
-    });
-
-    $("#ig-links").on('mouseover', 'div', function() {
-      if (!isMobile) $(this).find(".insta-overlay").css("display", "block");
-    });
-    $("#ig-links").on('mouseout', 'div', function() {
-      if (!isMobile) $(this).find(".insta-overlay").css("display", "none");
-    });
-    $("#ig-links").on('click', 'div.insta-overlay', function() {
-      window.open($(this).attr("href"), "_blank");
-    });
-
-    $(document).on('mouseover','#menus-canvas.inactive', function() {
-      if (!isMobile)
-        $("#menu-overlay").addClass("show");
-    });
-
-    $("#menu-overlay").click(function() {
-      $("#menus-canvas").removeClass("inactive").addClass("active");
-      $(this).removeClass("show");
-      $("body").css("overflow","hidden");
-    })
-
-    $(document).on('mouseout','#menus-canvas.inactive', function() {
-      $("#menu-overlay").removeClass("show");
-    });
-
-    $(document).on('mouseout','#menus-canvas', function() {
-      $("body").css("overflow","initial");
-    });
-
-    $.get('/backendServices/featuredEvents', function(data) {
-      var evs = data.events;
-      console.log(evs);
-      for (var i = 0; i < evs.length && i < 4; i++) {
-        var date = moment(evs[i].start).format("MMMM Do @ h:mm a");
-        var containing_div = $("<div class='featuredev-container'></div>");
-        l = i;
-        if (isMobile) l = 7;
-        var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay="+(1400-l*200)+" data-aos-anchor-placement='center-bottom' href='"+evs[i].url+"'></div>");
-        if (evs[i].img) div.css("background-image", "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(" + evs[i].img + ")");
-        div.append($("<h4></h4>").text(evs[i].title), $("<p></p>").text(date));
-        containing_div.append(div);
-        var infoDiv = $("<div class='ev-info-container mobile-item'></div>");
-        infoDiv.append([$("<p></p>").text(date), $("<p></p>").text(evs[i].description),$("<a href='"+evs[i].url+"'></a>").text(evs[i].url)]);
-        containing_div.append(infoDiv);
-        $("#featured-evs").prepend(containing_div);
-      }
-      var container = $("<div class='featuredev-container' id='events-more'></div>");
-      var div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay='1200' data-aos-anchor-placement='center-bottom'></div>");
-      div.css("background", "linear-gradient(rgba(25,25,25,0.8), rgba(25,25,25,0), rgba(25,25,25,0.8))");
-      div.append($("<h4></h4>").text("See More"), $("<p></p>").text("View calendar"));
-      container.append(div)
-      $("#featured-evs").append(container);
-      if (isMobile) $("#events-more div").attr("data-aos-delay", "0");
-    });
-
-    var loadMenuCanvas = function(menus) {
-      for (var i = 0; i < menus.length; i++) {
-        var paragraph = $("<p href='"+menus[i].id.replace(/\W/g, '')+"'></p>").text(menus[i].id);
-        var icon_background = '"'+menus[i].icon_path+'"';
-        var span = $("<span class='menu-icon' style='background-image: url("+icon_background+")'></span>");
-        paragraph.append(span).addClass("menu-nav-link");
-        var pdiv = $("<div class='menu-nav-container'></div>");
-        pdiv.append(paragraph);
-        $("#menus-nav").prepend(pdiv);
-      }
-    }
-
-    $.get('/backendServices/getMenus', function(data) {
-      menus = data;
-      console.log(menus);
-
-      // $.get('/backendServices/getItems', function(data) {
-      //   var items = data;
-      //   for (var i = 0; i < items.length; i++) {
-      //     var item = items[i];
-      //     for (var j = 0; j < item.tags.length; j++) {
-      //       var obj = $.grep(menus,function(e) { return e.id.replace(/\W/g, '') == item.tags[j]});
-      //       if (obj.length > 0) obj[0].items.push(item);
-      //       else console.log("tag " + item.tags[j] + " not found.");
-      //     }
-      //   }
-      //   loadMenuCanvas();
-      // });
-      $("#menu-viewer iframe").attr("src", "/views/menu-section.html?menu=" + menus[menus.length-1].id);
-      loadMenuCanvas(menus);
-    });
-
-    $(document).on('click','.menu-nav-link',function() {
-      var id = $(this).attr("href");
-      if (id == "beer") {
-        $('#menu-viewer').removeClass("show").addClass("hide");
-        $("#beer").removeClass("hide").addClass("show");
-      } else {
-        $("#beer").removeClass("show").addClass("hide");
-        $("#menu-viewer").removeClass("hide").addClass("show");
-        $("#menu-viewer iframe").attr("src", "/views/menu-section.html?menu=" + id);
-      }
-      if (isMobile) {
-        if (id == "beer") {
-          $("#menu-col-2").addClass("show-mobile").removeClass("hide-mobile");
-          $("body").addClass("no-scroll");
-        } else {
-          $("#menu-viewer").removeClass("show").addClass("hide");
-          $("#menu-col-2").addClass("show-mobile").removeClass("hide-mobile");
-          $("body").addClass("no-scroll");
-          $("#loader").removeClass("hide").addClass("show");
-          $("#menu-frame").on("load", function() {
-            $("#loader").removeClass("show").addClass("hide");
-            $("#menu-viewer").removeClass("hide").addClass("show");
+    $.post('/backendServices/insta', (data) => {
+      if (data.data) {
+        const imgs = data.data.slice(0, 5);
+        for (let i = 0; i < imgs.length; i += 1) {
+          const div = $(`<div id='guess' data-aos='fade-left' data-aos-delay='${i * 100}' class='soc-box'></div>`);
+          const overlay = $("<div class='insta-overlay'></div>");
+          overlay.attr('href', imgs[i].link);
+          const likes = $('<p></p>').text(imgs[i].likes.count).addClass('insta-likes');
+          const comments = $('<p></p>').text(imgs[i].comments.count).addClass('insta-comments');
+          let captionText = '';
+          if (imgs[i].caption) {
+            if (imgs[i].caption.length <= 100) {
+              captionText = imgs[i].caption.text;
+            } else {
+              captionText = `${imgs[i].caption.text.substring(0, 100)}...`;
+            }
+          }
+          const caption = $('<p></p>').text(captionText).addClass('insta-caption');
+          overlay.append(likes, comments, caption);
+          div.css('background-image', `url(${imgs[i].images.standard_resolution.url})`);
+          div.append(overlay);
+          $('#ig-links').append(div);
+        }
+        if (isMobile) {
+          $('#ig-links').slick({
+            autoplay: true,
+            arrows: true,
+            speed: 1500,
           });
         }
       }
     });
 
-    $(document).on('click','.menu-close',function() {
-      $("#menu-col-2").removeClass("show-mobile").addClass("hide-mobile");
-      $("body").removeClass("no-scroll");
+    $('#ig-links').on('mouseover', 'div', () => {
+      if (!isMobile) $(this).find('.insta-overlay').css('display', 'block');
+    });
+    $('#ig-links').on('mouseout', 'div', () => {
+      if (!isMobile) $(this).find('.insta-overlay').css('display', 'none');
+    });
+    $('#ig-links').on('click', 'div.insta-overlay', () => {
+      window.open($(this).attr('href'), '_blank');
     });
 
-    $(document).on('click', '.ev-box', function() {
-      if (!isMobile && $(this).parent().attr("id") != "events-more") {
-          window.open($(this).attr("href"), "_blank");
+    $(document).on('mouseover', '#menus-canvas.inactive', () => {
+      if (!isMobile) $('#menu-overlay').addClass('show');
+    });
+
+    $('#menu-overlay').click((event) => {
+      $('#menus-canvas').removeClass('inactive').addClass('active');
+      $(event.currentTarget).removeClass('show');
+      $('body').css('overflow', 'hidden');
+    });
+
+    $(document).on('mouseout', '#menus-canvas.inactive', () => {
+      $('#menu-overlay').removeClass('show');
+    });
+
+    $(document).on('mouseout', '#menus-canvas', () => {
+      $('body').css('overflow', 'initial');
+    });
+
+    $.get('/backendServices/events/featured', (data) => {
+      if (data.success) {
+        const evs = data.data;
+        for (let i = 0; i < evs.length && i < 4; i += 1) {
+          const date = moment(evs[i].start).format('MMMM Do @ h:mm a');
+          const containingDiv = $("<div class='featuredev-container'></div>");
+          let l = i;
+          if (isMobile) l = 7;
+          const div = $(`<div class='ev-box' data-aos='fade-left' data-aos-delay=${(1400 - l * 200)} data-aos-anchor-placement='center-bottom' href='${evs[i].url || '#'}'></div>`);
+          if (evs[i].img) div.css('background-image', `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${evs[i].img})`);
+          div.append($('<h4></h4>').text(evs[i].title), $('<p></p>').text(date));
+          containingDiv.append(div);
+          const infoDiv = $('<div class=\'ev-info-container mobile-item\'></div>');
+          infoDiv.append([$('<p></p>').text(date), $('<p></p>').text(evs[i].description), $(`<a href='${evs[i].url}'></a>`).text(evs[i].url)]);
+          containingDiv.append(infoDiv);
+          $('#featured-evs').prepend(containingDiv);
+        }
+        const container = $("<div class='featuredev-container' id='events-more'></div>");
+        const div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay='1200' data-aos-anchor-placement='center-bottom'></div>");
+        div.css('background', 'linear-gradient(rgba(25,25,25,0.8), rgba(25,25,25,0), rgba(25,25,25,0.8))');
+        div.append($('<h4></h4>').text('See More'), $('<p></p>').text('View calendar'));
+        container.append(div);
+        $('#featured-evs').append(container);
+        if (isMobile) $('#events-more div').attr('data-aos-delay', '0');
+      }
+    });
+
+    const loadMenuCanvas = (menus) => {
+      for (let i = 0; i < menus.length; i += 1) {
+        const paragraph = $(`<p href='${menus[i].id.replace(/\W/g, '')}'></p>`).text(menus[i].id);
+        const iconBackground = menus[i].icon_path;
+        const span = $(`<span class='menu-icon' style='background-image: url("${iconBackground}")'></span>`);
+        paragraph.append(span).addClass('menu-nav-link');
+        const pdiv = $("<div class='menu-nav-container'></div>");
+        pdiv.append(paragraph);
+        $('#menus-nav').prepend(pdiv);
+      }
+    };
+
+    $.get('/backendServices/menus', (data) => {
+      if (data.success) {
+        const menus = data.data;
+        console.log(menus);
+        $('#menu-viewer iframe').attr('src', `/views/menu-section.html?menu=${menus[menus.length - 1].id}`);
+        loadMenuCanvas(menus);
+      }
+    });
+
+    $(document).on('click', '.menu-nav-link', (evt) => {
+      const id = $(evt.currentTarget).attr('href');
+      if (id === 'beer') {
+        $('#menu-viewer').removeClass('show').addClass('hide');
+        $('#beer').removeClass('hide').addClass('show');
       } else {
-        $(this).parent().find(".ev-info-container").slideToggle("slow");
+        $('#beer').removeClass('show').addClass('hide');
+        $('#menu-viewer').removeClass('hide').addClass('show');
+        if ($('#menu-viewer iframe').attr('src') !== `/views/menu-section.html?menu=${id}`) {
+          $('#menu-viewer iframe').attr('src', `/views/menu-section.html?menu=${id}`);
+        }
+      }
+      if (isMobile) {
+        if (id === 'beer') {
+          $('#menu-col-2').addClass('show-mobile').removeClass('hide-mobile');
+          $('body').addClass('no-scroll');
+        } else {
+          $('#menu-viewer').removeClass('show').addClass('hide');
+          $('#menu-col-2').addClass('show-mobile').removeClass('hide-mobile');
+          $('body').addClass('no-scroll');
+          $('#loader').removeClass('hide').addClass('show');
+          $('#menu-frame').on('load', () => {
+            $('#loader').removeClass('show').addClass('hide');
+            $('#menu-viewer').removeClass('hide').addClass('show');
+          });
+        }
       }
     });
 
-
-    // $.get('/backendServices/getFBID', function(fbid) {
-    //   $.get('https://graph.facebook.com/parkridgebar/photos?type=uploaded&&access_token=' + fbid, function(data) {
-    //     var imgs = data.data.slice(0,3);
-    //     console.log(imgs);
-    //     for (var i = 0; i < imgs.length; i++) {
-    //       var div = $("<div data-aos='zoom-in' class='soc-box'></div>");
-    //       div.css("background-image", "url(" + imgs[i].source+")");
-    //       $("#fb-links").append(div);
-    //     }
-    //   })
-    // });
-
-    $(".menu-box").click(function() {
-      var pointer = $(this).attr("data-pt");
-      $("#close").attr("data-pt",pointer);
-      if ($("." + pointer)[0])
-        $("."+pointer).toggleClass("show");
-      else {
-        displayMenu($(this).attr("href"), pointer);
-      }
-      $("#overlay").toggleClass("show");
-      $("body").toggleClass("noscroll");
+    $(document).on('click', '.menu-close', () => {
+      $('#menu-col-2').removeClass('show-mobile').addClass('hide-mobile');
+      $('body').removeClass('no-scroll');
     });
 
-    var displayMenu = function(src, pointer, location) {
-      PDFJS.getDocument(src).promise.then(function(pdf) {
-        renderNewPage(pdf, 1, pointer, location);
-      });
-    }
+    $(document).on('click', '.ev-box', (evt) => {
+      if ($(evt.currentTarget).parent().attr('id') !== 'events-more') {
+        console.log(isMobile);
+        if (isMobile) {
+          $(evt.currentTarget).parent().find('.ev-info-container').slideToggle('slow');
+        } else {
+          window.open($(evt.currentTarget).attr('href'), '_blank');
+        }
+      }
+    });
 
-    var renderNewPage = function(pdf, num, pointer, location) {
-      pdf.getPage(num).then(function(page) {
-        var scale = 1.5;
-        var viewport = page.getViewport(scale);
+    const renderNewPage = (pdf, num, pointer, location) => {
+      pdf.getPage(num).then((page) => {
+        let newNum = num;
+        const scale = 1.5;
+        const viewport = page.getViewport(scale);
 
-
-
-        var canvas = document.createElement("canvas");
-        canvas.className += " menu-page show " + pointer;
-        var context = canvas.getContext('2d');
+        const canvas = document.createElement('canvas');
+        canvas.className += ` menu-page show ${pointer}`;
+        const context = canvas.getContext('2d');
         canvas.height = viewport.height;
         canvas.width = viewport.width;
-        var renderContext = {
+        const renderContext = {
           canvasContext: context,
-          viewport: viewport
+          viewport,
         };
-        page.render(renderContext).then(function() {
+        page.render(renderContext).then(() => {
           $(location).append(canvas);
-          num++;
-          if (num <= pdf.numPages) renderNewPage(pdf, num, pointer, location);
-          $(".spinner").removeClass("show");
+          newNum += 1;
+          if (newNum <= pdf.numPages) renderNewPage(pdf, newNum, pointer, location);
+          $('.spinner').removeClass('show');
         });
-      }, function(reason) {
-        console.log("Error: " + reason);
+      }, (reason) => {
+        console.log(`Error: ${reason}`);
       });
-    }
+    };
 
-    $("#close").click(function() {
-      $("#overlay").toggleClass("show");
-      $("body").toggleClass("noscroll");
-      var panels = ["#tour-360","#food", "#drinks", "#cocktails", "#contact-form", "#job-form", "#events-pu"];
-      for (var i = 0; i < panels.length; i++) {
-        var p = $(panels[i]);
-        if (p.hasClass("show")) p.toggleClass("show");
-      }
-      $(".spinner").removeClass("show");
-    });
-
-    $("#job-form form").submit(function(e) {
-      var appData = {
-        first_name: $("#job_first_name").val(),
-        last_name: $("#job_last_name").val(),
-        email: $("#job_email").val(),
-        phnum: $("#job_phone").val(),
-        position: $("#job_position").val(),
-        message: $("#job_message").val()
-      }
-      $.post("/backendServices/applyToWork", appData, function(res) {
-        if (res.success) {
-          swal({
-            title: "Your application has been submitted",
-            text: "Please print and fill out the application form below and email to fiddlersonmain@gmail.com. We will contact you soon. <br/><a style='color: #2F61DB' href='/img/hf_application_for_employment.pdf' target='_blank'>Job Application</a>",
-            html: true,
-            type: "success"
-          }, function() {
-            window.open("/img/hf_application_for_employment.pdf", "_blank");
-          });
-        } else {
-          swal({
-            title: "Unfortunately, there was an error with our servers",
-            text: "Please print & fill out the application form below and email to fiddlersonmain@gmail.com.<br/><a style='color: #2F61DB' href='/img/hf_application_for_employment.pdf' target='_blank'>Job Application</a>",
-            html: true,
-            type: "error"
-          }, function() {
-            window.open("/img/hf_application_for_employment.pdf", "_blank");
-          });
-          console.log(res.err);
-        }
-
-        $("#overlay").toggleClass("show");
-        $("body").toggleClass("noscroll");
-        $("#job-form").removeClass("show");
+    const displayMenu = (src, pointer, location) => {
+      PDFJS.getDocument(src).promise.then((pdf) => {
+        renderNewPage(pdf, 1, pointer, location);
       });
+    };
 
-      return false;
-    });
-
-    $(".jobs-trigger").click(function() {
-      if ($(this).hasClass("nav-item")) {
-        $("#menu").toggleClass("open");
-        $('.offscreen-nav').toggleClass("onscreen");
-        $('.offscreen-nav-wrapper').toggleClass("onscreen-wrapper");
+    $('.menu-box').click(() => {
+      const pointer = $(this).attr('data-pt');
+      $('#close').attr('data-pt', pointer);
+      if ($(`.${pointer}`)[0]) $(`.${pointer}`).toggleClass('show');
+      else {
+        displayMenu($(this).attr('href'), pointer);
       }
-      $("#overlay").toggleClass("show");
-      $("#job-form").toggleClass("show");
-      $("body").toggleClass("noscroll");
+      $('#overlay').toggleClass('show');
+      $('body').toggleClass('noscroll');
     });
 
-    $("#btn-oo").click(function() {
-      $("#overlay").toggleClass("show");
-      $("body").toggleClass("noscroll");
-      $("#food").toggleClass("show");
+    $('#close').click(() => {
+      $('#overlay').toggleClass('show');
+      $('body').toggleClass('noscroll');
+      const panels = ['#tour-360', '#food', '#drinks', '#cocktails', '#contact-form', '#job-form', '#events-pu'];
+      for (let i = 0; i < panels.length; i += 1) {
+        const p = $(panels[i]);
+        if (p.hasClass('show')) p.toggleClass('show');
+      }
+      $('.spinner').removeClass('show');
     });
 
-    $(function() {
-      $('a[href*="#"]:not([href="#"])').click(function() {
-        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-          var target = $(this.hash);
-          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+    $('#btn-oo').click(() => {
+      $('#overlay').toggleClass('show');
+      $('body').toggleClass('noscroll');
+      $('#food').toggleClass('show');
+    });
+
+    $(() => {
+      $('a[href*="#"]:not([href="#"])').click(function () {
+        if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
+          let target = $(this.hash);
+          target = target.length ? target : $(`[name=${this.hash.slice(1)}]`);
           if (target.length) {
             $('html, body').animate({
-              scrollTop: target.offset().top
+              scrollTop: target.offset().top,
             }, 2000);
             return false;
           }
@@ -416,171 +355,167 @@
       });
     });
 
-    $("#contact").click(function() {
-      $("#overlay").toggleClass("show");
-      $("#contact-form").toggleClass("show");
-      $("body").toggleClass("noscroll");
+    $('#contact').click(() => {
+      $('#overlay').toggleClass('show');
+      $('#contact-form').toggleClass('show');
+      $('body').toggleClass('noscroll');
     });
 
-    $("#contact-topnav").click(function() {
-      $("#overlay").toggleClass("show");
-      $("#contact-form").toggleClass("show");
-      $("body").toggleClass("noscroll");
+    $('#contact-topnav').click(() => {
+      $('#overlay').toggleClass('show');
+      $('#contact-form').toggleClass('show');
+      $('body').toggleClass('noscroll');
     });
 
-    $("#email-info").click(function() {
-      $("#overlay").toggleClass("show");
-      $("#contact-form").toggleClass("show");
-      $("body").toggleClass("noscroll");
+    $('#email-info').click(() => {
+      $('#overlay').toggleClass('show');
+      $('#contact-form').toggleClass('show');
+      $('body').toggleClass('noscroll');
     });
 
-    $(".foodLink").click(function() {
-      $("#overlay").toggleClass("show");
-      $("#food").toggleClass("show");
-      $("body").toggleClass("noscroll");
-      $(".spinner").toggleClass("show");
-      if ($("#food").find("canvas").length == 0) {
-        var currentMenu = $("#foodMenuSelector").find(":selected");
-        displayMenu(currentMenu.val(),currentMenu.text(),"#food");
+    $('.foodLink').click(() => {
+      $('#overlay').toggleClass('show');
+      $('#food').toggleClass('show');
+      $('body').toggleClass('noscroll');
+      $('.spinner').toggleClass('show');
+      if ($('#food').find('canvas').length === 0) {
+        const currentMenu = $('#foodMenuSelector').find(':selected');
+        displayMenu(currentMenu.val(), currentMenu.text(), '#food');
       }
     });
 
-    $("#foodMenuSelector").change(function() {
-      var currentMenu = $(this).find(":selected");
+    $('#foodMenuSelector').change(() => {
+      const currentMenu = $(this).find(':selected');
 
-      $(".spinner").toggleClass("show");
+      $('.spinner').toggleClass('show');
 
-      $("#food").find("canvas").each(function() {
-        if (!$(this).hasClass(currentMenu.text()) && $(this).hasClass("show")) $(this).toggleClass("show");
+      $('#food').find('canvas').each(() => {
+        if (!$(this).hasClass(currentMenu.text()) && $(this).hasClass('show')) $(this).toggleClass('show');
       });
 
-      var menuObj = $("#food").find("." + currentMenu.text());
-      if (menuObj.length != 0 && !menuObj.hasClass("show")) {
-        menuObj.toggleClass("show");
-        $(".spinner").removeClass("show");
-      } else if (menuObj.length == 0){
-        displayMenu(currentMenu.val(),currentMenu.text(),"#food");
+      const menuObj = $('#food').find(`.${currentMenu.text()}`);
+      if (menuObj.length !== 0 && !menuObj.hasClass('show')) {
+        menuObj.toggleClass('show');
+        $('.spinner').removeClass('show');
+      } else if (menuObj.length === 0) {
+        displayMenu(currentMenu.val(), currentMenu.text(), '#food');
       }
     });
 
-    $("#drinksMenuSelector").change(function() {
-      var currentMenu = $(this).find(":selected");
+    $('#drinksMenuSelector').change(function () {
+      const currentMenu = $(this).find(':selected');
 
-      $(".spinner").toggleClass("show");
+      $('.spinner').toggleClass('show');
 
-      $("#drinks").find("canvas").each(function() {
-        if (!$(this).hasClass(currentMenu.text()) && $(this).hasClass("show")) $(this).toggleClass("show");
+      $('#drinks').find('canvas').each(() => {
+        if (!$(this).hasClass(currentMenu.text()) && $(this).hasClass('show')) $(this).toggleClass('show');
       });
 
-      var menuObj = $("#drinks").find("." + currentMenu.text());
-      if (menuObj.length != 0 && !menuObj.hasClass("show")) {
-        menuObj.toggleClass("show");
-        $(".spinner").removeClass("show");
-      } else if (menuObj.length == 0){
-        displayMenu(currentMenu.val(),currentMenu.text(),"#drinks");
+      const menuObj = $('#drinks').find(`.${currentMenu.text()}`);
+      if (menuObj.length !== 0 && !menuObj.hasClass('show')) {
+        menuObj.toggleClass('show');
+        $('.spinner').removeClass('show');
+      } else if (menuObj.length === 0) {
+        displayMenu(currentMenu.val(), currentMenu.text(), '#drinks');
       }
     });
 
-    $(".drinksLink").click(function() {
-      $("#overlay").toggleClass("show");
-      $("#drinks").toggleClass("show");
-      $("body").toggleClass("noscroll");
-      $(".spinner").toggleClass("show");
-      if ($("#drinks").find("canvas").length == 0) {
-        var currentMenu = $("#drinksMenuSelector").find(":selected");
-        displayMenu(currentMenu.val(),currentMenu.text(),"#drinks");
+    $('.drinksLink').click(() => {
+      $('#overlay').toggleClass('show');
+      $('#drinks').toggleClass('show');
+      $('body').toggleClass('noscroll');
+      $('.spinner').toggleClass('show');
+      if ($('#drinks').find('canvas').length === 0) {
+        const currentMenu = $('#drinksMenuSelector').find(':selected');
+        displayMenu(currentMenu.val(), currentMenu.text(), '#drinks');
       }
     });
 
-    $(".cocktailsLink").click(function() {
-      $("#overlay").toggleClass("show");
-      $("#cocktails").toggleClass("show");
-      $("body").toggleClass("noscroll");
-      $(".spinner").toggleClass("show");
-      if ($("#cocktails").find("canvas").length == 0) {
-        var currentMenu = $("#cocktailsMenuSelector").find(":selected");
-        displayMenu(currentMenu.val(),currentMenu.text(),"#cocktails");
+    $('.cocktailsLink').click(() => {
+      $('#overlay').toggleClass('show');
+      $('#cocktails').toggleClass('show');
+      $('body').toggleClass('noscroll');
+      $('.spinner').toggleClass('show');
+      if ($('#cocktails').find('canvas').length === 0) {
+        const currentMenu = $('#cocktailsMenuSelector').find(':selected');
+        displayMenu(currentMenu.val(), currentMenu.text(), '#cocktails');
       }
     });
 
-    Date.prototype.yyyymmdd = function() {
-      var mm = this.getMonth() + 1; // getMonth() is zero-based
-      var dd = this.getDate();
+    const yyyymmdd = (date) => {
+      const mm = date.getMonth() + 1; // getMonth() is zero-based
+      const dd = date.getDate();
 
-      return [this.getFullYear(),
-              (mm>9 ? '' : '0') + mm,
-              (dd>9 ? '' : '0') + dd
-            ].join('-');
+      return [date.getFullYear(),
+        (mm > 9 ? '' : '0') + mm,
+        (dd > 9 ? '' : '0') + dd,
+      ].join('-');
     };
 
-    var setUpReservations = function(str) {
-      var d = moment(str);
+    const setUpReservations = (str) => {
+      const d = moment(str);
       d.hours(11);
       d.minutes(59);
-      var timeSelect = $("#reserve-time-block");
-      var day = d.hours();
-      var close = (day > 0 && day < 5) ? 21 : 22;
-      var today = new moment();
-      var time = (d.dayOfYear() == today.dayOfYear()) ? today.hours() : d.hours();
-      $("#reserve-time-block").find("option").remove();
+      const timeSelect = $('#reserve-time-block');
+      const day = d.hours();
+      const close = (day > 0 && day < 5) ? 21 : 22;
+      const today = new moment(); // eslint-disable-line new-cap
+      const time = (d.dayOfYear() === today.dayOfYear()) ? today.hours() : d.hours();
+      $('#reserve-time-block').find('option').remove();
       if (d.minutes() < 30) {
-        var am = (time < 12) ? "am" : "pm";
-        var t = (time % 12 == 0) ? 12 : time % 12;
-        timeSelect.append($("<option></option>").val("" + t + ":30" + am).text("" + t + ":30" + am));
+        const am = (time < 12) ? 'am' : 'pm';
+        const t = (time % 12 === 0) ? 12 : time % 12;
+        timeSelect.append($('<option></option>').val(`${t}:30${am}`).text(`${t}:30${am}`));
       }
-      for (var i = time + 1; i < close; i++) {
-        var am = (i < 12) ? "am" : "pm";
-        var t = (i % 12 == 0) ? 12 : i % 12;
-        timeSelect.append($("<option></option>").val("" + t + ":00" + am).text("" + t + ":00" + am));
-        timeSelect.append($("<option></option>").val("" + t + ":30" + am).text("" + t + ":30" + am));
+      for (let i = time + 1; i < close; i += 1) {
+        const am = (i < 12) ? 'am' : 'pm';
+        const t = (i % 12 === 0) ? 12 : i % 12;
+        timeSelect.append($('<option></option>').val(`${t}:00${am}`).text(`${t}:00${am}`));
+        timeSelect.append($('<option></option>').val(`${t}:30${am}`).text(`${t}:30${am}`));
       }
-      if ($("#reserve-time-block option").length == 0) {
-        timeSelect.append($("<option disabled selected></option>").val("null").text("No times available"));
+      if ($('#reserve-time-block option').length === 0) {
+        timeSelect.append($('<option disabled selected></option>').val('null').text('No times available'));
       }
-    }
-    var today = new Date();
-    $("#reserve-date-block").val(today.yyyymmdd());
+    };
+    const today = new Date();
+    $('#reserve-date-block').val(yyyymmdd(today));
     setUpReservations(today);
 
-    $("#reserve-date-block").change(function() {
-      var str = $(this).val()
+    $('#reserve-date-block').change((evt) => {
+      const str = $(evt.currentTarget).val();
       setUpReservations(str);
     });
 
-    $("#reserve-table").submit(function(e) {
-      var d = new Date($("#reserve-date-block").val()).toISOString().substring(0,10);
+    $('#reserve-table').submit(() => {
+      const d = new Date($('#reserve-date-block').val()).toISOString().substring(0, 10);
 
-      var t = $("#reserve-time-block").val();
-      var p = $("#res-size").val();
-      window.open("https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date="+d+"&time="+t+"&covers="+p, "_blank");
+      const t = $('#reserve-time-block').val();
+      const p = $('#res-size').val();
+      window.open(`https://www.yelp.com/reservations/the-harp-and-fiddle-park-ridge?date=${d}&time=${t}&covers=${p}`, '_blank');
       return false;
     });
 
+    $('#contact-form form').submit(() => {
+      const formData = {
+        name: $('#name').val(),
+        email: $('#email').val(),
+        phone: $('#phone').val(),
+        subject: $('#subject').val(),
+        message: $('#message').val(),
+      };
 
+      $.post('/backendServices/sendMessage', formData, (data) => {
+        if (data.success) swal('Your message has been sent', 'We will respond as soon as possible.', 'success');
+        else swal('There was an error with our servers', 'Please call (847) 720-4466 or email fiddlersonmain@gmail.com', 'error');
 
-
-    $("#contact-form form").submit(function(e) {
-      var formData = {
-        name: $("#name").val(),
-        email: $("#email").val(),
-        phone: $("#phone").val(),
-        subject: $("#subject").val(),
-        message: $("#message").val()
-      }
-
-      $.post("/backendServices/sendMessage", formData, function(data) {
-        if (data.success) swal("Your message has been sent", "We will respond as soon as possible.", "success");
-        else swal("There was an error with our servers", "Please call (847) 720-4466 or email fiddlersonmain@gmail.com", "error");
-
-        $("#overlay").toggleClass("show");
-        $("body").toggleClass("noscroll");
-        $("#contact-form").removeClass("show");
+        $('#overlay').toggleClass('show');
+        $('body').toggleClass('noscroll');
+        $('#contact-form').removeClass('show');
       });
 
       return false;
     });
 
-    $("#reservation fieldset").css("height", $(".datepicker").height());
-
+    $('#reservation fieldset').css('height', $('.datepicker').height());
   });
-}());
+})());

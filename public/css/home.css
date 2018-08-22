@@ -769,7 +769,6 @@ div.bar:not(:first-child) {
   color: #fff;
   font-size: 2em;
   position: absolute;
-  font-weight: bold;
   top: 15px;
   left: 15px;
   cursor: pointer;
