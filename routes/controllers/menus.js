@@ -34,7 +34,6 @@ const formatMenuForClient = (clientID, menuID) => {
     findClientMenus(clientID, menuID),
     findClientMenuItems(clientID, menuID),
   ];
-  console.log(`formatMenuForClient(${clientID}, ${menuID})`);
   return Promise.all(requests).then(([menus, items]) => {
     const menu = menus[0];
     const formattedMenuData = {

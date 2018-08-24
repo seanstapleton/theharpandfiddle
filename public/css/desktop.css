@@ -372,7 +372,7 @@
     padding: 20px 20px 20px 20px;
     background-image: url("/img/backgrounds/paper.png");
     float: left;
-    max-height: 50vh;
+    max-height: calc(80vh - 30px - 0.24 * (25vw - 80px));
     overflow: auto;
   }
   #menus-nav p {

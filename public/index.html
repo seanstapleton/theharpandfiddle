@@ -270,34 +270,8 @@
 <link rel="manifest" href="/img/favicon/manifest.json">
 <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
 <link rel="shortcut icon" href="/img/favicon/favicon.ico">
-<!-- <script type="text/javascript">
-  !function(e,n){var t=document.createElement("script"),a=document.getElementsByTagName("script")[0];t.async=1,a.parentNode.insertBefore(t,a),t.onload=t.onreadystatechange=function(e,a){(a||!t.readyState||/loaded|complete/.test(t.readyState))&&(t.onload=t.onreadystatechange=null,t=void 0,a||n&&n())},t.src=e}("https://embed-menu-preloader.untappdapi.com/embed-menu-preloader.min.js",function(){PreloadEmbedMenu("menu-container",6484,22214)});
-</script> -->
-<script type='text/javascript' src='/lib/jquery/jquery.min.js'></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-    var intro_img = $("<img>");
-    intro_img.load(function(){
-     $("#intro").css("background-image", "linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('"+$(this).attr("src")+"')");
-    });
-    intro_img.attr("src", "/img/backgrounds/op/bar.jpg");
-
-    var ua = window.navigator.userAgent;
-    var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-    var webkit = !!ua.match(/WebKit/i);
-    var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
-    if (iOSSafari) {
-      $("#intro").css("height", "calc(100vh - 44px)");
-    }
-  });
-</script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script src="/lib/fullcalendar/moment.min.js"></script>
-<script src="/lib/moment/moment-timezone.min.js"></script>
+<script type="text/javascript" src="/js/dist/index-bundle.js"></script>
 <script src="/lib/fullcalendar/fullcalendar.min.js"></script>
 <script src="/lib/stickyjs/sticky.min.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
-<script src='/lib/aos/dist/aos.js'></script>
 <script type="text/javascript" src="/lib/slick/slick.min.js"></script>
-<script type="text/javascript" src="/lib/sweetalert/sweetalert.min.js"></script>
-<script type="text/javascript" src="/js/home.js"></script>

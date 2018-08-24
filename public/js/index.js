@@ -1,5 +1,34 @@
+const $ = require('jquery');
+const AOS = require('aos');
+const Moment = require('moment');
+const PDFJS = require('pdfjs-dist');
+const swal = require('sweetalert');
+const _ = require('lodash');
+require('jquery-ui-bundle');
+
+window.jQuery = $;
+window.$ = $;
+window.moment = Moment;
+
 ((() => {
   $(document).ready(() => {
+    const introImg = $('<img>');
+    introImg.load((evt) => {
+      $('#intro')
+        .css('background-image',
+          'linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), '
+          + `url('${$(evt.currentTarget).attr('src')}')`);
+    });
+    introImg.attr('src', '/img/backgrounds/op/bar.jpg');
+
+    const ua = window.navigator.userAgent;
+    const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+    const webkit = !!ua.match(/WebKit/i);
+    const iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+    if (iOSSafari) {
+      $('#intro').css('height', 'calc(100vh - 44px)');
+    }
+
     AOS.init({
       duration: 1000,
       once: true,
@@ -51,10 +80,12 @@
 
       $.get('/backendServices/events/', (data) => {
         if (data.success) {
-          for (let i = 0; i < data.length; i += 1) {
-            data[i].start = new Date(data[i].start);
-            data[i].end = new Date(data[i].end);
-          }
+          const formattedData = _.map(data.data, (event) => {
+            const formattedEvent = event;
+            formattedEvent.start = new Date(formattedEvent.start);
+            formattedEvent.end = new Date(formattedEvent.end);
+            return formattedEvent;
+          });
           $('#events-calendar').fullCalendar({
             theme: true,
             header: {
@@ -65,9 +96,9 @@
             editable: false,
             weekMode: 'liquid',
             url: '#',
-            events: data,
+            events: formattedData,
             eventRender: (event, element) => {
-              if (event.title.toLowerCase().indexOf('notre dame') >= 0) {
+              if (_.includes(event.title.toLowerCase(), 'notre dame')) {
                 element.css('background', '#3EA632');
               }
               if (event.background) {
@@ -90,8 +121,8 @@
       });
     });
 
-    $('#menu').click(() => {
-      $(this).toggleClass('open');
+    $('#menu').click((evt) => {
+      $(evt.currentTarget).toggleClass('open');
       if (isMobile) {
         $('.offscreen-nav').toggleClass('onscreen');
         $('.offscreen-nav-wrapper').toggleClass('onscreen-wrapper');
@@ -159,14 +190,14 @@
       }
     });
 
-    $('#ig-links').on('mouseover', 'div', () => {
-      if (!isMobile) $(this).find('.insta-overlay').css('display', 'block');
+    $('#ig-links').on('mouseover', 'div', (evt) => {
+      if (!isMobile) $(evt.currentTarget).find('.insta-overlay').css('display', 'block');
     });
-    $('#ig-links').on('mouseout', 'div', () => {
-      if (!isMobile) $(this).find('.insta-overlay').css('display', 'none');
+    $('#ig-links').on('mouseout', 'div', (evt) => {
+      if (!isMobile) $(evt.currentTarget).find('.insta-overlay').css('display', 'none');
     });
-    $('#ig-links').on('click', 'div.insta-overlay', () => {
-      window.open($(this).attr('href'), '_blank');
+    $('#ig-links').on('click', 'div.insta-overlay', (evt) => {
+      window.open($(evt.currentTarget).attr('href'), '_blank');
     });
 
     $(document).on('mouseover', '#menus-canvas.inactive', () => {
@@ -191,7 +222,7 @@
       if (data.success) {
         const evs = data.data;
         for (let i = 0; i < evs.length && i < 4; i += 1) {
-          const date = moment(evs[i].start).format('MMMM Do @ h:mm a');
+          const date = Moment(evs[i].start).format('MMMM Do @ h:mm a');
           const containingDiv = $("<div class='featuredev-container'></div>");
           let l = i;
           if (isMobile) l = 7;
@@ -271,13 +302,14 @@
 
     $(document).on('click', '.ev-box', (evt) => {
       if ($(evt.currentTarget).parent().attr('id') !== 'events-more') {
-        console.log(isMobile);
         if (isMobile) {
           $(evt.currentTarget).parent().find('.ev-info-container').slideToggle('slow');
-        } else {
+        } else if ($(evt.currentTarget).attr('href') !== '#') {
           window.open($(evt.currentTarget).attr('href'), '_blank');
         }
       }
+      evt.preventDefault();
+      return false;
     });
 
     const renderNewPage = (pdf, num, pointer, location) => {
@@ -312,12 +344,12 @@
       });
     };
 
-    $('.menu-box').click(() => {
-      const pointer = $(this).attr('data-pt');
+    $('.menu-box').click((evt) => {
+      const pointer = $(evt.currentTarget).attr('data-pt');
       $('#close').attr('data-pt', pointer);
       if ($(`.${pointer}`)[0]) $(`.${pointer}`).toggleClass('show');
       else {
-        displayMenu($(this).attr('href'), pointer);
+        displayMenu($(evt.currentTarget).attr('href'), pointer);
       }
       $('#overlay').toggleClass('show');
       $('body').toggleClass('noscroll');
@@ -340,19 +372,17 @@
       $('#food').toggleClass('show');
     });
 
-    $(() => {
-      $('a[href*="#"]:not([href="#"])').click(function () {
-        if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
-          let target = $(this.hash);
-          target = target.length ? target : $(`[name=${this.hash.slice(1)}]`);
-          if (target.length) {
-            $('html, body').animate({
-              scrollTop: target.offset().top,
-            }, 2000);
-            return false;
-          }
+    $('a[href*="#"]:not([href="#"])').click((evt) => {
+      if (window.location.pathname.replace(/^\//, '') === evt.currentTarget.pathname.replace(/^\//, '') && window.location.hostname === evt.currentTarget.hostname) {
+        let target = $(evt.currentTarget.hash);
+        target = target.length ? target : $(`[name=${evt.currentTarget.hash.slice(1)}]`);
+        if (target.length) {
+          $('html, body').animate({
+            scrollTop: target.offset().top,
+          }, 2000);
+          return false;
         }
-      });
+      }
     });
 
     $('#contact').click(() => {
@@ -402,8 +432,8 @@
       }
     });
 
-    $('#drinksMenuSelector').change(function () {
-      const currentMenu = $(this).find(':selected');
+    $('#drinksMenuSelector').change((evt) => {
+      const currentMenu = $(evt.currentTarget).find(':selected');
 
       $('.spinner').toggleClass('show');
 
@@ -453,13 +483,13 @@
     };
 
     const setUpReservations = (str) => {
-      const d = moment(str);
+      const d = Moment(str);
       d.hours(11);
       d.minutes(59);
       const timeSelect = $('#reserve-time-block');
       const day = d.hours();
       const close = (day > 0 && day < 5) ? 21 : 22;
-      const today = new moment(); // eslint-disable-line new-cap
+      const today = new Moment(); // eslint-disable-line new-cap
       const time = (d.dayOfYear() === today.dayOfYear()) ? today.hours() : d.hours();
       $('#reserve-time-block').find('option').remove();
       if (d.minutes() < 30) {

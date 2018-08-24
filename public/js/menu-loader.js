@@ -1,3 +1,5 @@
+const $ = require('jquery');
+
 (() => {
   $.urlParam = (name) => {
     const results = new RegExp(`[?&]${name}=([^&#]*)`).exec(window.location.href);

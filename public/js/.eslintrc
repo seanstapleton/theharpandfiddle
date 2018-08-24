@@ -1,12 +1,7 @@
 {
   "globals": {
-    "$": true,
-    "AOS": true,
     "document": true,
     "window": true,
-    "moment": true,
-    "swal": true,
-    "PDFJS": true,
     "location": true
   }
 }
