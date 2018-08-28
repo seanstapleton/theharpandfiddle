@@ -270,6 +270,14 @@
     width: 150px !important;
     cursor: pointer;
   }
+  .popup-lr {
+    position: absolute !important;
+    right: 35px !important;
+    left: auto !important;
+    bottom: 50px !important;
+    width: 150px !important;
+    cursor: pointer;
+  }
 
   /* ----------------------------------------------
   ---------------- Social Styles ------------------

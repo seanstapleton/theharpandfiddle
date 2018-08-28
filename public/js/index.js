@@ -52,6 +52,15 @@ window.moment = Moment;
       isMobile = !window.matchMedia('(min-width: 960px)').matches;
     });
 
+    $('#gameWatchButton').click((evt) => {
+      evt.preventDefault();
+      $('#overlay').toggleClass('show');
+      $('#gameWatchDeals').toggleClass('show');
+      const subsectionWidth = $('#gameWatchSubtitle').width();
+      $('#dealsSubsection').width(subsectionWidth);
+      $('body').toggleClass('noscroll');
+    });
+
     $('#menus-nav span').each(() => {
       $(this).css('background-image', `url('${$(this).attr('href')}')')`);
     });
@@ -86,7 +95,6 @@ window.moment = Moment;
             formattedEvent.end = new Date(formattedEvent.end);
             return formattedEvent;
           });
-          console.log(formattedData);
           $('#events-calendar').fullCalendar({
             theme: true,
             header: {
@@ -358,7 +366,7 @@ window.moment = Moment;
     $('#close').click(() => {
       $('#overlay').toggleClass('show');
       $('body').toggleClass('noscroll');
-      const panels = ['#tour-360', '#food', '#drinks', '#cocktails', '#contact-form', '#job-form', '#events-pu'];
+      const panels = ['#tour-360', '#food', '#drinks', '#cocktails', '#contact-form', '#job-form', '#events-pu', '#gameWatchDeals'];
       for (let i = 0; i < panels.length; i += 1) {
         const p = $(panels[i]);
         if (p.hasClass('show')) p.toggleClass('show');
