@@ -86,6 +86,7 @@ window.moment = Moment;
             formattedEvent.end = new Date(formattedEvent.end);
             return formattedEvent;
           });
+          console.log(formattedData);
           $('#events-calendar').fullCalendar({
             theme: true,
             header: {
@@ -260,7 +261,6 @@ window.moment = Moment;
     $.get('/backendServices/menus', (data) => {
       if (data.success) {
         const menus = data.data;
-        console.log(menus);
         $('#menu-viewer iframe').attr('src', `/views/menu-section.html?menu=${menus[menus.length - 1].id}`);
         loadMenuCanvas(menus);
       }
