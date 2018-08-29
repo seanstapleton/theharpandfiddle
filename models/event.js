@@ -10,6 +10,7 @@ const eventSchema = new Schema({
   img: { type: String, default: '' },
   featured: { type: Boolean, default: false },
   clientID: { type: String, required: true },
+  noDisplay: Boolean,
 });
 
 module.exports = mongoose.model('Event', eventSchema);

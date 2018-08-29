@@ -82,7 +82,7 @@ window.moment = Moment;
       $('#tour-360 iframe').animateCss('zoomIn');
     });
 
-    $(document).on('click', '#events-more', () => {
+    $(document).on('click', '#seeMore', () => {
       $('#overlay').toggleClass('show');
       $('#events-pu').toggleClass('show');
       $('body').toggleClass('noscroll');
@@ -237,17 +237,19 @@ window.moment = Moment;
           if (isMobile) l = 7;
           const div = $(`<div class='ev-box' data-aos='fade-left' data-aos-delay=${(1400 - l * 200)} data-aos-anchor-placement='center-bottom' href='${evs[i].url || '#'}'></div>`);
           if (evs[i].img) div.css('background-image', `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${evs[i].img})`);
-          div.append($('<h4></h4>').text(evs[i].title), $('<p></p>').text(date));
+          if (!evs[i].noDisplay) {
+            div.append($('<h4></h4>').text(evs[i].title), $('<p></p>').text(date));
+            const infoDiv = $('<div class=\'ev-info-container mobile-item\'></div>');
+            infoDiv.append([$('<p></p>').text(date), $('<p></p>').text(evs[i].description), $(`<a href='${evs[i].url}'></a>`).text(evs[i].url)]);
+            containingDiv.append(infoDiv);
+          }
           containingDiv.append(div);
-          const infoDiv = $('<div class=\'ev-info-container mobile-item\'></div>');
-          infoDiv.append([$('<p></p>').text(date), $('<p></p>').text(evs[i].description), $(`<a href='${evs[i].url}'></a>`).text(evs[i].url)]);
-          containingDiv.append(infoDiv);
           $('#featured-evs').prepend(containingDiv);
         }
         const container = $("<div class='featuredev-container' id='events-more'></div>");
         const div = $("<div class='ev-box' data-aos='fade-left' data-aos-delay='1200' data-aos-anchor-placement='center-bottom'></div>");
         div.css('background', 'linear-gradient(rgba(25,25,25,0.8), rgba(25,25,25,0), rgba(25,25,25,0.8))');
-        div.append($('<h4></h4>').text('See More'), $('<p></p>').text('View calendar'));
+        div.append($('<h4 id=\'seeMore\'></h4>').text('See More'), $('<p></p>').text('View calendar'));
         container.append(div);
         $('#featured-evs').append(container);
         if (isMobile) $('#events-more div').attr('data-aos-delay', '0');
