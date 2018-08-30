@@ -11,6 +11,7 @@ const eventSchema = new Schema({
   featured: { type: Boolean, default: false },
   clientID: { type: String, required: true },
   noDisplay: Boolean,
+  htmlClass: String,
 });
 
 module.exports = mongoose.model('Event', eventSchema);

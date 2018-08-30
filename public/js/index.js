@@ -52,7 +52,7 @@ window.moment = Moment;
       isMobile = !window.matchMedia('(min-width: 960px)').matches;
     });
 
-    $('#gameWatchButton').click((evt) => {
+    $(document).on('click', '.notreDameGameWatch', (evt) => {
       evt.preventDefault();
       $('#overlay').toggleClass('show');
       $('#gameWatchDeals').toggleClass('show');
@@ -243,6 +243,7 @@ window.moment = Moment;
             infoDiv.append([$('<p></p>').text(date), $('<p></p>').text(evs[i].description), $(`<a href='${evs[i].url}'></a>`).text(evs[i].url)]);
             containingDiv.append(infoDiv);
           }
+          if (evs[i].htmlClass) div.addClass(evs[i].htmlClass);
           containingDiv.append(div);
           $('#featured-evs').prepend(containingDiv);
         }
