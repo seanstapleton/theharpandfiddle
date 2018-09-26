@@ -122,7 +122,9 @@ td {
 #social {
   width: 100%;
   background: #000;
-  padding: 25px 0 0 0 ;
+  padding: 25px 0 0 0;
+  position: relative;
+  z-index: -1;
 }
 #events h1, #about h1, #social h1, #menus h1, #reserve h1 {
   text-transform: uppercase;
