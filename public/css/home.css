@@ -111,11 +111,11 @@ td {
 .failmail, .successmail {
   display: none;
 }
-.noscroll {
+/* .noscroll {
   width: 100vw;
   height: 100vh;
   overflow: hidden !important;
-}
+} */
 #events, #about, #menus, #reserve {
   width: 100%;
   background: #333;
