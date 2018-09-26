@@ -114,7 +114,7 @@ td {
 .noscroll {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: hidden !important;
 }
 #events, #about, #menus, #reserve {
   width: 100%;

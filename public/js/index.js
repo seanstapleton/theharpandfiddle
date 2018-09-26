@@ -58,7 +58,7 @@ window.moment = Moment;
       $('#gameWatchDeals').toggleClass('show');
       const subsectionWidth = $('#gameWatchSubtitle').width();
       $('#dealsSubsection').width(subsectionWidth);
-      $('body').toggleClass('noscroll');
+      $('#mainBody').toggleClass('noscroll');
     });
 
     $('#menus-nav span').each(() => {
@@ -78,14 +78,14 @@ window.moment = Moment;
     $('#show-360').click(() => {
       $('#overlay').toggleClass('show');
       $('#tour-360').toggleClass('show');
-      $('body').toggleClass('noscroll');
+      $('#mainBody').toggleClass('noscroll');
       $('#tour-360 iframe').animateCss('zoomIn');
     });
 
     $(document).on('click', '#seeMore', () => {
       $('#overlay').toggleClass('show');
       $('#events-pu').toggleClass('show');
-      $('body').toggleClass('noscroll');
+      $('#mainBody').toggleClass('noscroll');
 
       $.get('/backendServices/events/', (data) => {
         if (data.success) {
@@ -216,7 +216,7 @@ window.moment = Moment;
     $('#menu-overlay').click((event) => {
       $('#menus-canvas').removeClass('inactive').addClass('active');
       $(event.currentTarget).removeClass('show');
-      $('body').css('overflow', 'hidden');
+      $('#mainBody').css('overflow', 'hidden');
     });
 
     $(document).on('mouseout', '#menus-canvas.inactive', () => {
@@ -224,7 +224,7 @@ window.moment = Moment;
     });
 
     $(document).on('mouseout', '#menus-canvas', () => {
-      $('body').css('overflow', 'initial');
+      $('#mainBody').css('overflow', 'initial');
     });
 
     $.get('/backendServices/events/featured', (data) => {
@@ -292,11 +292,11 @@ window.moment = Moment;
       if (isMobile) {
         if (id === 'beer') {
           $('#menu-col-2').addClass('show-mobile').removeClass('hide-mobile');
-          $('body').addClass('no-scroll');
+          $('#mainBody').addClass('no-scroll');
         } else {
           $('#menu-viewer').removeClass('show').addClass('hide');
           $('#menu-col-2').addClass('show-mobile').removeClass('hide-mobile');
-          $('body').addClass('no-scroll');
+          $('#mainBody').addClass('no-scroll');
           $('#loader').removeClass('hide').addClass('show');
           $('#menu-frame').on('load', () => {
             $('#loader').removeClass('show').addClass('hide');
@@ -308,7 +308,7 @@ window.moment = Moment;
 
     $(document).on('click', '.menu-close', () => {
       $('#menu-col-2').removeClass('show-mobile').addClass('hide-mobile');
-      $('body').removeClass('no-scroll');
+      $('#mainBody').removeClass('no-scroll');
     });
 
     $(document).on('click', '.ev-box', (evt) => {
@@ -363,12 +363,12 @@ window.moment = Moment;
         displayMenu($(evt.currentTarget).attr('href'), pointer);
       }
       $('#overlay').toggleClass('show');
-      $('body').toggleClass('noscroll');
+      $('#mainBody').toggleClass('noscroll');
     });
 
     $('#close').click(() => {
       $('#overlay').toggleClass('show');
-      $('body').toggleClass('noscroll');
+      $('#mainBody').toggleClass('noscroll');
       const panels = ['#tour-360', '#food', '#drinks', '#cocktails', '#contact-form', '#job-form', '#events-pu', '#gameWatchDeals'];
       for (let i = 0; i < panels.length; i += 1) {
         const p = $(panels[i]);
@@ -379,7 +379,7 @@ window.moment = Moment;
 
     $('#btn-oo').click(() => {
       $('#overlay').toggleClass('show');
-      $('body').toggleClass('noscroll');
+      $('#mainBody').toggleClass('noscroll');
       $('#food').toggleClass('show');
     });
 
@@ -399,25 +399,25 @@ window.moment = Moment;
     $('#contact').click(() => {
       $('#overlay').toggleClass('show');
       $('#contact-form').toggleClass('show');
-      $('body').toggleClass('noscroll');
+      $('#mainBody').toggleClass('noscroll');
     });
 
     $('#contact-topnav').click(() => {
       $('#overlay').toggleClass('show');
       $('#contact-form').toggleClass('show');
-      $('body').toggleClass('noscroll');
+      $('#mainBody').toggleClass('noscroll');
     });
 
     $('#email-info').click(() => {
       $('#overlay').toggleClass('show');
       $('#contact-form').toggleClass('show');
-      $('body').toggleClass('noscroll');
+      $('#mainBody').toggleClass('noscroll');
     });
 
     $('.foodLink').click(() => {
       $('#overlay').toggleClass('show');
       $('#food').toggleClass('show');
-      $('body').toggleClass('noscroll');
+      $('#mainBody').toggleClass('noscroll');
       $('.spinner').toggleClass('show');
       if ($('#food').find('canvas').length === 0) {
         const currentMenu = $('#foodMenuSelector').find(':selected');
@@ -464,7 +464,7 @@ window.moment = Moment;
     $('.drinksLink').click(() => {
       $('#overlay').toggleClass('show');
       $('#drinks').toggleClass('show');
-      $('body').toggleClass('noscroll');
+      $('#mainBody').toggleClass('noscroll');
       $('.spinner').toggleClass('show');
       if ($('#drinks').find('canvas').length === 0) {
         const currentMenu = $('#drinksMenuSelector').find(':selected');
@@ -475,7 +475,7 @@ window.moment = Moment;
     $('.cocktailsLink').click(() => {
       $('#overlay').toggleClass('show');
       $('#cocktails').toggleClass('show');
-      $('body').toggleClass('noscroll');
+      $('#mainBody').toggleClass('noscroll');
       $('.spinner').toggleClass('show');
       if ($('#cocktails').find('canvas').length === 0) {
         const currentMenu = $('#cocktailsMenuSelector').find(':selected');
@@ -550,7 +550,7 @@ window.moment = Moment;
         else swal('There was an error with our servers', 'Please call (847) 720-4466 or email fiddlersonmain@gmail.com', 'error');
 
         $('#overlay').toggleClass('show');
-        $('body').toggleClass('noscroll');
+        $('#mainBody').toggleClass('noscroll');
         $('#contact-form').removeClass('show');
       });
 
