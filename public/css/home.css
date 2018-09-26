@@ -770,6 +770,7 @@ div.bar:not(:first-child) {
   left: 0;
   display: none;
   overflow: auto;
+  z-index: 9999999999;
 }
 #menu-canvas {
   position: relative;
