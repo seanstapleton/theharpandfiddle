@@ -112,6 +112,8 @@ td {
   display: none;
 }
 .noscroll {
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 }
 #events, #about, #menus, #reserve {
