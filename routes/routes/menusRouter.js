@@ -4,6 +4,7 @@ const {
   findClientMenuItems,
   findClientMenus,
   formatMenuForClient,
+  generateMenuHTML,
 } = require('../controllers/menus');
 
 const GLOBAL_CLIENT_ID = process.env.clientID;
@@ -23,5 +24,10 @@ menusRouter.get('/:id', async (req, res) => {
   const formattedMenu = await formatMenuForClient(GLOBAL_CLIENT_ID, req.params.id);
   return res.send(formattedMenu);
 });
+
+menusRouter.get('/menu-section/:id', (req, res) =>
+  generateMenuHTML(req.params.id)
+    .then(data => res.send(data))
+    .catch(err => res.send({ success: false, err })));
 
 module.exports = menusRouter;

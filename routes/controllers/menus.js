@@ -1,4 +1,6 @@
 const _ = require('lodash');
+const Handlebars = require('handlebars');
+const fs = require('fs');
 
 const ItemSchema = require('../../models/item');
 const MenuSchema = require('../../models/tag');
@@ -60,7 +62,16 @@ const formatMenuForClient = (clientID, menuID) => {
   }).catch(err => ({ success: false, err }));
 };
 
+const generateMenuHTML = async (menuID) => {
+  const formattedMenu = await formatMenuForClient(process.env.clientID, menuID);
+  const menuData = formattedMenu.data;
+  const menuTemplate = fs.readFileSync(`${__dirname}/../../views/menu.handlebars`, 'utf8');
+  const compileFn = Handlebars.compile(menuTemplate);
+  return compileFn(menuData);
+};
+
 module.exports = {
   findClientMenus,
   formatMenuForClient,
+  generateMenuHTML,
 };

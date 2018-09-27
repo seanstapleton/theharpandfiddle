@@ -268,11 +268,15 @@ window.moment = Moment;
         $('#menus-nav').prepend(pdiv);
       }
     };
-
     $.get('/backendServices/menus', (data) => {
       if (data.success) {
         const menus = data.data;
-        $('#menu-viewer iframe').attr('src', `/views/menu-section.html?menu=${menus[menus.length - 1].id}`);
+        const lastMenuID = menus[menus.length - 1].id;
+        $.get(`/backendServices/menus/menu-section/${lastMenuID}`, (newData) => {
+          console.log('yo', newData);
+          $('#menu-frame-div').append($(newData));
+          $('#menu-frame-div').attr('data-src', lastMenuID);
+        });
         loadMenuCanvas(menus);
       }
     });
@@ -285,8 +289,12 @@ window.moment = Moment;
       } else {
         $('#beer').removeClass('show').addClass('hide');
         $('#menu-viewer').removeClass('hide').addClass('show');
-        if ($('#menu-viewer iframe').attr('src') !== `/views/menu-section.html?menu=${id}`) {
-          $('#menu-viewer iframe').attr('src', `/views/menu-section.html?menu=${id}`);
+        if ($('#menu-frame-div').attr('data-src') !== id) {
+          $.get(`/backendServices/menus/menu-section/${id}`, (data) => {
+            $('#menu-frame-div').empty();
+            $('#menu-frame-div').append($(data));
+            $('#menu-frame-div').attr('data-src', id);
+          });
         }
       }
       if (isMobile) {
@@ -294,14 +302,14 @@ window.moment = Moment;
           $('#menu-col-2').addClass('show-mobile').removeClass('hide-mobile');
           $('#mainBody').addClass('no-scroll');
         } else {
-          $('#menu-viewer').removeClass('show').addClass('hide');
+          $('#menu-viewer').removeClass('hide').addClass('show');
           $('#menu-col-2').addClass('show-mobile').removeClass('hide-mobile');
           $('#mainBody').addClass('no-scroll');
-          $('#loader').removeClass('hide').addClass('show');
-          $('#menu-frame').on('load', () => {
-            $('#loader').removeClass('show').addClass('hide');
-            $('#menu-viewer').removeClass('hide').addClass('show');
-          });
+          // $('#loader').removeClass('hide').addClass('show');
+          // $('#menu-frame-div').on('load', () => {
+          //   $('#loader').removeClass('show').addClass('hide');
+          //   $('#menu-viewer').removeClass('hide').addClass('show');
+          // });
         }
       }
     });

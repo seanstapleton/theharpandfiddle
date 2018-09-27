@@ -146,6 +146,7 @@ td {
   background-color: rgba(0,0,0,0.5);
   display: none;
   cursor: pointer;
+  z-index: 9999;
 }
 #menu-overlay img {
   width: 50px;
