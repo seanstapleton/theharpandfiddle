@@ -1,4 +1,6 @@
-h1, h2, h3, h4, h5, h6, p, a {
+#menu-viewer h1, #menu-viewer h2, #menu-viewer h3,
+#menu-viewer h4, #menu-viewer h5, #menu-viewer h6,
+#menu-viewer p, #menu-viewer a {
   color: #111;
 }
 #menu-viewer, #menu-content {
