@@ -47,7 +47,7 @@ module.exports = (db, passport) => {
     const data = req.body;
     const smtpTransporter = nodemailer.createTransport(mg(auth));
     const message = {
-      from: 'fiddlersonmain@gmail.com',
+      from: data.email,
       to: 'fiddlersonmain@gmail.com',
       replyTo: data.email,
       subject: `Contact Form: ${data.name}`,
