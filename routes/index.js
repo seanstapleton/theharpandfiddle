@@ -49,6 +49,7 @@ module.exports = (db, passport) => {
     const message = {
       from: 'fiddlersonmain@gmail.com',
       to: 'fiddlersonmain@gmail.com',
+      replyTo: data.email,
       subject: `Contact Form: ${data.name}`,
       text: `Name: ${data.name}\nEmail: ${data.email}\nPhone Number: ${data.phone}\n`
         + `Subject: ${data.subject}\nMessage: ${data.message}`,
