@@ -10,10 +10,10 @@ window.jQuery = $;
 window.$ = $;
 window.moment = Moment;
 
-((() => {
-  $(document).ready(() => {
+((function() {
+  $(document).ready(function() {
     const introImg = $('<img>');
-    introImg.load((evt) => {
+    introImg.load(function(evt) {
       $('#intro')
         .css('background-image',
           'linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), '
@@ -35,9 +35,9 @@ window.moment = Moment;
     });
 
     $.fn.extend({
-      animateCss: (animationName) => {
+      animateCss: function(animationName) {
         const animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        this.addClass(`animated ${animationName}`).one(animationEnd, () => {
+        this.addClass(`animated ${animationName}`).one(animationEnd, function() {
           $(this).removeClass(`animated ${animationName}`);
         });
       },
@@ -48,11 +48,11 @@ window.moment = Moment;
 
     if (!isMobile) $('#location-map iframe, .map-overlay').height($('#contact-info').height());
 
-    $(window).resize(() => {
+    $(window).resize(function() {
       isMobile = !window.matchMedia('(min-width: 960px)').matches;
     });
 
-    $(document).on('click', '.notreDameGameWatch', (evt) => {
+    $(document).on('click', '.notreDameGameWatch', function(evt)  {
       evt.preventDefault();
       $('#overlay').toggleClass('show');
       $('#gameWatchDeals').toggleClass('show');
@@ -61,35 +61,35 @@ window.moment = Moment;
       $('#mainBody').toggleClass('noscroll');
     });
 
-    $('#menus-nav span').each(() => {
+    $('#menus-nav span').each(function() {
       $(this).css('background-image', `url('${$(this).attr('href')}')')`);
     });
 
-    $('.overlayGradient').mouseover(() => {
+    $('.overlayGradient').mouseover(function() {
       $('.overlayGradient').css('fill', 'url(#overlayGradientDark)');
       $(this).css('fill', 'url(#overlayGradientLight)');
     });
 
-    $('.map-overlay, .menu-overlay').click(() => {
+    $('.map-overlay, .menu-overlay').click(function() {
       $(this).addClass('hide');
       $(this).removeClass('show');
     });
 
-    $('#show-360').click(() => {
+    $('#show-360').click(function() {
       $('#overlay').toggleClass('show');
       $('#tour-360').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
       $('#tour-360 iframe').animateCss('zoomIn');
     });
 
-    $(document).on('click', '#seeMore', () => {
+    $(document).on('click', '#seeMore', function() {
       $('#overlay').toggleClass('show');
       $('#events-pu').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
 
-      $.get('/backendServices/events/', (data) => {
+      $.get('/backendServices/events/', function(data) {
         if (data.success) {
-          const formattedData = _.map(data.data, (event) => {
+          const formattedData = _.map(data.data, function(event) {
             const formattedEvent = event;
             formattedEvent.start = new Date(formattedEvent.start);
             formattedEvent.end = new Date(formattedEvent.end);
@@ -106,7 +106,7 @@ window.moment = Moment;
             weekMode: 'liquid',
             url: '#',
             events: formattedData,
-            eventRender: (event, element) => {
+            eventRender: function(event, element) {
               if (_.includes(event.title.toLowerCase(), 'notre dame')) {
                 element.css('background', '#3EA632');
               }
@@ -122,7 +122,7 @@ window.moment = Moment;
                 element.append(oe).append(image);
               }
             },
-            eventClick: (event) => {
+            eventClick: function(event) {
               window.location.href = event.url;
             },
           });
@@ -130,7 +130,7 @@ window.moment = Moment;
       });
     });
 
-    $('#menu').click((evt) => {
+    $('#menu').click(function(evt)  {
       $(evt.currentTarget).toggleClass('open');
       if (isMobile) {
         $('.offscreen-nav').toggleClass('onscreen');
@@ -140,13 +140,13 @@ window.moment = Moment;
       }
     });
 
-    $('.offscreen-nav a').click(() => {
+    $('.offscreen-nav a').click(function() {
       $('#menu').toggleClass('open');
       $('.offscreen-nav').toggleClass('onscreen');
       $('.offscreen-nav-wrapper').toggleClass('onscreen-wrapper');
     });
 
-    $(document).scroll(() => {
+    $(document).scroll(function() {
       if ($('.map-overlay').hasClass('hide')) {
         $('.map-overlay').addClass('show').removeClass('hide');
       }
@@ -156,7 +156,7 @@ window.moment = Moment;
     });
 
     $('.datepicker').datepicker({
-      onSelect: (dateText) => {
+      onSelect: function(dateText) {
         $('input[name=\'dateval\']').val(dateText);
       },
       minDate: 0,
@@ -166,7 +166,7 @@ window.moment = Moment;
     $('#time-desktop').selectmenu();
     $('#party-desktop').selectmenu();
 
-    $.post('/backendServices/insta', (data) => {
+    $.post('/backendServices/insta', function(data) {
       if (data.data) {
         const imgs = data.data.slice(0, 5);
         for (let i = 0; i < imgs.length; i += 1) {
@@ -199,35 +199,35 @@ window.moment = Moment;
       }
     });
 
-    $('#ig-links').on('mouseover', 'div', (evt) => {
+    $('#ig-links').on('mouseover', 'div', function(evt)  {
       if (!isMobile) $(evt.currentTarget).find('.insta-overlay').css('display', 'block');
     });
-    $('#ig-links').on('mouseout', 'div', (evt) => {
+    $('#ig-links').on('mouseout', 'div', function(evt)  {
       if (!isMobile) $(evt.currentTarget).find('.insta-overlay').css('display', 'none');
     });
-    $('#ig-links').on('click', 'div.insta-overlay', (evt) => {
+    $('#ig-links').on('click', 'div.insta-overlay', function(evt)  {
       window.open($(evt.currentTarget).attr('href'), '_blank');
     });
 
-    $(document).on('mouseover', '#menus-canvas.inactive', () => {
+    $(document).on('mouseover', '#menus-canvas.inactive', function() {
       if (!isMobile) $('#menu-overlay').addClass('show');
     });
 
-    $('#menu-overlay').click((event) => {
+    $('#menu-overlay').click(function(event) {
       $('#menus-canvas').removeClass('inactive').addClass('active');
       $(event.currentTarget).removeClass('show');
       $('#mainBody').css('overflow', 'hidden');
     });
 
-    $(document).on('mouseout', '#menus-canvas.inactive', () => {
+    $(document).on('mouseout', '#menus-canvas.inactive', function() {
       $('#menu-overlay').removeClass('show');
     });
 
-    $(document).on('mouseout', '#menus-canvas', () => {
+    $(document).on('mouseout', '#menus-canvas', function() {
       $('#mainBody').css('overflow', 'initial');
     });
 
-    $.get('/backendServices/events/featured', (data) => {
+    $.get('/backendServices/events/featured', function(data) {
       if (data.success) {
         const evs = data.data;
         for (let i = 0; i < evs.length && i < 4; i += 1) {
@@ -257,7 +257,7 @@ window.moment = Moment;
       }
     });
 
-    const loadMenuCanvas = (menus) => {
+    const loadMenuCanvas = function(menus) {
       for (let i = 0; i < menus.length; i += 1) {
         const paragraph = $(`<p href='${menus[i].id.replace(/\W/g, '')}'></p>`).text(menus[i].id);
         const iconBackground = menus[i].icon_path;
@@ -268,11 +268,11 @@ window.moment = Moment;
         $('#menus-nav').prepend(pdiv);
       }
     };
-    $.get('/backendServices/menus', (data) => {
+    $.get('/backendServices/menus', function(data) {
       if (data.success) {
         const menus = data.data;
         const lastMenuID = menus[menus.length - 1].id;
-        $.get(`/backendServices/menus/menu-section/${lastMenuID}`, (newData) => {
+        $.get(`/backendServices/menus/menu-section/${lastMenuID}`, function(newData) {
           console.log('yo', newData);
           $('#menu-frame-div').append($(newData));
           $('#menu-frame-div').attr('data-src', lastMenuID);
@@ -281,7 +281,7 @@ window.moment = Moment;
       }
     });
 
-    $(document).on('click', '.menu-nav-link', (evt) => {
+    $(document).on('click', '.menu-nav-link', function(evt)  {
       const id = $(evt.currentTarget).attr('href');
       if (id === 'beer') {
         $('#menu-viewer').removeClass('show').addClass('hide');
@@ -290,7 +290,7 @@ window.moment = Moment;
         $('#beer').removeClass('show').addClass('hide');
         $('#menu-viewer').removeClass('hide').addClass('show');
         if ($('#menu-frame-div').attr('data-src') !== id) {
-          $.get(`/backendServices/menus/menu-section/${id}`, (data) => {
+          $.get(`/backendServices/menus/menu-section/${id}`, function(data) {
             $('#menu-frame-div').empty();
             $('#menu-frame-div').append($(data));
             $('#menu-frame-div').attr('data-src', id);
@@ -306,7 +306,7 @@ window.moment = Moment;
           $('#menu-col-2').addClass('show-mobile').removeClass('hide-mobile');
           $('#mainBody').addClass('no-scroll');
           // $('#loader').removeClass('hide').addClass('show');
-          // $('#menu-frame-div').on('load', () => {
+          // $('#menu-frame-div').on('load', function() {
           //   $('#loader').removeClass('show').addClass('hide');
           //   $('#menu-viewer').removeClass('hide').addClass('show');
           // });
@@ -314,12 +314,12 @@ window.moment = Moment;
       }
     });
 
-    $(document).on('click', '.menu-close', () => {
+    $(document).on('click', '.menu-close', function() {
       $('#menu-col-2').removeClass('show-mobile').addClass('hide-mobile');
       $('#mainBody').removeClass('no-scroll');
     });
 
-    $(document).on('click', '.ev-box', (evt) => {
+    $(document).on('click', '.ev-box', function(evt)  {
       if ($(evt.currentTarget).parent().attr('id') !== 'events-more') {
         if (isMobile) {
           $(evt.currentTarget).parent().find('.ev-info-container').slideToggle('slow');
@@ -331,8 +331,8 @@ window.moment = Moment;
       return false;
     });
 
-    const renderNewPage = (pdf, num, pointer, location) => {
-      pdf.getPage(num).then((page) => {
+    const renderNewPage = function(pdf, num, pointer, location) {
+      pdf.getPage(num).then(function(page) {
         let newNum = num;
         const scale = 1.5;
         const viewport = page.getViewport(scale);
@@ -346,24 +346,24 @@ window.moment = Moment;
           canvasContext: context,
           viewport,
         };
-        page.render(renderContext).then(() => {
+        page.render(renderContext).then(function() {
           $(location).append(canvas);
           newNum += 1;
           if (newNum <= pdf.numPages) renderNewPage(pdf, newNum, pointer, location);
           $('.spinner').removeClass('show');
         });
-      }, (reason) => {
+      }, function(reason) {
         console.log(`Error: ${reason}`);
       });
     };
 
-    const displayMenu = (src, pointer, location) => {
-      PDFJS.getDocument(src).promise.then((pdf) => {
+    const displayMenu = function(src, pointer, location) {
+      PDFJS.getDocument(src).promise.then(function(pdf) {
         renderNewPage(pdf, 1, pointer, location);
       });
     };
 
-    $('.menu-box').click((evt) => {
+    $('.menu-box').click(function(evt)  {
       const pointer = $(evt.currentTarget).attr('data-pt');
       $('#close').attr('data-pt', pointer);
       if ($(`.${pointer}`)[0]) $(`.${pointer}`).toggleClass('show');
@@ -374,7 +374,7 @@ window.moment = Moment;
       $('#mainBody').toggleClass('noscroll');
     });
 
-    $('#close').click(() => {
+    $('#close').click(function() {
       $('#overlay').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
       const panels = ['#tour-360', '#food', '#drinks', '#cocktails', '#contact-form', '#job-form', '#events-pu', '#gameWatchDeals'];
@@ -385,13 +385,13 @@ window.moment = Moment;
       $('.spinner').removeClass('show');
     });
 
-    $('#btn-oo').click(() => {
+    $('#btn-oo').click(function() {
       $('#overlay').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
       $('#food').toggleClass('show');
     });
 
-    $('a[href*="#"]:not([href="#"])').click((evt) => {
+    $('a[href*="#"]:not([href="#"])').click(function(evt)  {
       if (window.location.pathname.replace(/^\//, '') === evt.currentTarget.pathname.replace(/^\//, '') && window.location.hostname === evt.currentTarget.hostname) {
         let target = $(evt.currentTarget.hash);
         target = target.length ? target : $(`[name=${evt.currentTarget.hash.slice(1)}]`);
@@ -404,25 +404,25 @@ window.moment = Moment;
       }
     });
 
-    $('#contact').click(() => {
+    $('#contact').click(function() {
       $('#overlay').toggleClass('show');
       $('#contact-form').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
     });
 
-    $('#contact-topnav').click(() => {
+    $('#contact-topnav').click(function() {
       $('#overlay').toggleClass('show');
       $('#contact-form').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
     });
 
-    $('#email-info').click(() => {
+    $('#email-info').click(function() {
       $('#overlay').toggleClass('show');
       $('#contact-form').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
     });
 
-    $('.foodLink').click(() => {
+    $('.foodLink').click(function() {
       $('#overlay').toggleClass('show');
       $('#food').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
@@ -433,12 +433,12 @@ window.moment = Moment;
       }
     });
 
-    $('#foodMenuSelector').change(() => {
+    $('#foodMenuSelector').change(function() {
       const currentMenu = $(this).find(':selected');
 
       $('.spinner').toggleClass('show');
 
-      $('#food').find('canvas').each(() => {
+      $('#food').find('canvas').each(function() {
         if (!$(this).hasClass(currentMenu.text()) && $(this).hasClass('show')) $(this).toggleClass('show');
       });
 
@@ -451,12 +451,12 @@ window.moment = Moment;
       }
     });
 
-    $('#drinksMenuSelector').change((evt) => {
+    $('#drinksMenuSelector').change(function(evt)  {
       const currentMenu = $(evt.currentTarget).find(':selected');
 
       $('.spinner').toggleClass('show');
 
-      $('#drinks').find('canvas').each(() => {
+      $('#drinks').find('canvas').each(function() {
         if (!$(this).hasClass(currentMenu.text()) && $(this).hasClass('show')) $(this).toggleClass('show');
       });
 
@@ -469,7 +469,7 @@ window.moment = Moment;
       }
     });
 
-    $('.drinksLink').click(() => {
+    $('.drinksLink').click(function() {
       $('#overlay').toggleClass('show');
       $('#drinks').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
@@ -480,7 +480,7 @@ window.moment = Moment;
       }
     });
 
-    $('.cocktailsLink').click(() => {
+    $('.cocktailsLink').click(function() {
       $('#overlay').toggleClass('show');
       $('#cocktails').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
@@ -491,7 +491,7 @@ window.moment = Moment;
       }
     });
 
-    const yyyymmdd = (date) => {
+    const yyyymmdd = function(date) {
       const mm = date.getMonth() + 1; // getMonth() is zero-based
       const dd = date.getDate();
 
@@ -501,7 +501,7 @@ window.moment = Moment;
       ].join('-');
     };
 
-    const setUpReservations = (str) => {
+    const setUpReservations = function(str) {
       const d = Moment(str);
       d.hours(11);
       d.minutes(59);
@@ -530,12 +530,12 @@ window.moment = Moment;
     $('#reserve-date-block').val(yyyymmdd(today));
     setUpReservations(today);
 
-    $('#reserve-date-block').change((evt) => {
+    $('#reserve-date-block').change(function(evt)  {
       const str = $(evt.currentTarget).val();
       setUpReservations(str);
     });
 
-    $('#reserve-table').submit(() => {
+    $('#reserve-table').submit(function() {
       const d = new Date($('#reserve-date-block').val()).toISOString().substring(0, 10);
 
       const t = $('#reserve-time-block').val();
@@ -544,7 +544,7 @@ window.moment = Moment;
       return false;
     });
 
-    $('#contact-form form').submit(() => {
+    $('#contact-form form').submit(function() {
       const formData = {
         name: $('#name').val(),
         email: $('#email').val(),
@@ -553,7 +553,7 @@ window.moment = Moment;
         message: $('#message').val(),
       };
 
-      $.post('/backendServices/sendMessage', formData, (data) => {
+      $.post('/backendServices/sendMessage', formData, function(data) {
         if (data.success) swal('Your message has been sent', 'We will respond as soon as possible.', 'success');
         else swal('There was an error with our servers', 'Please call (847) 720-4466 or email fiddlersonmain@gmail.com', 'error');
 

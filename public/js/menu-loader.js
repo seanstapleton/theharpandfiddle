@@ -1,13 +1,13 @@
 const $ = require('jquery');
 
-(() => {
-  $.urlParam = (name) => {
+(function() {
+  $.urlParam = function(name) {
     const results = new RegExp(`[?&]${name}=([^&#]*)`).exec(window.location.href);
     return results[1] || 0;
   };
   console.log(`/backendServices/menus/${$.urlParam('menu')}`);
   $.get(`/backendServices/menus/${$.urlParam('menu')}`)
-    .then((res) => {
+    .then(function(res) {
       if (!res.success) {
         console.log(res.err);
       } else {
