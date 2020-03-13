@@ -79,6 +79,7 @@
     text-align: left;
     font-size: 2em;
     margin: 20px 40px;
+    margin-left: 2%;
     color: #fff;
   }
   .featuredev-container {
@@ -193,7 +194,7 @@
     font-size: 1.4em;
   }
   .contact-block td {
-    font-size: 0.8em !important;
+    font-size: 1em !important;
     color: #111 !important;
     font-weight: 300;
   }

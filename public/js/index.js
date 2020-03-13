@@ -16,10 +16,10 @@ window.moment = Moment;
     introImg.load(function(evt) {
       $('#intro')
         .css('background-image',
-          'linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), '
+          'linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.25)), '
           + `url('${$(evt.currentTarget).attr('src')}')`);
     });
-    introImg.attr('src', '/img/backgrounds/op/bar.jpg');
+    introImg.attr('src', '/img/backgrounds/wings-guiness-meal.jpg');
 
     const ua = window.navigator.userAgent;
     const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
@@ -52,7 +52,7 @@ window.moment = Moment;
       isMobile = !window.matchMedia('(min-width: 960px)').matches;
     });
 
-    $(document).on('click', '.notreDameGameWatch', function(evt)  {
+    $(document).on('click', '.stPattys', function(evt)  {
       evt.preventDefault();
       $('#overlay').toggleClass('show');
       $('#gameWatchDeals').toggleClass('show');
