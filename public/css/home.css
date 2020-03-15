@@ -388,7 +388,7 @@ div.bar:not(:first-child) {
 .menu-modal {
   width: 90%;
   margin: 3vh auto;
-  padding: 20px;
+  padding: 10px;
   background: #fff;
 }
 .menu-modal img {
@@ -440,6 +440,10 @@ div.bar:not(:first-child) {
   height: 100%;
   border: none;
 }
+.menu-modal {
+  display: none;
+}
+
 /* ----------------------------------------------
 -------------- Intro Styles ---------------------
 ---------------------------------------------- */
@@ -886,8 +890,36 @@ div.bar:not(:first-child) {
 .menu-title {
   text-transform: capitalize;
 }
-
-
+.menu-icon {
+    width: 100%;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.menu-icon p {
+    font-weight: 600;
+}
+.menu-icon-brunch {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/img/backgrounds/brunch.jpg');
+    background-size: cover;
+}
+.menu-icon-dinner {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/img/backgrounds/dinner.jpg');
+    background-size: cover;
+}
+.menu-icon-late-night {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/img/backgrounds/late-night.jpg');
+    background-size: cover;
+}
+.menu-icon-beer{
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/img/backgrounds/guiness.JPG');
+    background-size: cover;
+    background-position: center center;
+}
 
 /* ----------------------------------------------
 ---- Hamburger Menu animation by Jesse Couch ----

@@ -209,24 +209,6 @@ window.moment = Moment;
       window.open($(evt.currentTarget).attr('href'), '_blank');
     });
 
-    $(document).on('mouseover', '#menus-canvas.inactive', function() {
-      if (!isMobile) $('#menu-overlay').addClass('show');
-    });
-
-    $('#menu-overlay').click(function(event) {
-      $('#menus-canvas').removeClass('inactive').addClass('active');
-      $(event.currentTarget).removeClass('show');
-      $('#mainBody').css('overflow', 'hidden');
-    });
-
-    $(document).on('mouseout', '#menus-canvas.inactive', function() {
-      $('#menu-overlay').removeClass('show');
-    });
-
-    $(document).on('mouseout', '#menus-canvas', function() {
-      $('#mainBody').css('overflow', 'initial');
-    });
-
     $.get('/backendServices/events/featured', function(data) {
       if (data.success) {
         const evs = data.data;
@@ -257,28 +239,43 @@ window.moment = Moment;
       }
     });
 
-    const loadMenuCanvas = function(menus) {
-      for (let i = 0; i < menus.length; i += 1) {
-        const paragraph = $(`<p href='${menus[i].id.replace(/\W/g, '')}'></p>`).text(menus[i].id);
-        const iconBackground = menus[i].icon_path;
-        const span = $(`<span class='menu-icon' style='background-image: url("${iconBackground}")'></span>`);
-        paragraph.append(span).addClass('menu-nav-link');
-        const pdiv = $("<div class='menu-nav-container'></div>");
-        pdiv.append(paragraph);
-        $('#menus-nav').prepend(pdiv);
-      }
-    };
-    $.get('/backendServices/menus', function(data) {
-      if (data.success) {
-        const menus = data.data;
-        const lastMenuID = menus[menus.length - 1].id;
-        $.get(`/backendServices/menus/menu-section/${lastMenuID}`, function(newData) {
-          console.log('yo', newData);
-          $('#menu-frame-div').append($(newData));
-          $('#menu-frame-div').attr('data-src', lastMenuID);
-        });
-        loadMenuCanvas(menus);
-      }
+    $(".menu-icon").click((evt) => {
+        $("#overlay").addClass("show"); 
+        let icon = evt.target;
+        if (evt.target.tagName === "P") {
+            icon = evt.target.parentElement;
+        }
+        const classes = icon.classList;
+        if (classes.contains("menu-icon-brunch")) {
+            $(".spinner").addClass("show");
+            $("#menu-modal-brunch").addClass("show");
+            $("#menu-modal-brunch img:first-child").one("load").each(function() {
+                if (this.complete) {
+                    console.log('image loaded');
+                    $(".spinner").removeClass("show"); 
+                }
+            });
+        } else if (classes.contains("menu-icon-dinner")) {
+            $(".spinner").addClass("show");
+            $("#menu-modal-dinner").addClass("show");
+            $("#menu-modal-dinner img:first-child").one("load").each(function() {
+                if (this.complete) {
+                    console.log('image loaded');
+                    $(".spinner").removeClass("show"); 
+                }
+            });
+        } else if (classes.contains("menu-icon-late-night")) {
+            $(".spinner").addClass("show");
+            $("#menu-modal-late-night").addClass("show");
+            $("#menu-modal-late-night img:first-child").one("load").each(function() {
+                if (this.complete) {
+                    console.log('image loaded');
+                    $(".spinner").removeClass("show"); 
+                }
+            });
+        } else if (classes.contains("menu-icon-beer")) {
+            $("#menu-modal-beer").addClass("show");
+        }
     });
 
     $(document).on('click', '.menu-nav-link', function(evt)  {
@@ -377,7 +374,7 @@ window.moment = Moment;
     $('#close').click(function() {
       $('#overlay').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
-      const panels = ['#tour-360', '#food', '#drinks', '#cocktails', '#contact-form', '#job-form', '#events-pu', '#gameWatchDeals'];
+      const panels = ['#tour-360', '#food', '#drinks', '#cocktails', '#contact-form', '#job-form', '#events-pu', '#gameWatchDeals', '#menu-modal-brunch', '#menu-modal-dinner', '#menu-modal-late-night', '#menu-modal-beer'];
       for (let i = 0; i < panels.length; i += 1) {
         const p = $(panels[i]);
         if (p.hasClass('show')) p.toggleClass('show');

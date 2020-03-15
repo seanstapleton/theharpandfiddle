@@ -5,6 +5,14 @@
   #reservation {
     padding: 40px;
   }
+  .mm-double {
+    width: 90vw !important;
+    overflow: auto;
+  }
+  .mm-double img {
+    float: left;
+    width: 50%;
+  }
 }
 
 @media (min-width: 375px) {
@@ -560,5 +568,17 @@
   #menu.open span:nth-child(6) {
     left: calc(50% - 4px);
     top: 14px;
+  }
+  .menu-modal {
+    width: 70vw;
+    margin: 0 auto;
+  }
+  .menu-icon {
+    width: calc(25% - 30px);
+    float: left;
+    margin-top: 0;
+  }
+  .menu-icon:not(:first-child) {
+    margin-left: 40px;
   }
 }
