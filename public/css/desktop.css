@@ -34,6 +34,10 @@
 }
 
 @media (min-width: 992px) {
+  #gameWatchDeals p {
+    width: 60vw;
+    margin-left: 20vw;
+  }
   #oo-btn span.glf-button {
     padding: 10px 40px !important;
     line-height: 35px;
@@ -241,7 +245,7 @@
     z-index: 99;
     background-color: #111;
     /*background-image: linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0,0.05)), url("/img/backgrounds/paper.png");*/
-    top: 0;
+    top: 40px;
     right: 70px;
     display: none;
     overflow: hidden;
@@ -477,7 +481,7 @@
   }
   nav {
     position: fixed;
-    top: 0;
+    top: 40px;
     right: 0;
     background-color: #111;
     /*background-image: linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0,0.05)), url("/img/backgrounds/paper.png");*/

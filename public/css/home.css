@@ -14,7 +14,20 @@
   width: 70vw;
   margin: 0 auto;
 }
-
+.gov-order {
+    width: 100vw;
+    height: 40px;
+    line-height: 40px;
+    background-color: #FF3940;
+    cursor: pointer;
+    position: absolute;
+    z-index: 8;
+}
+.gov-order p {
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
 body {
   overflow-x: hidden;
 }
@@ -37,7 +50,7 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
 #show-360 {
   position: absolute;
   height: 20vh;
-  top: 0;
+  top: 40px;
   left: 10px;
   z-index: 2;
   cursor: pointer;
@@ -931,7 +944,7 @@ div.bar:not(:first-child) {
 #menu {
   display: block;
   position: fixed;
-  top: 30px;
+  top: 70px;
   right: 30px;
   width: 40px;
   height: 30px;

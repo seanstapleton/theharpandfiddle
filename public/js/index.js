@@ -52,7 +52,7 @@ window.moment = Moment;
       isMobile = !window.matchMedia('(min-width: 960px)').matches;
     });
 
-    $(document).on('click', '.stPattys', function(evt)  {
+    $(document).on('click', '.gov-order', function(evt)  {
       evt.preventDefault();
       $('#overlay').toggleClass('show');
       $('#gameWatchDeals').toggleClass('show');
