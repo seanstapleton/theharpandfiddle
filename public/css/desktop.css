@@ -279,7 +279,7 @@
   .popup-ll {
     position: absolute !important;
     left: 35px !important;
-    bottom: 35px !important;
+    bottom: 100px !important;
     width: 150px !important;
     cursor: pointer;
   }
@@ -290,6 +290,9 @@
     bottom: 50px !important;
     width: 150px !important;
     cursor: pointer;
+  }
+  #toast-link img {
+    bottom: 35px !important;
   }
 
   /* ----------------------------------------------

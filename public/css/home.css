@@ -18,7 +18,7 @@
     width: 100vw;
     height: 40px;
     line-height: 40px;
-    background-color: #FF3940;
+    background-color: #eaab1d;
     cursor: pointer;
     position: absolute;
     z-index: 8;
@@ -273,8 +273,8 @@ a:hover {
 .popup-ll {
   position: absolute !important;
   left: 25px !important;
-  bottom: 60px !important;
-  width: 80px !important;
+  bottom: 105px!important;
+  width: 100px !important;
   cursor: pointer;
   animation-delay: 2s;
 }
@@ -288,6 +288,9 @@ a:hover {
   animation-delay: 2s;
   width: 120px !important;
 }
+#toast-link img {
+  bottom: 60px !important;
+}
 #gameWatchND {
   width: 25vw;
   margin: 20px auto 10px auto;
@@ -296,6 +299,9 @@ a:hover {
   text-align: center;
   padding: 30px;
   display: none;
+}
+#gameWatchDeals a {
+  cursor: pointer;
 }
 #dealsSubsection p {
   font-size: 1.5em;
@@ -315,8 +321,10 @@ a:hover {
 #dealsSubsection ul {
   padding: 0 40px;
 }
-#gameWatchDeals p:last-child {
+#gameWatchDeals p {
   font-size: 1.8em;
+}
+#gameWatchDeals p:last-child {
   margin-top: 20px;
   padding-bottom: 40px;
 }

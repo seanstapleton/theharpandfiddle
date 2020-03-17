@@ -239,6 +239,21 @@ window.moment = Moment;
       }
     });
 
+    $(".togo-link").click((evt) => {
+        console.log("yo");
+        $("#overlay").addClass("show");
+        $("#gameWatchDeals").removeClass("show");
+        $(".spinner").addClass("show");
+        $("#menu-modal-togo").addClass("show");
+        $("#menu-modal-togo img:first-child").one("load").each(function() {
+            if (this.complete) {
+                console.log('image loaded');
+                $(".spinner").removeClass("show"); 
+            }
+        });
+        evt.preventDefault();
+    });
+
     $(".menu-icon").click((evt) => {
         $("#overlay").addClass("show"); 
         let icon = evt.target;
@@ -374,7 +389,7 @@ window.moment = Moment;
     $('#close').click(function() {
       $('#overlay').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
-      const panels = ['#tour-360', '#food', '#drinks', '#cocktails', '#contact-form', '#job-form', '#events-pu', '#gameWatchDeals', '#menu-modal-brunch', '#menu-modal-dinner', '#menu-modal-late-night', '#menu-modal-beer'];
+      const panels = ['#tour-360', '#food', '#drinks', '#cocktails', '#contact-form', '#job-form', '#events-pu', '#gameWatchDeals', '#menu-modal-brunch', '#menu-modal-dinner', '#menu-modal-late-night', '#menu-modal-beer', '#menu-modal-togo'];
       for (let i = 0; i < panels.length; i += 1) {
         const p = $(panels[i]);
         if (p.hasClass('show')) p.toggleClass('show');
