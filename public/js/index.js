@@ -75,12 +75,12 @@ window.moment = Moment;
       $(this).removeClass('show');
     });
 
-    $('#show-360').click(function() {
-      $('#overlay').toggleClass('show');
-      $('#tour-360').toggleClass('show');
-      $('#mainBody').toggleClass('noscroll');
-      $('#tour-360 iframe').animateCss('zoomIn');
-    });
+    //$('#show-360').click(function() {
+    //  $('#overlay').toggleClass('show');
+    //  $('#tour-360').toggleClass('show');
+    //  $('#mainBody').toggleClass('noscroll');
+    //  $('#tour-360 iframe').animateCss('zoomIn');
+    //});
 
     $(document).on('click', '#seeMore', function() {
       $('#overlay').toggleClass('show');
@@ -245,10 +245,12 @@ window.moment = Moment;
         $("#gameWatchDeals").removeClass("show");
         $(".spinner").addClass("show");
         $("#menu-modal-togo").addClass("show");
-        $("#menu-modal-togo img:first-child").one("load").each(function() {
+        $("#menu-modal-togo img:first-of-type").one("load").each(function() {
             if (this.complete) {
                 console.log('image loaded');
                 $(".spinner").removeClass("show"); 
+            } else {
+                console.log("hmm");
             }
         });
         evt.preventDefault();

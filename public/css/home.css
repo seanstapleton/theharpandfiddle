@@ -51,7 +51,7 @@ p, h1, h2, h3, h4, h5, h6, td, a, li {
   position: absolute;
   height: 20vh;
   top: 40px;
-  left: 10px;
+  left: 25px;
   z-index: 2;
   cursor: pointer;
   animation-delay: 1.5s;
@@ -940,6 +940,16 @@ div.bar:not(:first-child) {
     background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/img/backgrounds/guiness.JPG');
     background-size: cover;
     background-position: center center;
+}
+#menu-modal-togo p {
+    color: #111;
+    font-weight: bolder;
+    font-size: 1.5em;
+    text-align: center;
+}
+#menu-modal-togo a {
+    color: green;
+    font-weight: bolder;
 }
 
 /* ----------------------------------------------
