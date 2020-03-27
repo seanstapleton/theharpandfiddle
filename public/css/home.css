@@ -76,6 +76,7 @@ td {
   z-index: 9999;
   display: none;
   background: rgba(0,0,0,0.8);
+  padding-bottom: 3vh;
 }
 #close {
   color: #fff;
@@ -274,7 +275,7 @@ a:hover {
   position: absolute !important;
   left: 25px !important;
   bottom: 105px!important;
-  width: 100px !important;
+  width: 120px !important;
   cursor: pointer;
   animation-delay: 2s;
 }
@@ -409,11 +410,14 @@ div.bar:not(:first-child) {
 .menu-modal {
   width: 90%;
   margin: 3vh auto;
-  padding: 10px;
-  background: #fff;
 }
 .menu-modal img {
   width: 100%;
+}
+.menu-modal-images {
+    background-color: #fff;
+    padding: 10px;
+    overflow: auto;
 }
 .menu-page {
   display: none;
@@ -504,9 +508,14 @@ div.bar:not(:first-child) {
   margin: 10vh auto;
 }
 #look {
-  animation-duration: 2s;
-  animation-delay: 2s;
+    animation-delay: 2s;
+}
+#look, .inf-pulse {
+  animation-duration: 2s !important;
   animation-iteration-count: infinite;
+}
+.one-delay {
+  animation-delay: 1s;
 }
 
 
@@ -942,7 +951,7 @@ div.bar:not(:first-child) {
     background-position: center center;
 }
 #menu-modal-togo p {
-    color: #111;
+    color: #fff;
     font-weight: bolder;
     font-size: 1.5em;
     text-align: center;

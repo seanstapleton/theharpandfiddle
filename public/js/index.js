@@ -43,6 +43,13 @@ window.moment = Moment;
       },
     });
 
+    $("#toast-link img").on("animationend", (e) => {
+        e.target.classList.remove("fadeInUp");
+        e.target.classList.add("inf-pulse");
+        e.target.classList.add("one-delay");
+        e.target.classList.add("pulse");
+    });
+
 
     let isMobile = !window.matchMedia('(min-width: 960px)').matches;
 
