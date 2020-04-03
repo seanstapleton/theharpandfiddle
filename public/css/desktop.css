@@ -248,7 +248,6 @@
     z-index: 99;
     background-color: #111;
     /*background-image: linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0,0.05)), url("/img/backgrounds/paper.png");*/
-    top: 40px;
     right: 70px;
     display: none;
     overflow: hidden;
@@ -282,8 +281,8 @@
   .popup-ll {
     position: absolute !important;
     left: 35px !important;
-    bottom: 100px !important;
-    width: 150px !important;
+    bottom: 40px !important;
+    width: 200px !important;
     cursor: pointer;
   }
   .popup-lr {
@@ -487,7 +486,6 @@
   }
   nav {
     position: fixed;
-    top: 40px;
     right: 0;
     background-color: #111;
     /*background-image: linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0,0.05)), url("/img/backgrounds/paper.png");*/

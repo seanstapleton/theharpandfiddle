@@ -59,7 +59,7 @@ window.moment = Moment;
       isMobile = !window.matchMedia('(min-width: 960px)').matches;
     });
 
-    $(document).on('click', '.gov-order', function(evt)  {
+    $(document).on('click', '.temp-closed', function(evt)  {
       evt.preventDefault();
       $('#overlay').toggleClass('show');
       $('#gameWatchDeals').toggleClass('show');

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 433 152" style="enable-background:new 0 0 433 152;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFBBBB;}
+	.st1{fill:#FFFFFF;stroke:#000000;stroke-width:4;stroke-miterlimit:10;}
+	.st2{font-family:'Montserrat-Bold';}
+	.st3{font-size:31.2074px;}
+</style>
+<path class="st0" d="M421,152H13c-6.6,0-12-5.4-12-12V12C1,5.4,6.4,0,13,0h408c6.6,0,12,5.4,12,12v128C433,146.6,427.6,152,421,152z
+	"/>
+<g>
+	<g>
+		<path d="M89,47v56H49V57.8L63.9,47H89 M93,43H62.6L45,55.7V107h48V43L93,43z"/>
+	</g>
+	<g>
+		<path d="M59.2,49.5l-0.7,5.4l-5.6-0.8L59.2,49.5 M63,43l-18,13l16,2.2L63,43L63,43z"/>
+	</g>
+	<line class="st1" x1="55.7" y1="67.9" x2="83" y2="67.9"/>
+	<line class="st1" x1="55.7" y1="76" x2="83" y2="76"/>
+	<line class="st1" x1="55.7" y1="84.2" x2="83" y2="84.2"/>
+	<line class="st1" x1="55.7" y1="92.4" x2="83" y2="92.4"/>
+</g>
+<text transform="matrix(0.918 0 0 1 115.4961 67.5264)"><tspan x="0" y="0" class="st2 st3">Temporary closure</tspan><tspan x="0" y="37.4" class="st2 st3">due to COVID-19</tspan></text>
+</svg>
