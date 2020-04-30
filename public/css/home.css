@@ -18,10 +18,10 @@
     width: 100vw;
     height: 40px;
     line-height: 40px;
+    background-color: #35ac5e;
     cursor: pointer;
     position: absolute;
     z-index: 8;
-    display: none;
 }
 .gov-order p {
     color: #fff;
@@ -274,8 +274,8 @@ a:hover {
 .popup-ll {
   position: absolute !important;
   left: 25px !important;
-  bottom: 70px !important;
-  width: 150px !important;
+  bottom: 105px!important;
+  width: 120px !important;
   cursor: pointer;
   animation-delay: 2s;
 }
@@ -298,11 +298,31 @@ a:hover {
 }
 #gameWatchDeals {
   text-align: center;
-  padding: 30px;
   display: none;
+  width: 90vw;
+  margin: 0 auto;
 }
 #gameWatchDeals a {
   cursor: pointer;
+}
+#covid-note {
+    background-color: #eee;
+    padding: 30px;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    text-align: left;
+    padding-top: 40px;
+}
+#covid-note p, #covid-note li {
+    color: #111;
+    font-size: 1.5em !important;
+}
+#covid-note ol {
+    padding: inherit;
+    padding-top: 20px;
+}
+#covid-note li:not(:first-child) {
+    margin-top: 10px;
 }
 #dealsSubsection p {
   font-size: 1.5em;
@@ -327,10 +347,10 @@ a:hover {
 }
 #gameWatchDeals p:last-child {
   margin-top: 20px;
-  padding-bottom: 40px;
 }
 #gameWatchDeals a {
   color: green;
+  font-weight: bolder;
 }
 
 /* ----------------------------------------------
@@ -482,7 +502,7 @@ div.bar:not(:first-child) {
 }
 .i-logo {
   width: 90%;
-  margin-top: 30vh;
+  margin-top: 35vh;
   margin-left: 5%;
 }
 #intro h2 {
