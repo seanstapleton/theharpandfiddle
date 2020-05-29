@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>The Harp and Fiddle Menus</title>
+        <meta href="/menu-options">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta name="description" content="Menu selection for the Harp and Fiddle in Park Ridge, IL">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200i,200,300,400" rel="stylesheet">
+        <style>
+            @font-face {
+                font-family: "ClassicRoman";
+                src: url("/fonts/ClassicRomanStd-Regular.otf")
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #222;
+            }
+            header {
+                width: 100vw;
+                padding: 1px;
+                margin: 0;
+                background: #000;
+            }
+            header img {
+                display: block;
+                padding: 0;
+                width: 70vw;
+                max-width: 400px;
+                margin: 10px auto;
+            }
+            p, a {
+                margin: 0;
+                text-decoration: none;
+            }
+            .menu-link {
+                display: block;
+                width: 90vw;
+                height: 60vw;
+                margin: 0 auto;
+                margin-bottom: 5vw;
+                background-color: green;
+            }
+            .menu-link:first-child {
+                margin-top: 5vw;
+            }
+            .menu-link p {
+                text-align: center;
+                font-size: 2em;
+                font-family: "ClassicRoman"; 
+                color: #fff;
+                line-height: 60vw;
+            }
+            #food-menu {
+                background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/img/backgrounds/dinner.jpg);
+                background-size: cover;
+            }
+            #wine-menu {
+                background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/img/backgrounds/wine.jpg);
+                background-size: cover;
+            }
+            #beer-menu {
+                background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/img/backgrounds/guiness.JPG);
+                background-size: cover;
+                background-position: center center;
+            }
+            @media (min-width: 768px) {
+                .menu-link {
+                    height: 30vw;
+                }
+                .menu-link p {
+                    font-size: 3em;
+                    line-height: 30vw;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <img src="/img/logos/hf-fiddler.png" alt="Harp and Fiddle horizontal logo" />
+        </header>
+        <div class="menu-links-container">
+            <a href="/menus/dinner-menu.html" id="food-menu" class="menu-link">
+                <p>Food Menu</p>
+            </a>
+            <a href="/menus/wine-menu.html" id="wine-menu" class="menu-link">
+                <p>Wine Menu</p>
+            </a>
+            <a href="/menus/beer-menu.html" id="beer-menu" class="menu-link">
+                <p>Beer Menu</p>
+            </a>
+        </div>
+    </body>
+</html>

@@ -41,7 +41,12 @@ module.exports = (db) => {
   require('./passport/config.js')(passport); // eslint-disable-line global-require
 
   app.use('/backendServices', routes(db, passport));
-  app.get('*', (req, res) => { res.sendFile(`${__dirname}/public/index.html`); });
+  app.get('/menus', (req, res) => {
+    res.sendFile(`${__dirname}/public/menus.html`);
+  });
+  app.get('*', (req, res) => {
+    res.sendFile(`${__dirname}/public/index.html`);
+  });
   app.use('/public', express.static(`${__dirname}/public`));
 
   // // catch 404 and forward to error handler
