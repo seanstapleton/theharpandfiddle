@@ -34,6 +34,9 @@
 }
 
 @media (min-width: 992px) {
+  #christmas-dinner-popup {
+    width: 35vw;
+  }
   #covid-note {
     width: 60vw;
     margin-left: 20vw;

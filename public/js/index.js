@@ -50,7 +50,6 @@ window.moment = Moment;
         e.target.classList.add("pulse");
     });
 
-
     let isMobile = !window.matchMedia('(min-width: 960px)').matches;
 
     if (!isMobile) $('#location-map iframe, .map-overlay').height($('#contact-info').height());
@@ -65,6 +64,12 @@ window.moment = Moment;
       $('#gameWatchDeals').toggleClass('show');
       const subsectionWidth = $('#gameWatchSubtitle').width();
       $('#dealsSubsection').width(subsectionWidth);
+      $('#mainBody').toggleClass('noscroll');
+    });
+
+    $(document).on('click', '#christmas-dinner-link', function(evt) {
+      $('#overlay').toggleClass('show');
+      $('#christmas-dinner-popup').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
     });
 
@@ -247,7 +252,6 @@ window.moment = Moment;
     });
 
     $(".togo-link").click((evt) => {
-        console.log("yo");
         $("#overlay").addClass("show");
         $("#gameWatchDeals").removeClass("show");
         $(".spinner").addClass("show");
@@ -398,7 +402,7 @@ window.moment = Moment;
     $('#close').click(function() {
       $('#overlay').toggleClass('show');
       $('#mainBody').toggleClass('noscroll');
-      const panels = ['#tour-360', '#food', '#drinks', '#cocktails', '#contact-form', '#job-form', '#events-pu', '#gameWatchDeals', '#menu-modal-brunch', '#menu-modal-dinner', '#menu-modal-late-night', '#menu-modal-beer', '#menu-modal-togo'];
+      const panels = ['#tour-360', '#food', '#drinks', '#cocktails', '#contact-form', '#job-form', '#events-pu', '#gameWatchDeals', '#menu-modal-brunch', '#menu-modal-dinner', '#menu-modal-late-night', '#menu-modal-beer', '#menu-modal-togo', '#christmas-dinner-popup'];
       for (let i = 0; i < panels.length; i += 1) {
         const p = $(panels[i]);
         if (p.hasClass('show')) p.toggleClass('show');

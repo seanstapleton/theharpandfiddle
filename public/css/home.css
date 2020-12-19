@@ -274,7 +274,7 @@ a:hover {
 .popup-ll {
   position: absolute !important;
   left: 25px !important;
-  bottom: 105px!important;
+  bottom: 110px!important;
   width: 120px !important;
   cursor: pointer;
   animation-delay: 2s;
@@ -323,6 +323,11 @@ a:hover {
 }
 #covid-note li:not(:first-child) {
     margin-top: 10px;
+}
+#christmas-dinner-popup {
+  width: 90vw;
+  margin: 20px auto 10px auto;
+  display: none;
 }
 #dealsSubsection p {
   font-size: 1.5em;
